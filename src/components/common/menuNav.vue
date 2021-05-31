@@ -1,6 +1,6 @@
 <template>
     <div class="nav">
-        <div class="container-1430">
+        <div class="container-1400">
             <div class="logo">
                 logo
             </div>
@@ -12,8 +12,18 @@
                     {{ item.title }}
                 </div>
             </div>
-            <div class="search">
-
+            <div class="nav-right">
+                <div class="search">
+                    <input v-model="searchKey">
+                    <i class="el-icon-search"/>
+                </div>
+                <div class="study">学习中心</div>
+                <div class="user-box">
+                    <div class="username">薛定谔的猫</div>
+                    <el-image
+                            class="user-header"
+                            :src="require('../../assets/icon/sucai/doge.jpeg')"/>
+                </div>
             </div>
         </div>
     </div>
@@ -53,12 +63,14 @@
           path: '/'
         }
       ])
+      const searchKey = ref('产品规划')
       const toPath = (path) => {
         router.push(path)
       }
       return {
         menuList,
-        toPath
+        toPath,
+        searchKey
       }
     }
   }
@@ -70,10 +82,9 @@
         height: 104px;
         background: #EDEDED;
         display: flex;
-        align-items: center;
-        justify-content: center;
 
-        .container-1430 {
+        .container-1400 {
+            position: relative;
             display: flex;
             align-items: center;
         }
@@ -96,4 +107,51 @@
             cursor: pointer;
         }
     }
+
+    .search {
+        position: relative;
+
+        input {
+            padding-left: 21px;
+            box-sizing: border-box;
+            border: none;
+            width: 248px;
+            height: 48px;
+            outline: none;
+            background: #FFFFFF;
+            border-radius: 24px;
+        }
+
+        i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+        }
+    }
+    .nav-right{
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: 0;
+        .study{
+            cursor: pointer;
+            margin: 0 23px;
+        }
+        .user-box {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            .username {
+                margin-right: 12px;
+            }
+            .user-header {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+            }
+        }
+    }
+
 </style>
