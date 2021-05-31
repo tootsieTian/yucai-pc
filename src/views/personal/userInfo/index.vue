@@ -1,5 +1,5 @@
 <template>
-n
+
 </template>
 
 <script>
@@ -7,7 +7,8 @@ n
     name: "index",
     setup() {
 
-    }
+    },
+	
   }
 </script>
 

@@ -6,11 +6,25 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "postcss-pxtorem": {
+        "rootValue": 192,
+        "propList": [
+          "*"
+        ]
+      }
+    }
+  },
   "dependencies": {
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.45",
+    "lib-flexible": "^0.3.2",
     "normalize.css": "^8.0.1",
     "swiper": "^6.6.2",
+    "postcss-pxtorem": "^6.0.0",
+    "pxtorem": "^1.0.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
