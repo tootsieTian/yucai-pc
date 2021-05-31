@@ -7,7 +7,7 @@ import 'element-plus/lib/theme-chalk/index.css';
 import 'normalize.css/normalize.css'
 import './styles/common/common.scss'
 import './styles/common/commonHm.scss'
-import 'lib-flexible/flexible.js'
+import './util/flexble/flexible.js'
 
 const app = createApp(App)
 
