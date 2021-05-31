@@ -2,16 +2,19 @@
   <div  class="container-1430">
 	<div class="header" >
 		<div class="user-info" >
-			<div class="info-left" >
+			<div class="info-left f" >
 				<div class="user-pic" ></div>
-				<div class="user-detail" >
-					<div class="detail-name" >薛定谔的猫</div>
-					<div class="detail-id" >ID:922598</div>
+				<div class="user-detail f-c" >
+					<div class="detail-name f-1" >薛定谔的猫</div>
+					<div class="detail-id f-1" >ID:922598</div>
 				</div>
 			</div>
 			<div class="info-left" >
 				<div v-for="(item,index) in subList" :key="index" >
-					
+					<div>
+						<div>{{item.name}}</div>
+						<div>{{item.num}}</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -61,5 +64,33 @@
 	   width: 100%;
 	   height: 213px;
 	   background: #F5F5F5;
+	   box-sizing: border-box;
+	   padding-top: 90px;
+	   .user-info{
+		 .info-left{
+			 margin-left: 382px;
+			 .user-pic{
+				 width: 131px;
+				 height: 131px;
+				 background: #EFEFEF;
+				 border-radius: 50%;
+			 }
+			 .user-detail{
+				 margin-left: 44px;
+				 height: 131px;
+				 .detail-name{
+					 padding-top:30px ;
+					 font-size: 22px;
+					 font-family: PingFang SC;
+					 font-weight: 400;
+					 line-height: 30px;
+				 }
+				 .detail-id{
+					 padding-top: 5px;
+				 }
+			 }
+		 }
+		 
+	   }
    }
 </style>
