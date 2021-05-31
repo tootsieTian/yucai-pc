@@ -7,10 +7,8 @@
                     <div class="title">
                         关于御才文化
                     </div>
-                    <div class="list"
-                         style="width: 328px">
+                    <div class="list">
                         <div class="item"
-                             style="width: 164px"
                              v-for="(item,index) in aboutCompanyList"
                              :key="index+'S'">
                             <span>{{ item.title }}</span>
@@ -19,12 +17,10 @@
                 </div>
                 <div class="customer-service">
                     <div class="title">客服</div>
-                    <div class="list"
-                         style="width: 316px">
+                    <div class="list">
                         <div class="item"
                              v-for="(item,index) in customerServiceList"
-                             :key="index+'X'"
-                             style="width: 158px">
+                             :key="index+'X'">
                             <span>{{ item.title }}</span>
                         </div>
                     </div>
@@ -143,8 +139,21 @@
 
     .about-company {
         margin-left: 73px;
+        .list{
+            width: 328px;
+        }
+        .item{
+            width: 164px
+        }
     }
-
+    .customer-service{
+        .list{
+            width: 316px;
+        }
+        .item{
+            width: 158px;
+        }
+    }
     .public-number {
         margin-left: 44px;
 
