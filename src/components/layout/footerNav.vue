@@ -97,6 +97,8 @@
 
 <style lang="scss" scoped>
     .footer {
+
+        font-size: 16px;
         width: 100%;
         background: #E0E0E0;
         height: 517px;

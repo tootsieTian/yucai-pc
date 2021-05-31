@@ -85,6 +85,7 @@
 
 <style lang="scss" scoped>
     .nav {
+        font-size: 14px;
         width: 100%;
         height: 104px;
         background: #EDEDED;
@@ -105,6 +106,8 @@
     }
 
     .menu-list {
+
+
         margin-left: 71px;
         width: 500px;
         justify-content: space-between;

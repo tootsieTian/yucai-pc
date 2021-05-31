@@ -6,8 +6,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/lib/theme-chalk/index.css';
 import 'normalize.css/normalize.css'
 import './styles/common/common.scss'
-import './styles/common/commonHm.scss'
-import './util/flexble/flexible.js'
+import 'amfe-flexible/index'
 
 const app = createApp(App)
 

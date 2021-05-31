@@ -7,7 +7,7 @@
 <style lang="scss">
 </style>
 <script>
-  import { useRoute } from 'vue-router'
+  import { useRoute     } from 'vue-router'
   import menuNav from "./components/layout/menuNav";
   import footerNav from "./components/layout/footerNav";
 

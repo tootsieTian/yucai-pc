@@ -68,6 +68,7 @@
         }
     }
     .more{
+        font-size: 18px;
         line-height: 56px;
     }
 </style>
