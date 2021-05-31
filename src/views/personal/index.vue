@@ -1,7 +1,7 @@
 <template>
   <div  class="container-1430">
-	<div class="header" >
-		<div class="user-info" >
+	<div class="header f-a-j" >
+		<div class="user-info f-s" >
 			<div class="info-left f" >
 				<div class="user-pic" ></div>
 				<div class="user-detail f-c" >
@@ -9,16 +9,18 @@
 					<div class="detail-id f-1" >ID:922598</div>
 				</div>
 			</div>
-			<div class="info-left" >
-				<div v-for="(item,index) in subList" :key="index" >
-					<div>
-						<div>{{item.name}}</div>
-						<div>{{item.num}}</div>
-					</div>
+			<div class="info-right f" >
+				<div class="right-item f-c f-a" v-for="(item,index) in subList" :key="index" >
+					
+						<div class="right-name" >{{item.name}}</div>
+						<div class="right-num" >{{item.num}}</div>
+					
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class=" f-a-j" >
+    <div class="mid-con" >
 	<div class="aside" >
 		<el-col :span="12">
 		    <el-menu
@@ -30,14 +32,14 @@
 		        <i class="el-icon-menu"></i>
 		        <template #title>{{item}}</template>
 		      </el-menu-item>
-		     
 		    </el-menu>
 		  </el-col>
 	</div>
 	<div class="main" >
 		<router-view/>
 	</div>
-  
+	</div>
+    </div>
   	
   </div>
 </template>
@@ -60,6 +62,7 @@
 </script>
 
 <style lang="scss" scoped>
+	
    .header{
 	   width: 100%;
 	   height: 213px;
@@ -67,8 +70,9 @@
 	   box-sizing: border-box;
 	   padding-top: 90px;
 	   .user-info{
+		   width: calc(100vw - 720px);
 		 .info-left{
-			 margin-left: 382px;
+			 margin-left: 22px;
 			 .user-pic{
 				 width: 131px;
 				 height: 131px;
@@ -87,10 +91,58 @@
 				 }
 				 .detail-id{
 					 padding-top: 5px;
+					 font-size: 13px;
+					 font-family: PingFang SC;
+					 font-weight: 400;
+					 line-height: 18px;
+					 color: #333333;
+					 opacity: 0.2;
 				 }
 			 }
 		 }
+		 .info-right{
+			.right-item{
+				width: 106px;
+				height: 100%;
+			}
+			.right-name{
+				margin-top: 20px;
+				font-size: 14px;
+				font-family: PingFang SC;
+				font-weight: 400;
+				line-height: 20px;
+				color: #333333;
+				opacity: 0.4;
+			}
+			.right-num{
+				margin-top: 14px;
+				font-size: 22px;
+				font-family: PingFang SC;
+				font-weight: 400;
+				line-height: 30px;
+				color: #333333;
+				opacity: 1;
+				
+			}
+		 }
 		 
 	   }
+   }
+   
+   .mid-con{
+	  width: calc(100vw - 720px);
+	  padding-top: 47px;
+   }
+   .aside{
+	   
+   }
+   ::v-deep .el-menu-vertical-demo{
+	   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+	   background: #FFFFFF;
+	   width: 252px;
+   }
+   ::v-deep .el-menu-item{
+	  padding-left: 61px;
+	  box-sizing: border-box;
    }
 </style>
