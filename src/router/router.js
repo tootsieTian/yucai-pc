@@ -1,4 +1,4 @@
-import { createRouter,createWebHashHistory } from 'vue-router'
+import { createRouter,createWebHistory } from 'vue-router'
 import index from './index/index'
 // import classify from './classify'
 // import personal from "./personal";
@@ -7,8 +7,7 @@ import index from './index/index'
 
 
 const router = createRouter({
-	history: createWebHashHistory(),
-	base: process.env.BASE_URL,
+	history: createWebHistory(),
 	routes: [...index,
 		// ...personal,...classify, ...study,...login
 	]
@@ -19,9 +18,9 @@ router.beforeEach((to, from, next) => {
 	/**
 	 * 1、鉴权操作
 	 */
-	if(to.meta.title){
-		document.title = to.meta.title;
-	}
+	// if(to.meta.title){
+	// 	document.title = to.meta.title;
+	// }
 	next();
 });
 export default router
