@@ -10,7 +10,8 @@ export default [
     component: () => import('../../views'),
     meta: {
       keepAlive: true,
-      showTab: true,
+      foot: true,
+      nav: true,
       title: '首页'
     }
   },

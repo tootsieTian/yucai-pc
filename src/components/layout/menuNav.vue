@@ -18,11 +18,16 @@
                     <i class="el-icon-search"/>
                 </div>
                 <div class="study">学习中心</div>
-                <div class="user-box">
+                <div class="user-box" v-if="isLogin">
                     <div class="username">薛定谔的猫</div>
                     <el-image
                             class="user-header"
                             :src="require('../../assets/icon/sucai/doge.jpeg')"/>
+                </div>
+                <div class="not-login-box" v-else>
+                    <div>登录</div>
+                    <div class="line"></div>
+                    <div>注册</div>
                 </div>
             </div>
         </div>
@@ -62,12 +67,14 @@
           title: '签到',
           path: '/'
         }
-      ])
-      const searchKey = ref('产品规划')
+      ])    // 菜单列表
+      const searchKey = ref('产品规划') // 搜索框关键字
+      const isLogin = ref(false)    // 是否登录
       const toPath = (path) => {
         router.push(path)
       }
       return {
+        isLogin,
         menuList,
         toPath,
         searchKey
@@ -150,6 +157,17 @@
                 width: 48px;
                 height: 48px;
                 border-radius: 50%;
+            }
+        }
+        .not-login-box{
+            display: flex;
+            align-items: center;
+            margin-left: 22px;
+            .line{
+                margin: 0 12px;
+                width: 1px;
+                background: #707070;
+                height: 18px;
             }
         }
     }
