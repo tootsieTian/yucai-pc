@@ -16,29 +16,29 @@ import teamwork from "./teamwork";
 import userInfo from "./userInfo";
 
 export default [
-  {
-    path: '/personal',
-    component: () => import('../../views/personal'),
-    meta: {
-      keepAlive: true,
-      showTab: true,
-      title: '个人中心'
-    }
-  },
-  ...message,
-  ...vip,
-  ...activity,
-  ...community,
-  ...coupon,
-  ...evaluation,
-  ...gift,
-  ...history,
-  ...myCollect,
-  ...myComment,
-  ...myEarnings,
-  ...order,
-  ...set,
-  ...signIn,
-  ...teamwork,
+  // {
+  //   path: '/personal',
+  //   component: () => import('../../views/personal'),
+  //   meta: {
+  //     keepAlive: true,
+  //     showTab: true,
+  //     title: '个人中心'
+  //   }
+  // },
+  // ...message,
+  // ...vip,
+  // ...activity,
+  // ...community,
+  // ...coupon,
+  // ...evaluation,
+  // ...gift,
+  // ...history,
+  // ...myCollect,
+  // ...myComment,
+  // ...myEarnings,
+  // ...order,
+  // ...set,
+  // ...signIn,
+  // ...teamwork,
   ...userInfo
 ]

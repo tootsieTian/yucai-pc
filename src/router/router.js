@@ -1,15 +1,15 @@
 import { createRouter,createWebHistory } from 'vue-router'
 import index from './index/index'
 // import classify from './classify'
-// import personal from "./personal";
+import personal from "./personal";
 // import study from "./study";
 // import login from './login'
 
 
 const router = createRouter({
 	history: createWebHistory(),
-	routes: [...index,
-		// ...personal,...classify, ...study,...login
+	routes: [...index, ...personal,
+		// ...classify, ...study,...login
 	]
 })
 router.beforeEach((to, from, next) => {
