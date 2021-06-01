@@ -25,7 +25,7 @@
 		ref,
 		reactive
 	} from "vue"
-	import messageItem from "../../../components/message/messageItem.vue"
+	import messageItem from "../../../components/personal/message/messageItem.vue"
 	export default {
 		name: "message",
 		components: {

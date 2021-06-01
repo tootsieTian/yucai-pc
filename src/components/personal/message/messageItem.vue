@@ -17,7 +17,7 @@
 
 <script>
   export default {
-    name: "mCourseCard",
+    name: "messageItem",
     props: {
       messageList: {
         type: Array,

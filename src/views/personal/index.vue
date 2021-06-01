@@ -55,12 +55,12 @@
       const menuList = reactive([
 			  {title:"个人资料",path:'/personal/userInfo'},
 			  {title:"我的消息",path:'/personal/message'},
-			  {title:"测评中心",path:'/personal/userInfo'},
-			  {title:"我的积分",path:'/personal/userInfo'},
-			  {title:"浏览记录",path:'/personal/userInfo'},
-			  {title:"领赠记录",path:'/personal/userInfo'},
-			  {title:"我的评价",path:'/personal/userInfo'},
-			  {title:"申请服务商",path:'/personal/userInfo'}
+			  {title:"测评中心",path:'/personal/evaluation'},
+			  {title:"我的积分",path:'/personal/integral'},
+			  {title:"浏览记录",path:'/personal/browseHistory'},
+			  {title:"领赠记录",path:'/personal/giftHistory'},
+			  {title:"我的评价",path:'/personal/myComment'},
+			  {title:"申请服务商",path:'/personal/apply'}
 		  ]);
 	  const subList = reactive([{name:"课程收藏",num:22},{name:"我的订单",num:10},{name:"我的活动",num:2},{name:"优惠券",num:6},{name:"我的收益",num:"￥115"},])
 	  return {
