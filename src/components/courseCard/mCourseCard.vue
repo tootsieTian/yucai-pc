@@ -42,6 +42,7 @@
 <style lang="scss" scoped>
     .m-course-card{
         position: relative;
+        cursor: pointer;
         height: 320px;
         width: 100%;
         background: #FAFAFA;

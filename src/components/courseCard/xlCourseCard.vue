@@ -55,6 +55,7 @@
 
 <style lang="scss" scoped>
     .xl-course-card {
+        cursor: pointer;
         position: relative;
         height: 279px;
         width: 100%;

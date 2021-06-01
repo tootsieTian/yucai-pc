@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="nav-list">
-
         </div>
         <main>
             <div class="container-1200">
@@ -20,10 +19,10 @@
                 />
 
                 <!--精品课程-->
-                <course-list-title
-                        title="精品课程"
-                        subtitle="精心挑选的上好课程 / 直击你的专业瓶颈 / 加速知识吸收"
-                        class="excellent-title"/>
+                <course-list-title title="精品课程"
+                                   @more="more"
+                                   subtitle="精心挑选的上好课程 / 直击你的专业瓶颈 / 加速知识吸收"
+                                   class="excellent-title"/>
                 <el-row :gutter="39" class="excellent-list">
                     <el-col :span="8" v-for="item in 9" :key="item+'s'">
                         <l-course-card class="excellent-item"/>
@@ -35,14 +34,14 @@
                 />
 
                 <!--活动专区-->
-                <course-list-title
-                        title="活动专区"
-                        subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
-                        class="activity-title"/>
+                <course-list-title title="活动专区"
+                                   @more="more"
+                                   subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
+                                   class="activity-title"/>
                 <el-row :gutter="24" class="activity-list">
                     <el-col :span="6" v-for="item in 4" :key="item+'m'">
                         <m-course-card class="activity-item"
-                                        type="拼团"/>
+                                       type="拼团"/>
                     </el-col>
                 </el-row>
                 <look-all-course
@@ -51,12 +50,12 @@
                 />
 
                 <!--猜你喜欢-->
-                <course-list-title
-                        title="猜你喜欢"
-                        subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
-                        class="favorite-title"/>
+                <course-list-title @more="more"
+                                   title="猜你喜欢"
+                                   subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
+                                   class="favorite-title"/>
                 <div class="explain">
-                    <div>以下课程根据您的喜好推荐 </div>
+                    <div>以下课程根据您的喜好推荐</div>
                     <div>更改喜好<i class="el-icon-arrow-right"/></div>
                 </div>
                 <el-row :gutter="24" class="favorite-list">
@@ -75,6 +74,8 @@
   import LookAllCourse from "../components/courseCard/lookAllCourse";
   import mCourseCard from "../components/courseCard/mCourseCard";
   import lCourseCard from "../components/courseCard/lCourseCard";
+  import {useRouter} from 'vue-router'
+
   export default {
     name: "index",
     components: {
@@ -85,9 +86,11 @@
       lCourseCard
     },
     setup() {
+      const router = useRouter()
       const method = {
         more() {
           console.log('查看更多')
+          router.push('/hotCourse')
         }
       }
       return {
@@ -98,43 +101,52 @@
 </script>
 
 <style lang="scss" scoped>
-    main{
+    main {
         padding-bottom: 100px;
     }
+
     .nav-list {
         width: 100%;
         height: 904px;
         background: #E2E2E2;
     }
-    .hot-title{
+
+    .hot-title {
         margin-top: 76px;
         margin-bottom: 87px;
     }
+
     .hot-list {
         .hot-item {
             margin-bottom: 52px;
         }
     }
-    .excellent-title{
+
+    .excellent-title {
         margin-top: 94px;
         margin-bottom: 53px;
     }
-    .excellent-list{
-        .excellent-item{
+
+    .excellent-list {
+        .excellent-item {
             margin-bottom: 44px;
         }
     }
-    .activity-title{
+
+    .activity-title {
         margin-top: 94px;
         margin-bottom: 73px;
     }
-    .activity-list{
+
+    .activity-list {
         margin-bottom: 22px;
-        .activity-item{
+
+        .activity-item {
             margin-bottom: 44px;
         }
     }
-    .explain{
+
+    .explain {
         display: flex;
         align-items: center;
         padding-left: 20px;
@@ -148,12 +160,14 @@
         color: #999999;
         margin-bottom: 48px;
     }
-    .favorite-title{
+
+    .favorite-title {
         margin-top: 94px;
         margin-bottom: 14px;
     }
-    .favorite-list{
-        .favorite-item{
+
+    .favorite-list {
+        .favorite-item {
             margin-bottom: 38px;
         }
     }

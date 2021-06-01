@@ -1,0 +1,57 @@
+<template>
+    <div class="container-1200">
+        <div class="title">首页-热门课程</div>
+        <div class="nav-list">
+            <div class="nav-item"></div>
+        </div>
+        <course-list-title
+                title="热门课程"
+                subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"/>
+        <el-row :gutter="24">
+            <el-col :span="6" v-for="item in 12" :key="item">
+                <m-course-card/>
+            </el-col>
+        </el-row>
+    </div>
+</template>
+
+<script>
+  import CourseListTitle from "../../../components/common/courseListTitle";
+  import MCourseCard from "../../../components/courseCard/mCourseCard";
+
+  export default {
+    name: "index",
+    components: {MCourseCard, CourseListTitle},
+    setup() {
+
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+    .container-1200 {
+        padding-bottom: 200px;
+    }
+
+    .title {
+        font-size: 14px;
+        padding: 30px 0;
+        font-weight: 400;
+        line-height: 20px;
+        color: #707070;
+    }
+
+    .nav-list {
+        height: 280px;
+        width: 100%;
+        background: #E2E2E2;
+    }
+
+    ::v-deep .course-list-title{
+        margin-top: 53px;
+        margin-bottom: 40px;
+    }
+    ::v-deep .m-course-card{
+        margin-bottom: 38px;
+    }
+</style>

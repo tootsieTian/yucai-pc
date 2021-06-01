@@ -8,7 +8,9 @@
                 {{subtitle}}
             </div>
         </div>
-        <div class="more" @click="more">
+        <div class="more"
+             v-if="showMore"
+             @click="more">
             更多
             <i class="el-icon-arrow-right"/>
         </div>
@@ -29,11 +31,14 @@
       subtitle: {
         type: String,
         default: '必修的刚需课程&硬核技能 / 精心自制的学习视频 / 一次付费随时观看'
+      },
+      showMore: {
+        type: Boolean,
+        default: true
       }
     },
     setup(props,context) {
-      const title = ref(props.title)
-      const subtitle = ref(props.subtitle)
+      const { title,subtitle,showMore } = props
       const method  = {
         more(){
           context.emit('more')
@@ -42,6 +47,7 @@
       return {
         title,
         subtitle,
+        showMore,
         ...method
       }
     }

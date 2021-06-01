@@ -48,6 +48,7 @@
 <style lang="scss" scoped>
     .l-course-card {
         height: 369px;
+        cursor: pointer;
         width: 100%;
         background: #FAFAFA;
     }

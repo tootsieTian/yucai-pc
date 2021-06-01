@@ -1,9 +1,8 @@
-// import courseDetail from "./courseDetail";
-// import search from "./search";
-// import activeArea from "./activeArea";
-// import indexClass from "./indexClass";
-// import popularCourse from "./popularCourse";
-// import excellentCourse from "./excellentCourse";
+import hotCourse from "./hotCourse";
+import classifyCourse from "./classifyCourse";
+import searchResult from "./searchResult";
+import courseDetail from "./courseDetail";
+
 export default [
   {
     path: '/',
@@ -15,11 +14,9 @@ export default [
       title: '首页'
     }
   },
-  // ...activeArea,
-  // ...indexClass,
-  // ...excellentCourse,
-  // ...popularCourse,
-  // ...search,
-  // ...courseDetail
+  ...hotCourse,
+  ...classifyCourse,
+  ...searchResult,
+  ...courseDetail
 ]
 

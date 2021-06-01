@@ -3,12 +3,12 @@ import index from './index/index'
 // import classify from './classify'
 import personal from "./personal";
 // import study from "./study";
-// import login from './login'
+import login from './login'
 
 
 const router = createRouter({
 	history: createWebHistory(),
-	routes: [...index, ...personal,
+	routes: [...index, ...personal,...login
 		// ...classify, ...study,...login
 	]
 })
