@@ -20,22 +20,23 @@
 		</div>
 	</div>
 	<div class=" f-a-j" >
-    <div class="mid-con" >
+    <div class="mid-con f f-s" >
 	<div class="aside" >
 		<el-col :span="12">
 		    <el-menu
+			  router
 		      default-active="2"
 		      class="el-menu-vertical-demo"
 		      @open="handleOpen"
 		      @close="handleClose">
-		      <el-menu-item v-for="(item,index) in menuList" :key="index" :index="index+1">
+		      <el-menu-item  :route="item.path" v-for="(item,index) in menuList" :key="index" :index="index+1">
 		        <i class="el-icon-menu"></i>
-		        <template #title>{{item}}</template>
+		        <template #title>{{item.title}}</template>
 		      </el-menu-item>
 		    </el-menu>
 		  </el-col>
 	</div>
-	<div class="main" >
+	<div class="main1" >
 		<router-view/>
 	</div>
 	</div>
@@ -53,11 +54,23 @@
 	data() {
 	    return {
 	      menuList:[
-			  "个人资料","我的消息","测评中心","我的积分","浏览记录","领赠记录","我的评价","申请服务商"
+			  {title:"个人资料",path:'/personal/userInfo'},
+			  {title:"我的消息",path:'/personal/userInfo'},
+			  {title:"测评中心",path:'/personal/userInfo'},
+			  {title:"我的积分",path:'/personal/userInfo'},
+			  {title:"浏览记录",path:'/personal/userInfo'},
+			  {title:"领赠记录",path:'/personal/userInfo'},
+			  {title:"我的评价",path:'/personal/userInfo'},
+			  {title:"申请服务商",path:'/personal/userInfo'}
 		  ],
-		  subList:[{name:"课程收藏",num:22},{name:"我的订单",num:10},{name:"我的活动",num:2},{name:"优惠券",num:6},{name:"我的收益",num:"￥115"},]
+		  subList:[{name:"课程收藏",num:22},{name:"我的订单",num:10},{name:"我的活动",num:2},{name:"优惠券",num:6},{name:"我的收益",num:"￥115"},],
 	    }
+		},
+	methods:{
+		handleOpen(e){
+			console.log(e)
 		}
+	}	
   }
 </script>
 
@@ -132,17 +145,27 @@
    .mid-con{
 	  width: calc(100vw - 720px);
 	  padding-top: 47px;
+	  padding-bottom: 85px;
    }
    .aside{
-	   
+	
+   }
+   .main1{
+	   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+	   width: 904px;
+	  
    }
    ::v-deep .el-menu-vertical-demo{
 	   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 	   background: #FFFFFF;
 	   width: 252px;
+	   padding-top: 35px;
+	   padding-bottom: 20px;
+	   box-sizing: border-box;
    }
    ::v-deep .el-menu-item{
 	  padding-left: 61px;
 	  box-sizing: border-box;
+	  
    }
 </style>
