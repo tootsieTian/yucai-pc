@@ -58,6 +58,16 @@
             font-weight: 400;
             line-height: 56px;
             color: #333333;
+            position: relative;
+        }
+        .title::before{
+            content: '';
+            width: 6px;
+            height: 34px;
+            background: #DEDEDE;
+            position: absolute;
+            left: -20px;
+            top: 13px;
         }
         .subtitle{
             margin-top: 5px;
@@ -70,5 +80,6 @@
     .more{
         font-size: 18px;
         line-height: 56px;
+        cursor: pointer;
     }
 </style>

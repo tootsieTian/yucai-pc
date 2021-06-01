@@ -1,6 +1,6 @@
 <template>
     <div class="nav">
-        <div class="container-1400">
+        <div class="container-1430">
             <div class="logo">
                 logo
             </div>
@@ -91,7 +91,7 @@
         background: #EDEDED;
         display: flex;
 
-        .container-1400 {
+        .container-1430 {
             position: relative;
             display: flex;
             align-items: center;
