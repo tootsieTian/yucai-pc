@@ -2,7 +2,7 @@
 	<div class="contair">
 		<div class="tit f-s f-a">
 			<div>个人资料</div>
-			<div style="opacity: 0.3;" @click="gosave">保存</div>
+			<div style="opacity: 0.3;" @click="goSave">保存</div>
 		</div>
 		<div class="hx"></div>
 		<div class="detail">
@@ -54,23 +54,23 @@
 	export default {
 		name: "edit",
 		setup() {
-			let input = ref('');
-			let value = ref('');
-		    let options = reactive( [{
+			const input = ref('');
+			const value = ref('');
+		    const options = reactive( [{
 				value: '选项1',
 				label: '男'
 			}, {
 				value: '选项2',
 				label: '女'
 			}]);
-			const gosave = ()=>{
+			const goSave = ()=>{
 				router.push("userInfo")
 			};
 			return {
 				input,
 				value,
 				options,
-				gosave
+				goSave
 			}
 		},
 	}

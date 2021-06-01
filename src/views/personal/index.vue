@@ -20,15 +20,14 @@
 		</div>
 	</div>
 	<div class=" f-a-j" >
-    <div class="mid-con f f-s" >
+    <div class="mid-con  f-s" >
 	<div class="aside" >
 		<el-col :span="12">
 		    <el-menu
 			  router
 		      default-active="2"
 		      class="el-menu-vertical-demo"
-		      @open="handleOpen"
-		      @close="handleClose">
+		     >
 		      <el-menu-item  :route="item.path" v-for="(item,index) in menuList" :key="index" :index="index+1">
 		        <i class="el-icon-menu"></i>
 		        <template #title>{{item.title}}</template>
@@ -46,31 +45,29 @@
 </template>
 
 <script>
+	import {
+		ref,
+		reactive
+	} from 'vue';
   export default {
     name: "index",
     setup() {
-
-    },
-	data() {
-	    return {
-	      menuList:[
+      const menuList = reactive([
 			  {title:"个人资料",path:'/personal/userInfo'},
-			  {title:"我的消息",path:'/personal/userInfo'},
+			  {title:"我的消息",path:'/personal/message'},
 			  {title:"测评中心",path:'/personal/userInfo'},
 			  {title:"我的积分",path:'/personal/userInfo'},
 			  {title:"浏览记录",path:'/personal/userInfo'},
 			  {title:"领赠记录",path:'/personal/userInfo'},
 			  {title:"我的评价",path:'/personal/userInfo'},
 			  {title:"申请服务商",path:'/personal/userInfo'}
-		  ],
-		  subList:[{name:"课程收藏",num:22},{name:"我的订单",num:10},{name:"我的活动",num:2},{name:"优惠券",num:6},{name:"我的收益",num:"￥115"},],
-	    }
-		},
-	methods:{
-		handleOpen(e){
-			console.log(e)
-		}
-	}	
+		  ]);
+	  const subList = reactive([{name:"课程收藏",num:22},{name:"我的订单",num:10},{name:"我的活动",num:2},{name:"优惠券",num:6},{name:"我的收益",num:"￥115"},])
+	  return {
+		  subList,
+		  menuList
+	  }
+    }
   }
 </script>
 
@@ -148,12 +145,12 @@
 	  padding-bottom: 85px;
    }
    .aside{
-	
+	 
    }
    .main1{
 	   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 	   width: 904px;
-	  
+	   // height: auto;
    }
    ::v-deep .el-menu-vertical-demo{
 	   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);

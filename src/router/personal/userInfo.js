@@ -11,6 +11,10 @@ export default [
 			{
 			  path: 'userInfo',
 			  component: () => import('../../views/personal/userInfo')
+			},
+			{
+			  path: 'message',
+			  component: () => import('../../views/personal/message')
 			}
 	      ],
     meta: {

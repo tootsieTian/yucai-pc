@@ -2,7 +2,7 @@
    <div class="contair" >
 	   <div class="tit f-s f-a" >
 		   <div>个人资料</div>
-		   <div style="opacity: 0.3;" @click="goedit" >编辑</div>
+		   <div style="opacity: 0.3;" @click="goEdit" >编辑</div>
 	   </div>
 	   <div class="hx" ></div>
 	   <div class="detail" >
@@ -41,11 +41,11 @@
     export default {
     name: "index",
     setup() {
-       const goedit =  () =>{
+       const goEdit =  () =>{
 		   router.push("edit")
 	   }
 	   return{
-		   goedit
+		   goEdit
 	   }
     }
 	
