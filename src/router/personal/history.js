@@ -1,9 +1,10 @@
 export default [
   {
-    path:'/personal/history',
-    component: () => import('@/views/personal/history/index'),
-    meta: {
-      title: '浏览记录'
-    }
+    path: 'giftHistory',
+    component: () => import('../../views/personal/giftHistory')
   },
+  {
+    path: 'browseHistory',
+    component: () => import('../../views/personal/browseHistory')
+  }
 ]

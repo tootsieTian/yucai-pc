@@ -1,44 +1,26 @@
-// import message from "./message";
-// import vip from "./vip";
-// import activity from "./activity";
-// import community from "./community";
-// import evaluation from "./evaluation";
-// import gift from "./gift";
-// import myCollect from "./myCollect";
-// import myComment from "./myComment";
-// import myEarnings from "./myEarnings";
-// import order from "./order";
-// import set from "./set";
-// import history from "./history";
-// import coupon from "./coupon";
-// import signIn from "./signIn";
-// import teamwork from "./teamwork";
-import userInfo from "./userInfo";
-
+import evaluation from "./evaluation";
+import userInfo   from "./userInfo.js"
+import message from "./message.js"
+import history from "./history.js"
+import myComment from "./myComment.js"
+import signIn from "./signIn.js"
+import teamwork from "./teamwork.js"
 export default [
-  // {
-  //   path: '/personal',
-  //   component: () => import('../../views/personal'),
-  //   meta: {
-  //     keepAlive: true,
-  //     showTab: true,
-  //     title: '个人中心'
-  //   }
-  // },
-  // ...message,
-  // ...vip,
-  // ...activity,
-  // ...community,
-  // ...coupon,
-  // ...evaluation,
-  // ...gift,
-  // ...history,
-  // ...myCollect,
-  // ...myComment,
-  // ...myEarnings,
-  // ...order,
-  // ...set,
-  // ...signIn,
-  // ...teamwork,
-  ...userInfo
+  {
+    path: '/personal',
+	redirect: '/personal/userInfo',
+    component: () => import('../../views/personal'),
+	children: [
+		     ...evaluation,
+	         ...userInfo,	
+			 ...message,
+			 ...history,
+		     ...myComment,
+			 ...signIn,
+			 ...teamwork
+	      ],
+    meta: {
+      title: '个人资料'
+    }
+  },
 ]

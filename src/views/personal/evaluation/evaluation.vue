@@ -5,10 +5,23 @@
 			<div></div>
 		</div>
 		<div class="hx"></div>
+		<div @click="goBuy" >立即购买</div>
 	</div>	
 </template>
 
 <script>
+	import router from "../../../router/router.js"
+	export default{
+		name:"analysis",
+		setup(){
+			const goBuy = ()=>{
+				router.push('buyevaluation')
+			}
+			return{
+				goBuy
+			}
+		}
+	}
 </script>
 
 <style lang="scss" scoped >
