@@ -14,9 +14,9 @@
 		<div class="con" >
 			<!-- 我的错题 -->
 			<div  class="header-con f" >
-				<div class="f-a-j" >我的错题</div>
-				<div class="f-a-j" >我的测评</div>
-				<div class="f-a-j" >我的成就</div>
+				<div class="f-a-j"  @click="goDeatil(0)" >我的错题</div>
+				<div class="f-a-j"  @click="goDeatil(1)" >我的测评</div>
+				<div class="f-a-j"  @click="goDeatil(2)" >我的成就</div>
 			</div>
 			<div class="tab-con" >
 				<div class="message-con" >
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+	import router from "../../../router/router.js"
 	import {
 		ref,
 		reactive
@@ -45,9 +46,26 @@
 		setup(){
 			const input = ref('');
 			const activeIndex = ref(1);
+			const goDeatil = (int)=>{
+				console.log(111)
+				switch(int){
+					case 0 : 
+					router.push("wrong")
+					break;
+					
+					case 1 : 
+					router.push("Myevaluation")
+					break;
+					
+					case 2 : 
+					router.push("achievement")
+					break;
+									}
+			}
 			return {
 				input,
-				activeIndex
+				activeIndex,
+				goDeatil
 			}
 		}
 	}

@@ -161,8 +161,29 @@
 	   box-sizing: border-box;
    }
    ::v-deep .el-menu-item{
-	  padding-left: 61px;
-	  box-sizing: border-box;
+	   // margin: 20px 0;
+	   // height: 20px;
+	   // display: flex;
+	   font-size: 18px;
+	   font-family: PingFang SC;
+	   font-weight: 400;
+	   padding: 0;
+	   opacity: 0.6;
+	   padding-left: 0!important;
+	   // justify-content: center;
+	   // align-items: center;
+	  // box-sizing: border-box;
 	  
    }
+   .el-icon-menu{
+   	   padding-left: 50px;
+   	  
+   }
+   .is-active{
+	   .el-icon-menu{
+	   	  
+	   	   border-left: 4px solid #7B7B7B;
+	   }
+   } 
+   
 </style>
