@@ -72,8 +72,8 @@
   import CourseListTitle from "../components/common/courseListTitle";
   import xlCourseCard from "../components/courseCard/xlCourseCard";
   import LookAllCourse from "../components/courseCard/lookAllCourse";
-  import mCourseCard from "../components/courseCard/mCourseCard";
-  import lCourseCard from "../components/courseCard/lCourseCard";
+  import mCourseCard from "../components/courseCard/sCourseCard";
+  import lCourseCard from "../components/courseCard/mCourseCard";
   import {useRouter} from 'vue-router'
 
   export default {

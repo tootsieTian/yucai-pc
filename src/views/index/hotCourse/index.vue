@@ -17,7 +17,7 @@
 
 <script>
   import CourseListTitle from "../../../components/common/courseListTitle";
-  import MCourseCard from "../../../components/courseCard/mCourseCard";
+  import MCourseCard from "../../../components/courseCard/sCourseCard";
 
   export default {
     name: "index",

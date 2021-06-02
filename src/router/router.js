@@ -13,8 +13,8 @@ const router = createRouter({
 	]
 })
 router.beforeEach((to, from, next) => {
-`	// document.body.scrollTop = 0;
-	// document.documentElement.scrollTop = 0;`
+	document.body.scrollTop = 0;
+	document.documentElement.scrollTop = 0;
 	/**
 	 * 1、鉴权操作
 	 */

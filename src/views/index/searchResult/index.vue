@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import MCourseCard from "../../../components/courseCard/mCourseCard";
+  import MCourseCard from "../../../components/courseCard/sCourseCard";
   import {reactive} from 'vue'
 
   export default {

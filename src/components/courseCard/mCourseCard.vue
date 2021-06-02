@@ -1,19 +1,30 @@
 <template>
-    <div class="m-course-card">
+    <div class="l-course-card">
         <img class="title-page"
              :src="img">
-        <div class="tag" v-if="type!==''">拼团</div>
         <div class="content">
-            <div class="title">10000倍工作效率</div>
-            <div class="subtitle">7节课 ｜390人已学习</div>
-            <div class="bottom-box">2人团￥68.00</div>
+            <div class="title">
+                {{title}}
+            </div>
+            <div class="subtitle">
+                7节课 ｜ 时长2:30:09 ｜390人已学习
+            </div>
+            <div class="bottom-box">
+                <div>
+                    好评率100%
+                </div>
+                <div>
+                    SVIP免费
+                    ￥68.00
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
   export default {
-    name: "mCourseCard",
+    name: "lCourseCard",
     props: {
       title: {
         type: String,
@@ -22,37 +33,33 @@
       img: {
         type: String,
         default: require('../../assets/icon/sucai/平行宇宙.jpg')
-      },
-      type: {
-        type: String,
-        default: ''
       }
     },
     setup(props) {
-      const {title, img,type} = props
+      const {title, img} = props
       return {
         title,
-        img,
-        type
+        img
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-    .m-course-card{
-        position: relative;
+    .l-course-card {
+        height: 369px;
         cursor: pointer;
-        height: 320px;
         width: 100%;
         background: #FAFAFA;
     }
-    .title-page{
-        height: 187px;
+
+    .title-page {
+        height: 219px;
         width: 100%;
+        background: #EDEDED;
     }
     .content{
-        padding: 17px 14px;
+        padding: 27px 17px 22px 20px;
         .title{
             font-size: 20px;
             font-weight: 500;
@@ -61,31 +68,21 @@
             margin-bottom: 10px;
         }
         .subtitle{
-            margin-bottom: 7px;
             font-size: 16px;
             font-weight: 400;
             line-height: 22px;
             color: #999999;
+            margin-bottom: 10px;
         }
         .bottom-box{
-            font-size: 27px;
-            font-family: DIN Alternate;
-            font-weight: bold;
-            line-height: 31px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
             color: #333333;
+            font-weight: 500;
+            line-height: 20px;
         }
-    }
-    .tag{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 78px;
-        height: 40px;
-        background: #F7F7F7;
-        font-size: 14px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
 </style>
