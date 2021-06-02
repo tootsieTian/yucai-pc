@@ -1,5 +1,5 @@
 <template>
-  <div  class="container-1430">
+  <div  >
 	<div class="header f-a-j" >
 		<div class="user-info f-s" >
 			<div class="info-left f" >

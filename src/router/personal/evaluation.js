@@ -1,4 +1,4 @@
-export default [
+const inside = [
  {
    path: 'evaluation',
    component: () => import('../../views/personal/evaluation')
@@ -19,4 +19,20 @@ export default [
    path: 'analysis',
    component: () => import('../../views/personal/evaluation/analysis')
  },
+
 ]
+
+const outside =[
+	{
+	  path: '/personal/buyevaluation',
+	  component: () => import('../../views/personal/evaluation/buyEvaluation'),
+	  meta: {
+	    foot: true,
+	    nav: true
+	  }
+	},
+]
+
+export default {
+	inside,outside
+}

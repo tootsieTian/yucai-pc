@@ -11,7 +11,7 @@ export default [
 	redirect: '/personal/userInfo',
     component: () => import('../../views/personal'),
 	children: [
-		     ...evaluation,
+		     ...evaluation.inside,
 	         ...userInfo,	
 			 ...message,
 			 ...history,
@@ -20,7 +20,9 @@ export default [
 			 ...teamwork
 	      ],
     meta: {
-      title: '个人资料'
-    }
+    foot: true,
+    nav: true
+  }
   },
+  ...evaluation.outside
 ]
