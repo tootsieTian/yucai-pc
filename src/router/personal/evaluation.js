@@ -31,6 +31,22 @@ const outside =[
 	    nav: true
 	  }
 	},
+	{
+	  path: '/personal/startEvaluation',
+	  component: () => import('../../views/personal/evaluation/startEvaluation'),
+	  meta: {
+	    foot: true,
+	    nav: true
+	  }
+	},
+	{
+	  path: '/personal/order',
+	  component: () => import('../../views/personal/evaluation/order'),
+	  meta: {
+	    foot: true,
+	    nav: true
+	  }
+	},
 ]
 
 export default {

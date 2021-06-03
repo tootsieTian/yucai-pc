@@ -12,18 +12,27 @@
 	<div class="footer">
 		<div class="tab" >包含试卷</div>
 		<div style="width: 100%;" class="f-a-j" >
-			<testPaper></testPaper>
+			<testPaper @confirm="confirm" ></testPaper>
 		</div>
 		
 	</div>
 </template>
 
 <script>
+	import router from "../../../router/router.js"
 	import testPaper from "../../../components/personal/evaluation/testPaper.vue"
 	export default{
 		name:"buyEvalation",
 		components:{
 			testPaper
+		},
+		setup(){
+			const confirm = ()=>{
+				router.push('order')
+			}
+			return{
+				confirm
+			}
 		}
 	}
 </script>

@@ -9,18 +9,24 @@
 				</div>
 			</div>
 			<div>
-				<el-button>确认购买</el-button>
+				<el-button @click="confirm" >确认购买</el-button>
 			</div>
 		</div>		
 	</div>
 </template>
 
 <script>
+	
 	export default{
 		name:"testPaper",
 		props:{},
-		setup(props){
-			
+		setup(props,context){
+			const confirm = ()=>{
+				context.emit('confirm')
+			}
+			return{
+				confirm
+			}
 		}
 	}
 </script>
