@@ -6,7 +6,7 @@ import courseDetail from "./courseDetail";
 export default [
   {
     path: '/',
-    component: () => import('../../views'),
+    component: () => import('../../views/index/index'),
     meta: {
       keepAlive: true,
       foot: true,

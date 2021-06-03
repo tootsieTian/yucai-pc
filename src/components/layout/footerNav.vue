@@ -50,7 +50,7 @@
   import {ref} from 'vue'
 
   export default {
-    name: "footer",
+    name: "footerNav",
     setup() {
       const aboutCompanyList = ref([
         {

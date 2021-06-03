@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    name: "lCourseCard",
+    name: "mCourseCard",
     props: {
       title: {
         type: String,

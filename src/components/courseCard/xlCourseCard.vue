@@ -32,7 +32,7 @@
 
 <script>
   export default {
-    name: "lCourseCard",
+    name: "xlCourseCard",
     props: {
       img: {
         type: String,

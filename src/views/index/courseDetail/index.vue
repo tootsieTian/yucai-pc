@@ -1,6 +1,7 @@
 <template>
     <div class="course-detail">
         <title-box/>
+        <course-info/>
         <course-list :tabActive="tabActive"
                      :key="courseListKey"
                      @tabClick="tabClick"
@@ -18,10 +19,11 @@
   import CourseRecommend from "../../../components/courseDetail/courseRecommend";
   import {ref, onMounted} from 'vue'
   import CourseList from "../../../components/courseDetail/courseList";
+  import CourseInfo from "../../../components/courseDetail/courseInfo";
 
   export default {
     name: "index",
-    components: {CourseList, CourseRecommend, CourseExplain, CommentBox, TitleBox},
+    components: {CourseInfo, CourseList, CourseRecommend, CourseExplain, CommentBox, TitleBox},
     setup() {
       const tabActive = ref('course')
       const courseListKey = ref(666)

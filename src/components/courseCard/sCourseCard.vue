@@ -13,7 +13,7 @@
 
 <script>
   export default {
-    name: "mCourseCard",
+    name: "sCourseCard",
     props: {
       title: {
         type: String,

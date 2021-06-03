@@ -3,11 +3,8 @@
     <router-view/>
     <footerNav v-if="route.meta.foot"/>
 </template>
-
-<style lang="scss">
-</style>
 <script>
-  import { useRoute     } from 'vue-router'
+  import { useRoute } from 'vue-router'
   import menuNav from "./components/layout/menuNav";
   import footerNav from "./components/layout/footerNav";
 
@@ -21,3 +18,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+    #app{
+        min-height: 100vh;
+    }
+</style>

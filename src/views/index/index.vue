@@ -66,19 +66,23 @@
             </div>
         </main>
     </div>
+    <check-study @closeDialog="closeDialog" v-if="dialogShow"/>
 </template>
 
 <script>
-  import CourseListTitle from "../components/common/courseListTitle";
-  import xlCourseCard from "../components/courseCard/xlCourseCard";
-  import LookAllCourse from "../components/courseCard/lookAllCourse";
-  import mCourseCard from "../components/courseCard/sCourseCard";
-  import lCourseCard from "../components/courseCard/mCourseCard";
-  import {useRouter} from 'vue-router'
+  import CourseListTitle from "../../components/common/courseListTitle";
+  import xlCourseCard from "../../components/courseCard/xlCourseCard";
+  import LookAllCourse from "../../components/courseCard/lookAllCourse";
+  import mCourseCard from "../../components/courseCard/sCourseCard";
+  import lCourseCard from "../../components/courseCard/mCourseCard";
+  import { useRouter } from 'vue-router'
+  import { ref } from 'vue'
+  import CheckStudy from "../../components/index/checkStudy";
 
   export default {
     name: "index",
     components: {
+      CheckStudy,
       LookAllCourse,
       xlCourseCard,
       CourseListTitle,
@@ -87,14 +91,19 @@
     },
     setup() {
       const router = useRouter()
+      const dialogShow = ref(true)      // 选择学习领域盒子
       const method = {
         more() {
           console.log('查看更多')
           router.push('/hotCourse')
+        },
+        closeDialog() {
+          dialogShow.value = false
         }
       }
       return {
-        ...method
+        ...method,
+        dialogShow
       }
     }
   }

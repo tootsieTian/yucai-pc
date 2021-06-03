@@ -7,8 +7,11 @@
             <el-tab-pane label="介绍" name="explain"/>
             <el-tab-pane label="推荐" name="recommend"/>
         </el-tabs>
-        <div class="course-video-list">
-            <div class="course-video-item" v-for="item in 6" :key="item+'p'">
+        <div class="course-video-list" v-if="courseVideoListShow">
+            <div class="course-video-item"
+                 v-for="item in 6"
+                 :key="item+'p'"
+                 @click="toPath('/courseDetail/videoPlay')">
                 <div class="left">
                     <div class="title">第一章</div>
                     <div class="circle"></div>
@@ -23,14 +26,25 @@
 
             </div>
         </div>
+        <el-row class="course-list" :gutter="27" v-if="!courseVideoListShow">
+            <el-col :span="12"
+                    class="course-item"
+                    v-for="item in 4"
+                    :key="item+'r'">
+                <l-course-card/>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
 <script>
   import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  import LCourseCard from "../courseCard/lCourseCard";
 
   export default {
     name: "courseList",
+    components: {LCourseCard},
     props: {
       tabActive: {
         type: String,
@@ -39,16 +53,19 @@
     },
     setup(props, context) {
       const tabActive = ref(props.tabActive)
+      const courseVideoListShow = ref(true)
+      const router = useRouter()
       const tabClick = (tab) => {
         context.emit('tabClick', tab)
       }
-      const testClick = () => {
-        console.log(tabActive.value)
+      const toPath = (path) => {
+        router.push(path)
       }
       return {
         tabActive,
         tabClick,
-        testClick
+        toPath,
+        courseVideoListShow
       }
     }
   }
@@ -92,6 +109,7 @@
     .course-video-list{
         padding-top: 45px;
         .course-video-item{
+            cursor: pointer;
             padding: 15px 40px;
             display: flex;
             position: relative;
@@ -147,6 +165,13 @@
             transform: translateY(-50%);
             height: 19px;
             background: #D9D9D9;
+        }
+    }
+
+    .course-list{
+        padding: 32px 40px 0 40px;
+        .course-item{
+            margin-bottom: 20px;
         }
     }
 
