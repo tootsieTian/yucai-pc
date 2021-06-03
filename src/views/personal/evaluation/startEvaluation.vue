@@ -37,6 +37,7 @@
 </template>
 
 <script>
+	import router from "../../../router/router.js"
 	import {
 		ref,
 		reactive
@@ -51,7 +52,7 @@
 			   answer.value = item
 		   }
 		   const  goResult = ()=>{
-			   this.$router.push('/personal/evaluation/result')
+			   router.push('result')
 		   }
 		   return{
 			   goResult,

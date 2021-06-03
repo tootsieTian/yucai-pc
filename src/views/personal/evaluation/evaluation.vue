@@ -15,7 +15,7 @@
 		name:"analysis",
 		setup(){
 			const goBuy = ()=>{
-				router.push('buyevaluation')
+				router.push('buyEvaluation')
 			}
 			return{
 				goBuy

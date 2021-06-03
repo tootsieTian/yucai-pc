@@ -24,7 +24,7 @@ const inside = [
 
 const outside =[
 	{
-	  path: '/personal/buyevaluation',
+	  path: '/personal/buyEvaluation',
 	  component: () => import('../../views/personal/evaluation/buyEvaluation'),
 	  meta: {
 	    foot: true,
@@ -42,6 +42,14 @@ const outside =[
 	{
 	  path: '/personal/order',
 	  component: () => import('../../views/personal/evaluation/order'),
+	  meta: {
+	    foot: true,
+	    nav: true
+	  }
+	},
+	{
+	  path: '/personal/result',
+	  component: () => import('../../views/personal/evaluation/result'),
 	  meta: {
 	    foot: true,
 	    nav: true
