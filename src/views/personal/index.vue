@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container-main" >
 		<div class="header f-a-j">
 			<div class="user-info f-s">
 				<div class="info-left f">
@@ -104,7 +104,7 @@
 			}, {
 				name: "我的活动",
 				num: 2,
-				path:'/personal/apply'
+				path:'/personal/activity'
 			}, {
 				name: "优惠券",
 				num: 6,

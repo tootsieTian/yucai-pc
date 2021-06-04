@@ -31,12 +31,17 @@
 		couponList:{
 			type:Array,
 			default :()=>{[]}
-		}  
+		},
+		key:{
+			type:String,
+			default:""
+		}
 	  },
 	  setup(props){
-		  const {couponList}=props
+		  const {couponList,key}=props
 		  return{
-			  couponList
+			  couponList,
+			  key
 		  }
 	  }
 	}

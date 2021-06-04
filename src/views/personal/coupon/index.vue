@@ -12,9 +12,8 @@
 				<el-menu-item index="3">已使用</el-menu-item>
 				<el-menu-item index="4">已过期</el-menu-item>
 			</el-menu>
-			<coupon :couponList="couponList"></coupon>
+			<coupon :key="key" :couponList="couponList"></coupon>
 		</div>
-
 	</div>
 </template>
 
@@ -31,7 +30,8 @@
 			coupon
 		},
 		setup() {
-			const couponList = reactive([{
+			const key= ref(key)
+			const couponList = ref([{
 					status: "已 过 期"
 				},
 				{
@@ -43,6 +43,7 @@
 			])
 			const activeIndex = ref(1)
 			const handleSelect = (e) => {
+				key.value++
 				switch (e) {
 					case "1":
 						couponList.value = [{
@@ -55,43 +56,39 @@
 								status: "立 即 使 用"
 							},
 						]
+
 						break;
 
 					case "2":
-					couponList.value = [
-						
-						{
-							status: "立 即 使 用"
-						},
-					]
+						couponList.value = [{
+								status: "已 使 用"
+							}
+
+						]
 						break;
 
 					case "3":
-					couponList.value = [
-						{
-							status: "已 使 用"
-						}
-					]
-						break;
+						couponList.value = [{
+							
+								status: "立 即 使 用"
+							}]
+							break;
 
-					case "4":
-					couponList.value = [{
-							status: "已 过 期"
+							case "4":
+							couponList.value = [{
+								status: "已 过 期"
+							}]
+							break;
 						}
-					]
-						break;
+				}
+				return {
+					activeIndex,
+					handleSelect,
+					couponList,
+					key
 				}
 			}
-			watch(couponList,(newVal,oldVal)=>{
-				console.log(newval)
-			})
-			return {
-				activeIndex,
-				handleSelect,
-				couponList
-			}
 		}
-	}
 </script>
 
 <style lang="scss" scoped>
