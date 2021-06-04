@@ -1,5 +1,5 @@
 <template>
-    <div class="container-1200">
+    <div class="container-body">
         <div class="title-box">
             <div class="title">确认订单信息</div>
             <div class="subtitle">请在30分钟内付款，逾期订单将被取消</div>
@@ -20,15 +20,52 @@
                     <div class="price">68.00</div>
                 </div>
             </div>
+            <div class="plate-title">支付方式</div>
+            <div class="plate-box">
+                <div class="plate-item"
+                     v-for="item in payTypeList"
+                     @click="plateItemClick(item)">
+                    <div :class="{'plate-item--active':item===selectPayType.value}"></div>
+                    {{item.title}}
+                </div>
+            </div>
+            <div class="buy-box">
+                <div class="all-price"></div>
+                <div class="coupon-price"></div>
+                <div class="score-price"></div>
+                <div class="need-price"></div>
+                <div class="buy-btn">立即支付</div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+  import { reactive } from 'vue'
+
   export default {
     name: "index",
     setup() {
-
+      const selectPayType = reactive({})
+      const payTypeList = reactive([
+        {
+          title: '支付宝支付'
+        },
+        {
+          title: '微信支付'
+        }
+      ])
+      const method = {
+        plateItemClick(item) {
+          selectPayType.value = item
+        }
+      }
+      method.plateItemClick(payTypeList[0])
+      return {
+        selectPayType,
+        payTypeList,
+        ...method
+      }
     }
   }
 </script>
@@ -57,10 +94,10 @@
     }
 
     .order-box {
-
+        position: relative;
         background: #F5F5F5;
-        padding: 25px 30px 53px 30px;
-
+        padding: 25px 30px 344px 30px;
+        margin-bottom: 50px;
         .user-info {
             display: flex;
             align-items: center;
@@ -85,6 +122,7 @@
             padding: 25px;
             display: flex;
             background: #ffffff;
+            margin-bottom: 60px;
 
             .title-page {
                 width: 298px;
@@ -118,6 +156,55 @@
                 font-weight: bold;
                 line-height: 31px;
                 color: #333333;
+            }
+        }
+
+        .plate-title {
+            margin-bottom: 28px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #707070;
+        }
+
+        .plate-box {
+            display: flex;
+
+            .plate-item{
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                margin-right: 26px;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                color: #707070;
+                width: 273px;
+                height: 93px;
+                background: #FFFFFF;
+                div:first-child {
+                    margin-left: 37px;
+                    margin-right: 23px;
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 50%;
+                    background: #EFEFEF;
+                }
+                .plate-item--active{
+                    background: black !important;
+                }
+            }
+
+        }
+
+        .buy-box{
+            position: absolute;
+            bottom: 55px;
+            right: 78px;
+            .buy-btn{
+                width: 228px;
+                height: 59px;
+                background: #FFFFFF;
             }
         }
     }

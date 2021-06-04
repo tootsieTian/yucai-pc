@@ -1,6 +1,6 @@
 <template>
     <div class="check-study">
-        <div class="dialog container-1200">
+        <div class="dialog container-main">
             <div class="title">选择学习领域</div>
             <div class="tag-list">
                 <div class="tag-item"

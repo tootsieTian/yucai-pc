@@ -1,5 +1,5 @@
 <template>
-    <div class="container-1200">
+    <div class="container-main">
         <div class="title">首页-热门课程</div>
         <div class="nav-list">
             <div class="nav-item"></div>
@@ -29,7 +29,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .container-1200 {
+    .container-main {
         padding-bottom: 200px;
     }
 

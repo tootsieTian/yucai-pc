@@ -1,5 +1,5 @@
 <template>
-    <div class="container-1200">
+    <div class="container-main">
         <!--        秒杀盒子-->
         <div class="spike-process" v-if="showSpikeProcess">
             <div class="process-box">
@@ -85,7 +85,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .container-1200 {
+    .container-main {
         background: #ffffff;
         transform: translateY(-57px);
         box-shadow: 0 3px 16px rgba(0, 0, 0, 0.04);

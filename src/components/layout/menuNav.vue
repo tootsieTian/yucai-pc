@@ -1,6 +1,6 @@
 <template>
     <div :class="{nav:true,'nav-top':navTop}">
-        <div class="container-1430">
+        <div class="container-menu">
             <div class="logo" @click="toPath('/')">
                 logo
             </div>
@@ -121,7 +121,7 @@
         background: #ededed;
         display: flex;
 
-        .container-1430 {
+        .container-menu {
             position: relative;
             display: flex;
             align-items: center;

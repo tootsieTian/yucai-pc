@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <div class="container-1200">
+        <div class="container-main">
             <div class="line">
                 <div class="logo"></div>
                 <div class="about-company">
@@ -98,7 +98,7 @@
         width: 100%;
         background: #E0E0E0;
         height: 517px;
-        .container-1200 {
+        .container-main {
             position: relative;
             height: 100%;
             .top{

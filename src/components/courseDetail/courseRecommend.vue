@@ -1,5 +1,5 @@
 <template>
-    <div class="container-1200">
+    <div class="container-main">
         <div class="title">课程推荐</div>
         <el-row :gutter="24">
             <el-col :span="6" v-for="item in 8" :key="item+'x'">
@@ -21,7 +21,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .container-1200{
+    .container-main{
         padding-top: 92px;
     }
     .title{

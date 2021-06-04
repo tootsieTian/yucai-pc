@@ -1,6 +1,6 @@
 <template>
     <div class="classify-nav">
-        <div class="container-1200">
+        <div class="container-main">
             <div class="title">课程分类：</div>
             <div class="classify-list">
                 <div :class="{'classify-item':true,'classify-item--active':item===3}"
@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <main class="container-1200">
+    <main class="container-main">
         <div class="filter-list">
             <div class="filter-item">综合</div>
             <div class="filter-item">最多购买</div>
@@ -45,7 +45,7 @@
         background: #F5F5F5;
         width: 100%;
 
-        .container-1200 {
+        .container-main {
             display: flex;
             align-items: center;
             height: 100%;

@@ -1,5 +1,5 @@
 <template>
-    <div class="container-1200">
+    <div class="container-main">
         <el-tabs v-model="tabActive"
                  @tab-click="tabClick">
             <el-tab-pane label="课程" name="course"/>
@@ -72,7 +72,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .container-1200 {
+    .container-main {
         box-sizing: border-box;
         padding-top: 8px;
         padding-bottom: 40px;

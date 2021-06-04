@@ -1,6 +1,6 @@
 <template>
     <div class="classify-nav">
-        <div class="container-1200">
+        <div class="container-main">
             <div class="title">课程分类：</div>
             <div class="classify-list">
                 <div class="order classify-box">
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <main class="container-1200">
+    <main class="container-main">
         <el-row :gutter="24">
             <el-col v-for="item in 12"
                     :span="6"
@@ -97,7 +97,7 @@
         background: #F5F5F5;
         width: 100%;
 
-        .container-1200 {
+        .container-main {
             height: 100%;
             padding-top: 39px;
             padding-bottom: 22px;

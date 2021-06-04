@@ -15,7 +15,7 @@
                          :src="require('../../assets/icon/sucai/平行宇宙.jpg')"/>
                 </swiper-slide>
             </swiper>
-            <div class="plate-list container-1200">
+            <div class="plate-list container-main">
                 <div class="plate-item" v-for="plate in plateList">
                     {{plate.title}}
                 </div>
@@ -23,7 +23,7 @@
         </div>
 
         <main>
-            <div class="container-1200">
+            <div class="container-main">
 
                 <!--热门课程-->
                 <course-list-title @more="more"

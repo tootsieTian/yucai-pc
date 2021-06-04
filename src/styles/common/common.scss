@@ -2,18 +2,40 @@ html {
   min-height: 100vh;
 }
 
-.container-1200{
-  box-sizing: border-box;
-  width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+@media (max-width: 1280px) {
+  .mod_main_nav {
+    width: 990px;
+  }
 }
-.container-1430{
+
+@media (max-width: 1549px) {
+  .mod_main_nav {
+    width: 1200px;
+  }
+}
+
+@media (max-width: 1789px) {
+  .mod_main_nav {
+    width: 1500px;
+  }
+  .container-main {
+    box-sizing: border-box;
+    width: 1200px;
+    min-width: 1200PX;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+
+.container-menu {
   box-sizing: border-box;
   width: 1430px;
+  min-width: 1200PX;
   margin-left: auto;
   margin-right: auto;
 }
+
 .header-index {
   width: 100%;
   min-width: 1240px;

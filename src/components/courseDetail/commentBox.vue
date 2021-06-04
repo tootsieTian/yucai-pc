@@ -1,5 +1,5 @@
 <template>
-    <div class="container-1200">
+    <div class="container-main">
         <div class="title">
             评价
             <div>102</div>
@@ -61,7 +61,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .container-1200 {
+    .container-main {
         margin-top: 30px;
         padding: 33px 36px 36px 40px;
         background: #FFFFFF;

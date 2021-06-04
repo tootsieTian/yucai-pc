@@ -1,5 +1,5 @@
 <template>
-    <div class="container-1200">
+    <div class="container-main">
         课程介绍
     </div>
 </template>
@@ -14,7 +14,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .container-1200{
+    .container-main{
         margin-top: 30px;
         height: 1890px;
         background: #F4F4F4;
