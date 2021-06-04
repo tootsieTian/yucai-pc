@@ -6,13 +6,30 @@
 		</div>
 		<div class="hx"></div>
 		<div class="con f" >
-			<el-button class="apply" >申请个人讲师</el-button>
-			<el-button class="apply" >申请入驻机构</el-button>
+			<el-button  @click="goDetail(0)"  class="apply" >申请个人讲师</el-button>
+			<el-button  @click="goDetail(1)"  class="apply" >申请入驻机构</el-button>
 		</div>
 	</div>	
 </template>
 
 <script>
+	import {ref,reactive} from "vue"
+	import router from "../../../router/router.js"
+	export default {
+		setup(){
+			const goDetail = (int)=>{
+				if(int==0){
+					router.push('applyPerson')
+				}
+				if(int==1){
+					router.push('applyMechanism')
+				}
+			}
+			return {
+				goDetail
+			}
+		}
+	}
 </script>
 
 <style lang="scss" scoped >

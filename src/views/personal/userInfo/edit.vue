@@ -37,7 +37,7 @@
 			<div class="study">
 				<div class="lable" style="opacity: 1;">*选择学习领域</div>
 				<div class="f" style="flex-flow: wrap;">
-					<div class="lable1" v-for="(item,index)  in 10">家庭教育</div>
+					<div class="lable1" @click="selectItme($event,item)" v-for="(item,index)  in 10">家庭教育</div>
 
 				</div>
 			</div>
@@ -50,10 +50,12 @@
 		ref,
 		reactive
 	} from 'vue';
+	import { ElMessage } from 'element-plus'
 	import router from "../../../router/router.js";
 	export default {
 		name: "edit",
 		setup() {
+			const checkList= reactive([])
 			const input = ref('');
 			const value = ref('');
 		    const options = reactive( [{
@@ -63,6 +65,22 @@
 				value: '选项2',
 				label: '女'
 			}]);
+			const selectItme  = (event,item)=>{
+				let className = event.currentTarget.className
+				
+				if (checkList.includes(item)) {
+				  checkList.splice(checkList.findIndex(val => val === item), 1)
+				  event.currentTarget.className = className.replace(' lable-active', '')
+				
+				} else {
+				  if (checkList.length > 2) {
+				    return  ElMessage('最多只能选3个')
+				  }
+				  checkList.push(item)
+				  event.currentTarget.className = className + ' lable-active'
+				
+				}
+			};
 			const goSave = ()=>{
 				router.push("userInfo")
 			};
@@ -70,7 +88,9 @@
 				input,
 				value,
 				options,
-				goSave
+				goSave,
+				selectItme,
+				checkList
 			}
 		},
 	}
@@ -196,6 +216,9 @@
 					border: 1px solid #DBDBDB;
 				}
 			}
+		}
+		.lable-active{
+			background-color: #53A8FF;
 		}
 	}
 </style>
