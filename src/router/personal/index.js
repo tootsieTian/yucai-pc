@@ -5,6 +5,7 @@ import history from "./history.js"
 import myComment from "./myComment.js"
 import signIn from "./signIn.js"
 import teamwork from "./teamwork.js"
+import coupon from "./coupon.js"
 export default [
   {
     path: '/personal',
@@ -17,7 +18,8 @@ export default [
 			 ...history,
 		     ...myComment,
 			 ...signIn,
-			 ...teamwork
+			 ...teamwork,
+			 ...coupon
 	      ],
     meta: {
     foot: true,

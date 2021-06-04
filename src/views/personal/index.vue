@@ -48,6 +48,7 @@
 		watch,
 		 onMounted
 	} from 'vue';
+	import router from "../../router/router.js"
 	export default {
 		
 		name: "index",
@@ -107,7 +108,7 @@
 			}, {
 				name: "优惠券",
 				num: 6,
-				path:'/personal/apply'
+				path:'/personal/coupon'
 			}, {
 				name: "我的收益",
 				num: "￥115",
