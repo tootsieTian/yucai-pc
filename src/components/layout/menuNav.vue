@@ -1,5 +1,5 @@
 <template>
-    <div class="nav">
+    <div :class="{nav:true,'nav-top':navTop}">
         <div class="container-1430">
             <div class="logo" @click="toPath('/')">
                 logo
@@ -29,7 +29,8 @@
                        @click="toPath('/searchResult')"/>
                 </div>
                 <div class="study">学习中心</div>
-                <div class="user-box" v-if="isLogin">
+                <div class="user-box" v-if="isLogin"
+                     @click="toPath('/personal/userInfo')">
                     <div class="username">薛定谔的猫</div>
                     <el-image
                             class="user-header"
@@ -46,13 +47,20 @@
 </template>
 
 <script>
-  import {ref, reactive} from 'vue'
-  import {useRouter} from 'vue-router'
+  import { ref, reactive, watch } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
 
   export default {
     name: "menuNav",
     setup() {
       const router = useRouter()
+      const route = useRoute()
+      const navTop = ref(false)
+      watch(route, (newVal) => {
+        newVal.path === '/' ? navTop.value = true : navTop.value = false
+      }, {
+        immediate: true
+      })
       const menuList = reactive([
         {
           title: '首页',
@@ -91,17 +99,26 @@
         menuList,
         toPath,
         searchKey,
+        navTop
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+    .nav-top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        background: rgba(237, 237, 237, 0.6) !important;
+    }
+
     .nav {
         font-size: 14px;
         width: 100%;
         height: 104px;
-        background: #EDEDED;
+        background: #ededed;
         display: flex;
 
         .container-1430 {

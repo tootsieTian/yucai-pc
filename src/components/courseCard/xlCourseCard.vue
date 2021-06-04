@@ -1,24 +1,27 @@
 <template>
     <div class="xl-course-card">
-        <img class="title-page" :src="img">
-        <div class="content">
-            <div class="title">
-                {{title}}
-            </div>
-            <div class="subtitle">
-                7节课 ｜ 时长2:30:09
-            </div>
-            <div class="bottom-box">
-                <div>390人已学习</div>
-                <div class="price-box">
-                    SVIP免费
-                    <div>
-                        ￥68.00
+        <div class="top-box">
+            <img class="title-page" :src="img">
+            <div class="content">
+                <div class="title">
+                    {{title}}
+                </div>
+                <div class="subtitle">
+                    7节课 ｜ 时长2:30:09
+                </div>
+                <div class="bottom-box">
+                    <div>390人已学习</div>
+                    <div class="price-box">
+                        SVIP免费
+                        <div>
+                            ￥68.00
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="comment-box">
+
+        <div class="comment-box" v-if="commentShow">
             <div class="user-info">
                 <img :src="img">
                 <div class="username">小御才</div>
@@ -42,12 +45,17 @@
         type: String,
         default: '100倍工作效率',
       },
+      commentShow:{
+        type: Boolean,
+        default: false
+      }
     },
     setup(props) {
-      const { img,title } = props
+      const { img,title,commentShow } = props
       return {
         img,
-        title
+        title,
+        commentShow
       }
     }
   }
@@ -57,23 +65,26 @@
     .xl-course-card {
         cursor: pointer;
         position: relative;
-        height: 279px;
+        display: flex;
+        flex-direction: column;
         width: 100%;
         background: #F5F5F5;
-        padding: 20px 27px 20px 20px;
+        padding: 0 27px 0 20px;
         box-sizing: border-box;
     }
+    .top-box{
+        position: relative;
+        display: flex;
+    }
     .title-page{
-        position: absolute;
-        left: 20px;
+        position: relative;
         top: -24px;
         width: 253px;
         height: 159px;
     }
     .content{
-        position: absolute;
-        left: 300px;
-        right: 27px;
+        margin-top: 20px;
+        margin-left: 27px;
         .title{
             font-size: 20px;
             font-weight: 500;
@@ -99,12 +110,9 @@
         }
     }
     .comment-box{
+        margin-bottom: 20px;
         box-sizing: border-box;
-        position: absolute;
         height: 100px;
-        left: 20px;
-        bottom: 20px;
-        right: 27px;
         padding: 18px 20px 20px 20px;
         background: #FFFFFF;
         .user-info{

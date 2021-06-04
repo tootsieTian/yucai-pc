@@ -1,7 +1,27 @@
 <template>
     <div>
         <div class="nav-list">
+            <swiper
+                    :slides-per-view="1"
+                    :space-between="50"
+                    @swiper="onSwiper"
+                    @slideChange="onSlideChange"
+                    :pagination="{ clickable: true }"
+
+            >
+                <swiper-slide v-for="item in  4">
+                    <img class="nav-img"
+                         @click="toCourseDetail"
+                         :src="require('../../assets/icon/sucai/平行宇宙.jpg')"/>
+                </swiper-slide>
+            </swiper>
+            <div class="plate-list container-1200">
+                <div class="plate-item" v-for="plate in plateList">
+                    {{plate.title}}
+                </div>
+            </div>
         </div>
+
         <main>
             <div class="container-1200">
 
@@ -10,7 +30,9 @@
                                    class="hot-title"/>
                 <el-row :gutter="20" class="hot-list">
                     <el-col :span="12" v-for="item in 4" :key="item">
-                        <xl-course-card class="hot-item"/>
+                        <xl-course-card class="hot-item"
+                                        @click.native="toCourseDetail"
+                                        :comment-show="true"/>
                     </el-col>
                 </el-row>
                 <look-all-course
@@ -25,7 +47,8 @@
                                    class="excellent-title"/>
                 <el-row :gutter="39" class="excellent-list">
                     <el-col :span="8" v-for="item in 9" :key="item+'s'">
-                        <l-course-card class="excellent-item"/>
+                        <l-course-card class="excellent-item"
+                                       @click.native="toCourseDetail"/>
                     </el-col>
                 </el-row>
                 <look-all-course
@@ -39,9 +62,9 @@
                                    subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
                                    class="activity-title"/>
                 <el-row :gutter="24" class="activity-list">
-                    <el-col :span="6" v-for="item in 4" :key="item+'m'">
-                        <m-course-card class="activity-item"
-                                       type="拼团"/>
+                    <el-col :span="12" v-for="item in 4" :key="item+'m'">
+                        <xl-course-card class="activity-item"
+                                        @click.native="toCourseDetail"/>
                     </el-col>
                 </el-row>
                 <look-all-course
@@ -60,7 +83,8 @@
                 </div>
                 <el-row :gutter="24" class="favorite-list">
                     <el-col :span="6" v-for="item in 12" :key="item+'m'">
-                        <m-course-card class="favorite-item"/>
+                        <m-course-card class="favorite-item"
+                                       @click.native="toCourseDetail"/>
                     </el-col>
                 </el-row>
             </div>
@@ -70,14 +94,22 @@
 </template>
 
 <script>
+  import { useRouter } from 'vue-router'
+  import { ref, reactive } from 'vue'
+  import { Swiper, SwiperSlide } from 'swiper/vue';
+  import SwiperCore, { Pagination, A11y } from 'swiper';
+  import 'swiper/swiper.scss';
+  import 'swiper/components/navigation/navigation.scss';
+  import 'swiper/components/pagination/pagination.scss';
+  import 'swiper/components/scrollbar/scrollbar.scss';
   import CourseListTitle from "../../components/common/courseListTitle";
   import xlCourseCard from "../../components/courseCard/xlCourseCard";
   import LookAllCourse from "../../components/courseCard/lookAllCourse";
   import mCourseCard from "../../components/courseCard/sCourseCard";
   import lCourseCard from "../../components/courseCard/mCourseCard";
-  import { useRouter } from 'vue-router'
-  import { ref } from 'vue'
   import CheckStudy from "../../components/index/checkStudy";
+
+  SwiperCore.use([Pagination, A11y]);
 
   export default {
     name: "index",
@@ -87,11 +119,24 @@
       xlCourseCard,
       CourseListTitle,
       mCourseCard,
-      lCourseCard
+      lCourseCard,
+      Swiper,
+      SwiperSlide,
     },
     setup() {
       const router = useRouter()
-      const dialogShow = ref(true)      // 选择学习领域盒子
+      const dialogShow = ref(false)      // 选择学习领域盒子
+      const plateList = reactive([
+        {
+          title: '套餐视频'
+        },
+        {
+          title: '全部课程'
+        },
+        {
+          title: '学习中心'
+        }
+      ])
       const method = {
         more() {
           console.log('查看更多')
@@ -99,11 +144,21 @@
         },
         closeDialog() {
           dialogShow.value = false
+        },
+        onSwiper(swiper) {
+          console.log(swiper);
+        },
+        onSlideChange() {
+          console.log('slide change')
+        },
+        toCourseDetail() {
+          router.push('/courseDetail')
         }
       }
       return {
         ...method,
-        dialogShow
+        dialogShow,
+        plateList
       }
     }
   }
@@ -115,13 +170,41 @@
     }
 
     .nav-list {
+        position: relative;
         width: 100%;
         height: 904px;
         background: #E2E2E2;
+
+        .nav-img {
+            height: 904px;
+            width: 100%;
+        }
+    }
+
+    .plate-list {
+        z-index: 1000;
+        position: absolute;
+        bottom: -62px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: space-between;
+
+        .plate-item {
+            font-size: 22px;
+            font-weight: 400;
+            color: #707070;
+            width: 353px;
+            height: 147px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F5F5F5;
+        }
     }
 
     .hot-title {
-        margin-top: 76px;
+        margin-top: 146px;
         margin-bottom: 87px;
     }
 
@@ -178,6 +261,15 @@
     .favorite-list {
         .favorite-item {
             margin-bottom: 38px;
+        }
+    }
+
+    ::v-deep .swiper-pagination {
+        bottom: 138px;
+
+        .swiper-pagination-bullet {
+            width: 7px;
+            height: 7px;
         }
     }
 </style>

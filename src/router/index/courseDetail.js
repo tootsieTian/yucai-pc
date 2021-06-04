@@ -13,5 +13,13 @@ export default [
     meta: {
       nav: true
     }
+  },
+  {
+    path: '/courseDetail/order',
+    component: () => import('../../views/index/courseDetail/order'),
+    meta: {
+      nav: true,
+      foot: true
+    }
   }
 ]

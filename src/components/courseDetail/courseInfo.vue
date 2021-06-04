@@ -1,6 +1,6 @@
 <template>
     <div class="container-1200">
-<!--        秒杀盒子-->
+        <!--        秒杀盒子-->
         <div class="spike-process" v-if="showSpikeProcess">
             <div class="process-box">
                 <div class="title">已抢购70%</div>
@@ -13,7 +13,8 @@
             <div class="time-box">
                 <div class="title">距离结束剩余</div>
                 <div class="time">
-                    00:10:08</div>
+                    00:10:08
+                </div>
             </div>
         </div>
         <div class="content">
@@ -52,7 +53,9 @@
                         </div>
                         <div>390人已学习</div>
                     </div>
-                    <el-button type="primary">立即抢购</el-button>
+                    <el-button type="primary"
+                               @click="toPath('/courseDetail/order')">立即抢购
+                    </el-button>
                 </div>
             </div>
         </div>
@@ -62,25 +65,32 @@
 </template>
 
 <script>
-  import {ref} from 'vue'
+  import { ref } from 'vue'
+  import { useRouter } from 'vue-router'
 
   export default {
     name: "courseInfo",
     setup() {
+      const router = useRouter()
       const showSpikeProcess = ref(true)
+      const toPath = (path) => {
+        router.push(path)
+      }
       return {
-        showSpikeProcess
+        showSpikeProcess,
+        toPath
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-    .container-1200{
+    .container-1200 {
         background: #ffffff;
         transform: translateY(-57px);
         box-shadow: 0 3px 16px rgba(0, 0, 0, 0.04);
     }
+
     .spike-process {
         display: flex;
         padding: 0 30px;
@@ -88,9 +98,11 @@
         justify-content: space-between;
         align-items: center;
         height: 57px;
+
         .process-box {
             display: flex;
             align-items: center;
+
             .title {
                 font-size: 13px;
                 font-weight: 400;
@@ -104,55 +116,63 @@
                 height: 5px;
             }
         }
-        .time-box{
+
+        .time-box {
             display: flex;
             align-items: center;
             font-size: 13px;
             font-weight: 400;
             line-height: 18px;
             color: #333333;
-            .title{
+
+            .title {
                 margin-right: 27px;
             }
         }
     }
-    .content{
+
+    .content {
         padding: 30px 30px 50px 30px;
     }
 
-    .top-box{
+    .top-box {
         display: flex;
         justify-content: space-between;
-        .time-box{
+
+        .time-box {
             display: flex;
             font-size: 16px;
             font-weight: 400;
             color: #999999;
             align-items: center;
-           .line{
-               height: 20px;
-               background: #999999;
-               width: 1px;
-               margin: 0 14px;
-           }
+
+            .line {
+                height: 20px;
+                background: #999999;
+                width: 1px;
+                margin: 0 14px;
+            }
         }
-        .btn-list{
+
+        .btn-list {
             display: flex;
             font-size: 14px;
             font-weight: 400;
             line-height: 20px;
             color: #333333;
-            .btn-item{
+
+            .btn-item {
                 padding-left: 25px;
             }
         }
     }
 
-    .tag-list{
+    .tag-list {
         margin-top: 9px;
         margin-bottom: 20px;
         display: flex;
-        .tag-item{
+
+        .tag-item {
             margin-right: 10px;
             font-size: 14px;
             padding: 0 10px;
@@ -163,20 +183,23 @@
         }
     }
 
-    .bottom-box{
+    .bottom-box {
         display: flex;
         justify-content: space-between;
-        .price-box{
+
+        .price-box {
             display: flex;
             align-items: center;
-            div:first-child{
+
+            div:first-child {
                 font-size: 14px;
                 font-family: PingFang SC;
                 font-weight: 400;
                 line-height: 20px;
                 color: #999999;
             }
-            div:last-child{
+
+            div:last-child {
                 font-size: 35px;
                 font-family: DIN Alternate;
                 font-weight: bold;
@@ -184,10 +207,12 @@
                 color: #333333;
             }
         }
-        .btn-box{
+
+        .btn-box {
             display: flex;
             align-items: center;
-            .customer-box{
+
+            .customer-box {
                 font-size: 14px;
                 font-family: PingFang SC;
                 font-weight: 400;

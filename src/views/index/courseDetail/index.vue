@@ -17,13 +17,13 @@
   import CommentBox from "../../../components/courseDetail/commentBox";
   import CourseExplain from "../../../components/courseDetail/courseExplain";
   import CourseRecommend from "../../../components/courseDetail/courseRecommend";
-  import {ref, onMounted} from 'vue'
+  import { ref, onUnmounted } from 'vue'
   import CourseList from "../../../components/courseDetail/courseList";
   import CourseInfo from "../../../components/courseDetail/courseInfo";
 
   export default {
     name: "index",
-    components: {CourseInfo, CourseList, CourseRecommend, CourseExplain, CommentBox, TitleBox},
+    components: { CourseInfo, CourseList, CourseRecommend, CourseExplain, CommentBox, TitleBox },
     setup() {
       const tabActive = ref('course')
       const courseListKey = ref(666)
@@ -33,28 +33,40 @@
         explain: ref(null),
         recommend: ref(null)
       }
-      window.addEventListener('scroll', () => {
-        if (document.documentElement.scrollTop <= refs.comment.value.$el.offsetTop) {
+
+      const listenScroll = () => {
+        if (document.documentElement.scrollTop
+          <= refs.comment.value.$el.offsetTop
+          && tabActive.value !== 'course') {
           tabActive.value = 'course'
           courseListKey.value++
         } else if (document.documentElement.scrollTop >= refs.comment.value.$el.offsetTop
-          && document.documentElement.scrollTop <= refs.explain.value.$el.offsetTop) {
+          && document.documentElement.scrollTop <= refs.explain.value.$el.offsetTop
+          && tabActive.value !== 'comment'
+        ) {
           tabActive.value = 'comment'
           courseListKey.value++
         } else if (document.documentElement.scrollTop >= refs.explain.value.$el.offsetTop
-          && document.documentElement.scrollTop <= refs.recommend.value.$el.offsetTop) {
+          && document.documentElement.scrollTop <= refs.recommend.value.$el.offsetTop
+          && tabActive.value !== 'explain') {
           tabActive.value = 'explain'
           courseListKey.value++
-        } else if (document.documentElement.scrollTop >= refs.recommend.value.$el.offsetTop) {
+        } else if (document.documentElement.scrollTop >= refs.recommend.value.$el.offsetTop
+          && tabActive.value !== 'recommend') {
           tabActive.value = 'recommend'
           courseListKey.value++
         }
+      }
+
+      window.addEventListener('scroll', listenScroll)
+      onUnmounted(() => {
+        window.removeEventListener('scroll', listenScroll)
       })
 
       // 瞄点定位
       const tabClick = (tab) => {
         let domTop = document.documentElement.scrollTop
-        let rollDistance = (refs[tab.props.name].value.$el.offsetTop - domTop+2) / 20
+        let rollDistance = (refs[tab.props.name].value.$el.offsetTop - domTop + 2) / 20
         let i = 0
         const roll = setInterval(() => {
           ++i
