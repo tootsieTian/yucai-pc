@@ -1,5 +1,5 @@
 <template>
-    <div class="container-body">
+    <div class="container-main">
         <div class="title-box">
             <div class="title">确认订单信息</div>
             <div class="subtitle">请在30分钟内付款，逾期订单将被取消</div>
@@ -20,6 +20,15 @@
                     <div class="price">68.00</div>
                 </div>
             </div>
+            <div class="coupon-box">
+                <div class="plate-title">优惠券：</div>
+                <div class="coupon-list">请选择优惠券</div>
+            </div>
+            <div class="score-box">
+                <div class="plate-title">积分抵扣</div>
+                <div class="score-list">70积分可抵扣7元</div>
+            </div>
+
             <div class="plate-title">支付方式</div>
             <div class="plate-box">
                 <div class="plate-item"
@@ -30,10 +39,23 @@
                 </div>
             </div>
             <div class="buy-box">
-                <div class="all-price"></div>
-                <div class="coupon-price"></div>
-                <div class="score-price"></div>
-                <div class="need-price"></div>
+                <div class="price-box">
+                    <div class="price-title">总价</div>
+                    ￥68.00
+                </div>
+                <div class="price-box">
+                    <div class="price-title">优惠券</div>
+                    -￥10.00
+                </div>
+                <div class="price-box">
+                    <div class="price-title">积分</div>
+                    -￥.700
+                </div>
+                <div class="line"></div>
+                <div class="price-box">
+                    <div class="price-title">需付金额</div>
+                    ￥51.00
+                </div>
                 <div class="buy-btn">立即支付</div>
             </div>
         </div>
@@ -98,6 +120,7 @@
         background: #F5F5F5;
         padding: 25px 30px 344px 30px;
         margin-bottom: 50px;
+
         .user-info {
             display: flex;
             align-items: center;
@@ -160,17 +183,29 @@
         }
 
         .plate-title {
-            margin-bottom: 28px;
+            margin-bottom: 14px;
             font-size: 14px;
             font-weight: 400;
             line-height: 20px;
             color: #707070;
         }
+        .score-list,.coupon-list {
+            width: 283px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            background: #FFFFFF;
+            font-size: 14px;
+            margin-bottom: 24px;
+            font-weight: 400;
+            line-height: 20px;
+            color: #707070;
 
+        }
         .plate-box {
             display: flex;
-
-            .plate-item{
+            margin-top: 28px;
+            .plate-item {
                 cursor: pointer;
                 display: flex;
                 align-items: center;
@@ -182,6 +217,7 @@
                 width: 273px;
                 height: 93px;
                 background: #FFFFFF;
+
                 div:first-child {
                     margin-left: 37px;
                     margin-right: 23px;
@@ -190,20 +226,52 @@
                     border-radius: 50%;
                     background: #EFEFEF;
                 }
-                .plate-item--active{
+
+                .plate-item--active {
                     background: black !important;
                 }
             }
 
         }
 
-        .buy-box{
+        .buy-box {
+            cursor: pointer;
             position: absolute;
             bottom: 55px;
             right: 78px;
-            .buy-btn{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            .price-box{
+                display: flex;
+                height: 35px;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+                color: #333333;
+                opacity: 0.4;
+                .price-title{
+                    margin-right: 15px;
+                }
+            }
+            .buy-btn {
                 width: 228px;
                 height: 59px;
+                background: #FFFFFF;
+                font-size: 19px;
+                font-weight: 500;
+                line-height: 26px;
+                color: #333333;
+                display: flex;
+                margin-top: 20px;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .line {
+                margin: 18px 0;
+                width: 205px;
+                height: 1px;
                 background: #FFFFFF;
             }
         }

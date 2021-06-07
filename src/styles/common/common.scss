@@ -2,38 +2,40 @@ html {
   min-height: 100vh;
 }
 
+.container-main,.container-menu{
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
 @media (max-width: 1280px) {
   .container-main {
-    box-sizing: border-box;
     width: 1000PX;
-    margin-left: auto;
-    margin-right: auto;
+  }
+  .container-menu {
+    max-width: 1100PX;
   }
 
 }
 
 @media (min-width: 1281px) and (max-width: 1549px) {
   .container-main {
-    box-sizing: border-box;
     width: 1250PX;
-    margin-left: auto;
-    margin-right: auto;
+  }
+  .container-menu {
+    max-width: 1350PX;
   }
 }
 
-@media (min-width: 1550px) and (max-width: 1789px) {
+@media (min-width: 1550px){
   .container-main {
-    box-sizing: border-box;
     width: 1500PX;
-    margin-left: auto;
-    margin-right: auto;
+  }
+  .container-menu {
+    max-width: 1600PX;
   }
 }
 .container-menu {
-  box-sizing: border-box;
   width: 90%;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .header-index {

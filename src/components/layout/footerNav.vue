@@ -101,8 +101,9 @@
         .container-main {
             position: relative;
             height: 100%;
-            .top{
+            .line{
                 display: flex;
+                justify-content: space-between;
             }
         }
     }

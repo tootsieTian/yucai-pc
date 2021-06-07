@@ -26,7 +26,7 @@
                     <div class="explain">从事新媒体运营10年。</div>
                 </div>
             </div>
-            <div class="comment-btn">评价课程</div>
+            <div class="comment-btn" @click="commentBoxShow=true">评价课程</div>
             <div class="course-list-title">视频目录(9)</div>
             <div class="course-list">
                 <div :class="{'course-item':true,'course-item--active':activeCourseItem===index}"
@@ -43,22 +43,30 @@
             </div>
         </div>
     </div>
+    <comment v-if="commentBoxShow" @closeCommentBox="commentBoxShow=false"/>
 </template>
 
 <script>
-  import {ref} from 'vue'
+  import { ref,watch } from 'vue'
+  import Comment from "../../../../components/courseDetail/videoPlay/comment";
 
   export default {
     name: "index",
+    components: { Comment },
     setup() {
       const courseItem = ref(null)
+      const commentBoxShow = ref(false)
       const activeCourseItem = ref(0)
       const courseItemClick = (index) => {
         activeCourseItem.value = index
       }
+      watch(commentBoxShow, (oldVal,newVal) => {
+        console.log(oldVal)
+      })
       return {
         courseItem,
         activeCourseItem,
+        commentBoxShow,
         courseItemClick
       }
     }
@@ -234,4 +242,5 @@
             }
         }
     }
+
 </style>

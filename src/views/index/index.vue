@@ -125,7 +125,7 @@
     },
     setup() {
       const router = useRouter()
-      const dialogShow = ref(false)      // 选择学习领域盒子
+      const dialogShow = ref(true)      // 选择学习领域盒子
       const plateList = reactive([
         {
           title: '套餐视频'
@@ -182,7 +182,7 @@
     }
 
     .plate-list {
-        z-index: 1000;
+        z-index: 100;
         position: absolute;
         bottom: -62px;
         left: 50%;
