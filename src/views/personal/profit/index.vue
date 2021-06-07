@@ -28,7 +28,7 @@
 							</div>
 						</div>
 						<div class="f-c f-s" >
-							<div>收益记录</div>
+							<div @click="goRecord" >收益记录</div>
 							<div  >
 								<div class="lab-tit" >总收益</div>
 								<div><Price></Price></div>
@@ -53,6 +53,7 @@
 	import Price from "../../../components/common/price.vue"
 	import tagList from "../../../components/common/tagList.vue"
 	import collectItem from "../../../components/personal/collection/collectItem.vue"
+	import router from "../../../router/router.js"
 	import {
 		ref,
 		reactive,
@@ -94,11 +95,15 @@
 				active.value=e
 				
 			}
+			const goRecord = ()=>{
+				router.push('/personal/profitRecord')
+			}
 			return{
 				NavList,
 				handleSelect,
 				active,
-				chartOptions
+				chartOptions,
+				goRecord
 			}
 		}
 	}
