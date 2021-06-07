@@ -1,5 +1,5 @@
 <template>
-	<div class="item-con " >
+	<div class="item-con  container-main" >
         <div  v-for="(item,index) in 3"  :key="index" class="item f-s" >
 			<div class="f" >
 				<div class="pic" ></div>
@@ -34,7 +34,7 @@
 <style lang="scss" scoped >
 	.item-con{
 		.item{
-			width: calc(100vw - 720px);
+			width: 100%;
 			margin-bottom: 27px;
 			.pic{
 				width: 48px;

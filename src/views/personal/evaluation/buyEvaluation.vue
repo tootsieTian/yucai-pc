@@ -52,7 +52,7 @@
 			height: 140px;
 
 			bottom: -70px;
-			left: 162px;
+			left:20px;
 
 			.left {
 				height: 140px;
@@ -103,7 +103,7 @@
 			font-weight: 500;
 			line-height: 24px;
 			color: #333333;
-			margin-left: 360px;
+			margin-left: 20px;
 		}
 	}
 </style>

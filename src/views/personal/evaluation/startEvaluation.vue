@@ -1,6 +1,6 @@
 <template>
 	<div class="f-a-j">
-		<div class="con ">
+		<div class="con  container-main">
 			<el-progress  class="progress" :percentage="75" :show-text="false" ></el-progress>
 			<div class="box-t f-s">
 				<div class="box-l font-din">
@@ -71,7 +71,7 @@
 	$blue-color: #1371F3;
 
 	.con {
-		width: 1200px;
+		// width: 1200px;
 		background: #F5F5F5;
 		margin-bottom: 203px;
 		margin-top: 52px;

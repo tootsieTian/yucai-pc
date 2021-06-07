@@ -1,6 +1,6 @@
 <template>
 	<div class="f-j" >
-		<div class="contair" >
+		<div class="contair container-main" >
 			<div class="title" >确认订单信息</div>
 			<div class="main" >
 				<div class="user f-a" >
@@ -80,7 +80,7 @@
 
 <style lang="scss"  scoped >
 	.contair{
-		width: calc(100vw - 720px);
+		// width: calc(100vw - 720px);
 		
 		.title{
 			font-size: 24px;
