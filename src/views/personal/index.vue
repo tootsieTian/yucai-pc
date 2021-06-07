@@ -19,7 +19,7 @@
 				</div>
 			</div>
 		</div>
-		<div class=" f-a-j">
+		<div class=" container-main f-a-j">
 			<div class="mid-con  f-s">
 				<div class="aside">
 					<el-col :span="12">
@@ -147,7 +147,7 @@
 		padding-top: 90px;
 
 		.user-info {
-			width: calc(100vw - 720px);
+			width: calc(100vw );
 
 			.info-left {
 				margin-left: 22px;
@@ -215,7 +215,7 @@
 	}
 
 	.mid-con {
-		width: calc(100vw - 720px);
+		width: 100%;
 		padding-top: 47px;
 		padding-bottom: 85px;
 	}
@@ -224,7 +224,9 @@
 
 	.main1 {
 		box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-		width: 904px;
+		// width: 904px;
+		flex-grow: 1;
+		margin-left: 40px;
 		// height: auto;
 	}
 

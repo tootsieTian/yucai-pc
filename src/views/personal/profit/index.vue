@@ -2,7 +2,7 @@
 	<template>
 		<div class="contair">
 			<div class="tit f-s f-a">
-				<div class="Nav-con" ><NavMenu :menuList="NavList" @handleSelect="handleSelect" ></NavMenu></div>
+				<div class="Nav-con" ><tagList :menuList="NavList" @handleSelect="handleSelect" ></tagList></div>
 				<div></div>
 			</div>
 			<div class="hx"></div>
@@ -42,15 +42,16 @@
 				</div>
 				<div class="footer" >
 					<div>收益曲线</div>
-					<div></div>
+					 <div ref="chart" id="chart"></div>
 				</div>
 			</div>
 		</div>	
 </template>
 
 <script>
+	import echarts from 'echarts'
 	import Price from "../../../components/common/price.vue"
-	import NavMenu from "../../../components/common/NavMenu.vue"
+	import tagList from "../../../components/common/tagList.vue"
 	import collectItem from "../../../components/personal/collection/collectItem.vue"
 	import {
 		ref,
@@ -58,7 +59,7 @@
 	} from 'vue';
 	export default{
 		name: "index",
-		components:{NavMenu,collectItem,Price},
+		components:{tagList,collectItem,Price},
 		setup(){
 			const NavList = reactive(["我的收益","推荐课程"])
 			const active =ref(1)
