@@ -28,7 +28,7 @@
                     <i class="el-icon-search"
                        @click="toPath('/searchResult')"/>
                 </div>
-                <div class="study">学习中心</div>
+                <div class="study" @click="toPath('/study')">学习中心</div>
                 <div class="user-box" v-if="isLogin"
                      @click="toPath('/personal/userInfo')">
                     <div class="username">薛定谔的猫</div>
@@ -57,7 +57,7 @@
       const route = useRoute()
       const navTop = ref(false)
       watch(route, (newVal) => {
-        newVal.path === '/' ? navTop.value = true : navTop.value = false
+        newVal.path === '/'  ? navTop.value = true : navTop.value = false
       }, {
         immediate: true
       })
@@ -110,11 +110,11 @@
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 1000;
         background: rgba(237, 237, 237, 0.6) !important;
     }
 
     .nav {
+        z-index: 1000;
         font-size: 14px;
         width: 100%;
         height: 104px;

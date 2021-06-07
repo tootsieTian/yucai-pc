@@ -50,14 +50,14 @@
 	} from 'vue';
 	import router from "../../router/router.js"
 	export default {
-		
+
 		name: "index",
 		setup() {
 			const { ctx } = getCurrentInstance()
 		    const active = ref(1);
 			// watch(()=>ctx.$router.currentRoute.value.fullPath,(newValue,oldValue)=>{
-			
-			//  console.log(newValue,'新的路由') 
+
+			//  console.log(newValue,'新的路由')
 			//  console.log(oldValue,'旧的路由')
 			// })
 			const menuList = reactive([{
@@ -133,8 +133,8 @@
 				active
 			}
 		},
-	
-		
+
+
 	}
 </script>
 
