@@ -96,11 +96,11 @@
 			const subList = reactive([{
 				name: "课程收藏",
 				num: 22,
-				path: '/personal/apply'
+				path: '/personal/collection'
 			}, {
 				name: "我的订单",
 				num: 10,
-				path: '/personal/apply'
+				path: '/personal/Myorder'
 			}, {
 				name: "我的活动",
 				num: 2,
@@ -112,7 +112,7 @@
 			}, {
 				name: "我的收益",
 				num: "￥115",
-				path:'/personal/apply'
+				path:'/personal/profit'
 			}, ]);
 			const goDeatil = (path)=>{
 				router.push(path)

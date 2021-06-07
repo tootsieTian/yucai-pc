@@ -1,18 +1,22 @@
-<template>
+
 	<template>
 		<div class="contair">
 			<div class="tit f-s f-a">
-				<div>申请服务商</div>
+				<div>课程收藏</div>
 				<div></div>
 			</div>
 			<div class="hx"></div>
+			<collectItem></collectItem>
 		</div>	
 </template>
 
 <script>
-	
+	import collectItem from "../../../components/personal/collection/collectItem.vue"
 	export default{
 		name: "index",
+		components:{
+			collectItem
+		},
 		setup(){}
 	}
 </script>

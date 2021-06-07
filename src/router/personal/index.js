@@ -7,6 +7,9 @@ import signIn from "./signIn.js"
 import teamwork from "./teamwork.js"
 import coupon from "./coupon.js"
 import activity from "./activity.js"
+import order from "./order.js"
+import collect from "./myCollect.js"
+import earnings from "./myEarnings.js"
 export default [
   {
     path: '/personal',
@@ -21,7 +24,10 @@ export default [
 			 ...signIn,
 			 ...teamwork,
 			 ...coupon,
-			 ...activity
+			 ...activity,
+			 ...order,
+			 ...collect,
+			 ...earnings
 	      ],
     meta: {
     foot: true,

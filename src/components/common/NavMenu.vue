@@ -1,0 +1,68 @@
+<template>
+	<div class="con" >
+		<el-menu default-active="1" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+			<el-menu-item :index="index+1" v-for="(item,index) in menuList" :key="index" >{{item}}</el-menu-item>
+		</el-menu>
+	</div>
+	
+</template>
+
+<script>
+	export default{
+		emits:['handleSelect'],
+		props:{
+			menuList:{
+				type:Array,
+				default:()=>{[]}
+			}
+		},
+		setup(props,context){
+			const {menuList}=props
+			const methods  = {
+			  handleSelect(e){
+			    context.emit('handleSelect',e)
+			  }
+			}
+			return{
+				menuList,
+				...methods
+			}
+		}
+	}
+</script>
+
+<style lang="scss" scoped >
+	.con{
+		::v-deep .el-menu-demo {
+			margin-bottom: 42px;
+		}
+		
+		::v-deep .el-menu.el-menu--horizontal {
+			border: 0;
+		}
+		
+		::v-deep .el-menu--horizontal>.el-menu-item.is-active {
+			font-size: 16px;
+			color: #333333;
+			opacity: 1;
+			border-bottom: 4px solid #505050;
+			// border-spacing: ;
+		}
+		
+		::v-deep .el-menu-item {
+			// white-space: nowrap;
+			height: 40px;
+			font-size: 12px;
+			color: #333333;
+			opacity: 0.5;
+			// padding: 0 10px;
+			margin: 0 35px;
+			width: 22px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		
+		}	
+	}
+	
+</style>
