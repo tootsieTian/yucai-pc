@@ -73,7 +73,7 @@
 
 <style lang="scss" scoped >
 	.contair {
-		width: 908px;
+		width: 100%;
 		padding-bottom: 58px;
 		padding-right: 45px;
 		box-sizing: border-box;

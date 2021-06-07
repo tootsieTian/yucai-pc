@@ -99,7 +99,7 @@
 <style lang="scss" scoped>
 	.contair {
 		padding-bottom: 84px;
-		width: 908px;
+		width: 100%;
 		padding-right: 45px;
 		box-sizing: border-box;
 		font-family: PingFang SC;

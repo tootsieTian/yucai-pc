@@ -51,7 +51,7 @@
 	.item-con{
 		flex-flow: wrap;
 		.item{
-			margin-right: 22px;
+			margin-right: 18px;
 			font-size: 13px;
 			font-weight: 400;
 			line-height: 18px;

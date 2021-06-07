@@ -1,6 +1,6 @@
 <template>
 	<div class="item-con f" >
-		<div class="item" :class="index==1 || index % 3 == 1 ? 'mar24' : '' " v-for=" (item,index) in 5" >
+		<div class="item"   v-for=" (item,index) in 5" >
 			<div class="item-header" ></div>
 			<div class="item-footer" >
 				<div class="title f-s" >
@@ -45,6 +45,7 @@
 			height: 288px;
 			background: #FAFAFA;
 			opacity: 1;
+			margin: 0 12px;
 			margin-bottom: 27px;
 			// margin-right:24px ;
 			.item-header{
