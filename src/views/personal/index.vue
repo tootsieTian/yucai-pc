@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="container-main" >
 		<div class="header f-a-j">
 			<div class="user-info f-s">
 				<div class="info-left f">
@@ -96,15 +96,15 @@
 			const subList = reactive([{
 				name: "课程收藏",
 				num: 22,
-				path: '/personal/apply'
+				path: '/personal/collection'
 			}, {
 				name: "我的订单",
 				num: 10,
-				path: '/personal/apply'
+				path: '/personal/Myorder'
 			}, {
 				name: "我的活动",
 				num: 2,
-				path:'/personal/apply'
+				path:'/personal/activity'
 			}, {
 				name: "优惠券",
 				num: 6,
@@ -112,7 +112,7 @@
 			}, {
 				name: "我的收益",
 				num: "￥115",
-				path:'/personal/apply'
+				path:'/personal/profit'
 			}, ]);
 			const goDeatil = (path)=>{
 				router.push(path)

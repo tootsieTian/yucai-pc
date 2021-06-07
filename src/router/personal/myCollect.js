@@ -1,10 +1,10 @@
 
 export default [
   {
-    path:'/personal/myCollect',
-    component: () => import('@/views/personal/myCollect/index'),
+    path:'collection',
+    component: () => import('@/views/personal/collection/index'),
     meta: {
-      title: 'æˆ‘çš„æ”¶è—'
+      title: '¿Î³ÌÊÕ²Ø'
     }
   },
 ]

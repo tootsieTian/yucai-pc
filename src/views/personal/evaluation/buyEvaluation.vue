@@ -1,4 +1,5 @@
 <template>
+	<div class="container-main" >
 	<div class="header">
 		<div class="tit-con f">
 			<div class="left"></div>
@@ -15,6 +16,7 @@
 			<testPaper @confirm="confirm" ></testPaper>
 		</div>
 		
+	</div>
 	</div>
 </template>
 
@@ -50,7 +52,7 @@
 			height: 140px;
 
 			bottom: -70px;
-			left: 362px;
+			left: 162px;
 
 			.left {
 				height: 140px;

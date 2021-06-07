@@ -6,6 +6,10 @@ import myComment from "./myComment.js"
 import signIn from "./signIn.js"
 import teamwork from "./teamwork.js"
 import coupon from "./coupon.js"
+import activity from "./activity.js"
+import order from "./order.js"
+import collect from "./myCollect.js"
+import earnings from "./myEarnings.js"
 export default [
   {
     path: '/personal',
@@ -19,7 +23,11 @@ export default [
 		     ...myComment,
 			 ...signIn,
 			 ...teamwork,
-			 ...coupon
+			 ...coupon,
+			 ...activity,
+			 ...order,
+			 ...collect,
+			 ...earnings
 	      ],
     meta: {
     foot: true,
