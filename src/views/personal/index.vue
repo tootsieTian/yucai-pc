@@ -1,7 +1,7 @@
 <template>
-	<div class="container-main" >
-		<div class="header f-a-j">
-			<div class="user-info f-s">
+	<div class="" >
+		<div class="header  f-a-j">
+			<div class="user-info container-main f-s">
 				<div class="info-left f">
 					<div class="user-pic"></div>
 					<div class="user-detail f-c">
@@ -147,7 +147,7 @@
 		padding-top: 90px;
 
 		.user-info {
-			width: calc(100vw );
+			// width: 100%;
 
 			.info-left {
 				margin-left: 22px;

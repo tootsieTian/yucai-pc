@@ -49,13 +49,14 @@
 </template>
 
 <script>
-	import echarts from 'echarts'
+	import * as echarts from 'echarts'
 	import Price from "../../../components/common/price.vue"
 	import tagList from "../../../components/common/tagList.vue"
 	import collectItem from "../../../components/personal/collection/collectItem.vue"
 	import {
 		ref,
-		reactive
+		reactive,
+		onMounted
 	} from 'vue';
 	export default{
 		name: "index",
@@ -85,7 +86,10 @@
 			    data: [5, 20, 36, 10, 10, 20]
 			  }]
 			})
-		 
+		    onMounted(()=>{
+				var myChart = echarts.init(document.getElementById('chart'));
+				myChart.setOption(chartOptions)
+			})
 			const handleSelect = (e)=>{
 				active.value=e
 				
@@ -101,6 +105,10 @@
 </script>
 
 <style lang="scss" scoped >
+	#chart{
+		width: 100%;
+		height: 711px;
+	}
 	.contair {
 		width: 100%;
 		padding-bottom: 58px;
@@ -151,10 +159,11 @@
 		.pri-con{
 			padding: 28px 45px  45px 27px;
 			box-sizing: border-box;
+			width: 100%;
 			.header{
 				height: 270px;
 				background: #FAFAFA;
-				width: 835px;
+				width: 100%;
 				margin-bottom: 43px;
 				.lab-tit{
 					margin-bottom: 10px;

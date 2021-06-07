@@ -45,7 +45,7 @@
 		name:"index",
 		setup(){
 			const input = ref('');
-			const activeIndex = ref(1);
+			const activeIndex = ref("1");
 			const goDeatil = (int)=>{
 				console.log(111)
 				switch(int){
@@ -126,7 +126,6 @@
 		    font-size: 12px;
 			color: #333333;
 			opacity: 0.5;
-			padding: 0 10px ;
 			margin: 0 25px;
 			width: 22px;
 		    display: flex;

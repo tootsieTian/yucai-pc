@@ -33,7 +33,7 @@
 			messageItem
 		},
 		setup() {
-			const defaultIndex = ref(1)
+			const defaultIndex = ref('1')
 			const activeIndex = ref(1)
 			const systemList = reactive([{
 					title: "您获得了一份收益金，戳我去看",
@@ -80,9 +80,6 @@
 					date: "2021.5.20 12:09:29"
 				},
 			])
-			// onMounted(()=>{
-			// 	activeIndex.value=1
-			// })
 			const handleSelect = (key, keyPath)=>{
 				activeIndex.value=key
 				

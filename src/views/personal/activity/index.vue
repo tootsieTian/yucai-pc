@@ -27,7 +27,7 @@
 		name: "index",
 		components:{activityItem},
 		setup(){
-			const activeIndex = ref(1)
+			const activeIndex = ref("1")
 			const handleSelect = ()=>{
 				
 			}
@@ -90,7 +90,6 @@
 			font-size: 12px;
 			color: #333333;
 			opacity: 0.5;
-			padding: 0 10px;
 			margin: 0 35px;
 			width: 22px;
 			display: flex;
