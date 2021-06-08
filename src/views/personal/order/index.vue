@@ -12,13 +12,14 @@
 					<el-menu-item index="2">待付款</el-menu-item>
 					<el-menu-item index="3">交易完成</el-menu-item>
 				</el-menu>
-				<orderItem></orderItem>
+				<orderItem @goDeatil="goDeatil" ></orderItem>
 			</div>
 		</div>	
 </template>
 
 <script>
 	import orderItem from  "../../../components/personal/order/orderItem.vue"
+	import router from  "../../../router/router.js"
 	import {
 		ref,
 		reactive,
@@ -32,9 +33,13 @@
 			const handleSelect = ()=>{
 				
 			}
+			const goDeatil = ()=>{
+				router.push('/personal/orderDetail')
+			}
 			return{
 				activeIndex,
-				handleSelect
+				handleSelect,
+				goDeatil
 			}
 		}
 	}

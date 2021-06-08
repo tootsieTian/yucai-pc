@@ -1,6 +1,6 @@
 <template>
 	<div class="item-con" >
-		<div class="item f-s" v-for=" (item,index) in 3 " :key="index" >
+		<div @click="goDetail(item)" class="item f-s" v-for=" (item,index) in 3 " :key="index" >
 			<div class="left f-c" >
 				<div class="time" >订单时间：2021.04.02 10:49</div>
 				<div class="f">
@@ -32,8 +32,17 @@
 		components:{
 			Price
 		},
-		setup(){
-			
+		props:{},
+		eimts:['goDetail'],
+		setup(props,contxt){
+			const methods = {
+				goDetail(){
+					contxt.emit('goDeatil')
+				}
+			}
+			return {
+				...methods
+			}
 		}
 	}
 </script>

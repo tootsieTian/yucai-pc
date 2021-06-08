@@ -3,7 +3,9 @@
 		<div class="header  f-a-j">
 			<div class="user-info container-main f-s">
 				<div class="info-left f">
-					<div class="user-pic"></div>
+					<div class="user-pic"  >
+						<div class="vip  f-a-j" @click="openDialog" >普通会员</div>
+					</div>
 					<div class="user-detail f-c">
 						<div class="detail-name f-1">薛定谔的猫</div>
 						<div class="detail-id f-1">ID:922598</div>
@@ -36,11 +38,12 @@
 				</div>
 			</div>
 		</div>
-
+      <openVipDialog  @closeDialog="closeDialog" v-if="dialogShow" ></openVipDialog>
 	</div>
 </template>
 
 <script>
+	import openVipDialog from "../../components/personal/openVipDialog.vue" 
 	import {
 		ref,
 		reactive,
@@ -50,10 +53,11 @@
 	} from 'vue';
 	import router from "../../router/router.js"
 	export default {
-
+        components:{openVipDialog},
 		name: "index",
 		setup() {
 			const { ctx } = getCurrentInstance()
+			const dialogShow =ref(false)
 		    const active = ref(1);
 			// watch(()=>ctx.$router.currentRoute.value.fullPath,(newValue,oldValue)=>{
 
@@ -117,6 +121,13 @@
 			const goDeatil = (path)=>{
 				router.push(path)
 			};
+			const closeDialog=()=>{
+				dialogShow.value=false
+			}
+		    const openDialog =()=>{
+				dialogShow.value=true
+			}
+			
 			    onMounted(() => {
 			     menuList.forEach((item,index)=>{
 			     					 if(item.path==ctx.$router.currentRoute.value.fullPath){
@@ -130,7 +141,10 @@
 				subList,
 				menuList,
 				goDeatil,
-				active
+				active,
+				closeDialog,
+				openDialog,
+				dialogShow
 			}
 		},
 
@@ -157,6 +171,18 @@
 					height: 131px;
 					background: #EFEFEF;
 					border-radius: 50%;
+					position: relative;
+					.vip{
+						position: absolute;
+						padding: 3px;
+						height: 17px;
+						bottom: -18px;
+						left: 32px;
+						background: #E2E2E2;
+						z-index: 99;
+						font-size: 11px;
+						color: rgba(51,51,51,0.4);
+					}
 				}
 
 				.user-detail {

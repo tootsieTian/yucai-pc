@@ -25,7 +25,7 @@ export default [
 			 ...teamwork,
 			 ...coupon,
 			 ...activity,
-			 ...order,
+			 ...order.inside,
 			 ...collect,
 			 ...earnings
 	      ],
@@ -34,5 +34,6 @@ export default [
     nav: true
   }
   },
-  ...evaluation.outside
+  ...evaluation.outside,
+  ...order.outside
 ]
