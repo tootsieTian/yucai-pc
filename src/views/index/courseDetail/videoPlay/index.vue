@@ -16,6 +16,7 @@
                     <div class="tag-item" v-for="item in 3" :key="item+'i'">电商</div>
                 </div>
             </div>
+            <video-play class="video"/>
         </div>
         <div class="course-box">
             <div class="teacher-info">
@@ -49,10 +50,11 @@
 <script>
   import { ref,watch } from 'vue'
   import Comment from "../../../../components/courseDetail/videoPlay/comment";
+  import VideoPlay from "../../../../components/common/videoPlay";
 
   export default {
     name: "index",
-    components: { Comment },
+    components: { VideoPlay, Comment },
     setup() {
       const courseItem = ref(null)
       const commentBoxShow = ref(false)
@@ -81,8 +83,9 @@
         display: flex;
 
         .video-box {
+            flex-direction: column;
             flex: 1;
-
+            display: flex;
             height: 844px;
             background: #1E2227;
             position: relative;
@@ -138,6 +141,10 @@
                     background: rgba(193, 193, 193, 0.1);
                     border-radius: 2px;
                 }
+            }
+
+            .video{
+                flex: 1;
             }
         }
 
