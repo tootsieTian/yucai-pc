@@ -45,10 +45,40 @@
                                    @more="more"
                                    subtitle="精心挑选的上好课程 / 直击你的专业瓶颈 / 加速知识吸收"
                                    class="excellent-title"/>
-                <el-row :gutter="39" class="excellent-list">
-                    <el-col :span="8" v-for="item in 9" :key="item+'s'">
-                        <l-course-card class="excellent-item"
-                                       @click.native="toCourseDetail"/>
+                <el-row :gutter="20" class="excellent-list">
+                    <el-col :span="12">
+                        <div class="excellent-course-l">
+                            <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
+                            <div class="content-box">
+                                <div class="title">
+                                    100倍工作效率
+                                    <div class="type">SVIP免费</div>
+                                </div>
+                                <div class="subtitle-box">
+                                    <div class="subtitle">7节课 ｜ 时长2:30:09 ｜390人已学习</div>
+                                    <div class="price">68.00</div>
+                                </div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-row :gutter="20">
+                            <el-col :span="12"  v-for="item in 4">
+                                <div class="excellent-course-m">
+                                    <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
+                                    <div class="content-box">
+                                        <div class="title">
+                                            100倍工作效率
+                                            <div class="type">SVIP免费</div>
+                                        </div>
+                                        <div class="subtitle-box">
+                                            <div class="subtitle">好评率100%</div>
+                                            <div class="price">68.00</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
                     </el-col>
                 </el-row>
                 <look-all-course
@@ -69,7 +99,7 @@
                 </el-row>
                 <look-all-course
                         title="查看全部290个活动课程"
-                        @lookAll="more"
+                        @lookAll="toPath('/activeCourse')"
                 />
 
                 <!--猜你喜欢-->
@@ -125,7 +155,7 @@
     },
     setup() {
       const router = useRouter()
-      const dialogShow = ref(true)      // 选择学习领域盒子
+      const dialogShow = ref(false)      // 选择学习领域盒子
       const plateList = reactive([
         {
           title: '套餐视频'
@@ -141,6 +171,9 @@
         more() {
           console.log('查看更多')
           router.push('/hotCourse')
+        },
+        toPath(path){
+          router.push(path)
         },
         closeDialog() {
           dialogShow.value = false
@@ -220,8 +253,103 @@
     }
 
     .excellent-list {
-        .excellent-item {
-            margin-bottom: 44px;
+        margin-bottom: 35px;
+        .excellent-course-l{
+            position: relative;
+            height: 590px;
+            background: #EDEDED;
+            .title-page{
+                width: 100%;
+                height: 100%;
+            }
+            .content-box{
+                background: #B1B1B1;
+                position: absolute;
+                padding: 25px 30px 17px 30px;
+                bottom: 0;
+                box-sizing: border-box;
+                left: 0;
+                width: 100%;
+                .title{
+                    margin-bottom: 12px;
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 28px;
+                    color: #FFFFFF;
+                    display: flex;
+                    .type{
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 17px;
+                        color: #999999;
+                    }
+                }
+                .subtitle-box{
+                    display: flex;
+                    justify-content: space-between;
+                    .subtitle{
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 22px;
+                        color: #FFFFFF;
+                    }
+                    .price{
+                        font-size: 27px;
+                        font-family: DIN Alternate;
+                        font-weight: bold;
+                        line-height: 31px;
+                        color: #FFFFFF;
+                    }
+                }
+            }
+        }
+        .excellent-course-m:nth-child(-n+2){
+            margin-bottom: 20px;
+        }
+        .excellent-course-m{
+            height: 285px;
+            .title-page{
+                height: 200px;
+                width: 100%;
+            }
+            .content-box{
+                padding-top: 21px;
+                padding-bottom: 2px;
+                box-sizing: border-box;
+                width: 100%;
+                .title{
+                    margin-bottom: 12px;
+                    font-size: 20px;
+                    font-weight: 500;
+                    line-height: 28px;
+                    color: #333333;
+                    display: flex;
+                    .type{
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 17px;
+                        color: #999999
+                    }
+                }
+                .subtitle-box{
+                    display: flex;
+                    justify-content: space-between;
+                    .subtitle{
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 20px;
+                        color: #999999;
+                    }
+                    .price{
+                        font-size: 21px;
+                        font-family: DIN Alternate;
+                        font-weight: bold;
+                        line-height: 25px;
+                        color: #333333;
+                    }
+                }
+            }
+
         }
     }
 

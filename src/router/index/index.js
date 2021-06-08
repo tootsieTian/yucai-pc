@@ -2,6 +2,7 @@ import hotCourse from "./hotCourse";
 import classifyCourse from "./classifyCourse";
 import searchResult from "./searchResult";
 import courseDetail from "./courseDetail";
+import activeCourse from "./activeCourse";
 
 export default [
   {
@@ -17,6 +18,7 @@ export default [
   ...hotCourse,
   ...classifyCourse,
   ...searchResult,
-  ...courseDetail
+  ...courseDetail,
+  ...activeCourse
 ]
 
