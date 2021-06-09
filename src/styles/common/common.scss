@@ -1,7 +1,12 @@
 html {
   min-height: 100vh;
 }
-
+.logo {
+  cursor: pointer;
+  width: 201px;
+  height: 72px;
+  background: #FFFFFF;
+}
 .container-main,.container-menu{
   box-sizing: border-box;
   margin-left: auto;

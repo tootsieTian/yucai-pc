@@ -1,14 +1,16 @@
 <template>
+    <div class="nav-hidden" v-if="!navTop">
+
+    </div>
     <div :class="{nav:true,'nav-top':navTop}">
         <div class="container-menu">
             <div class="logo" @click="toPath('/')">
                 logo
             </div>
             <div class="menu-list">
-                <div v-for="(item,index) in menuList"
-                     class="menu-item"
-                     @click="toPath(item.path)"
-                     :key="index+'q'">
+                <div v-for="item in menuList"
+                     :class="{'menu-item': true,'menu-item--active': route.path===item.path}"
+                     @click="toPath(item.path)">
                     {{ item.title }}
                 </div>
                 <el-row :gutter="20" class="course-classify-list">
@@ -16,7 +18,7 @@
                             v-for="item in 17"
                             :key="item+'g'">
                         <div class="course-classify-item" @click="toPath('/classifyCourse')">
-                            家庭教育
+                            篮球
                         </div>
                     </el-col>
                 </el-row>
@@ -58,6 +60,7 @@
       const navTop = ref(false)
       watch(route, (newVal) => {
         newVal.path === '/'  ? navTop.value = true : navTop.value = false
+
       }, {
         immediate: true
       })
@@ -68,23 +71,23 @@
         },
         {
           title: '全部课程',
-          path: '/'
+          path: '/classifyCourse'
         },
         {
           title: '家庭教育',
-          path: '/'
+          path: '/familyEducation'
         },
         {
           title: '课程推荐',
-          path: '/'
+          path: '/courseRecommend'
         },
         {
           title: '会员专区',
-          path: '/'
+          path: '/memberArea'
         },
         {
           title: '签到',
-          path: '/'
+          path: '/signIn'
         }
       ])    // 菜单列表
       const searchKey = ref('产品规划') // 搜索框关键字
@@ -99,7 +102,8 @@
         menuList,
         toPath,
         searchKey,
-        navTop
+        navTop,
+        route
       }
     }
   }
@@ -107,16 +111,20 @@
 
 <style lang="scss" scoped>
     .nav-top {
-        position: absolute;
-        top: 0;
-        left: 0;
         background: rgba(237, 237, 237, 0.6) !important;
     }
-
-    .nav {
-        z-index: 1000;
-        font-size: 14px;
+    .nav-hidden{
+        height: 104px;
         width: 100%;
+    }
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        font-size: 14px;
+        right: 0;
+        box-sizing: border-box;
         height: 104px;
         background: #ededed;
         display: flex;
@@ -128,14 +136,6 @@
         }
     }
 
-
-    .logo {
-        cursor: pointer;
-        width: 201px;
-        height: 72px;
-        background: #FFFFFF;
-    }
-
     .menu-list {
         height: 100%;
         margin-left: 71px;
@@ -144,10 +144,21 @@
         display: flex;
 
         .menu-item {
+            position: relative;
             height: 100%;
             display: flex;
             align-items: center;
             cursor: pointer;
+        }
+        .menu-item--active:after {
+            content: '';
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 25px;
+            position: absolute;
+            width: 15px;
+            height: 4px;
+            background: #FFFFFF;
         }
     }
 
@@ -165,7 +176,7 @@
         width: 1200px;
         background: #BFBFBF;
         bottom: 0;
-        z-index: 1000;
+        z-index: 999;
         left: 50%;
         transform: translate(-50%, 100%);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
