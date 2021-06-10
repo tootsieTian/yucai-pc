@@ -18,22 +18,33 @@
 							   
 			</div>
 			<div class="study-tit" >上传身份证</div>
-		
+		    <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+		     :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
 			<div class="pic f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;" >
 				身份证正面
 			</div>
+			</el-upload>
+			<el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+			 :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
 			<div class="pic f-a-j hand" >
 				身份证反面
 			</div>
+			</el-upload>
 			<div class="study-tit" style="margin-top: 53px; margin-bottom: 35px;" >上传营业执照</div>
+			<el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+			 :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
 			<div class="pic f-a-j hand" >
 				营业执照
 			</div>
+			</el-upload>
 			<div class="study-tit" style="margin-top: 41px; margin-bottom: 13px;" >上传相关证件（选填）*</div>
 			<div class="hui" style=" margin-bottom: 24px;" >可上传教师资格证等等</div>
+			<el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+			 :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
 			<div class="pic hand f-a-j" >
 				上传
 			</div>
+			</el-upload>
 			<div class="f-j" >
 				 <el-button class="btn-1" >取消</el-button>
 				  <el-button class="btn-1" >立即申请</el-button>
@@ -51,6 +62,7 @@
 	import { ElMessage } from 'element-plus'
 	export default {
 		setup() {
+			const imageUrl = ref('')
 			const checkList= reactive([])
 			const subList = reactive([{
 				title: "机构名称",
@@ -81,10 +93,28 @@
 				
 				}
 			}
+			const methods = {
+				 handleAvatarSuccess(res, file) {
+				        this.imageUrl = URL.createObjectURL(file.raw);
+				      },
+				      beforeAvatarUpload(file) {
+				        const isJPG = file.type === 'image/jpeg';
+				        const isLt2M = file.size / 1024 / 1024 < 2;
+				
+				        if (!isJPG) {
+				          this.$message.error('上传头像图片只能是 JPG 格式!');
+				        }
+				        if (!isLt2M) {
+				          this.$message.error('上传头像图片大小不能超过 2MB!');
+				        }
+				        return isJPG && isLt2M;
+				      }
+			}
 			return {
 				subList,
 				checkList,
-				selectItme
+				selectItme,
+				...methods
 			}
 		}
 	}

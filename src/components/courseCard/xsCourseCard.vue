@@ -10,6 +10,7 @@
 				<div @click="goWrong" v-if="iswrong" name="two-right">
                       去订正 >
 				</div>
+				<slot name="one-right" ></slot>
 			</div>
 			<div class="f-s">
 				<div>
@@ -17,7 +18,7 @@
 					<div class="subtitle" v-if="iswrong" >2021.04.12</div>
 					<div class="subtitle" v-if="evaluation==0||evaluation==1" >{{evaluation==0 ? '去测试' : '我已测试' }}</div>
 				</div>
-				
+				<slot name="two-right" ></slot>
 				<div @click="goTest" v-if="evaluation==0" >
 					马上去测 >
 				</div>

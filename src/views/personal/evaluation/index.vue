@@ -34,7 +34,10 @@
 					<courseCard class="course" v-for="(item,index) in 6" :key="index" >
 					</courseCard>
 				</div>
-				
+				<!-- <courseCard>
+					<template  v-slot:one-right >测试一</template>
+					<template  v-slot:two-right >测试二</template>
+				</courseCard> -->
 			</div>
 		</div>
 	</div>	

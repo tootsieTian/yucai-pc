@@ -1,6 +1,6 @@
 <template>
 	<div class="item-con" >
-		<div class="item f-s" v-for=" (item,index) in 3 " :key="index" >
+		<div @click="goOrder" class="item f-s" v-for=" (item,index) in 2 " :key="index" >
 			<div class="left f-c" >
 				<div class="time" >订单时间：2021.04.02 10:49</div>
 				<div class="f">
@@ -13,11 +13,11 @@
 				<div class="f-a" >合计：<Price  ></Price></div>
 			</div>
 			<div class="right f-s f-c" >
-				<div class="f" >
+				<div  class="f" >
 					<div></div>
-					<div>还差1人，拼团中</div>
+					<div>{{ status=='inorder' ? '还差1人，拼团中' : status=='completed' ?'拼团成功' : '秒杀成功' }}</div>
 				</div>
-				<div class="time f-s" >
+				<div v-show="status=='inorder'" class="time f-s" >
 					<div></div>
 					<div>还剩02:19:00</div>
 				</div>
@@ -27,13 +27,31 @@
 </template>
 
 <script>
+
+	//  completed：已完成
+	//  inorder：拼单中 
+	//  seckill：秒杀
 	import Price from "../../common/price.vue"
+	import {ref,reative} from "vue"
 	export default {
 		components:{
 			Price
 		},
-		setup(){
-			
+		props:{
+			status:{
+				type:String,
+				default:'inorder'
+			}
+		},
+		setup(props,contxt){
+			const{status}=props
+			const goOrder = ()=>{
+				contxt.emit('goOrder',status)
+			}
+			return {
+				status,
+				goOrder
+			}
 		}
 	}
 </script>

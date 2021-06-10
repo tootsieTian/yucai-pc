@@ -2,7 +2,15 @@
 	<div class="" >
 		<div class="header  f-a-j">
 			<div class="user-info container-main  f-s">
+				<el-upload
+				  class="avatar-uploader "
+				  action="https://jsonplaceholder.typicode.com/posts/"
+				  :show-file-list="false"
+				  :on-success="handleAvatarSuccess"
+				  :before-upload="beforeAvatarUpload"
+				>
 				<div class="info-left hand f">
+					
 					<div class="user-pic"  >
 						<div class="vip  f-a-j" @click="openDialog" >普通会员</div>
 					</div>
@@ -10,7 +18,9 @@
 						<div class="detail-name f-1">薛定谔的猫</div>
 						<div class="detail-id f-1">ID:922598</div>
 					</div>
+					
 				</div>
+				</el-upload>
 				<div class="info-right f">
 					<div  @click="goDeatil(item.path)" class="right-item hand f-c f-a" v-for="(item,index) in subList" :key="index">
 
@@ -59,6 +69,7 @@
 			const { ctx } = getCurrentInstance()
 			const dialogShow =ref(false)
 		    const active = ref(1);
+			const imageUrl = ref("");
 			// watch(()=>ctx.$router.currentRoute.value.fullPath,(newValue,oldValue)=>{
 
 			//  console.log(newValue,'新的路由')
@@ -126,6 +137,23 @@
 			}
 		    const openDialog =()=>{
 				dialogShow.value=true
+			};
+			const methods = {
+				handleAvatarSuccess(res, file) {
+				        this.imageUrl = URL.createObjectURL(file.raw);
+				      },
+				      beforeAvatarUpload(file) {
+				        const isJPG = file.type === 'image/jpeg';
+				        const isLt2M = file.size / 1024 / 1024 < 2;
+				
+				        if (!isJPG) {
+				          this.$message.error('上传头像图片只能是 JPG 格式!');
+				        }
+				        if (!isLt2M) {
+				          this.$message.error('上传头像图片大小不能超过 2MB!');
+				        }
+				        return isJPG && isLt2M;
+				      },
 			}
 			
 			    onMounted(() => {
@@ -144,7 +172,8 @@
 				active,
 				closeDialog,
 				openDialog,
-				dialogShow
+				dialogShow,
+				...methods
 			}
 		},
 

@@ -34,7 +34,13 @@
 				
 			}
 			const goDeatil = ()=>{
-				router.push('/personal/orderDetail')
+				router.push({
+						path: '/personal/orderDetail',
+						query: {
+							status: "topaid",
+						}
+				
+				})
 			}
 			return{
 				activeIndex,

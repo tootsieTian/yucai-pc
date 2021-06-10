@@ -9,17 +9,26 @@
 			<div class="title">基本信息</div>
 			<div class="userpic f">
 				<div class="lable">头像</div>
-				<div class="pic">
-					<div class="changepic hand">
-						<div class="top"></div>
-						<div class="bottom f-a-j">修改</div>
-					</div>
-				</div>
+				<el-upload
+				  class="avatar-uploader"
+				  action="https://jsonplaceholder.typicode.com/posts/"
+				  :show-file-list="false"
+				  :on-success="handleAvatarSuccess"
+				  :before-upload="beforeAvatarUpload"
+				>
+				  <div class="pic">
+				  	<div class="changepic hand">
+				  		<div class="top"></div>
+				  		<div class="bottom f-a-j">修改</div>
+				  	</div>
+				  </div>
+				</el-upload>
+				
 			</div>
 			<div class="username f">
 				<div class="lable">昵称</div>
 				<div style="margin-left: 34px;">薛定谔的猫</div>
-				<div style="margin-left: 27px;"  class="hand" >修改</div>
+				<div style="margin-left: 27px;"  class="hand" @click="open" >修改</div>
 			</div>
 			<div class="sex f">
 				<div class="lable">性别</div>
@@ -57,6 +66,7 @@
 		setup() {
 			const checkList= reactive([])
 			const input = ref('');
+			const imageUrl = ref('');
 			const value = ref('');
 		    const options = reactive( [{
 				value: '选项1',
@@ -81,6 +91,41 @@
 				
 				}
 			};
+			const methods = {
+				handleAvatarSuccess(res, file) {
+				        this.imageUrl = URL.createObjectURL(file.raw);
+				      },
+				      beforeAvatarUpload(file) {
+				        const isJPG = file.type === 'image/jpeg';
+				        const isLt2M = file.size / 1024 / 1024 < 2;
+				
+				        if (!isJPG) {
+				          this.$message.error('上传头像图片只能是 JPG 格式!');
+				        }
+				        if (!isLt2M) {
+				          this.$message.error('上传头像图片大小不能超过 2MB!');
+				        }
+				        return isJPG && isLt2M;
+				      },
+					   open() {
+					          this.$prompt('请输入昵称', '提示', {
+					            confirmButtonText: '确定',
+					            cancelButtonText: '取消',
+					            inputPattern: /^[\u4E00-\u9FA5A-Za-z0-9_]+$/,
+					            inputErrorMessage: '昵称格式不正确'
+					          }).then(({ value }) => {
+					            this.$message({
+					              type: 'success',
+					              message: '你的昵称是: ' + value
+					            });
+					          }).catch(() => {
+					            this.$message({
+					              type: 'info',
+					              message: '取消输入'
+					            });
+					          });
+					        }
+			}
 			const goSave = ()=>{
 				router.push("userInfo")
 			};
@@ -90,7 +135,8 @@
 				options,
 				goSave,
 				selectItme,
-				checkList
+				checkList,
+				...methods
 			}
 		},
 	}
