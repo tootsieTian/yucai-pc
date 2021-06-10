@@ -14,9 +14,9 @@
 		<div class="con" >
 			<!-- 我的错题 -->
 			<div  class="header-con f" >
-				<div class="f-a-j"  @click="goDeatil(0)" >我的错题</div>
-				<div class="f-a-j"  @click="goDeatil(1)" >我的测评</div>
-				<div class="f-a-j"  @click="goDeatil(2)" >我的成就</div>
+				<div class="f-a-j hand"  @click="goDeatil(0)" >我的错题</div>
+				<div class="f-a-j hand"  @click="goDeatil(1)" >我的测评</div>
+				<div class="f-a-j hand"  @click="goDeatil(2)" >我的成就</div>
 			</div>
 			<div class="tab-con" >
 				<div class="message-con" >
@@ -30,6 +30,11 @@
 					 <el-menu-item index="7">TED演讲</el-menu-item>
 					 </el-menu>
 			    </div>
+				<div class="course-con f" >
+					<courseCard class="course" v-for="(item,index) in 6" :key="index" >
+					</courseCard>
+				</div>
+				
 			</div>
 		</div>
 	</div>	
@@ -37,12 +42,16 @@
 
 <script>
 	import router from "../../../router/router.js"
+	import courseCard from "../../../components/courseCard/xsCourseCard.vue"
 	import {
 		ref,
 		reactive
 	} from 'vue';
 	export default{
 		name:"index",
+		components:{
+			courseCard
+		},
 		setup(){
 			const input = ref('');
 			const activeIndex = ref("1");
@@ -78,7 +87,11 @@
 		padding-right: 45px;
 		box-sizing: border-box;
 		font-family: PingFang SC;
-	
+	    .course-con{
+			width: 100%;
+			flex-flow: wrap;
+			margin-top: 35px;
+		}
 		.tit {
 			height: 78px;
 			font-size: 18px;
@@ -148,6 +161,11 @@
 				color: #333333;
 				opacity: 0.5;
 			}
+		}
+		.course{
+			width: calc((100% - 66px )/3);
+			margin-right: 22px;
+			margin-bottom: 25px;
 		}
 		}
 </style>

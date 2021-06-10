@@ -2,7 +2,7 @@
    <div class="contair" >
 	   <div class="tit f-s f-a" >
 		   <div>个人资料</div>
-		   <div style="opacity: 0.3;" @click="goEdit" >编辑</div>
+		   <div style="opacity: 0.3;"  class="hand" @click="goEdit" >编辑</div>
 	   </div>
 	   <div class="hx" ></div>
 	   <div class="detail" >

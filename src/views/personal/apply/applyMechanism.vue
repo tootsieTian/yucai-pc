@@ -14,24 +14,24 @@
 			</div>
 			<div class="study-tit" >*选择学习领域</div>
 			<div class="f lab-con" >
-							   <div class="lable1"  @click="selectItme($event,item)" v-for=" (item,index) in 10" :key="index" >家庭教育</div>
+							   <div class="lable1 hand"  @click="selectItme($event,item)" v-for=" (item,index) in 10" :key="index" >家庭教育</div>
 							   
 			</div>
 			<div class="study-tit" >上传身份证</div>
 		
-			<div class="pic f-a-j" style="margin-top: 35px; margin-bottom: 17px;" >
+			<div class="pic f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;" >
 				身份证正面
 			</div>
-			<div class="pic f-a-j" >
+			<div class="pic f-a-j hand" >
 				身份证反面
 			</div>
 			<div class="study-tit" style="margin-top: 53px; margin-bottom: 35px;" >上传营业执照</div>
-			<div class="pic f-a-j" >
+			<div class="pic f-a-j hand" >
 				营业执照
 			</div>
 			<div class="study-tit" style="margin-top: 41px; margin-bottom: 13px;" >上传相关证件（选填）*</div>
 			<div class="hui" style=" margin-bottom: 24px;" >可上传教师资格证等等</div>
-			<div class="pic f-a-j" >
+			<div class="pic hand f-a-j" >
 				上传
 			</div>
 			<div class="f-j" >

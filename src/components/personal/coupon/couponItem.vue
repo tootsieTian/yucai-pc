@@ -1,6 +1,6 @@
 <template>
 	<div class="item-con f" >
-		<div class="item f"  v-for="(item,index) in  couponList"  :key="index" >
+		<div class="item hand f"  v-for="(item,index) in  couponList"  :key="index" >
 			<div class="item4 f-c  f-a" >
 				<div style="margin-top: 23px;" >
 					<price></price>
@@ -51,7 +51,7 @@
 	.item-con{
 		flex-flow: wrap;
 		.item{
-			margin-right: 18px;
+			margin-right: 50px;
 			font-size: 13px;
 			font-weight: 400;
 			line-height: 18px;
@@ -59,7 +59,7 @@
 			height: 123px;
 			background: #FFFFFF;
 			box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-			width: 352px;
+			width: calc((100% - 150px)/2);
 			margin-bottom: 27px;
 			}
 			.item4{
@@ -78,7 +78,7 @@
 				padding: 12px 0 13px 17px;
 				box-sizing: border-box;
 				height: 100%;
-				width: 202px;
+				width: 322px;
 			    justify-content: space-around;
 				.med-tit1{
 					font-size: 16px;

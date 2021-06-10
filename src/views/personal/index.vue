@@ -1,8 +1,8 @@
 <template>
 	<div class="" >
 		<div class="header  f-a-j">
-			<div class="user-info container-main f-s">
-				<div class="info-left f">
+			<div class="user-info container-main  f-s">
+				<div class="info-left hand f">
 					<div class="user-pic"  >
 						<div class="vip  f-a-j" @click="openDialog" >普通会员</div>
 					</div>
@@ -12,7 +12,7 @@
 					</div>
 				</div>
 				<div class="info-right f">
-					<div  @click="goDeatil(item.path)" class="right-item f-c f-a" v-for="(item,index) in subList" :key="index">
+					<div  @click="goDeatil(item.path)" class="right-item hand f-c f-a" v-for="(item,index) in subList" :key="index">
 
 						<div class="right-name">{{item.name}}</div>
 						<div class="right-num">{{item.num}}</div>

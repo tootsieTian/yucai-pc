@@ -1,6 +1,6 @@
 <template>
 	<div class="con f">
-		<div v-for="(item,index) in 6" class="item" :key="index">
+		<div v-for="(item,index) in 6" class="item hand" :key="index">
 			<div class="header"></div>
 			<div class="footer">
 				<div class="title">100倍工作效率</div>
@@ -28,7 +28,7 @@
 		flex-flow: wrap;
 
 		.item {
-			width: 250px;
+			width: calc((100% - 72px)/3);
 			height: 320px;
 			background: #FAFAFA;
 
@@ -36,13 +36,13 @@
 			margin-bottom: 26px;
 
 			.header {
-				width: 250px;
+				width: 100%;
 				height: 187px;
 				background: #EDEDED;
 			}
 
 			.footer {
-				width: 250px;
+				width: 100%;
 				height: 133px;
 				padding: 18px 0 17px 14px;
 				box-sizing: border-box;

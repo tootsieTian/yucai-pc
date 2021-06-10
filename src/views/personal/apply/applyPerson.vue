@@ -14,15 +14,15 @@
 			</div>
 			<div class="study-tit" >*选择学习领域</div>
 			<div class="f lab-con" >
-							   <div class="lable1" @click="selectItme($event,item)" v-for=" (item,index) in 10" :key="index" >家庭教育</div>
+							   <div class="lable1 hand" @click="selectItme($event,item)" v-for=" (item,index) in 10" :key="index" >家庭教育</div>
 							   
 			</div>
 			<div class="study-tit" >上传身份证</div>
 		
-			<div class="pic f-a-j" style="margin-top: 35px; margin-bottom: 17px;" >
+			<div class="pic f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;" >
 				身份证正面
 			</div>
-			<div class="pic f-a-j" >
+			<div class="pic f-a-j hand" >
 				身份证反面
 			</div>
 			<div class="f-j" >

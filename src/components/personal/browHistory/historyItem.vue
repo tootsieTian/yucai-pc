@@ -1,10 +1,10 @@
 <template>
 	<div class="item-con f" >
-		<div class="item"   v-for=" (item,index) in 5" >
+		<div class="item hand"   v-for=" (item,index) in 5" >
 			<div class="item-header" ></div>
 			<div class="item-footer" >
 				<div class="title f-s" >
-					<div>100倍工作效率</div>
+					<div  >100倍工作效率</div>
 					<div></div>
 				</div>
 				<div class="f-s" >
@@ -41,15 +41,16 @@
 		// justify-content:space-evenly;
 		padding: 27px 0px  164px 44px ;
 		.item{
-			width: 260px;
-			height: 288px;
+			width: calc((100% - 72px)/3);
+			height: 328px;
 			background: #FAFAFA;
 			opacity: 1;
 			margin: 0 12px;
 			margin-bottom: 27px;
+			
 			// margin-right:24px ;
 			.item-header{
-				height: 187px;
+				height: 227px;
 				width: 100%;
 				background: #EDEDED;
 			}

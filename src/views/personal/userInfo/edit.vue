@@ -2,7 +2,7 @@
 	<div class="contair">
 		<div class="tit f-s f-a">
 			<div>个人资料</div>
-			<div style="opacity: 0.3;" @click="goSave">保存</div>
+			<div  class="hand" style="opacity: 0.3;" @click="goSave">保存</div>
 		</div>
 		<div class="hx"></div>
 		<div class="detail">
@@ -10,7 +10,7 @@
 			<div class="userpic f">
 				<div class="lable">头像</div>
 				<div class="pic">
-					<div class="changepic">
+					<div class="changepic hand">
 						<div class="top"></div>
 						<div class="bottom f-a-j">修改</div>
 					</div>
@@ -19,7 +19,7 @@
 			<div class="username f">
 				<div class="lable">昵称</div>
 				<div style="margin-left: 34px;">薛定谔的猫</div>
-				<div style="margin-left: 27px;">修改</div>
+				<div style="margin-left: 27px;"  class="hand" >修改</div>
 			</div>
 			<div class="sex f">
 				<div class="lable">性别</div>
@@ -35,9 +35,9 @@
 
 			</div>
 			<div class="study">
-				<div class="lable" style="opacity: 1;">*选择学习领域</div>
+				<div class="" style="opacity: 1;">*选择学习领域</div>
 				<div class="f" style="flex-flow: wrap;">
-					<div class="lable1" @click="selectItme($event,item)" v-for="(item,index)  in 10">家庭教育</div>
+					<div class="lable1 lable hand" @click="selectItme($event,item)" v-for="(item,index)  in 10">家庭教育</div>
 
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 <template>
     <div class="message">
-        <div class="message-item " v-for="(item,index) in messageList" >
+        <div class="message-item  hand" v-for="(item,index) in messageList" >
 			<div class="f-s" >
 			<div class="f-a" >
 				<div class="yuan" ></div>

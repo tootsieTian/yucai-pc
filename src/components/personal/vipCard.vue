@@ -34,7 +34,7 @@
 
 <style lang="scss" scoped >
 	.item-con{
-		height:150px ;
+		// height:150px ;
 		padding-top: 20px;
 		.bg-hui{
 			background: #D1D1D1!important;
@@ -48,7 +48,7 @@
 			font-weight: 400;
 			line-height: 18px;
 			color: #333333;
-			height: 130px;
+			// height: 130px;
 			width: 273px;
 			margin-right: 50px;
 			padding-bottom: 12px;

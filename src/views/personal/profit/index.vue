@@ -36,8 +36,8 @@
 						</div>
 					</div>
 					<div class="tab f" >
-						<div style="border-right: 1px solid #000000;" class="f-a-j f-1" >提现</div>
-						<div class="f-a-j f-1" >我的银行卡</div>
+						<div style="border-right: 1px solid #000000;" class="f-a-j f-1 hand" >提现</div>
+						<div class="f-a-j f-1 hand" >我的银行卡</div>
 					</div>
 				</div>
 				<div class="footer" >
@@ -64,7 +64,7 @@
 		components:{tagList,collectItem,Price},
 		setup(){
 			const NavList = reactive(["我的收益","推荐课程"])
-			const active =ref(1)
+			const active =ref("1")
 			const chartOptions = reactive({
 			  legend: {
 			    bottom: '15'

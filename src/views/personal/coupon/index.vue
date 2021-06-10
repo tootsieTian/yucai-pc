@@ -41,7 +41,7 @@
 					status: "立 即 使 用"
 				},
 			])
-			const activeIndex = ref(1)
+			const activeIndex = ref("1")
 			const handleSelect = (e) => {
 				key.value++
 				switch (e) {
