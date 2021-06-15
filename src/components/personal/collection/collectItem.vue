@@ -18,6 +18,19 @@
 	export default {
 		components: {
 			Price
+		},
+		props:{
+			collectList:{
+				type:Array,
+				default:()=>{[]}
+			}
+			
+		},
+		setup(props){
+			const{collectList}=props
+			return{
+				collectList
+			}
 		}
 	}
 </script>

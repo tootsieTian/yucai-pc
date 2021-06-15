@@ -41,16 +41,21 @@
 			status:{
 				type:String,
 				default:'inorder'
+			},
+			goodInfo:{
+				type:Object,
+				default:()=>{}
 			}
 		},
 		setup(props,contxt){
-			const{status}=props
+			const{status,goodInfo}=props
 			const goOrder = ()=>{
 				contxt.emit('goOrder',status)
 			}
 			return {
 				status,
-				goOrder
+				goOrder,
+				goodInfo
 			}
 		}
 	}

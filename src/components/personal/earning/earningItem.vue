@@ -19,8 +19,17 @@
 		components:{
 			Price
 		},
-		setup(){
-			
+		props:{
+			earningList:{
+				type:Array,
+				default:()=>{[]}
+			}
+		},
+		setup(props){
+			const {earningList}=props
+			return{
+				earningList
+			}
 		}
 	}
 </script>

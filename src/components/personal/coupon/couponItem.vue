@@ -35,13 +35,18 @@
 		key:{
 			type:String,
 			default:""
+		},
+		goodInfo:{
+			type:Object,
+			default:()=>{}
 		}
 	  },
 	  setup(props){
-		  const {couponList,key}=props
+		  const {couponList,key,goodInfo}=props
 		  return{
 			  couponList,
-			  key
+			  key,
+			  goodInfo
 		  }
 	  }
 	}

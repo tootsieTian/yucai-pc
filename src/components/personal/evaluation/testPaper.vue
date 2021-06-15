@@ -19,13 +19,20 @@
 	
 	export default{
 		name:"testPaper",
-		props:{},
+		props:{
+			PaperList:{
+				type:Array,
+				default:()=>{[]}
+			}
+		},
 		setup(props,context){
+			const{PaperList}=props
 			const confirm = ()=>{
 				context.emit('confirm')
 			}
 			return{
-				confirm
+				confirm,
+				PaperList
 			}
 		}
 	}

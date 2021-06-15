@@ -28,6 +28,9 @@
 	  },
 	  setup(props) {
 	  		const {historyList} = props  
+			return{
+				historyList
+			}
 	  }
 	  }
 	 
