@@ -12,7 +12,7 @@
 				<div class="info-left hand f">
 					
 					<div class="user-pic"  >
-						<div class="vip  f-a-j" @click="openDialog" >普通会员</div>
+						<div class="vip  f-a-j" @click.stop="openDialog" >普通会员</div>
 					</div>
 					<div class="user-detail f-c">
 						<div class="detail-name f-1">薛定谔的猫</div>
@@ -249,6 +249,7 @@
 					width: 106px;
 					height: 100%;
 				}
+				// 导航部分交互效果
 				.right-item:hover{
 					background-color: rgba(64,158,255,0.15);
 					transform: translateX(10%) translateY(-10%);
@@ -256,9 +257,7 @@
 				
 					
 				}
-				// .right-item:active{
-				// 	color: #409EFF;
-				// }
+				
 
 				.right-name {
 					margin-top: 20px;

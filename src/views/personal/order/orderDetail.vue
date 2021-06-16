@@ -38,7 +38,7 @@
 					<div class="play-tit">支付方式 <span style="color: #171717;font-size: 12px;margin-left: 35px;">支付宝支付</span> </div>
 				</div>
 				<div class="info">
-					<div>订 单 号：20210402104901<span class="copy" @click="copy">复制</span></div>
+					<div class="f" >订 单 号：20210402104901<div class="copy f-a-j" @click="copy">复制</div></div>
 					<div class="f" style="margin-top: 39px; margin-bottom: 78px;">
 						<div>创建时间：2021.04.02 10:49</div>
 						<div style="margin: 0 45px;">付款时间：2021.04.02 11:49</div>
@@ -286,6 +286,10 @@
 			border: 1px solid #707070;
 			margin-left: 10px;
 			padding: 3px;
+		}
+		.copy:hover{
+			transform: translateX(20%) translateY(-20%);
+			
 		}
 
 		.goplay {

@@ -69,6 +69,7 @@
         ok() {
           context.emit('closeDialog')
         },
+		// 选择具体的svip还是vip
 		selectTab(int){
 			activeTab.value=int
 			console.log(activeTab.value)
@@ -87,6 +88,7 @@
 	.dialog::-webkit-scrollbar {
 	    display: none;
 	}
+	
 	.card-con::-webkit-scrollbar {
 	    display: none;
 	}
@@ -98,9 +100,9 @@
         z-index: 100;
         background: rgba(43, 43, 43, 0.5);
         left: 0;
-        top: 0;
+        top: 100px;
         width: 100vw;
-        height: 100vh;
+        height: calc(100vh - 100px);
     }
   
     .dialog {
@@ -109,7 +111,7 @@
         position: absolute;
         transform: translate(-50%, -50%);
         width: 1152px;
-		height: 819px;
+		height: 719px;
         background: #F0F0F0;
         padding: 31px 37px 0 47px;
 		box-sizing: border-box;

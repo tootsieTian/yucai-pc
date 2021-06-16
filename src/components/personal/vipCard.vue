@@ -1,6 +1,6 @@
 <template>
 	<div class="item-con f " >
-		<div :class="activeIndex==index ? 'bg-hui' : ''"  @click="selectVip(index)" class="item f-a f-c" v-for="(item,index) in 3 " :key="index"  >
+		<div  :class="activeIndex==index ? 'bg-hui' : ''"  @click="selectVip(index)" class="item f-a f-c" v-for="(item,index) in 3 " :key="index"  >
 			<div class="tab1 f-a-j" >热卖推荐</div>
 			<div class="tit1" >连续包年</div>
 			<div class="f tit2" ><Price></Price>/年</div>
@@ -16,16 +16,24 @@
 		components:{
 			Price
 		},
+		props:{
+			VipList:{
+				type:Array,
+				default:()=>{['','','']}
+			}
+		},
 		setup(props,contxt){
 			const activeIndex =  ref(0)
+			const {VipList}=props
 			const methods = {
 				selectVip(index){
 					activeIndex.value=index
-					console.log(activeIndex.value)
+				    contxt.emit('select')
 				}
 			}
 			return{
 				...methods,
+				VipList,
 				activeIndex
 			}
 		}
