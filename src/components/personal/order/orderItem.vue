@@ -32,9 +32,15 @@
 		components:{
 			Price
 		},
-		props:{},
+		props:{
+			orderList:{
+				type:Array,
+				default:()=>{}
+			}
+		},
 		eimts:['goDetail'],
 		setup(props,contxt){
+			const {orderList}=props
 			const methods = {
 				goDetail(){
 					contxt.emit('goDeatil')

@@ -1,13 +1,16 @@
 <template>
 	<div class="contair">
 		<div class="tit f-s f-a">
-			<div>我的收益 > 收益记录</div>
+			 <el-breadcrumb  style="font-size: 16px; color: #333333;" separator-class="el-icon-arrow-right">
+			  <el-breadcrumb-item :to="{ path: '/personal/profit' }">我的收益</el-breadcrumb-item>
+			  <el-breadcrumb-item >收益记录</el-breadcrumb-item>
+			</el-breadcrumb>
 			<div></div>
 		</div>
 		<div class="hx"></div> 
 		<div class="rec-con">
-            <dataSelect style="margin-bottom: 20px;" :selectList="selectList" ></dataSelect>
-			<earningItem  ></earningItem>
+            <dataSelect @select="select" style="margin-bottom: 20px;" :selectList="selectList" ></dataSelect>
+				<earningItem  ></earningItem>
 		</div>
 	</div>
 </template>
@@ -32,8 +35,12 @@
 			}, {
 				title: "近3月"
 			}]);
+			const select = ()=>{
+				
+			}
 			return{
-				selectList
+				selectList,
+				select
 			}
 		}
 		

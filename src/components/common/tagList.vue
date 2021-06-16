@@ -1,6 +1,6 @@
 <template>
 	<div class="con" >
-		<el-menu default-active="1" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+		<el-menu :default-active="defaultIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
 			<el-menu-item :index="index+1" v-for="(item,index) in menuList" :key="index" >{{item}}</el-menu-item>
 		</el-menu>
 	</div>
@@ -8,16 +8,21 @@
 </template>
 
 <script>
+	import {ref,reative} from "vue"
 	export default{
 		emits:['handleSelect'],
 		props:{
 			menuList:{
 				type:Array,
 				default:()=>{[]}
+			},
+			defaultIndex:{
+				type:Number,
+				default:1
 			}
 		},
 		setup(props,context){
-			const {menuList}=props
+			const {menuList,defaultIndex}=props
 			const methods  = {
 			  handleSelect(e){
 			    context.emit('handleSelect',e)
@@ -25,6 +30,7 @@
 			}
 			return{
 				menuList,
+				defaultIndex,
 				...methods
 			}
 		}

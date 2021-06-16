@@ -1,7 +1,7 @@
 <template>
 	<div class="f-s" >
 		<div class="f">
-			<div class="lable1" v-for="(item,index) in selectList"  :key="index" >
+			<div @click="select(item)" class="lable1" v-for="(item,index) in selectList"  :key="index" >
 				{{item.title}}
 			</div>
 		</div>
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+	import {ref,reactive} from "vue"
+	import { ElMessage } from 'element-plus'
 	export default{
 		props:{
 			selectList:{
@@ -21,10 +23,17 @@
 				default:()=>{[]}
 			}
 		},
-		setup(props){
+		setup(props,contxt){
 			const {selectList} = props
+			const methods = {
+				select(item){
+					ElMessage.success('选择了'+item.title)
+					contxt.emit('select',item)
+				}
+			}
 			return{
-				selectList
+				selectList,
+				...methods
 			}
 		}
 	}

@@ -36,7 +36,7 @@
 				<div class="aside">
 					<el-col :span="12">
 						<el-menu router :default-active="active" class="el-menu-vertical-demo">
-							<el-menu-item :route="item.path" v-for="(item,index) in menuList" :key="index" :index="index+1">
+							<el-menu-item :route="item.path" v-for="(item,index) in menuList" :key="index" :index="index+1+''">
 								<i class="el-icon-menu"></i>
 								<template #title>{{item.title}}</template>
 							</el-menu-item>
@@ -68,7 +68,7 @@
 		setup() {
 			const { ctx } = getCurrentInstance()
 			const dialogShow =ref(false)
-		    const active = ref(1);
+		    const active = ref("1");
 			const imageUrl = ref("");
 			// watch(()=>ctx.$router.currentRoute.value.fullPath,(newValue,oldValue)=>{
 
@@ -130,7 +130,13 @@
 				path:'/personal/profit'
 			}, ]);
 			const goDeatil = (path)=>{
+				const dom = document.getElementsByClassName('is-active')[0]
+				if(dom){
+					dom.classList.remove('is-active')
+					
+				}
 				router.push(path)
+				
 			};
 			const closeDialog=()=>{
 				dialogShow.value=false
@@ -243,6 +249,16 @@
 					width: 106px;
 					height: 100%;
 				}
+				.right-item:hover{
+					background-color: rgba(64,158,255,0.15);
+					transform: translateX(10%) translateY(-10%);
+					
+				
+					
+				}
+				// .right-item:active{
+				// 	color: #409EFF;
+				// }
 
 				.right-name {
 					margin-top: 20px;
