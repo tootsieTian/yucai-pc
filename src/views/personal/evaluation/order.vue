@@ -63,13 +63,15 @@
 <script>
 	import router from "../../../router/router.js"
 	import Price from "../../../components/common/price.vue"
+	import { ElMessage } from 'element-plus'
 	export default{
 		components:{
 			Price
 		},
 		setup(){
 			const goEva= ()=>{
-				router.push('startEvaluation')
+				ElMessage.success('购买成功！')
+				router.push('startEvaluation')			
 			}
 			return{
 				goEva
@@ -162,6 +164,11 @@
 		}
 		.play{
 			.method{
+				
+				.ali:hover{
+					background-color: rgba(58,15,89,0.3);
+					color: rgb(58,15,89);
+				}
 				.ali{
 					box-sizing: border-box;
 					margin-right: 26px;
@@ -198,5 +205,6 @@
 			color: #333333;
 			opacity: 0.4;
 		}
+		
 	}
 </style>

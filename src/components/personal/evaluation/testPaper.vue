@@ -16,7 +16,7 @@
 </template>
 
 <script>
-	
+	 import { ElMessage } from 'element-plus'
 	export default{
 		name:"testPaper",
 		props:{
@@ -28,6 +28,7 @@
 		setup(props,context){
 			const{PaperList}=props
 			const confirm = ()=>{
+				
 				context.emit('confirm')
 			}
 			return{
@@ -63,6 +64,9 @@
 					line-height: 18px;
 					color: #333333;
 					opacity: 0.4;
+				}
+				.subtitle:hover{
+			
 				}
 			}
 			
