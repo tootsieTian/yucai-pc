@@ -69,7 +69,7 @@
         .container-main {
             display: flex;
             justify-content: space-between;
-
+            align-items: center;
             img {
                 height: 40PX;
                 width: 40PX;
