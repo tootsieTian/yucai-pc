@@ -2,7 +2,7 @@
     <div class="message">
         <div class="message-item  hand" v-for="(item,index) in messageList" >
 			<div class="f-s" >
-			<div class="f-a" >
+			<div @click="open(item)" class="f-a" >
 				<div class="yuan" ></div>
 				<div class="title" ><span v-show="isComment" style="color: #999999;margin-right: 5px;" >老师回复了你的评论:</span>  {{ isComment ? item.reply :item.title  }}</div>
 			</div>
@@ -28,8 +28,13 @@
         default: false
       }
     },
-    setup(props) {
+    setup(props,contxt) {
       const {messageList,isComment} = props
+	  const methods  ={
+		  open(item){
+			  contxt.emit('open',item)
+		  }
+	  }
       return {
        messageList,
 	   isComment

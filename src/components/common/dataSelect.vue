@@ -28,6 +28,7 @@
 			const methods = {
 				select(item){
 					ElMessage.success('选择了'+item.title)
+					console.log(item.title)
 					contxt.emit('select',item)
 				}
 			}

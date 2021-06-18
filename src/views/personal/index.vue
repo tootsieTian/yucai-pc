@@ -169,6 +169,11 @@
 										 console.log(active.value)
 			     					 }
 			     })
+				 　      history.pushState(null, null, document.URL);
+				         window.addEventListener('popstate', function () {
+				             // router.push("/login")
+							 router.go(-1)
+				         });
 			    })
 
 			return {

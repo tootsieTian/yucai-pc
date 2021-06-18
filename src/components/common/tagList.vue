@@ -25,7 +25,13 @@
 			const {menuList,defaultIndex}=props
 			const methods  = {
 			  handleSelect(e){
-			    context.emit('handleSelect',e)
+				if(defaultIndex){
+					 context.emit('handleSelect',e)
+				}
+			   else{
+				   return
+			   }
+			
 			  }
 			}
 			return{
