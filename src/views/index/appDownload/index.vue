@@ -39,7 +39,6 @@
       const scrollTop = ref(0)
       window.addEventListener('scroll', () => {
         scrollTop.value = document.body.scrollTop || document.documentElement.scrollTop;
-        console.log(scrollTop)
       }, true)
       return {
         toIndex,
