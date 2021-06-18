@@ -8,9 +8,7 @@ import login from './login'
 
 const router = createRouter({
 	history: createWebHistory(),
-	routes: [...index, ...personal, ...login, ...study
-		// ...classify,...login
-	]
+	routes: [...index, ...personal, ...login, ...study]
 })
 router.beforeEach((to, from, next) => {
 	document.body.scrollTop = 0;

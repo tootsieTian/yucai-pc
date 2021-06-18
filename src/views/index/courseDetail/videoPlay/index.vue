@@ -16,7 +16,14 @@
                     <div class="tag-item" v-for="item in 3" :key="item+'i'">电商</div>
                 </div>
             </div>
-            <video-play class="video"/>
+            <video-play class="video"
+                        v-if="!tryLookEnd"/>
+            <div class="video-mask"
+                 v-if="tryLookEnd">
+                <div class="video-play-btn"></div>
+                <div class="title">试看已结束</div>
+                <div class="buy-btn">立即购买</div>
+            </div>
         </div>
         <div class="course-box">
             <div class="teacher-info">
@@ -48,7 +55,7 @@
 </template>
 
 <script>
-  import { ref,watch } from 'vue'
+  import { ref, watch } from 'vue'
   import Comment from "../../../../components/courseDetail/videoPlay/comment";
   import VideoPlay from "../../../../components/common/videoPlay";
 
@@ -56,20 +63,22 @@
     name: "index",
     components: { VideoPlay, Comment },
     setup() {
+      const tryLookEnd = ref(false)
       const courseItem = ref(null)
       const commentBoxShow = ref(false)
       const activeCourseItem = ref(0)
       const courseItemClick = (index) => {
         activeCourseItem.value = index
       }
-      watch(commentBoxShow, (oldVal,newVal) => {
+      watch(commentBoxShow, (oldVal, newVal) => {
         console.log(oldVal)
       })
       return {
         courseItem,
         activeCourseItem,
         commentBoxShow,
-        courseItemClick
+        courseItemClick,
+        tryLookEnd
       }
     }
   }
@@ -143,8 +152,44 @@
                 }
             }
 
-            .video{
+            .video, .video-mask {
                 flex: 1;
+            }
+
+            .video-mask {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+
+                .video-play-btn {
+                    width: 109px;
+                    height: 109px;
+                    cursor: pointer;
+                    background: #FFFFFF;
+                }
+
+                .title {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 22px;
+                    color: #999999;
+                    margin: 28px 0;
+                }
+
+                .buy-btn {
+                    cursor: pointer;
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 22px;
+                    color: #999999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 130px;
+                    height: 52px;
+                    background: #FFFFFF;
+                }
             }
         }
 

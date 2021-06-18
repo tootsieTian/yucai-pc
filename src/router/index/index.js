@@ -15,6 +15,16 @@ export default [
       title: '首页'
     }
   },
+  {
+    path: '/appDownload',
+    component: () => import('../../views/index/appDownload'),
+    meta: {
+      keepAlive: false,
+      foot: false,
+      nav: false,
+      title: 'APP下载'
+    }
+  },
   ...hotCourse,
   ...classifyCourse,
   ...searchResult,
