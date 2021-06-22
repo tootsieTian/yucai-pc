@@ -17,7 +17,12 @@
             </swiper>
             <div class="plate-list container-main">
                 <div class="plate-item" v-for="plate in plateList">
-                    {{plate.title}}
+                      <div class="f-a-j f">
+						  <img  style="width: 36px; margin-right: 5px;" :src="plate.icon" alt="">{{plate.title}}
+					  </div> 
+					<div class="img" >
+						<img :src="plate.mask" alt="">
+					</div>
                 </div>
             </div>
         </div>
@@ -121,6 +126,7 @@
         </main>
     </div>
     <check-study @closeDialog="closeDialog" v-if="dialogShow"/>
+	
 </template>
 
 <script>
@@ -138,6 +144,7 @@
   import mCourseCard from "../../components/courseCard/sCourseCard";
   import lCourseCard from "../../components/courseCard/mCourseCard";
   import CheckStudy from "../../components/index/checkStudy";
+  
 
   SwiperCore.use([Pagination, A11y]);
 
@@ -152,19 +159,27 @@
       lCourseCard,
       Swiper,
       SwiperSlide,
+	 
     },
     setup() {
       const router = useRouter()
       const dialogShow = ref(false)      // 选择学习领域盒子
+	  const loginShow = ref(false)
       const plateList = reactive([
         {
-          title: '套餐视频'
+          title: '全部课程',
+		  icon:require("../../assets/image/index/all.png"),
+		  mask:require("../../assets/image/index/allM.png")
         },
         {
-          title: '全部课程'
+          title: '套餐课程',
+		  icon:require("../../assets/image/index/meal.png"),
+		  mask:require("../../assets/image/index/studyM.png")
         },
         {
-          title: '学习中心'
+          title: '学习中心',
+		  icon:require("../../assets/image/index/study.png"),
+		  mask:require("../../assets/image/index/studyM.png")
         }
       ])
       const method = {
@@ -186,12 +201,16 @@
         },
         toCourseDetail() {
           router.push('/courseDetail')
-        }
+        },
+		closeLogin(){
+		loginShow.value=false
+		}
       }
       return {
         ...method,
         dialogShow,
-        plateList
+        plateList,
+		loginShow
       }
     }
   }
@@ -207,7 +226,7 @@
         width: 100%;
         height: 904px;
         background: #E2E2E2;
-
+        background-image: url(../../assets/image/index/all.png);
         .nav-img {
             height: 904px;
             width: 100%;
@@ -215,24 +234,35 @@
     }
 
     .plate-list {
-        z-index: 100;
+        z-index: 2;
         position: absolute;
         bottom: -62px;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
         justify-content: space-between;
-
+      
         .plate-item {
-            font-size: 22px;
-            font-weight: 400;
-            color: #707070;
+            font-size: 30px;
+            font-weight: 500;
+            color: #333333;
             width: 353px;
             height: 147px;
             display: flex;
+			border-radius: 31px 0px 31px 31px;
             justify-content: center;
             align-items: center;
             background: #F5F5F5;
+			position: relative;
+			.img{
+				position: absolute;
+				right: 10px;
+				top: 0px;
+				
+			}
+			.img img{
+				height: 147px;
+			}
         }
     }
 

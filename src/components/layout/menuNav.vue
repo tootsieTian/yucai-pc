@@ -4,8 +4,8 @@
     </div>
     <div :class="{nav:true,'nav-top':navTop}">
         <div class="container-menu">
-            <div class="logo" @click="toPath('/')">
-                logo
+            <div style="background-color: rgba(0,0,0,0);" class="logo" @click="toPath('/')">
+                 <img src="../../assets/image/common/Logo.png" alt="">
             </div>
             <div class="menu-list">
                 <div v-for="item in menuList"
@@ -39,25 +39,30 @@
                             :src="require('../../assets/icon/sucai/doge.jpeg')"/>
                 </div>
                 <div class="not-login-box" v-else>
-                    <div>登录</div>
+                    <div @click="openLogin" >登录</div>
                     <div class="line"></div>
                     <div>注册</div>
                 </div>
             </div>
         </div>
     </div>
+	<loginDialog  v-if="loginShow" @closeDialog="closeLogin"  ></loginDialog>
 </template>
 
 <script>
   import { ref, reactive, watch } from 'vue'
   import { useRouter, useRoute } from 'vue-router'
-
+  import loginDialog from "../../components/common/loginDialog.vue"
   export default {
     name: "menuNav",
+	components:{
+		 loginDialog
+	},
     setup() {
       const router = useRouter()
       const route = useRoute()
       const navTop = ref(false)
+	  const loginShow = ref(false)
       watch(route, (newVal) => {
         newVal.path === '/'  ? navTop.value = true : navTop.value = false
 
@@ -91,11 +96,17 @@
         }
       ])    // 菜单列表
       const searchKey = ref('产品规划') // 搜索框关键字
-      const isLogin = ref(true)    // 是否登录
+      const isLogin = ref(false)    // 是否登录
       const courseClassifyList = ref(null)  // 课程分类列表dom
       const toPath = (path) => {
         router.push(path)
       }
+	  const closeLogin =()=>{
+		  loginShow.value=false
+	  }
+	  const openLogin=()=>{
+		  loginShow.value=true
+	  }
       return {
         courseClassifyList,
         isLogin,
@@ -103,7 +114,10 @@
         toPath,
         searchKey,
         navTop,
-        route
+        route,
+		openLogin,
+		closeLogin,
+		loginShow
       }
     }
   }
@@ -121,7 +135,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 999;
+        z-index: 88;
         font-size: 14px;
         right: 0;
         box-sizing: border-box;
@@ -135,6 +149,13 @@
             align-items: center;
         }
     }
+	.logo{
+		margin-top: 25px;
+	}
+	.logo img{
+		width: 195px;
+		height: 47px;
+	}
 
     .menu-list {
         height: 100%;
@@ -176,7 +197,7 @@
         width: 1200px;
         background: #BFBFBF;
         bottom: 0;
-        z-index: 999;
+        z-index: 88;
         left: 50%;
         transform: translate(-50%, 100%);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
