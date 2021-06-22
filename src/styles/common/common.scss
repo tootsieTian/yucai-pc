@@ -110,3 +110,20 @@ html {
 .hand{
 	cursor:pointer
 }
+.tagList{
+      padding: 0 1px  ;
+	  height: 19px;
+	  border-radius: 8px 0 8px 0;
+	  
+	  color: #FFFFFF;
+      background: linear-gradient(180deg, #74AEFF 0%, #346FEB 100%);
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+}
+.organ{
+	background: linear-gradient(0deg, #F09D3A 0%, #FFC279 100%);
+}
+.smallf12{
+	-webkit-transform: scale(0.75);
+}

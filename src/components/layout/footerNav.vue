@@ -2,7 +2,9 @@
     <div class="footer">
         <div class="container-main">
             <div class="line">
-                <div class="logo"></div>
+                <div class="logo f-a-j">
+					<img src="../../assets/image/common/Logo.png" alt="">
+				</div>
                 <div class="about-company">
                     <div class="title">
                         关于御才文化
@@ -96,7 +98,7 @@
 
         font-size: 16px;
         width: 100%;
-        background: #E0E0E0;
+        background: rgba(39, 44, 50, 1);
         height: 517px;
         .container-main {
             position: relative;
@@ -115,7 +117,7 @@
         font-size: 16px;
         font-weight: 500;
         line-height: 22px;
-        color: #333333;
+        color: #FFFFFF;
     }
 
     .list {
@@ -128,15 +130,19 @@
         font-weight: 400;
         margin-bottom: 41px;
         line-height: 22px;
-        color: #333333;
+        color: rgba(153, 153, 153, 1);
     }
 
     .logo {
         width: 253px;
         height: 93px;
-        background: #FFFFFF;
+        background-color: rgba(0,0,0,0);
         margin-top: 123px;
+		
     }
+	.logo>img{
+		width: 253px;
+	}
 
     .about-company {
         margin-left: 73px;
@@ -169,6 +175,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+		color: rgba(153, 153, 153, 1);
     }
     .line{
         display: flex;

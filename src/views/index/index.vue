@@ -55,13 +55,13 @@
                         <div class="excellent-course-l">
                             <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
                             <div class="content-box">
-                                <div class="title">
+                                <div class="title f-a">
                                     100倍工作效率
-                                    <div class="type">SVIP免费</div>
+                                    <div  class="tagList  " style="margin-left: 10px;" > <div class="smallf12" >SVIP免费</div></div>
                                 </div>
                                 <div class="subtitle-box">
                                     <div class="subtitle">7节课 ｜ 时长2:30:09 ｜390人已学习</div>
-                                    <div class="price">68.00</div>
+                                    <div class="price"><Price :color="'#ffffff'" ></Price></div>
                                 </div>
                             </div>
                         </div>
@@ -72,13 +72,13 @@
                                 <div class="excellent-course-m">
                                     <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
                                     <div class="content-box">
-                                        <div class="title">
-                                            100倍工作效率
-                                            <div class="type">SVIP免费</div>
+                                        <div style="width: 100%;" class="title f-s">
+                                            <div>100倍工作效率</div>
+                                            <div class="tagList"><div class="smallf12" >SVIP免费</div></div>
                                         </div>
                                         <div class="subtitle-box">
-                                            <div class="subtitle">好评率100%</div>
-                                            <div class="price">68.00</div>
+                                            <div class="subtitle">好评率<span style="color: rgba(254, 152, 8, 1);margin-left: 5px;" >100%</span></div>
+                                            <div class="price"><Price ></Price></div>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                                    class="favorite-title"/>
                 <div class="explain">
                     <div>以下课程根据您的喜好推荐</div>
-                    <div>更改喜好<i class="el-icon-arrow-right"/></div>
+                    <div class="exchange" >更改喜好<i class="el-icon-arrow-right"/></div>
                 </div>
                 <el-row :gutter="24" class="favorite-list">
                     <el-col :span="6" v-for="item in 12" :key="item+'m'">
@@ -144,7 +144,7 @@
   import mCourseCard from "../../components/courseCard/sCourseCard";
   import lCourseCard from "../../components/courseCard/mCourseCard";
   import CheckStudy from "../../components/index/checkStudy";
-  
+  import Price from "../../components/common/price.vue"
 
   SwiperCore.use([Pagination, A11y]);
 
@@ -159,7 +159,7 @@
       lCourseCard,
       Swiper,
       SwiperSlide,
-	 
+	  Price
     },
     setup() {
       const router = useRouter()
@@ -293,7 +293,7 @@
                 height: 100%;
             }
             .content-box{
-                background: #B1B1B1;
+                background: rgba(0,0,0,0);
                 position: absolute;
                 padding: 25px 30px 17px 30px;
                 bottom: 0;
@@ -400,15 +400,21 @@
         display: flex;
         align-items: center;
         padding-left: 20px;
+		padding-top: 8px;
+		padding-bottom: 9px;
         box-sizing: border-box;
         height: 37px;
-        background: #F7F7F7;
+        background: rgba(19, 113, 243, 0.1);
         width: 100%;
         font-size: 14px;
         font-weight: 400;
         line-height: 20px;
-        color: #999999;
+        color: rgba(51, 51, 51, 1);
         margin-bottom: 48px;
+		.exchange{
+			margin-left: 25px;
+			color: rgba(19, 113, 243, 1);
+		}
     }
 
     .favorite-title {

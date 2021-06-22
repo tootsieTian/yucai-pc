@@ -70,7 +70,7 @@
             content: '';
             width: 6px;
             height: 34px;
-            background: #DEDEDE;
+            background: rgba(19, 113, 243, 1);
             position: absolute;
             left: -20px;
             top: 13px;
@@ -80,7 +80,7 @@
             font-size: 18px;
             font-weight: 400;
             line-height: 25px;
-            color: #333333;
+            color: #999999;
         }
     }
     .more{

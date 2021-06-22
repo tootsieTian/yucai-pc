@@ -32,16 +32,17 @@
     .look-all {
         width: 219px;
         height: 72px;
-        background: #EFEFEF;
+        background: rgba(19, 113, 243, 1);
+		border-radius: 4px;
         margin-left: auto;
         margin-right: auto;
-        font-size: 16px;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 400;
         line-height: 22px;
-        color: #333333;
+        color: #FFFFFF;
         cursor: pointer;
     }
 </style>

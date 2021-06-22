@@ -9,12 +9,12 @@
                 <div class="subtitle">
                     7节课 ｜ 时长2:30:09
                 </div>
-                <div class="bottom-box">
-                    <div>390人已学习</div>
-                    <div class="price-box">
-                        SVIP免费
-                        <div>
-                            ￥68.00
+                <div class="bottom-box f-s">
+                    <div class="f-a-j" >390人已学习</div>
+                    <div class="price-box  f-a-j">
+                        <div class="tagList organ" ><div class="smallf12" >SVIP免费</div></div>
+                        <div style="margin-left: 10px;" >
+                            <Price  :color="'rgba(234, 53, 83, 1)'" ></Price>
                         </div>
                     </div>
                 </div>
@@ -34,8 +34,12 @@
 </template>
 
 <script>
+	import Price from "../common/price.vue"
   export default {
     name: "xlCourseCard",
+	components:{
+		Price
+	},
     props: {
       img: {
         type: String,
@@ -100,10 +104,13 @@
             margin-bottom: 14px;
         }
         .bottom-box{
+			width: 450px;
             font-size: 16px;
             font-weight: 400;
-            display: flex;
-            justify-content: space-between;
+			font-weight: 400;
+			line-height: 20px;
+			color: #EE7F10;
+			font-size: 14px;
             .price-box{
                 display: flex;
             }
