@@ -4,14 +4,19 @@
              :src="img">
         <div class="tag" v-if="type!==''">拼团</div>
         <div class="content">
-            <div class="title">10000倍工作效率</div>
+            <div class="title f-s f-a"><div>10000倍工作效率</div><div class="f-a-j" @click="openDialog" style="font-size: 20px;margin-top: -10px;" v-if="iscouldop" >...</div></div>
             <div class="subtitle">7节课 ｜390人已学习</div>
             <div class="bottom-box">2人团￥68.00</div>
+			<div v-if="isOpenDialog" class="dialog f-c" >
+				<div class="f-1 f-a-j" style="border-bottom: 1px solid #E0E0E0;" >置顶课程</div>
+				<div class="f-1 f-a-j">删除课程</div>
+			</div>
         </div>
     </div>
 </template>
 
 <script>
+	import {ref,relative} from "vue"
   export default {
     name: "sCourseCard",
     props: {
@@ -19,6 +24,10 @@
         type: String,
         default: '100000倍工作效率'
       },
+	  iscouldop:{
+		  type:Boolean,
+		  default:false
+	  },
       img: {
         type: String,
         default: require('../../assets/icon/sucai/平行宇宙.jpg')
@@ -26,14 +35,22 @@
       type: {
         type: String,
         default: ''
-      }
+      },
+	 
     },
-    setup(props) {
-      const {title, img,type} = props
+    setup(props,contxt) {
+      const {title, img,type,iscouldop} = props
+	  const isOpenDialog=ref(false)
+	  const openDialog=()=>{
+		 isOpenDialog.value=!isOpenDialog.value
+	  }
       return {
         title,
         img,
-        type
+        type,
+		iscouldop,
+		isOpenDialog,
+		openDialog
       }
     }
   }
@@ -47,12 +64,28 @@
         width: 100%;
         background: #FAFAFA;
     }
+	.dialog{
+		position: absolute;
+		padding: 0 4px;
+		box-sizing: border-box;
+		top: 66px;
+		right: -116px;
+		width: 139px;
+		height: 81px;
+		background: #F2F2F2;
+		opacity: 1;
+		border-radius: 4px;
+		z-index: 99;
+		color: #333333;
+		font-size: 12px;
+	}
     .title-page{
         height: 187px;
         width: 100%;
     }
     .content{
         padding: 17px 14px;
+		position: relative;
         .title{
             font-size: 20px;
             font-weight: 500;

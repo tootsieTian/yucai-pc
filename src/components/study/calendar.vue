@@ -10,7 +10,8 @@
         </div>
         <div class="day" v-for="item in monthList[month]">
             <div :class="{'day--active': item===day}">
-                {{item}}
+                {{item===day ? '今' : item  }}
+				<div v-if="item==17 || item==18" class="right-lab f-a-j"  >1</div>
             </div>
         </div>
         <div class="next" v-for="item in 35 - monthList[month]-firstDay+1">
@@ -55,8 +56,8 @@
 <style lang="scss" scoped>
     .week-list {
         height: 27px;
-        background: #F2F2F2;
-        border-radius: 14px;
+       
+       
         display: flex;
         justify-content: space-between;
         padding: 0 15px;
@@ -86,16 +87,30 @@
             align-items: center;
             justify-content: center;
             opacity: 0.8;
+			position: relative;
         }
 
         .day--active {
-            background: #F0F0F0;
+            background: rgba(255, 245, 229, 0.7);
             border-radius: 50%;
+			color: rgba(254, 152, 8, 1);
+			font-weight: 600;
             width: 28px;
             height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+		.right-lab{
+			width: 13px;
+			height: 13px;
+			background: rgba(254, 152, 8, 0.1);
+			color: rgba(254, 152, 8, 1);
+			font-size: 12px;
+			position: absolute;
+			right: -5px;
+			top: 5px;
+			border-radius: 50%;
+		}
     }
 </style>
