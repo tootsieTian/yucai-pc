@@ -3,7 +3,6 @@
         <div class="nav-list">
             <swiper
                     :slides-per-view="1"
-                    :space-between="50"
                     @swiper="onSwiper"
                     @slideChange="onSlideChange"
                     :pagination="{ clickable: true }"
@@ -17,116 +16,141 @@
             </swiper>
             <div class="plate-list container-main">
                 <div class="plate-item" v-for="plate in plateList">
-                      <div class="f-a-j f">
-						  <img  style="width: 36px; margin-right: 5px;" :src="plate.icon" alt="">{{plate.title}}
-					  </div> 
-					<div class="img" >
-						<img :src="plate.mask" alt="">
-					</div>
+                    <div class="f-a-j f">
+                        <img style="width: 36px; margin-right: 5px;" :src="plate.icon" alt="">{{plate.title}}
+                    </div>
+                    <div class="img">
+                        <img :src="plate.mask" alt="">
+                    </div>
                 </div>
             </div>
         </div>
 
         <main>
-            <div class="container-main">
+            <!--热门课程-->
+            <div class="hot-course">
+                <img class="bg-line"
+                     :src="require('../../assets/image/index/bg-line.png')">
+                <div class="container-main">
+                    <course-list-title @more="more"
+                                       class="hot-title"/>
+                    <el-row :gutter="20" class="hot-list">
+                        <el-col :span="12" v-for="item in 4" :key="item">
+                            <xl-course-card class="hot-item"
+                                            @click.native="toCourseDetail"
+                                            :comment-show="true"/>
+                        </el-col>
+                    </el-row>
+                    <look-all-course
+                            title="查看全部290个热门课程"
+                            @lookAll="more"
+                    />
+                </div>
+            </div>
 
-                <!--热门课程-->
-                <course-list-title @more="more"
-                                   class="hot-title"/>
-                <el-row :gutter="20" class="hot-list">
-                    <el-col :span="12" v-for="item in 4" :key="item">
-                        <xl-course-card class="hot-item"
-                                        @click.native="toCourseDetail"
-                                        :comment-show="true"/>
-                    </el-col>
-                </el-row>
-                <look-all-course
-                        title="查看全部290个热门课程"
-                        @lookAll="more"
-                />
-
-                <!--精品课程-->
-                <course-list-title title="精品课程"
-                                   @more="more"
-                                   subtitle="精心挑选的上好课程 / 直击你的专业瓶颈 / 加速知识吸收"
-                                   class="excellent-title"/>
-                <el-row :gutter="20" class="excellent-list">
-                    <el-col :span="12">
-                        <div class="excellent-course-l">
-                            <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
-                            <div class="content-box">
-                                <div class="title f-a">
-                                    100倍工作效率
-                                    <div  class="tagList  " style="margin-left: 10px;" > <div class="smallf12" >SVIP免费</div></div>
-                                </div>
-                                <div class="subtitle-box">
-                                    <div class="subtitle">7节课 ｜ 时长2:30:09 ｜390人已学习</div>
-                                    <div class="price"><Price :color="'#ffffff'" ></Price></div>
-                                </div>
-                            </div>
-                        </div>
-                    </el-col>
-                    <el-col :span="12">
-                        <el-row :gutter="20">
-                            <el-col :span="12"  v-for="item in 4">
-                                <div class="excellent-course-m">
-                                    <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
-                                    <div class="content-box">
-                                        <div style="width: 100%;" class="title f-s">
-                                            <div>100倍工作效率</div>
-                                            <div class="tagList"><div class="smallf12" >SVIP免费</div></div>
+            <!--精品课程-->
+            <div class="good-course">
+                <div class="container-main">
+                    <course-list-title title="精品课程"
+                                       @more="more"
+                                       subtitle="精心挑选的上好课程 / 直击你的专业瓶颈 / 加速知识吸收"
+                                       class="excellent-title"/>
+                    <el-row :gutter="20" class="excellent-list">
+                        <el-col :span="12">
+                            <div class="excellent-course-l">
+                                <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
+                                <div class="content-box">
+                                    <div class="title f-a">
+                                        100倍工作效率
+                                        <div class="tagList  " style="margin-left: 10px;">
+                                            <div class="smallf12">SVIP免费</div>
                                         </div>
-                                        <div class="subtitle-box">
-                                            <div class="subtitle">好评率<span style="color: rgba(254, 152, 8, 1);margin-left: 5px;" >100%</span></div>
-                                            <div class="price"><Price ></Price></div>
+                                    </div>
+                                    <div class="subtitle-box">
+                                        <div class="subtitle">7节课 ｜ 时长2:30:09 ｜390人已学习</div>
+                                        <div class="price">
+                                            <Price :color="'#ffffff'"></Price>
                                         </div>
                                     </div>
                                 </div>
-                            </el-col>
-                        </el-row>
-                    </el-col>
-                </el-row>
-                <look-all-course
-                        title="查看全部290个精品课程"
-                        @lookAll="more"
-                />
-
-                <!--活动专区-->
-                <course-list-title title="活动专区"
-                                   @more="more"
-                                   subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
-                                   class="activity-title"/>
-                <el-row :gutter="24" class="activity-list">
-                    <el-col :span="12" v-for="item in 4" :key="item+'m'">
-                        <xl-course-card class="activity-item"
-                                        @click.native="toCourseDetail"/>
-                    </el-col>
-                </el-row>
-                <look-all-course
-                        title="查看全部290个活动课程"
-                        @lookAll="toPath('/activeCourse')"
-                />
-
-                <!--猜你喜欢-->
-                <course-list-title @more="more"
-                                   title="猜你喜欢"
-                                   subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
-                                   class="favorite-title"/>
-                <div class="explain">
-                    <div>以下课程根据您的喜好推荐</div>
-                    <div class="exchange" >更改喜好<i class="el-icon-arrow-right"/></div>
+                            </div>
+                        </el-col>
+                        <el-col :span="12">
+                            <el-row :gutter="20">
+                                <el-col :span="12" v-for="item in 4">
+                                    <div class="excellent-course-m">
+                                        <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
+                                        <div class="content-box">
+                                            <div style="width: 100%;" class="title f-s">
+                                                <div>100倍工作效率</div>
+                                                <div class="tagList">
+                                                    <div class="smallf12">SVIP免费</div>
+                                                </div>
+                                            </div>
+                                            <div class="subtitle-box">
+                                                <div class="subtitle">好评率<span
+                                                        style="color: rgba(254, 152, 8, 1);margin-left: 5px;">100%</span>
+                                                </div>
+                                                <div class="price">
+                                                    <Price></Price>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </el-col>
+                            </el-row>
+                        </el-col>
+                    </el-row>
+                    <look-all-course
+                            title="查看全部290个精品课程"
+                            @lookAll="more"
+                    />
                 </div>
-                <el-row :gutter="24" class="favorite-list">
-                    <el-col :span="6" v-for="item in 12" :key="item+'m'">
-                        <m-course-card class="favorite-item"
-                                       @click.native="toCourseDetail"/>
-                    </el-col>
-                </el-row>
+            </div>
+
+            <!--活动专区-->
+            <div class="active-area">
+                <div class="container-main">
+                    <course-list-title title="活动专区"
+                                       @more="more"
+                                       subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
+                                       class="activity-title"/>
+                    <el-row :gutter="24" class="activity-list">
+                        <el-col :span="12" v-for="item in 4" :key="item+'m'">
+                            <xl-course-card class="activity-item"
+                                            @click.native="toCourseDetail"/>
+                        </el-col>
+                    </el-row>
+                    <look-all-course
+                            title="查看全部290个活动课程"
+                            @lookAll="toPath('/activeCourse')"
+                    />
+                </div>
+            </div>
+
+            <!--猜你喜欢-->
+            <div class="your-like">
+                <div class="container-main">
+                    <course-list-title @more="more"
+                                       title="猜你喜欢"
+                                       subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
+                                       class="favorite-title"/>
+                    <div class="explain">
+                        <div>以下课程根据您的喜好推荐</div>
+                        <div class="exchange">更改喜好<i class="el-icon-arrow-right"/></div>
+                    </div>
+                    <el-row :gutter="24" class="favorite-list">
+                        <el-col :span="6" v-for="item in 12" :key="item+'m'">
+                            <m-course-card class="favorite-item"
+                                           @click.native="toCourseDetail"/>
+                        </el-col>
+                    </el-row>
+                </div>
             </div>
         </main>
     </div>
     <check-study @closeDialog="closeDialog" v-if="dialogShow"/>
-	
+
 </template>
 
 <script>
@@ -159,27 +183,27 @@
       lCourseCard,
       Swiper,
       SwiperSlide,
-	  Price
+      Price
     },
     setup() {
       const router = useRouter()
       const dialogShow = ref(false)      // 选择学习领域盒子
-	  const loginShow = ref(false)
+      const loginShow = ref(false)
       const plateList = reactive([
         {
           title: '全部课程',
-		  icon:require("../../assets/image/index/all.png"),
-		  mask:require("../../assets/image/index/allM.png")
+          icon: require("../../assets/image/index/all.png"),
+          mask: require("../../assets/image/index/allM.png")
         },
         {
           title: '套餐课程',
-		  icon:require("../../assets/image/index/meal.png"),
-		  mask:require("../../assets/image/index/studyM.png")
+          icon: require("../../assets/image/index/meal.png"),
+          mask: require("../../assets/image/index/studyM.png")
         },
         {
           title: '学习中心',
-		  icon:require("../../assets/image/index/study.png"),
-		  mask:require("../../assets/image/index/studyM.png")
+          icon: require("../../assets/image/index/study.png"),
+          mask: require("../../assets/image/index/studyM.png")
         }
       ])
       const method = {
@@ -187,7 +211,7 @@
           console.log('查看更多')
           router.push('/hotCourse')
         },
-        toPath(path){
+        toPath(path) {
           router.push(path)
         },
         closeDialog() {
@@ -202,15 +226,15 @@
         toCourseDetail() {
           router.push('/courseDetail')
         },
-		closeLogin(){
-		loginShow.value=false
-		}
+        closeLogin() {
+          loginShow.value = false
+        }
       }
       return {
         ...method,
         dialogShow,
         plateList,
-		loginShow
+        loginShow
       }
     }
   }
@@ -221,12 +245,31 @@
         padding-bottom: 100px;
     }
 
+    .hot-course {
+        position: relative;
+        box-sizing: border-box;
+        overflow: hidden;
+        .bg-line {
+            width: 800px;
+            height: 1000px;
+            position: absolute;
+            right: -300px;
+            top: -300px;
+        }
+    }
+
+    .good-course {
+        box-sizing: border-box;
+        background: #F5F6F6;
+        position: relative;
+    }
+
     .nav-list {
         position: relative;
         width: 100%;
         height: 904px;
         background: #E2E2E2;
-        background-image: url(../../assets/image/index/all.png);
+
         .nav-img {
             height: 904px;
             width: 100%;
@@ -241,7 +284,7 @@
         transform: translateX(-50%);
         display: flex;
         justify-content: space-between;
-      
+
         .plate-item {
             font-size: 30px;
             font-weight: 500;
@@ -249,20 +292,22 @@
             width: 353px;
             height: 147px;
             display: flex;
-			border-radius: 31px 0px 31px 31px;
+            border-radius: 31px 0px 31px 31px;
             justify-content: center;
             align-items: center;
             background: #F5F5F5;
-			position: relative;
-			.img{
-				position: absolute;
-				right: 10px;
-				top: 0px;
-				
-			}
-			.img img{
-				height: 147px;
-			}
+            position: relative;
+
+            .img {
+                position: absolute;
+                right: 10px;
+                top: 0px;
+
+            }
+
+            .img img {
+                height: 147px;
+            }
         }
     }
 
@@ -284,46 +329,54 @@
 
     .excellent-list {
         margin-bottom: 35px;
-        .excellent-course-l{
+
+        .excellent-course-l {
             position: relative;
             height: 590px;
             background: #EDEDED;
-            .title-page{
+
+            .title-page {
                 width: 100%;
                 height: 100%;
             }
-            .content-box{
-                background: rgba(0,0,0,0);
+
+            .content-box {
+                background: rgba(0, 0, 0, 0);
                 position: absolute;
                 padding: 25px 30px 17px 30px;
                 bottom: 0;
                 box-sizing: border-box;
                 left: 0;
                 width: 100%;
-                .title{
+
+                .title {
                     margin-bottom: 12px;
                     font-size: 20px;
                     font-weight: 500;
                     line-height: 28px;
                     color: #FFFFFF;
                     display: flex;
-                    .type{
+
+                    .type {
                         font-size: 12px;
                         font-weight: 400;
                         line-height: 17px;
                         color: #999999;
                     }
                 }
-                .subtitle-box{
+
+                .subtitle-box {
                     display: flex;
                     justify-content: space-between;
-                    .subtitle{
+
+                    .subtitle {
                         font-size: 16px;
                         font-weight: 400;
                         line-height: 22px;
                         color: #FFFFFF;
                     }
-                    .price{
+
+                    .price {
                         font-size: 27px;
                         font-family: DIN Alternate;
                         font-weight: bold;
@@ -333,44 +386,53 @@
                 }
             }
         }
-        .excellent-course-m:nth-child(-n+2){
+
+        .excellent-course-m:nth-child(-n+2) {
             margin-bottom: 20px;
         }
-        .excellent-course-m{
+
+        .excellent-course-m {
             height: 285px;
-            .title-page{
+
+            .title-page {
                 height: 200px;
                 width: 100%;
             }
-            .content-box{
+
+            .content-box {
                 padding-top: 21px;
                 padding-bottom: 2px;
                 box-sizing: border-box;
                 width: 100%;
-                .title{
+
+                .title {
                     margin-bottom: 12px;
                     font-size: 20px;
                     font-weight: 500;
                     line-height: 28px;
                     color: #333333;
                     display: flex;
-                    .type{
+
+                    .type {
                         font-size: 12px;
                         font-weight: 400;
                         line-height: 17px;
                         color: #999999
                     }
                 }
-                .subtitle-box{
+
+                .subtitle-box {
                     display: flex;
                     justify-content: space-between;
-                    .subtitle{
+
+                    .subtitle {
                         font-size: 14px;
                         font-weight: 400;
                         line-height: 20px;
                         color: #999999;
                     }
-                    .price{
+
+                    .price {
                         font-size: 21px;
                         font-family: DIN Alternate;
                         font-weight: bold;
@@ -400,8 +462,8 @@
         display: flex;
         align-items: center;
         padding-left: 20px;
-		padding-top: 8px;
-		padding-bottom: 9px;
+        padding-top: 8px;
+        padding-bottom: 9px;
         box-sizing: border-box;
         height: 37px;
         background: rgba(19, 113, 243, 0.1);
@@ -411,10 +473,11 @@
         line-height: 20px;
         color: rgba(51, 51, 51, 1);
         margin-bottom: 48px;
-		.exchange{
-			margin-left: 25px;
-			color: rgba(19, 113, 243, 1);
-		}
+
+        .exchange {
+            margin-left: 25px;
+            color: rgba(19, 113, 243, 1);
+        }
     }
 
     .favorite-title {
@@ -434,6 +497,17 @@
         .swiper-pagination-bullet {
             width: 7px;
             height: 7px;
+            background: #FFFFFF;
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .swiper-pagination-bullet-active {
+            width: 31px;
+            height: 7px;
+            background: #FFFFFF;
+            opacity: 1;
+            border-radius: 0 8px 0 8px;
         }
     }
 </style>

@@ -1,11 +1,12 @@
 <template>
+    <!--    撑起盒子高度-->
     <div class="nav-hidden" v-if="!navTop">
 
     </div>
-    <div :class="{nav:true,'nav-top':navTop}">
+    <div :class="{nav:true,transparent: transparent}">
         <div class="container-menu">
-            <div  class="logo" @click="toPath('/')">
-                 <img src="../../assets/image/common/Logo.png" alt="">
+            <div class="logo" @click="toPath('/')">
+                <img src="../../assets/image/common/Logo.png" alt="">
             </div>
             <div class="menu-list">
                 <div v-for="item in menuList"
@@ -15,9 +16,9 @@
                 </div>
 
                 <el-row :gutter="20" class="course-classify-list">
-					<div class="course-classify-list-sj" >
-						<div class="sjbox" ></div>
-					</div>
+                    <div class="course-classify-list-sj">
+                        <div class="triangle"></div>
+                    </div>
                     <el-col :span="3.5"
                             v-for="item in 17"
                             :key="item+'g'">
@@ -29,11 +30,12 @@
             </div>
             <div class="nav-right">
                 <div class="search">
-                    <input v-model="searchKey">
+                    <input v-model="searchKey"
+                           :style="{background: transparent?'#FFFFFF':'#F4F4F4'}">
                     <i class="el-icon-search"
                        @click="toPath('/searchResult')"/>
                 </div>
-                <div class="study" @click="toPath('/study')">学习中心</div>
+                <div class="study" @click="toPath('/study')" v-if="false"> 学习中心</div>
                 <div class="user-box" v-if="isLogin"
                      @click="toPath('/personal/userInfo')">
                     <div class="username">薛定谔的猫</div>
@@ -42,36 +44,40 @@
                             :src="require('../../assets/icon/sucai/doge.jpeg')"/>
                 </div>
                 <div class="not-login-box" v-else>
-                    <div @click="openLogin" >登录</div>
+                    <div @click="openLogin">登录</div>
                     <div class="line"></div>
                     <div>注册</div>
                 </div>
             </div>
         </div>
     </div>
-	<loginDialog  v-if="loginShow" @closeDialog="closeLogin"  ></loginDialog>
+    <loginDialog v-if="loginShow" @closeDialog="closeLogin"></loginDialog>
 </template>
 
 <script>
-  import { ref, reactive, watch } from 'vue'
+  import { ref, reactive, watch, onBeforeMount } from 'vue'
   import { useRouter, useRoute } from 'vue-router'
   import loginDialog from "../../components/common/loginDialog.vue"
+
   export default {
     name: "menuNav",
-	components:{
-		 loginDialog
-	},
+    components: {
+      loginDialog
+    },
+
     setup() {
       const router = useRouter()
       const route = useRoute()
       const navTop = ref(false)
-	  const loginShow = ref(false)
+      const loginShow = ref(false)
       watch(route, (newVal) => {
-        newVal.path === '/'  ? navTop.value = true : navTop.value = false
+        newVal.path === '/' ? navTop.value = true : navTop.value = false
 
       }, {
         immediate: true
       })
+
+
       const menuList = reactive([
         {
           title: '首页',
@@ -103,45 +109,69 @@
       const courseClassifyList = ref(null)  // 课程分类列表dom
       const toPath = (path) => {
         router.push(path)
+        listenScroll()
       }
-	  const closeLogin =()=>{
-		  loginShow.value=false
-	  }
-	  const openLogin=()=>{
-		  loginShow.value=true
-	  }
+      const closeLogin = () => {
+        loginShow.value = false
+      }
+      const openLogin = () => {
+        loginShow.value = true
+      }
+
+      // 控制导航栏底部透明
+      const transparent = ref(false)
+      const listenScroll = () => {
+        transparent.value = navTop.value && document.documentElement.scrollTop === 0
+      }
+      listenScroll()
+      window.addEventListener('scroll', listenScroll)
+      // onBeforeMount(()=>{
+      //   window.removeEventListener('scroll',listenScroll)
+      // })
+      watch(route, (newVal) => {
+        newVal.path === '/' ? navTop.value = true : navTop.value = false
+        listenScroll()
+      }, {
+        immediate: true
+      })
       return {
         courseClassifyList,
+        transparent,
         isLogin,
         menuList,
         toPath,
         searchKey,
         navTop,
         route,
-		openLogin,
-		closeLogin,
-		loginShow
+        openLogin,
+        closeLogin,
+        loginShow
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-    .nav-top {
-        background: rgba(237, 237, 237, 0.6) !important;
-		 color: rgba(0, 0, 0, 1);
+    .transparent {
+        background: transparent !important;
+        color: #FFFFFF !important;
+        transition: color 0.5s, background 0.5s;
     }
-    .nav-hidden{
+
+    .nav-hidden {
         height: 104px;
         width: 100%;
     }
+
     .nav {
+        transition: color 0.5s, background 0.5s;
         position: fixed;
         top: 0;
         left: 0;
         z-index: 88;
         font-size: 14px;
         right: 0;
+        color: black;
         box-sizing: border-box;
         height: 104px;
         background: #FFFFFF;
@@ -153,30 +183,34 @@
             align-items: center;
         }
     }
-	.logo{
-		margin-top: 25px;
-		background-color: rgba(19, 113, 243, 1);
-		height: 47px;
-		transform: translateY(-25%);
-	}
-	.logo img{
-		width: 195px;
-		height: 47px;
 
-	}
-     .sjbox{
-		  width: 0px;
-		  height: 0pnx;
-		  border: 10px solid ;
-		  border-color: transparent transparent white transparent;
-	 }
+    .logo {
+        margin-top: 25px;
+        background-color: transparent;
+        height: 47px;
+        transform: translateY(-25%);
+    }
+
+    .logo img {
+        width: 195px;
+        height: 47px;
+
+    }
+
+    .triangle {
+        width: 0;
+        height: 0;
+        border: 10px solid;
+        border-color: transparent transparent white transparent;
+    }
+
     .menu-list {
         height: 100%;
         margin-left: 71px;
         width: 500px;
         justify-content: space-between;
         display: flex;
-       color: rgba(0, 0, 0, 1);
+
         .menu-item {
             position: relative;
             height: 100%;
@@ -184,6 +218,7 @@
             align-items: center;
             cursor: pointer;
         }
+
         .menu-item--active:after {
             content: '';
             left: 50%;
@@ -203,12 +238,14 @@
     .course-classify-list:hover {
         display: flex;
     }
-    .course-classify-list-sj{
-		 position: absolute;
-		 top: -20px;
-		 left: 125px;
-		 z-index: 999;
-	}
+
+    .course-classify-list-sj {
+        position: absolute;
+        top: -20px;
+        left: 125px;
+        z-index: 999;
+    }
+
     .course-classify-list {
         position: absolute;
         display: none;
@@ -239,6 +276,7 @@
     .search {
         position: relative;
         opacity: 0.8;
+
         input {
             padding-left: 21px;
             box-sizing: border-box;
@@ -246,6 +284,7 @@
             width: 248px;
             height: 48px;
             outline: none;
+            color: #333333;
             background: #FFFFFF;
             border-radius: 24px;
         }

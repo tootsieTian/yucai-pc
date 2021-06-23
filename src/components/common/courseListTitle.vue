@@ -8,12 +8,12 @@
                 {{subtitle}}
             </div>
         </div>
-        <div class="more"
-             v-if="showMore"
-             @click="more">
-            更多
-            <i class="el-icon-arrow-right"/>
-        </div>
+<!--        <div class="more"-->
+<!--             v-if="showMore"-->
+<!--             @click="more">-->
+<!--            更多-->
+<!--            <i class="el-icon-arrow-right"/>-->
+<!--        </div>-->
     </div>
 </template>
 
