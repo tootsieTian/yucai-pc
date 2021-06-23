@@ -166,7 +166,7 @@
 	}
      .sjbox{
 		  width: 0px;
-		  height: 0px;
+		  height: 0pnx;
 		  border: 10px solid ;
 		  border-color: transparent transparent white transparent;
 	 }
