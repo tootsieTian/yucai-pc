@@ -168,7 +168,7 @@
 		  width: 0px;    
 		  height: 0px;  
 		  border: 10px solid ;   
-		  border-color: transparent transparent white transparent; 
+		  border-color: transparent transparent white transparent;
 	 }
     .menu-list {
         height: 100%;
