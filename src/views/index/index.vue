@@ -163,7 +163,7 @@
     },
     setup() {
       const router = useRouter()
-      const dialogShow = ref(false)      // 选择学习领域盒子
+      const dialogShow = ref(true)      // 选择学习领域盒子
 	  const loginShow = ref(false)
       const plateList = reactive([
         {

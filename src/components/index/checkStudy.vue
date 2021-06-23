@@ -1,9 +1,11 @@
 <template>
     <div class="check-study">
         <div class="dialog container-main">
-            <div class="title">选择学习领域</div>
+            <div class="title">选择学习领域<span style="font-size: 14px;color: #999999;margin-left: 27px;" >至少选择一个，可在个人中心调整</span></div>
             <div class="tag-list">
-                <div class="tag-item"
+				 
+                <div class="tag-item "
+				     :class="selectTagList.indexOf(item)!==-1 ?'bule' : '' "
                      @click="tagItemClick(item)"
                      :key="index+'tag'"
                      v-for="(item,index) in tagList">
@@ -112,15 +114,21 @@
                 font-weight: 400;
                 line-height: 46px;
                 color: #707070;
+				
             }
-
+             .bule{
+             	border: 1px solid #346FEB !important;
+             	color: #1371F3!important;
+             }
             .tag-item--active {
                 position: absolute;
-                width: 25px;
-                height: 23px;
+                background-image: url(../../assets/image/index/checkStudy.png);
+				background-size: 100%;
+				width: 110px;
+				height: 46px;
                 right: 0;
                 bottom: 0;
-                background: black;
+               
             }
         }
 
@@ -143,14 +151,18 @@
             margin-right: auto;
             width: 215px;
             height: 69px;
-            background: #D1D1D1;
+            background: #1371F3;
+			border-radius: 4px;
             font-size: 24px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: 400;
             line-height: 33px;
-            color: #707070;
+            color: #FFFFFF;
         }
+		.check-tag{
+color: #1371F3;
+		}
     }
 </style>
