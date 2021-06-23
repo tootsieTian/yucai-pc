@@ -13,7 +13,7 @@
                      @click="toPath(item.path)">
                     {{ item.title }}
                 </div>
-				
+
                 <el-row :gutter="20" class="course-classify-list">
 					<div class="course-classify-list-sj" >
 						<div class="sjbox" ></div>
@@ -162,13 +162,13 @@
 	.logo img{
 		width: 195px;
 		height: 47px;
-		
+
 	}
      .sjbox{
-		  width: 0px;    
-		  height: 0px;  
-		  border: 10px solid ;   
-		  border-color: transparent transparent white transparent; 
+		  width: 0px;
+		  height: 0px;
+		  border: 10px solid ;
+		  border-color: transparent transparent white transparent;
 	 }
     .menu-list {
         height: 100%;
@@ -220,7 +220,7 @@
         transform: translate(-50%, 100%);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
         padding: 25px 0 14px 24px;
- 
+
         .course-classify-item {
             cursor: pointer;
             height: 43px;
@@ -232,7 +232,7 @@
             font-weight: 400;
             line-height: 20px;
             color: #707070;
-		    
+
         }
     }
 
