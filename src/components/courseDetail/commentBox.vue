@@ -235,7 +235,7 @@
         font-size: 14px;
         font-weight: 400;
         line-height: 20px;
-        color: #333333;
+        color: rgba(19, 113, 243, 1);
     }
 
 

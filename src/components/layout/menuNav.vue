@@ -4,7 +4,7 @@
     </div>
     <div :class="{nav:true,'nav-top':navTop}">
         <div class="container-menu">
-            <div style="background-color: rgba(0,0,0,0);" class="logo" @click="toPath('/')">
+            <div  class="logo" @click="toPath('/')">
                  <img src="../../assets/image/common/Logo.png" alt="">
             </div>
             <div class="menu-list">
@@ -13,7 +13,11 @@
                      @click="toPath(item.path)">
                     {{ item.title }}
                 </div>
+				
                 <el-row :gutter="20" class="course-classify-list">
+					<div class="course-classify-list-sj" >
+						<div class="sjbox" ></div>
+					</div>
                     <el-col :span="3.5"
                             v-for="item in 17"
                             :key="item+'g'">
@@ -23,7 +27,6 @@
                     </el-col>
                 </el-row>
             </div>
-
             <div class="nav-right">
                 <div class="search">
                     <input v-model="searchKey">
@@ -126,6 +129,7 @@
 <style lang="scss" scoped>
     .nav-top {
         background: rgba(237, 237, 237, 0.6) !important;
+		 color: rgba(0, 0, 0, 1);
     }
     .nav-hidden{
         height: 104px;
@@ -140,7 +144,7 @@
         right: 0;
         box-sizing: border-box;
         height: 104px;
-        background: #ededed;
+        background: #FFFFFF;
         display: flex;
 
         .container-menu {
@@ -151,19 +155,28 @@
     }
 	.logo{
 		margin-top: 25px;
+		background-color: rgba(19, 113, 243, 1);
+		height: 47px;
+		transform: translateY(-25%);
 	}
 	.logo img{
 		width: 195px;
 		height: 47px;
+		
 	}
-
+     .sjbox{
+		  width: 0px;    
+		  height: 0px;  
+		  border: 10px solid ;   
+		  border-color: transparent transparent white transparent; 
+	 }
     .menu-list {
         height: 100%;
         margin-left: 71px;
         width: 500px;
         justify-content: space-between;
         display: flex;
-
+       color: rgba(0, 0, 0, 1);
         .menu-item {
             position: relative;
             height: 100%;
@@ -179,7 +192,7 @@
             position: absolute;
             width: 15px;
             height: 4px;
-            background: #FFFFFF;
+            background: rgba(19, 113, 243, 1);
         }
     }
 
@@ -190,19 +203,24 @@
     .course-classify-list:hover {
         display: flex;
     }
-
+    .course-classify-list-sj{
+		 position: absolute;
+		 top: -20px;
+		 left: 125px;
+		 z-index: 999;
+	}
     .course-classify-list {
         position: absolute;
         display: none;
         width: 1200px;
-        background: #BFBFBF;
+        background: #FFFFFF;
         bottom: 0;
         z-index: 88;
         left: 50%;
         transform: translate(-50%, 100%);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
         padding: 25px 0 14px 24px;
-
+ 
         .course-classify-item {
             cursor: pointer;
             height: 43px;
@@ -214,13 +232,13 @@
             font-weight: 400;
             line-height: 20px;
             color: #707070;
-            background: #EFEFEF;
+		    
         }
     }
 
     .search {
         position: relative;
-
+        opacity: 0.8;
         input {
             padding-left: 21px;
             box-sizing: border-box;

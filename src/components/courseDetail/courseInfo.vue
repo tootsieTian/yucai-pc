@@ -38,20 +38,24 @@
             </div>
             <div class="tag-list">
                 <div class="tag-item" v-for="item in 4" :key="item+'q'">
-                    电商
+                    #电商
                 </div>
             </div>
             <div class="bottom-box">
-                <div class="price-box">
-                    <div>2人团</div>
-                    <div>￥68</div>
+                <div class="price-box " style="margin-top: 30px;" >
+                    <div class="f-a-j" style="margin-right: 20px;" >2人团</div>
+                    <div class="f-a-j" ><Price  :fontSize="'35px'" :color="'rgba(234, 53, 83, 1)'" ></Price></div>
                 </div>
                 <div class="btn-box">
                     <div class="customer-box">
                         <div class="header-list">
                             <div class="header-item"></div>
                         </div>
-                        <div>390人已学习</div>
+                        <div class="f-a">
+							<moreUser>
+								<slot>390人已参加</slot>
+							</moreUser>
+						</div>
                     </div>
                     <el-button type="primary"
                                @click="toPath('/courseDetail/order')">立即抢购
@@ -67,9 +71,14 @@
 <script>
   import { ref } from 'vue'
   import { useRouter } from 'vue-router'
-
+  import Price from "../common/price.vue"
+  import moreUser from "../common/moreuser.vue"
   export default {
     name: "courseInfo",
+	components:{
+		Price,
+		moreUser
+	},
     setup() {
       const router = useRouter()
       const showSpikeProcess = ref(true)
@@ -168,7 +177,7 @@
     }
 
     .tag-list {
-        margin-top: 9px;
+        margin-top: 23px;
         margin-bottom: 20px;
         display: flex;
 
@@ -176,10 +185,10 @@
             margin-right: 10px;
             font-size: 14px;
             padding: 0 10px;
-            background: #C1C1C1;
+            background: rgba(19, 113, 243, 0.1);
             font-weight: 400;
             line-height: 20px;
-            color: #868686;
+            color: rgba(19, 113, 243, 1);
         }
     }
 

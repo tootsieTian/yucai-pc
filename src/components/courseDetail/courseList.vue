@@ -38,15 +38,18 @@
                  v-for="item in 6"
                  :key="item+'p'"
                  @click="toPath('/courseDetail/videoPlay')">
-                <div class="left">
+                <div class="left f-a-j">
                     <div class="title">第一章</div>
-                    <div class="circle"></div>
+                    <div class="circle">
+						<img src="../../assets/image/course/video.png" style="height: 26px;" alt="">
+					</div>
                     <div class="content">如何向运营要利润</div>
+					<div class="look f-a-j">
+					    试看一分钟
+					</div>
                 </div>
                 <div class="right">
-                    <div class="look">
-                        试看一分钟
-                    </div>
+                    
                     <div class="time">10分钟</div>
                 </div>
 
@@ -176,10 +179,7 @@
             }
 
             .circle {
-                width: 18px;
-                height: 18px;
-                background: #E3E3E3;
-                border-radius: 50%;
+                
                 margin-right: 10px;
             }
 
@@ -192,13 +192,17 @@
             }
 
             .look {
-                font-size: 14px;
+                font-size: 13px;
                 font-weight: 400;
-                line-height: 26px;
-                color: #999999;
-                background: #EDEDED;
+                color: #FFFFFF;
+      
+                height: 22px;
+                background: linear-gradient(180deg, #F3B14F 0%, #F09D3A 100%);
+                opacity: 1;
+                border-radius: 11px;
                 padding: 0 5px;
                 margin-right: 14px;
+				margin-left: 20px;
             }
 
             .time {
@@ -218,7 +222,7 @@
             top: 50%;
             transform: translateY(-50%);
             height: 19px;
-            background: #D9D9D9;
+            background: rgba(19, 113, 243, 1);
         }
     }
 
@@ -267,4 +271,7 @@
             }
         }
     }
+	::v-deep.el-tabs .el-tabs__nav .el-tabs__active-bar{
+		background:  rgba(19, 113, 243, 1)!important;
+	}
 </style>
