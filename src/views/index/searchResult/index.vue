@@ -5,7 +5,9 @@
             <div class="classify-list">
                 <div class="order classify-box">
                     <div class="subtitle">排序</div>
-                    <div class="classify-item"
+                    <div class="classify-item" 
+					@click="select(1,index)"
+					     :class="selectIndex1==index ? 'classify-item-active' :''"
                          v-for="(item, index) in orderList"
                          :key="'o'+index">
                         {{item.title}}
@@ -14,6 +16,8 @@
                 <div class="classify classify-box">
                     <div class="subtitle">分类</div>
                     <div class="classify-item"
+					@click="select(2,index)"
+					:class="selectIndex2==index ? 'classify-item-active' :''"
                          v-for="(item, index) in classifyList"
                          :key="'c'+index">
                         {{item.title}}
@@ -22,6 +26,8 @@
                 <div class="type classify-box">
                     <div class="subtitle">类型</div>
                     <div class="classify-item"
+					@click="select(3,index)"
+					:class="selectIndex3==index ? 'classify-item-active' :''"
                          v-for="(item, index) in typeList"
                          :key="'t'+index">
                         {{item.title}}
@@ -38,17 +44,38 @@
                 <m-course-card/>
             </el-col>
         </el-row>
+		<div class="f-a-j" >
+			<el-pagination
+			  background
+			  layout="prev, pager, next"
+			  :total="1000">
+			</el-pagination>
+		</div>
     </main>
 </template>
 
 <script>
   import MCourseCard from "../../../components/courseCard/sCourseCard";
-  import {reactive} from 'vue'
+  import {reactive,ref} from 'vue'
 
   export default {
     name: "index",
     components: {MCourseCard},
     setup() {
+      const selectIndex1=ref(0)
+	  const selectIndex2=ref(0)
+	  const selectIndex3=ref(0)
+	  const select=(type,index)=>{
+		  if(type==1){
+			  selectIndex1.value=index
+		  }
+		  if(type==2){
+		  	  selectIndex2.value=index
+		  }
+		  if(type==3){
+		  	  selectIndex3.value=index
+		  }
+	  }
       const orderList = reactive([
         {
           title: '综合排序'
@@ -85,7 +112,11 @@
       return {
         orderList,
         classifyList,
-        typeList
+        typeList,
+		select,
+		selectIndex1,
+		selectIndex2,
+		selectIndex3
       }
     }
   }
@@ -94,7 +125,7 @@
 <style lang="scss" scoped>
     .classify-nav {
         height: 250px;
-        background: #F5F5F5;
+       
         width: 100%;
 
         .container-main {
@@ -123,19 +154,24 @@
                     .subtitle {
                         opacity: 1;
                         margin-right: 40px;
+						margin-top: 7px;
                     }
 
                     .classify-item {
                         opacity: 0.5;
                         cursor: pointer;
+						padding: 7px;
+						box-sizing: border-box;
                     }
 
                     .classify-item:not(:last-child) {
                         margin-right: 40px;
                     }
 
-                    .classify-item--active {
+                    .classify-item-active {
                         opacity: 1 !important;
+						background: #F5F6F7;
+						color: rgba(19, 113, 243, 1);
                     }
                 }
             }

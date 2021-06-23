@@ -3,8 +3,8 @@
         <div class="container-main">
             <div class="title">课程分类：</div>
             <div class="classify-list">
-                <div :class="{'classify-item':true,'classify-item--active':item===3}"
-                     v-for="item in 4"
+                <div  @click="selectSubtop(index)"   class="classify-item" :class="index==isSelectop ? 'classify-item-active' : ''" 
+                     v-for="(item,index) in 4"
                      :key="4+'p'">家庭教育
                 </div>
             </div>
@@ -12,10 +12,8 @@
     </div>
     <main class="container-main">
         <div class="filter-list">
-            <div class="filter-item">综合</div>
-            <div class="filter-item">最多购买</div>
-            <div class="filter-item">最新课程</div>
-            <div class="filter-item">价格</div>
+            <div @click="selectSub(index)" :class=" isSelect == index ? 'filter-item-active filter-item' :'filter-item'" v-for="(item,index) in subList" >{{item}}</div>
+            
         </div>
         <el-row :gutter="24">
             <el-col v-for="item in 12"
@@ -24,32 +22,60 @@
                 <m-course-card/>
             </el-col>
         </el-row>
+		<div class="f-a-j" >
+			<el-pagination
+			  background
+			  layout="prev, pager, next"
+			  :total="1000">
+			</el-pagination>
+		</div>
+		 
     </main>
 </template>
 
 <script>
   import MCourseCard from "../../../components/courseCard/sCourseCard";
-
+  import {ref,relative} from "vue"
   export default {
     name: "index",
     components: {MCourseCard},
     setup() {
-
+      const subList=['综合','最多购买','最新课程','价格']
+	  const isSelect= ref(0)
+	  const isSelectop= ref(0)
+	  const selectSub = (index)=>{
+		  isSelect.value=index
+	  }
+	  const selectSubtop = (index)=>{
+		  
+	  		  isSelectop.value=index
+			  
+	  }
+	  return {
+		  subList,
+		  isSelect,
+		  selectSub,
+		  isSelectop,
+		  selectSubtop
+	  }
     }
   }
 </script>
 
 <style lang="scss" scoped>
+     body{
+		 background: #F5F5F5;
+	 }
     .classify-nav {
         height: 165px;
-        background: #F5F5F5;
+       
         width: 100%;
 
         .container-main {
             display: flex;
             align-items: center;
             height: 100%;
-
+            
             .title {
                 font-size: 16px;
                 font-weight: 400;
@@ -62,20 +88,26 @@
 
                 .classify-item {
                     font-size: 16px;
-                    padding: 0 18px;
+                    padding: 7px;
+					margin: 0 20px;
+					
                     font-weight: 400;
-                    line-height: 48px;
+              
                     cursor: pointer;
-                    color: rgba(51, 51, 51, 0.5);
+                    color: #333333;
                 }
 
-                .classify-item--active {
-                    background: #FFFFFF;
-                    color: #333333;;
+                .classify-item-active {
+                    background: #F5F6F7;
+					width: 70px;
+					
+					color: #1371F3;
+                   
                 }
             }
         }
     }
+
 
     .filter-list {
         display: flex;
@@ -85,6 +117,9 @@
         font-weight: 400;
         line-height: 22px;
         color: rgba(51, 51, 51, 0.5);
+		.filter-item-active{
+			color: rgba(19, 113, 243, 1);
+		}
         .filter-item{
             cursor: pointer;
         }

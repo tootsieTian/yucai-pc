@@ -4,12 +4,9 @@
             <div class="left">
                 <div class="title-box">
                     <div class="title">学习中心</div>
-                    <div class="subtitle">知识的价值不在于占有，而在于使用。</div>
+                   
                 </div>
-                <div class="user-info">
-                    <img class="user-header" :src="require('../../assets/icon/sucai/平行宇宙.jpg')"/>
-                    <div class="username">薛定谔的鳄鱼</div>
-                </div>
+                   <div class="subtitle">知识的价值不在于占有，而在于使用。</div>
             </div>
             <div class="right">
                 <div class="course-info-item">
@@ -30,8 +27,11 @@
     <main class="container-main">
         <div class="calendar-box">
             <div class="number-box">
-                <div>今天共0节课</div>
-                <div>敬请期待</div>
+                <div class="f-s f-a" >
+					<div class="f-a-j" ><img src="../../assets/icon/sucai/17.png" style="height: 34px; margin-right: 10px;"  >薛定谔的猫</div>
+					<div class="f-a-j" style="margin-right: 24px; margin-top: 0;color: rgba(255, 255, 255, 0.8);" >今天共<span style="margin: 0 5px; font-size: 26px;color: #FFFFFF;" >0</span>节课</div>
+				</div>
+                <div>敬请期待...</div>
             </div>
             <div class="calendar">
                 <calendar/>
@@ -41,7 +41,7 @@
             <div class="title">付费课</div>
             <el-row :gutter="20">
                 <el-col :span="8" v-for="item in 5" class="course-item">
-                    <s-course-card/>
+                    <s-course-card :iscouldop="true" > <slot>....</slot></s-course-card>
                 </el-col>
             </el-row>
             <div class="title" style="margin-top: 30px">付费课</div>
@@ -72,14 +72,18 @@
 </script>
 
 <style lang="scss" scoped>
+	html{
+		background-color: rgba(245, 246, 246, 1);
+	}
     .user-box {
         height: 258px;
         background: #F5F5F5;
-
+        background-image: url(../../assets/image/study/bg.png);
+	    background-size: 100%;
         .container-main {
             display: flex;
             justify-content: space-between;
-            padding: 60px 80px 50px 60px;
+            padding: 60px 80px 50px 0px;
 
             .left {
                 .title-box {
@@ -87,21 +91,23 @@
                     align-items: flex-end;
 
                     .title {
-                        font-size: 30px;
+                        font-size: 34px;
                         font-weight: 500;
                         line-height: 42px;
-                        color: #333333;
-                        margin-right: 22px;
+                        color: #FFFFFF;
+                       
                     }
 
-                    .subtitle {
-                        font-size: 14px;
-                        font-weight: 400;
-                        line-height: 20px;
-                        color: #707070;
-                        opacity: 0.4;
-                    }
+                    
                 }
+				.subtitle {
+				    font-size: 14px;
+				    font-weight: 400;
+				    line-height: 20px;
+				    color: #FFFFFF;
+				    opacity: 0.8;
+					margin-top: 9px;
+				}
 
                 .user-info {
                     margin-top: 27px;
@@ -131,7 +137,7 @@
                         font-size: 16px;
                         font-weight: 400;
                         line-height: 22px;
-                        color: #333333;
+                        color: rgba(255, 255, 255, 0.7);
                         opacity: 0.4;
                         margin-bottom: 22px;
                     }
@@ -140,7 +146,7 @@
                         font-size: 25px;
                         font-weight: 400;
                         line-height: 36px;
-                        color: #333333;
+                        color: rgba(255, 255, 255, 1);
                     }
                 }
             }
@@ -159,27 +165,33 @@
             box-sizing: border-box;
             background: #ffffff;
             margin-right: 18px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-
+            box-shadow: 0px 3px 10px rgba(191, 191, 191, 0.16);
+           border-radius: 4px 4px 10px 10px;
             .number-box {
-                height: 102px;
-                background: #F3F3F3;
+                width: 355px;
+                height: 100px;
+                background: linear-gradient(116deg, #FFB800 0%, #FF9201 100%);
+                box-shadow: 0px 5px 10px rgba(255, 193, 100, 0.55);
+                opacity: 1;
+                border-radius: 12px;
                 padding-left: 13px;
-
+				padding-top: 10px;
                 div:first-child {
-                    font-size: 14px;
+                    font-size: 13px;
                     line-height: 20px;
-                    color: #6A6A6A;
-                    margin-top: 21px;
-                    margin-bottom: 19px;
+                    color: #FFFFFF;
+					font-weight: bold;
+                   
                 }
 
                 div:last-child {
                     font-size: 17px;
                     font-weight: bold;
                     line-height: 24px;
-                    color: #6A6A6A;
-                    opacity: 0.6;
+                    color: #FFFFFF;
+					font-weight: 600;
+                    
+					margin-top: 20px;
                 }
             }
 
@@ -194,7 +206,7 @@
             padding: 50px 35px 50px 50px;
             box-sizing: border-box;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-
+ 
             .title {
                 font-size: 26px;
                 font-weight: 500;
