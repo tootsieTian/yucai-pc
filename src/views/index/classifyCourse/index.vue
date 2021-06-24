@@ -25,7 +25,7 @@
 		<div class="f-a-j" >
 			<el-pagination
 			  background
-			  layout="prev, pager, next"
+			  layout="prev, pager, next,jumper"
 			  :total="1000">
 			</el-pagination>
 		</div>
@@ -65,6 +65,13 @@
 <style lang="scss" scoped>
      body{
 		 background: #F5F5F5;
+	 }
+	 ::v-deep .number{
+	 	background-color: #FFFFFF!important;
+	 }
+	 ::v-deep .active {
+	 	background-color: rgba(19, 113, 243, 1)!important;
+	 	color: rgba(255, 255, 255, 1)!important;
 	 }
     .classify-nav {
         height: 165px;

@@ -29,6 +29,7 @@
                         circle>登录</el-button>
             <div class="other">其他登录方式</div>
             <div class="login-type hand">
+				<img  style="width: 45px;" src="../../assets/image/index/login-wx.png" alt="">
             </div>
         
        
@@ -97,9 +98,10 @@
         left: 50%;
         position: absolute;
         transform: translate(-50%, -50%);
+		border-radius: 6px;
   //       width: 1152px;
 		// height: 719px;
-        background: #F0F0F0;
+        background: rgba(224, 224, 224, 0.6);
         // padding: 31px 37px 0 47px;
 		box-sizing: border-box;
         overflow-x:hidden;

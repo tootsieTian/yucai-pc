@@ -1,4 +1,5 @@
 <template>
+	<div class="bg-hui" >
     <div class="classify-nav">
         <div class="container-main">
             <div class="title">课程分类：</div>
@@ -47,11 +48,12 @@
 		<div class="f-a-j" >
 			<el-pagination
 			  background
-			  layout="prev, pager, next"
+			  layout="prev, pager, next,jumper"
 			  :total="1000">
 			</el-pagination>
 		</div>
     </main>
+	</div>
 </template>
 
 <script>
@@ -123,11 +125,18 @@
 </script>
 
 <style lang="scss" scoped>
+	::v-deep .number{
+		background-color: #FFFFFF!important;
+	}
+	::v-deep .active {
+		background-color: rgba(19, 113, 243, 1)!important;
+		color: rgba(255, 255, 255, 1)!important;
+	}
     .classify-nav {
         height: 250px;
-       
+        background-color: #FFFFFF;
         width: 100%;
-
+        padding-bottom: 40px;
         .container-main {
             height: 100%;
             padding-top: 39px;
@@ -171,6 +180,7 @@
                     .classify-item-active {
                         opacity: 1 !important;
 						background: #F5F6F7;
+						border-radius: 4px;
 						color: rgba(19, 113, 243, 1);
                     }
                 }

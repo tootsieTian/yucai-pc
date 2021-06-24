@@ -1,26 +1,35 @@
 <template>
-    <div class="container-main">
-        <div class="title">首页-全部课程-活动专区</div>
-        <div class="nav-list">
-            <div class="nav-item"></div>
-        </div>
-        <course-list-title
-                title="活动课程"
-                :show-more="false"
-                subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"/>
-        <div class="active-list">
-            <div :class="{'active-item':true,'active-item--active': selectActiveItem===item.key}"
-                 @click="activeItemClick(item.key)"
-                 v-for="item in activeList">
-                {{item.name}}
-            </div>
-        </div>
-        <el-row :gutter="24">
-            <el-col :span="6" v-for="item in 12" :key="item">
-                <m-course-card/>
-            </el-col>
-        </el-row>
-    </div>
+	<div class="bg-hui" >
+		<div class="container-main">
+		   <!-- <div class="title">首页-全部课程-活动专区</div> -->
+			<div class="nav-list">
+				<div class="nav-item"></div>
+			</div>
+			<course-list-title
+					title="活动课程"
+					:show-more="false"
+					subtitle="必修的刚需课程&硬核技能 / 精心自制的学习视频 / 一次付费随时观看"/>
+			<div class="active-list">
+				<div :class="{'active-item':true,'active-item--active': selectActiveItem===item.key}"
+					 @click="activeItemClick(item.key)"
+					 v-for="item in activeList">
+					{{item.name}}
+				</div>
+			</div>
+			<el-row :gutter="24">
+				<el-col :span="6" v-for="item in 12" :key="item">
+					<m-course-card/>
+				</el-col>
+			</el-row>
+			<div style="margin-top: 57px;" class="f-a-j" >
+				<el-pagination
+				  background
+				  layout="prev, pager, next,jumper"
+				  :total="1000">
+				</el-pagination>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -58,6 +67,9 @@
 </script>
 
 <style lang="scss" scoped>
+	.bg-hui{
+		background-color: rgba(245, 246, 246, 1);
+	}
     .container-main {
         padding-bottom: 200px;
     }
@@ -75,7 +87,13 @@
         width: 100%;
         background: #E2E2E2;
     }
-
+    ::v-deep .number{
+    	background-color: #FFFFFF!important;
+    }
+	::v-deep .active {
+		background-color: rgba(19, 113, 243, 1)!important;
+		color: rgba(255, 255, 255, 1)!important;
+	}
     ::v-deep .course-list-title {
         margin-top: 53px;
         margin-bottom: 34px;
@@ -100,14 +118,17 @@
             line-height: 28px;
             color: #333333;
             opacity: 0.3;
-            padding: 0 30px;
-            margin-right: 30px;
+           
+            margin: 0 20px;
+			
         }
 
         .active-item--active {
-            background: #EDEDED;
+            // background: #EDEDED;
             opacity: 1;
-
+			border-bottom: 3px solid rgba(19, 113, 243, 1);
+			color: rgba(19, 113, 243, 1);
+            border-radius: 4px;
         }
     }
 </style>

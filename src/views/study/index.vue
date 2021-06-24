@@ -1,4 +1,5 @@
 <template>
+	<div class="bg-hui" >
     <div class="user-box">
         <div class="container-main">
             <div class="left">
@@ -52,6 +53,7 @@
             </el-row>
         </div>
     </main>
+	</div>
 </template>
 
 <script>
@@ -72,9 +74,7 @@
 </script>
 
 <style lang="scss" scoped>
-	html{
-		background-color: rgba(245, 246, 246, 1);
-	}
+
     .user-box {
         height: 258px;
         background: #F5F5F5;
