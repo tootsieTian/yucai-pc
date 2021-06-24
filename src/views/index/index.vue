@@ -8,10 +8,10 @@
                     :pagination="{ clickable: true }"
 
             >
-                <swiper-slide v-for="item in  4">
+                <swiper-slide v-for="item in  swipeList">
                     <img class="nav-img"
                          @click="toCourseDetail"
-                         :src="require('../../assets/icon/sucai/平行宇宙.jpg')"/>
+                         :src="item.path"/>
                 </swiper-slide>
             </swiper>
             <div class="plate-list container-main">
@@ -37,6 +37,8 @@
                     <el-row :gutter="20" class="hot-list">
                         <el-col :span="12" v-for="item in 4" :key="item">
                             <xl-course-card class="hot-item"
+                                            :item="item"
+                                            :style="{background: '#F5F6F6'}"
                                             @click.native="toCourseDetail"
                                             :comment-show="true"/>
                         </el-col>
@@ -58,7 +60,7 @@
                     <el-row :gutter="20" class="excellent-list">
                         <el-col :span="12">
                             <div class="excellent-course-l">
-                                <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
+                                <img class="title-page" :src="require('../../assets/icon/sucai/index2.png')">
                                 <div class="content-box">
                                     <div class="title f-a">
                                         100倍工作效率
@@ -79,13 +81,12 @@
                             <el-row :gutter="20">
                                 <el-col :span="12" v-for="item in 4">
                                     <div class="excellent-course-m">
-                                        <img class="title-page" :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
+                                        <img class="title-page"
+                                             :src="require('../../assets/icon/sucai/course'+item+'.png')">
                                         <div class="content-box">
-                                            <div style="width: 100%;" class="title f-s">
+                                            <div style="width: 100%;" class="title">
                                                 <div>100倍工作效率</div>
-                                                <div class="tagList">
-                                                    <div class="smallf12">SVIP免费</div>
-                                                </div>
+                                                <img :src="require('../../assets/image/common/svip.png')">
                                             </div>
                                             <div class="subtitle-box">
                                                 <div class="subtitle">好评率<span
@@ -129,7 +130,7 @@
             </div>
 
             <!--猜你喜欢-->
-            <div class="your-like">
+            <div class="favorite">
                 <div class="container-main">
                     <course-list-title @more="more"
                                        title="猜你喜欢"
@@ -189,6 +190,14 @@
       const router = useRouter()
       const dialogShow = ref(false)      // 选择学习领域盒子
       const loginShow = ref(false)
+      const swipeList = reactive([
+        {
+          path: require('../../assets/icon/sucai/index2.png')
+        },
+        {
+          path: require('../../assets/icon/sucai/平行宇宙.jpg')
+        }
+      ])
       const plateList = reactive([
         {
           title: '全部课程',
@@ -234,21 +243,28 @@
         ...method,
         dialogShow,
         plateList,
-        loginShow
+        loginShow,
+        swipeList
       }
     }
   }
 </script>
 
 <style lang="scss" scoped>
-    main {
-        padding-bottom: 100px;
+    .active-area{
+        background: #EFF0F0;
+        padding-top: 55px;
+        padding-bottom: 62px;
+        .activity-title {
+            margin-bottom: 75px;
+        }
     }
-
     .hot-course {
         position: relative;
         box-sizing: border-box;
         overflow: hidden;
+        padding-bottom: 60px;
+
         .bg-line {
             width: 800px;
             height: 1000px;
@@ -257,11 +273,30 @@
             top: -300px;
         }
     }
+    .favorite{
+        padding-top: 55px;
+        padding-bottom: 110px;
+        background: #F5F6F6;
+        .favorite-title {
+            margin-bottom: 14px;
+        }
+
+        .favorite-list {
+            .favorite-item {
+                margin-bottom: 38px;
+            }
+        }
+    }
 
     .good-course {
         box-sizing: border-box;
         background: #F5F6F6;
         position: relative;
+        padding-top: 55px;
+        padding-bottom: 75px;
+        .excellent-title {
+            margin-bottom: 53px;
+        }
     }
 
     .nav-list {
@@ -322,17 +357,13 @@
         }
     }
 
-    .excellent-title {
-        margin-top: 94px;
-        margin-bottom: 53px;
-    }
-
     .excellent-list {
-        margin-bottom: 35px;
+        margin-bottom: 50px;
+        height: 606px;
 
         .excellent-course-l {
             position: relative;
-            height: 590px;
+            height: 606px;
             background: #EDEDED;
 
             .title-page {
@@ -341,7 +372,7 @@
             }
 
             .content-box {
-                background: rgba(0, 0, 0, 0);
+                background: linear-gradient(180deg, rgba(144, 144, 144, 0) 0%, #1A1A1A 100%);
                 position: absolute;
                 padding: 25px 30px 17px 30px;
                 bottom: 0;
@@ -392,7 +423,8 @@
         }
 
         .excellent-course-m {
-            height: 285px;
+            height: 293px;
+            background: #FFFFFF;
 
             .title-page {
                 height: 200px;
@@ -400,29 +432,29 @@
             }
 
             .content-box {
-                padding-top: 21px;
-                padding-bottom: 2px;
+                padding: 0 15px 0 15px;
                 box-sizing: border-box;
                 width: 100%;
 
                 .title {
-                    margin-bottom: 12px;
+                    img {
+                        width: 48px;
+                        height: 19px;
+                        margin-left: 11px;
+                    }
+
+                    align-items: center;
+                    margin-bottom: 10px;
                     font-size: 20px;
                     font-weight: 500;
                     line-height: 28px;
                     color: #333333;
                     display: flex;
-
-                    .type {
-                        font-size: 12px;
-                        font-weight: 400;
-                        line-height: 17px;
-                        color: #999999
-                    }
                 }
 
                 .subtitle-box {
                     display: flex;
+                    align-items: center;
                     justify-content: space-between;
 
                     .subtitle {
@@ -445,14 +477,9 @@
         }
     }
 
-    .activity-title {
-        margin-top: 94px;
-        margin-bottom: 73px;
-    }
 
     .activity-list {
-        margin-bottom: 22px;
-
+        margin-bottom: 6px;
         .activity-item {
             margin-bottom: 44px;
         }
@@ -477,17 +504,6 @@
         .exchange {
             margin-left: 25px;
             color: rgba(19, 113, 243, 1);
-        }
-    }
-
-    .favorite-title {
-        margin-top: 94px;
-        margin-bottom: 14px;
-    }
-
-    .favorite-list {
-        .favorite-item {
-            margin-bottom: 38px;
         }
     }
 

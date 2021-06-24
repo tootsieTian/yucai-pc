@@ -36,7 +36,7 @@
         type: String,
         default: ''
       },
-	 
+
     },
     setup(props,contxt) {
       const {title, img,type,iscouldop} = props
@@ -62,7 +62,10 @@
         cursor: pointer;
         height: 320px;
         width: 100%;
-        background: #FAFAFA;
+        border: 1px solid #E0E0E0;
+        overflow: hidden;
+        border-radius: 4px;
+        background: #FFFFFF;
     }
 	.dialog{
 		position: absolute;

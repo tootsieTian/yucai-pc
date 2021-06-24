@@ -1,8 +1,10 @@
 <template>
-    <div class="look-all"
-         @click="lookAll">
-        {{ title }}
-        <i class="el-icon-arrow-right"/>
+    <div>
+        <div class="look-all"
+             @click="lookAll">
+            {{ title }}
+            <i class="el-icon-arrow-right"/>
+        </div>
     </div>
 </template>
 
@@ -30,8 +32,9 @@
 
 <style lang="scss" scoped>
     .look-all {
-        width: 219px;
-        height: 72px;
+        width: fit-content;
+        padding: 0 36px;
+        height: 56px;
         background: rgba(19, 113, 243, 1);
 		border-radius: 4px;
         margin-left: auto;
@@ -44,5 +47,8 @@
         line-height: 22px;
         color: #FFFFFF;
         cursor: pointer;
+        i{
+            margin-left: 6px;
+        }
     }
 </style>

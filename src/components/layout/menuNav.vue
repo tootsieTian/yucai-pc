@@ -16,7 +16,7 @@
                 </div>
 
                 <el-row :gutter="20" class="course-classify-list">
-                    <div class="course-classify-list-sj">
+                    <div class="course-classify-list-triangle">
                         <div class="triangle"></div>
                     </div>
                     <el-col :span="3.5"
@@ -105,7 +105,7 @@
         }
       ])    // 菜单列表
       const searchKey = ref('产品规划') // 搜索框关键字
-      const isLogin = ref(false)    // 是否登录
+      const isLogin = ref(true)    // 是否登录
       const courseClassifyList = ref(null)  // 课程分类列表dom
       const toPath = (path) => {
         router.push(path)
@@ -155,7 +155,10 @@
     .transparent {
         background: transparent !important;
         color: #FFFFFF !important;
-        transition: color 0.5s, background 0.5s;
+        transition: color 0.4s, background 0.4s;
+        .menu-item--active:after{
+            background: #FFFFFF !important;
+        }
     }
 
     .nav-hidden {
@@ -164,7 +167,7 @@
     }
 
     .nav {
-        transition: color 0.5s, background 0.5s;
+        transition: color 0.4s, background 0.4s;
         position: fixed;
         top: 0;
         left: 0;
@@ -239,14 +242,15 @@
         display: flex;
     }
 
-    .course-classify-list-sj {
+    .course-classify-list-triangle {
         position: absolute;
-        top: -20px;
-        left: 125px;
+        top: -19px;
+        left: 150px;
         z-index: 999;
     }
 
     .course-classify-list {
+        border-radius: 4px;
         position: absolute;
         display: none;
         width: 1200px;
@@ -316,9 +320,11 @@
 
             .username {
                 margin-right: 12px;
+                margin-left: 18px;
             }
 
             .user-header {
+                border: 1px solid #FFFFFF;
                 width: 48px;
                 height: 48px;
                 border-radius: 50%;

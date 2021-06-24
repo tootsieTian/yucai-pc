@@ -1,7 +1,7 @@
 <template>
-    <div class="xl-course-card">
+    <div class="xl-course-card" :style="style">
         <div class="top-box">
-            <img class="title-page" :src="img">
+            <img class="title-page" :src="require('../../assets/icon/sucai/course'+item+'.png')">
             <div class="content">
                 <div class="title">
                     {{title}}
@@ -9,10 +9,10 @@
                 <div class="subtitle">
                     7节课 ｜ 时长2:30:09
                 </div>
-                <div class="bottom-box f-s">
-                    <div class="f-a-j" >390人已学习</div>
-                    <div class="price-box  f-a-j">
-                        <div class="tagList organ" ><div class="smallf12" >SVIP免费</div></div>
+                <div class="bottom-box">
+                    <div>390人已学习</div>
+                    <div class="price-box">
+                       <img :src="require('../../assets/image/common/svip.png')">
                         <div style="margin-left: 10px;" >
                             <Price  :color="'rgba(234, 53, 83, 1)'" ></Price>
                         </div>
@@ -52,14 +52,25 @@
       commentShow:{
         type: Boolean,
         default: false
+      },
+      item: {
+        type: Number,
+        default: 1
+      },
+      style: {
+        type: Object,
+        default: () => ({
+          background: '#FFFFFF'
+        })
       }
     },
     setup(props) {
-      const { img,title,commentShow } = props
+      const { img,title,commentShow,style } = props
       return {
         img,
         title,
-        commentShow
+        commentShow,
+        style
       }
     }
   }
@@ -70,9 +81,10 @@
         cursor: pointer;
         position: relative;
         display: flex;
+        border: 0.001rem solid #E0E0E0;
         flex-direction: column;
         width: 100%;
-        background: #F5F5F5;
+        border-radius: 4px;
         padding: 0 27px 0 20px;
         box-sizing: border-box;
     }
@@ -81,14 +93,17 @@
         display: flex;
     }
     .title-page{
+        border-radius: 4px;
         position: relative;
         top: -24px;
         width: 253px;
         height: 159px;
     }
     .content{
-        margin-top: 20px;
-        margin-left: 27px;
+        box-sizing: border-box;
+        flex: 1;
+        padding-top: 20px;
+        padding-left: 27px;
         .title{
             font-size: 20px;
             font-weight: 500;
@@ -104,19 +119,25 @@
             margin-bottom: 14px;
         }
         .bottom-box{
-			width: 450px;
-            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-weight: 400;
-			font-weight: 400;
 			line-height: 20px;
 			color: #EE7F10;
 			font-size: 14px;
             .price-box{
+                align-items: center;
                 display: flex;
+                img{
+                    width: 50px;
+                    height: 19px;
+                }
             }
         }
     }
     .comment-box{
+        border-radius: 4px;
         margin-bottom: 20px;
         box-sizing: border-box;
         height: 100px;

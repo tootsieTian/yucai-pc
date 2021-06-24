@@ -1,5 +1,6 @@
 <template>
     <div class="course-list-title">
+        <img class="title-icon" :src="require('../../assets/image/common/titleIcon.png')">
         <div>
             <div class="title">
                 {{title}}
@@ -56,6 +57,7 @@
 
 <style lang="scss" scoped>
     .course-list-title {
+        position: relative;
         padding: 0 4px 0 20px;
         display: flex;
         justify-content: space-between;
@@ -66,13 +68,12 @@
             color: #333333;
             position: relative;
         }
-        .title::before{
+        .title-icon{
             content: '';
             width: 6px;
             height: 34px;
-            background: rgba(19, 113, 243, 1);
             position: absolute;
-            left: -20px;
+            left: 0;
             top: 13px;
         }
         .subtitle{
