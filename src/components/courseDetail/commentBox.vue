@@ -32,7 +32,7 @@
                     <div class="comment-info">
                         <div class="username">西经与北瓜
                             <el-rate disabled
-                                     disabled-void-color="rgba(0, 0, 0, 0.2)"/>
+                                     disabled-void-color="rgba(255, 173, 51, 1)"/>
                         </div>
                         <div class="comment-time">2021.04.09</div>
                     </div>

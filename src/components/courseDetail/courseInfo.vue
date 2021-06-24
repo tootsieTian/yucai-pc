@@ -3,17 +3,20 @@
         <!--        秒杀盒子-->
         <div class="spike-process" v-if="showSpikeProcess">
             <div class="process-box">
-                <div class="title">已抢购70%</div>
+				<img src="../../assets/image/course/seckill.png" style="width: 83px;" alt="">
+               
                 <el-progress :percentage="50"
-                             :stroke-width="1"
+				style="margin: 0  30px;"
+                             :stroke-width="4"
                              class="star-progress"
-                             color="#959595"
+                             color="#ffffff"
                              :show-text="false"/>
+				 <div class="title">已抢购70%</div>			 
             </div>
             <div class="time-box">
                 <div class="title">距离结束剩余</div>
-                <div class="time">
-                    00:10:08
+                <div class="time f">
+                    <div class="red" >00</div>:<div class="red" >10</div>:<div class="red" >08</div>
                 </div>
             </div>
         </div>
@@ -25,13 +28,16 @@
                     <div>时长2:30:05</div>
                 </div>
                 <div class="btn-list">
-                    <div class="btn-item">
+                    <div class="btn-item f-a-j">
+						<img  style="width: 24px;" src="../../assets/image/course/kefu.png" alt="">
                         客服
                     </div>
-                    <div class="btn-item">
+                    <div class="btn-item f-a-j" >
+						<img  style="width: 24px;" src="../../assets/image/course/love.png" alt="">
                         收藏
                     </div>
-                    <div class="btn-item">
+                    <div class="btn-item f-a-j">
+						<img style="width: 24px;" src="../../assets/image/course/share.png" alt="">
                         分享
                     </div>
                 </div>
@@ -57,7 +63,10 @@
 							</moreUser>
 						</div>
                     </div>
-                    <el-button type="primary"
+					<el-button class="direct-btn"  type="primary"
+					           @click="toPath('/courseDetail/order')">直接购买￥199.00
+					</el-button>
+                    <el-button class="go-btn"  type="primary"
                                @click="toPath('/courseDetail/order')">立即抢购
                     </el-button>
                 </div>
@@ -103,11 +112,13 @@
     .spike-process {
         display: flex;
         padding: 0 30px;
-        background: #F5F5F5;
+        // background: #F5F5F5;
+		background-image: url(../../assets/image/course/seckillbg.png);
+		background-size: 100%;
         justify-content: space-between;
         align-items: center;
         height: 57px;
-
+       
         .process-box {
             display: flex;
             align-items: center;
@@ -116,13 +127,14 @@
                 font-size: 13px;
                 font-weight: 400;
                 line-height: 18px;
-                color: #333333;
+                color: #FFFFFF;
                 margin-right: 5px;
             }
 
             .star-progress {
                 width: 158px;
                 height: 5px;
+			
             }
         }
 
@@ -136,7 +148,18 @@
 
             .title {
                 margin-right: 27px;
+				color: #FFFFFF;
             }
+			.time{
+				color: #FFFFFF;
+				.red{
+					color: rgba(254, 79, 79, 1);
+					padding: 3px;
+					background-color: #FFFFFF;
+					margin: 0 5px;
+					border-radius: 4px;
+				}
+			}
         }
     }
 
@@ -231,4 +254,18 @@
             }
         }
     }
+	.go-btn{
+		background-color: rgba(19, 113, 243, 1);
+		color: rgba(255, 255, 255, 1);
+		width: 200px;
+		height: 58px;
+	}
+	.direct-btn{
+		width: 200px;
+		height: 58px;
+		background: #E5EDFF;
+		border: 1px solid #346FEB;
+	    color: #1371F3;
+		font-weight: 500;
+	}
 </style>

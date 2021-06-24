@@ -2,6 +2,7 @@
     <div class="course-detail">
         <title-box/>
         <course-info/>
+		<groupworkBox></groupworkBox>
         <course-list :key="courseListKey"
                      @tabClick="tabClick"
                      ref="course"/>
@@ -19,10 +20,11 @@
   import { ref, onUnmounted, provide } from 'vue'
   import CourseList from "../../../components/courseDetail/courseList";
   import CourseInfo from "../../../components/courseDetail/courseInfo";
+  import groupworkBox from "../../../components/courseDetail/groupworkBox.vue"
 
   export default {
     name: "index",
-    components: { CourseInfo, CourseList, CourseRecommend, CourseExplain, CommentBox, TitleBox },
+    components: { CourseInfo, CourseList, CourseRecommend, CourseExplain, CommentBox, TitleBox,groupworkBox },
     setup() {
       const tabActive = ref('course')
       provide('tabActive', tabActive)
