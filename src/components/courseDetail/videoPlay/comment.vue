@@ -1,9 +1,8 @@
 <template>
-    <div class="comment">
-        <div class="comment-box">
+    <div class="comment" @click="close()">
+        <div class="comment-box" @click.stop>
             <div class="title-box">
                 <div>评价课程</div>
-                <i class="el-icon-close" @click="close()"/>
             </div>
             <div class="content-box">
                 <div class="course-box">
@@ -27,7 +26,7 @@
                         placeholder="评价一下这门课程吧…"
                         v-model="commentCourse">
                 </el-input>
-                <div class="btn" @click="submitComment">提交评价</div>
+                <el-button class="btn" @click="submitComment" type="primary">提交评价</el-button>
             </div>
         </div>
     </div>
@@ -46,7 +45,7 @@
         },
         submitComment(){
           console.log(commentCourse)
-          this.close()
+          method.close()
         }
       }
       return {
@@ -63,7 +62,7 @@
         top: 0;
         left: 0;
         z-index: 10;
-        background: rgba(28, 28, 28, 0.7);
+        background:rgba(51, 51, 51, 0.3);
         width: 100vw;
         height: 100vh;
 
@@ -71,6 +70,8 @@
             z-index: 100;
             width: 834px;
             background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
             position: absolute;
             top: 200px;
             left: 50%;
@@ -80,28 +81,25 @@
                 border-bottom: 1px solid #D3D3D3;
                 display: flex;
                 justify-content: space-between;
-                padding: 33px 22px 30px 41px;
+                padding: 34px 0 27px 40px;
                 align-items: center;
 
                 div:first-child {
-                    font-size: 18px;
+                    font-size: 24px;
                     font-weight: 500;
-                    line-height: 25px;
-                    color: #0B0B0B;
+                    line-height: 33px;
+                    color: #333333;
                 }
 
-                i {
-                    width: 20px;
-                    height: 20px;
-                }
             }
             .content-box{
-                margin: 38px 32px 65px 40px;
+                padding: 34px 34px 27px 40px;
                 .course-box{
                     display: flex;
                     .title-page{
-                        width: 144px;
-                        height: 88px;
+                        border-radius: 8px;
+                        width: 160px;
+                        height: 90px;
                         background: #F2F2F2;
                     }
                     .content{
@@ -122,11 +120,17 @@
             margin-top: 26px;
         }
     }
+    ::v-deep .el-textarea__inner{
+        background: #F6F8FA;
+        padding: 25px 18px;
+        border-radius: 8px;
+    }
     .btn{
-        width: 375px;
-        height: 54px;
-        background: #E5E5E5;
-        margin-top: 60px;
+        width: 180px;
+        height: 50px;
+        background: #1371F3;
+        border-radius: 4px;
+        margin-top: 34px;
         margin-left: auto;
         margin-right: auto;
         display: flex;
@@ -135,6 +139,8 @@
         font-size: 15px;
         font-weight: 400;
         line-height: 21px;
-        color: #333333;
+        color: #FFFFFF;
+        padding: 0;
+        border: none;
     }
 </style>

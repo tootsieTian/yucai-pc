@@ -15,8 +15,8 @@
         cover: '',          // 封面
         playsinline: false, // 是否使用内置播放器
         autoplay: false,    // 是否自动播放
-        showBarTime: 5000,  // 控制栏自动隐藏时间，单位毫秒。
-        controlBarVisibility: "click",
+        // showBarTime: 5000,  // 控制栏自动隐藏时间，单位毫秒。
+        controlBarVisibility: "always",
         definition: 'FD,LD',
         "skinLayout": [
           {
@@ -87,5 +87,22 @@
 </script>
 
 <style lang="scss" scoped>
-
+    #player{
+        position: relative;
+        ::v-deep .prism-big-play-btn{
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%);
+        }
+        ::v-deep .prism-controlbar{
+            background: rgba(23, 23, 23, 0.6);
+            /*.prism-play-btn{*/
+            /*    width: 24px;*/
+            /*    height: 24px;*/
+            /*    position: absolute;*/
+            /*    bottom: 23px;*/
+            /*}*/
+        }
+    }
 </style>

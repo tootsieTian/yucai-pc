@@ -2,18 +2,19 @@
     <div class="video-play">
         <div class="video-box">
             <div class="btn-list">
-                <div>收藏</div>
-                <div>分享</div>
+                <div><img :src="require('../../../../assets/image/course/videoPlay/heart.png')">收藏</div>
+                <div><img :src="require('../../../../assets/image/course/videoPlay/share.png')">分享</div>
             </div>
             <div class="title-box">
                 <div class="title">
                     21堂课告别社交恐惧
                 </div>
-                <div class="subtitle">
-                    7节课 ｜ 时长2:30:09
-                </div>
                 <div class="tag-list">
-                    <div class="tag-item" v-for="item in 3" :key="item+'i'">电商</div>
+                    <div class="tag-item" v-for="item in 3" :key="item+'i'">#电商</div>
+                </div>
+                <div class="subtitle">
+                    <img :src="require('../../../../assets/image/course/videoPlay/playIcon.png')">
+                    当前播放：课时2-新媒体运营的重点
                 </div>
             </div>
             <video-play class="video"
@@ -41,8 +42,10 @@
                      v-for="(item,index) in 7"
                      ref="courseItem"
                      @click="courseItemClick(index)">
-                    <img class="title-page"
-                         :src="require('../../../../assets/icon/sucai/平行宇宙.jpg')"/>
+                    <div class="tag">
+                        <div class="playing" v-if="index===activeCourseItem">播放中</div>
+                        <img v-else :src="require('../../../../assets/image/course/videoPlay/video.png')">
+                    </div>
                     <div class="content">
                         <div class="title">1、新媒体运营</div>
                         <div class="subtitle">10分钟</div>
@@ -86,7 +89,7 @@
 
 <style lang="scss" scoped>
     .video-play {
-        background: #3E3E3E;
+        background: #191B1F;
         flex: 1;
         padding: 68px 227px 100px 157px;
         display: flex;
@@ -108,7 +111,16 @@
                 font-weight: 400;
                 line-height: 17px;
                 color: #FFFFFF;
-
+                div{
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    img{
+                        margin-right: 2px;
+                        width: 25px;
+                        height: 25px;
+                    }
+                }
                 div:first-child {
                     margin-right: 32px;
                 }
@@ -116,39 +128,45 @@
 
             .title-box {
                 box-sizing: border-box;
-                padding: 35px 0 32px 50px;
-                background: #121212;
+                padding: 43px 0 27px 24px;
+                background: #121417;
                 height: 174px;
 
                 .title {
-                    font-size: 30px;
-                    font-weight: 500;
-                    line-height: 42px;
+                    font-size: 24px;
+                    line-height: 33px;
                     color: #FFFFFF;
+                    font-weight: 500;
                     margin-bottom: 13px;
                 }
 
                 .subtitle {
-                    font-size: 16px;
+                    img{
+                        width: 12px;
+                        height: 12px;
+                        margin-right: 6px;
+                    }
+                    display: flex;
+                    align-items: center;
                     font-weight: 400;
-                    line-height: 22px;
-                    color: #999999;
-                    margin-bottom: 10px;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #FFFFFF;
                 }
             }
 
             .tag-list {
                 display: flex;
-
+                margin-bottom: 17px;
                 .tag-item {
-                    margin-right: 8px;
+                    margin-right: 10px;
                     font-size: 14px;
                     font-weight: 400;
                     line-height: 20px;
-                    color: #868686;
+                    color: #1371F3;
                     padding: 0 10px;
-                    background: rgba(193, 193, 193, 0.1);
                     border-radius: 2px;
+                    background: rgba(19, 113, 243, 0.1);
                 }
             }
 
@@ -211,6 +229,7 @@
                     width: 40px;
                     height: 40px;
                     margin-right: 16px;
+                    border: 1px solid #FFFFFF;
                     border-radius: 50%;
                 }
 
@@ -231,17 +250,19 @@
             }
 
             .comment-btn {
+                cursor: pointer;
                 margin-right: $right;
                 margin-left: $left;
                 height: 41px;
-                background: #FFFFFF;
+                background: #1371F3;
+                border-radius: 4px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 13px;
                 font-weight: 400;
                 line-height: 18px;
-                color: #2C2C2C;
+                color: #FFFFFF;
             }
 
             .course-list-title {
@@ -260,16 +281,28 @@
                 .course-item {
                     cursor: pointer;
                     box-sizing: border-box;
-                    padding: 9px 12px 14px 22px;
+                    padding: 19px 12px 16px 22px;
                     display: flex;
 
-                    img {
-                        width: 141px;
-                        height: 89px;
+                    .tag {
+                        display: flex;
+                        justify-content: flex-start;
+                        img{
+                            width: 26px;
+                            height: 26px;
+                        }
+                        .playing{
+                            border-radius: 8px 2px 8px 2px;
+                            background: rgba(19, 113, 243, 1);
+                            color: #FFFFFF;
+                            padding: 2px 5px;
+                            height: 22px;
+                            font-size: 12px;
+                        }
                     }
 
                     .content {
-                        margin-left: 10px;
+                        margin-left: 15px;
 
                         .title {
                             font-size: 15px;

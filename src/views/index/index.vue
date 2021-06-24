@@ -71,7 +71,7 @@
                                     <div class="subtitle-box">
                                         <div class="subtitle">7节课 ｜ 时长2:30:09 ｜390人已学习</div>
                                         <div class="price">
-                                            <Price :color="'#ffffff'"></Price>
+                                            <Price color="#ffffff"></Price>
                                         </div>
                                     </div>
                                 </div>
@@ -321,6 +321,7 @@
         justify-content: space-between;
 
         .plate-item {
+            cursor: pointer;
             font-size: 30px;
             font-weight: 500;
             color: #333333;
@@ -362,6 +363,7 @@
         height: 606px;
 
         .excellent-course-l {
+            cursor: pointer;
             position: relative;
             height: 606px;
             background: #EDEDED;
@@ -423,6 +425,7 @@
         }
 
         .excellent-course-m {
+            cursor: pointer;
             height: 293px;
             background: #FFFFFF;
 
