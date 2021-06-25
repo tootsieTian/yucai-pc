@@ -12,7 +12,8 @@
                 <div v-for="item in menuList"
                      :class="{'menu-item': true,'menu-item--active': route.path===item.path}"
                      @click="toPath(item.path)">
-                    {{ item.title }}
+                    <img  style="width: 17px;height: 12px;margin-right: 5px;"  v-if="item.title=='会员专区'" src="../../assets/image/common/openVip.png" alt="">
+					{{ item.title }}
                 </div>
 
                 <el-row :gutter="20" class="course-classify-list">

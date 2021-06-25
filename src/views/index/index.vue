@@ -60,7 +60,7 @@
                     <el-row :gutter="20" class="excellent-list">
                         <el-col :span="12">
                             <div class="excellent-course-l">
-                                <img class="title-page" :src="require('../../assets/icon/sucai/index2.png')">
+                                <img class="title-page" :src="require('../../assets/image/index/better.png')">
                                 <div class="content-box">
                                     <div class="title f-a">
                                         100倍工作效率
@@ -257,6 +257,7 @@
         padding-bottom: 62px;
         .activity-title {
             margin-bottom: 75px;
+		
         }
     }
     .hot-course {

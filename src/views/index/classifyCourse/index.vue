@@ -13,11 +13,10 @@
     <main class="container-main">
         <div class="filter-list">
             <div @click="selectSub(index)" :class=" isSelect == index ? 'filter-item-active filter-item' :'filter-item'" v-for="(item,index) in subList" >{{item}}</div>
-            
         </div>
         <el-row :gutter="24">
             <el-col v-for="item in 12"
-                    :span="6"
+                    :span="6"	
                     :key="item+'l'">
                 <m-course-card/>
             </el-col>
@@ -28,8 +27,7 @@
 			  layout="prev, pager, next,jumper"
 			  :total="1000">
 			</el-pagination>
-		</div>
-		 
+		</div>	
     </main>
 </template>
 
@@ -47,7 +45,6 @@
 		  isSelect.value=index
 	  }
 	  const selectSubtop = (index)=>{
-		  
 	  		  isSelectop.value=index
 			  
 	  }
