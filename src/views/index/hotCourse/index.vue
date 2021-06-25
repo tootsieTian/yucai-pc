@@ -43,6 +43,7 @@
     }
      ::v-deep .number{
      	background-color: #FFFFFF!important;
+		
      }
      ::v-deep .active {
      	background-color: rgba(19, 113, 243, 1)!important;

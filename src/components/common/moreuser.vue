@@ -4,7 +4,7 @@
 			<!-- <van-image  fit="fill"  height="24" :src="item.pic" /> -->
 			<img :src="item.pic" style="height: 24px;" alt="">
 		</div>
-		<div class="mant" :style="{left: userlist!==undefined ? userlist.length*12+24+'px' : '0px' }"  ><slot></slot></div>
+		<!-- <div class="mant" :style="{left: userlist!==undefined ? userlist.length*12+24+'px' : '0px' }"  ><slot></slot></div> -->
 	</div>
 </template>
 
@@ -42,7 +42,7 @@
 	}
 	.cont{
 		position: relative;
-		width: 158px;
+		width: 100px;
         height: 24px;
 	}
 	.mant{

@@ -58,9 +58,11 @@
                             <div class="header-item"></div>
                         </div>
                         <div class="f-a">
-							<moreUser>
-								<slot>390人已参加</slot>
+							<moreUser >
+								
 							</moreUser>
+							<div class="f-a-j" >390人已参加</div>
+							
 						</div>
                     </div>
 					<el-button class="direct-btn"  type="primary"

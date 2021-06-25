@@ -106,8 +106,6 @@
 
                 .classify-item-active {
                     background: #F5F6F7;
-					width: 70px;
-					
 					color: #1371F3;
                    
                 }
