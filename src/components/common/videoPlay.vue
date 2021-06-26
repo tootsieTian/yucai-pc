@@ -1,5 +1,28 @@
 <template>
-    <div id="player"/>
+    <div id="player">
+        <div class="speed-box">
+            <div class="active-speed">{{speedActive.name}}X</div>
+            <div class="speed-list">
+                <div class="speed-item"
+                     @click="speedClick(item)"
+                     v-for="item in speedList"
+                     v-show="speedActive.name!==item.name">
+                    {{item.name}}X
+                </div>
+            </div>
+        </div>
+        <div class="clarity-box" >
+            <div class="active-clarity">{{clarityActive.name}}</div>
+            <div class="clarity-list">
+                <div class="clarity-item"
+                     @click="clarityClick(item)"
+                     v-show="clarityActive.name!==item.name"
+                     v-for="item in clarityList">
+                     {{item.name}}
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -8,34 +31,54 @@
   export default {
     name: "videoPlay",
     setup() {
+      const playerObj =  window.Aliplayer   // 播放器实例
       const source = ref('//player.alicdn.com/video/aliyunmedia.mp4')
-      const clarityList = reactive([
-        {
-          name: '清晰'
-        },
-        {
-          name: '高清'
-        },
-        {
-          name: '蓝光'
-        }
-      ])
-      const speedList = reactive([
-        {
-          name: '1.0X'
-        },
-        {
-          name: '1.5X'
-        },
-        {
-          name: '2.0X'
-        }
-      ])
-      const playerObj =  window.Aliplayer
-      const method = {
 
+      /** 清晰度和速度按钮操作 */
+      const videoBtnObj = {
+        clarityList: reactive([
+          {
+            name: '清晰'
+          },
+          {
+            name: '高清'
+          },
+          {
+            name: '蓝光'
+          }
+        ]),
+        clarityActive: reactive({
+          name: '清晰'
+        }),
+        speedActive: reactive({
+          name: '1.0'
+        }),
+        speedList: reactive([
+          {
+            name: '2.0'
+          },
+          {
+            name: '1.5'
+          },
+          {
+            name: '1.0'
+          },
+          {
+            name: '0.5'
+          }
+        ])
       }
 
+      const method = {
+        speedClick(item){
+          videoBtnObj.speedActive.name = item.name
+        },
+        clarityClick(item){
+          videoBtnObj.clarityActive.name  = item.name
+        }
+      }
+
+      /** 播放器配置 */
       const options = reactive({
         width: '100%', //容器的大小
         height: '100%', //容器的大小
@@ -116,12 +159,12 @@
         let setBtn = document.getElementsByClassName('prism-setting-btn')[0]    // 设置按钮
         let ccBtn = document.getElementsByClassName('prism-cc-btn')[0]  // 字幕按钮
         let volume = document.getElementsByClassName('prism-volume')[0]  // 音量按钮
-        let speedBtn = document.createElement('div')
-        speedBtn.classList.add('speed-btn')  // 速度按钮
-        let clarity = document.createElement('div')
-        clarity.classList.add('clarity-btn')  // 清晰度按钮
+        let speedBox = document.getElementsByClassName('speed-box')[0]  // 视频速度盒子
+        let clarityBox = document.getElementsByClassName('clarity-box')[0]  // 视频清晰度盒子
+        let infoDisplay = document.getElementsByClassName('prism-info-display')[0]
         timeBox.insertBefore(progress, timeBound.nextSibling )  // 将进度条放入时间盒子中
         timeBound.parentNode.removeChild(timeBound)     // 删除无用的组件
+        infoDisplay.style.display = 'none'
         oldControlbar.removeChild(ccBtn)
         oldControlbar.removeChild(volume)
         oldControlbar.removeChild(oldControlbarBg)
@@ -133,14 +176,16 @@
         oldControlbar.appendChild(newControlbar)
         newControlbar.appendChild(playBtn)
         newControlbar.appendChild(timeBox)
-        newControlbar.appendChild(speedBtn)
-        newControlbar.appendChild(clarity)
+        newControlbar.appendChild(speedBox)
+        newControlbar.appendChild(clarityBox)
         newControlbar.appendChild(fullscreenBtn)
       })
 
       return {
         options,
-        source
+        source,
+        ...method,
+        ...videoBtnObj
       }
     }
   }
@@ -175,8 +220,8 @@
                     margin-right: 26px;
                 }
                 .duration{
-                    margin-left: 44px;
-                    margin-right: 36px;
+                    margin-left: 35px;
+                    margin-right: 15px;
                 }
             }
             .new-controlbar{
@@ -224,6 +269,43 @@
                 border-radius: 50%;
             }
 
+        }
+
+        .speed-box,  .clarity-box{
+            font-size: 14px;
+            font-weight: 400;
+            color: #FFFFFF;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .speed-list, .clarity-list{
+            visibility: hidden;
+            position: absolute;
+            bottom: 66px;
+            box-sizing: content-box;
+            background: rgba(23, 23, 23, 0.6);
+        }
+        .speed-item,.active-speed,.clarity-item,.active-clarity{
+            z-index: 999;
+            cursor: pointer;
+            text-align: center;
+            line-height: 20px;
+            padding: 10px;
+            width: 70px;
+        }
+        .speed-item:hover,.clarity-item:hover{
+            background: rgba(92, 91, 91, 0.3);
+        }
+        .speed-box:hover {
+            .speed-list {
+                visibility: unset;
+            }
+        }
+        .clarity-box:hover{
+            .clarity-list {
+                visibility: unset;
+            }
         }
 
     }
