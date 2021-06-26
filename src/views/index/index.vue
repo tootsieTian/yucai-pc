@@ -24,6 +24,9 @@
                     </div>
                 </div>
             </div>
+			<div  class="index-mask" >
+				<img src="../../assets/image/index/indexMask.png" alt="">
+			</div>
         </div>
 
         <main>
@@ -111,6 +114,9 @@
 
             <!--活动专区-->
             <div class="active-area">
+				<div  class="index-mask2" >
+					<img  style="width: 783px;" src="../../assets/image/index/indexMask.png" alt="">
+				</div>
                 <div class="container-main">
                     <course-list-title title="活动专区"
                                        @more="more"
@@ -255,6 +261,15 @@
         background: #EFF0F0;
         padding-top: 55px;
         padding-bottom: 62px;
+		position: relative;
+		.index-mask2{
+		   // background-image: url;
+		   position: absolute;
+		   width: 783px;
+		   // height: 1305px;
+		   left: 0px;
+		   top: -306px;
+		}
         .activity-title {
             margin-bottom: 75px;
 		
@@ -310,6 +325,13 @@
             height: 904px;
             width: 100%;
         }
+		.index-mask{
+		   // background-image: url;
+		   position: absolute;
+		   width: 724px;
+		   height: 1305px;
+		   right: 0px;
+		}
     }
 
     .plate-list {
