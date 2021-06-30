@@ -12,7 +12,7 @@ export default [
       keepAlive: true,
       foot: true,
       nav: true,
-      title: '首页'
+      title: '御才文化-首页'
     }
   },
   {
@@ -22,7 +22,7 @@ export default [
       keepAlive: false,
       foot: false,
       nav: false,
-      title: 'APP下载'
+      title: '御才文化-APP下载'
     }
   },
   ...hotCourse,

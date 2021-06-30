@@ -31,7 +31,8 @@ export default [
 	      ],
     meta: {
     foot: true,
-    nav: true
+    nav: true,
+	title:'御才文化-个人中心'
   }
   },
   ...evaluation.outside,

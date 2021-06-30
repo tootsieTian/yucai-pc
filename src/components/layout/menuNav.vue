@@ -70,8 +70,8 @@
       const router = useRouter()
       const route = useRoute()
       const navTop = ref(false)
-      const logoWImg = ref(require('../../assets/image/common/logoWhite.png'))
-	  const logoBImg = ref(require('../../assets/image/common/logoBlack.png'))
+      const logoWImg = ref(require('../../assets/image/common/logoWhite.svg'))
+	  const logoBImg = ref(require('../../assets/image/common/logoBlack.svg'))
       const loginShow = ref(false)
       watch(route, (newVal) => {
         newVal.path === '/' ? navTop.value = true : navTop.value = false

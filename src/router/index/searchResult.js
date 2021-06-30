@@ -4,7 +4,8 @@ export default [
     component: () => import('../../views/index/searchResult'),
     meta: {
       foot: true,
-      nav: true
+      nav: true,
+	  title: '御才文化-搜索结果'
     }
   }
 ]

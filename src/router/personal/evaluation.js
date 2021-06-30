@@ -28,7 +28,8 @@ const outside =[
 	  component: () => import('../../views/personal/evaluation/buyEvaluation'),
 	  meta: {
 	    foot: true,
-	    nav: true
+	    nav: true,
+		title:"御才文化-个人中心-购买测评"
 	  }
 	},
 	{
@@ -36,7 +37,8 @@ const outside =[
 	  component: () => import('../../views/personal/evaluation/startEvaluation'),
 	  meta: {
 	    foot: true,
-	    nav: true
+	    nav: true,
+		title:"御才文化-个人中心-开始测评"
 	  }
 	},
 	{
@@ -44,7 +46,8 @@ const outside =[
 	  component: () => import('../../views/personal/evaluation/order'),
 	  meta: {
 	    foot: true,
-	    nav: true
+	    nav: true,
+		title:"御才文化-个人中心-我的订单"
 	  }
 	},
 	{
@@ -52,7 +55,8 @@ const outside =[
 	  component: () => import('../../views/personal/evaluation/result'),
 	  meta: {
 	    foot: true,
-	    nav: true
+	    nav: true,
+		title:"御才文化-个人中心-订单处理"
 	  }
 	},
 ]

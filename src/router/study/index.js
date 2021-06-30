@@ -4,7 +4,8 @@ export default [
     component: () => import('../../views/study'),
     meta: {
       foot: true,
-      nav: true
+      nav: true,
+	  title:"御才文化-学习中心"
     }
   }
 ]

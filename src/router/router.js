@@ -16,9 +16,9 @@ router.beforeEach((to, from, next) => {
 	/**
 	 * 1、鉴权操作
 	 */
-	// if(to.meta.title){
-	// 	document.title = to.meta.title;
-	// }
+	if(to.meta.title){
+		document.title = to.meta.title;
+	}
 	next();
 });
 export default router

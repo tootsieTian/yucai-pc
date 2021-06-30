@@ -9,6 +9,9 @@
         <comment-box ref="comment"/>
         <course-explain ref="explain"/>
         <course-recommend ref="recommend"/>
+		<!-- <div v-web-title
+		       :data-title="textTitle">
+		  </div> -->
     </div>
 </template>
 
@@ -17,7 +20,7 @@
   import CommentBox from "../../../components/courseDetail/commentBox";
   import CourseExplain from "../../../components/courseDetail/courseExplain";
   import CourseRecommend from "../../../components/courseDetail/courseRecommend";
-  import { ref, onUnmounted, provide } from 'vue'
+  import { onMounted,ref, onUnmounted, provide } from 'vue'
   import CourseList from "../../../components/courseDetail/courseList";
   import CourseInfo from "../../../components/courseDetail/courseInfo";
   import groupworkBox from "../../../components/courseDetail/groupworkBox.vue"
@@ -30,6 +33,7 @@
       provide('tabActive', tabActive)
       const navHeight = document.getElementsByClassName('nav')[0].clientHeight
       const courseListKey = ref(666)
+	  const textTitle =ref("御才文化-告别社交恐惧系列套餐播放")
       const refs = {
         course: ref(null),
         comment: ref(null),
@@ -57,9 +61,12 @@
           tabActive.value = 'recommend'
         }
       }
-
+      onMounted(()=>{
+		  document.title=textTitle.value
+	  })
       window.addEventListener('scroll', listenScroll)
       onUnmounted(() => {
+		
         window.removeEventListener('scroll', listenScroll)
       })
 
@@ -86,7 +93,8 @@
         tabClick,
         ...refs,
         tabActive,
-        courseListKey
+        courseListKey,
+		textTitle
       }
     }
   }

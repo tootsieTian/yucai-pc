@@ -3,7 +3,7 @@
         <div class="container-main">
             <div class="line">
                 <div class="logo f-a-j">
-					<img src="../../assets/image/common/logoWhite.png" alt="">
+					<img src="../../assets/image/common/logoWhite.svg" alt="">
 				</div>
                 <div class="about-company">
                     <div class="title">
@@ -31,17 +31,19 @@
                     <div class="title">
                         御才文化公众号
                     </div>
-                    <div class="public-number-img"></div>
+                    <div class="public-number-img">
+						<img  style="width: 186px;" src="../../assets/image/common/compnyMa.jpg" alt="">
+					</div>
                 </div>
             </div>
 
             <div class="notice">
                 <div>
-                    © Copyright 2016-现在   御才文化教育科技有限公司 版权所有 yucaiwenhua.com 未经允许请勿用作他途。
+                    © Copyright 2016-现在   石狮市御才文化传播有限公司 版权所有 yucaieud.com 未经允许请勿用作他途。
                 </div>
                 <div @click="goWeburl"  class="hand" style="display: flex;margin-top: 25px">
                     <div >闽ICP备2021006906号</div>
-                    <div>闽公安网备 2192007739194</div>
+                    <!-- <div>闽公安网备 2192007739194</div> -->
                 </div>
             </div>
         </div>

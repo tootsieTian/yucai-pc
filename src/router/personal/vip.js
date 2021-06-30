@@ -4,7 +4,7 @@ export default [
     component: () => import('@/views/personal/vip/index'),
     meta: {
       showTab: false,
-      title: '会员中心'
+      title: '御才文化-会员中心'
     }
   },
 ]
