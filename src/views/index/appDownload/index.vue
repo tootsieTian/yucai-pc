@@ -2,7 +2,7 @@
     <div class="bg">
         <header :class="{'keep-top': scrollTop!==0}">
             <div class="container-main">
-                <img :src="require('../../../assets/icon/logo.png')"/>
+                <img   :src=" scrollTop!==0  ? logoWImg : logoBImg   "/>
                 <div @click="toIndex">首页</div>
                 <i class="el-icon-s-home" @click="toIndex"/>
             </div>
@@ -31,6 +31,8 @@
         context: `开发专业教育云应用与服务的系统、资源信息化建设平台，
         基于“资源+平台+服务”的理念，推进职业院校的专业资源库、课程的建设和教学运行。`
       })
+	  const logoWImg = ref(require('../../../assets/image/common/logoWhite.png'))
+	  const logoBImg = ref(require('../../../assets/image/common/logoBlack.png'))
       const router = useRouter()
       const toIndex = () => {
         router.push('/')
@@ -42,7 +44,9 @@
       return {
         toIndex,
         article,
-        scrollTop
+        scrollTop,
+		logoWImg,
+		logoBImg
       }
     }
   }
@@ -54,6 +58,7 @@
         padding-bottom: 100PX;
         min-height: 100vh;
         box-sizing: border-box;
+		
     }
     header {
         top: 0;
@@ -70,8 +75,10 @@
             justify-content: space-between;
             align-items: center;
             img {
-                height: 40PX;
-                width: 40PX;
+                // height: 40PX;
+                // width: 40PX;
+				height: 40PX;
+				width: auto;
             }
 
             div {
