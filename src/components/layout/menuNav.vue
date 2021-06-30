@@ -6,7 +6,7 @@
     <div :class="{nav:true,transparent: transparent}">
         <div class="container-menu">
             <div class="logo" @click="toPath('/')">
-                <img src="../../assets/image/common/Logo.png" alt="">
+                <img  :src=" transparent == true ? logoWImg : logoBImg   " alt="">
             </div>
             <div class="menu-list">
                 <div v-for="item in menuList"
@@ -70,6 +70,8 @@
       const router = useRouter()
       const route = useRoute()
       const navTop = ref(false)
+      const logoWImg = ref(require('../../assets/image/common/logoWhite.png'))
+	  const logoBImg = ref(require('../../assets/image/common/logoBlack.png'))
       const loginShow = ref(false)
       watch(route, (newVal) => {
         newVal.path === '/' ? navTop.value = true : navTop.value = false
@@ -146,7 +148,9 @@
         route,
         openLogin,
         closeLogin,
-        loginShow
+        loginShow,
+		logoWImg,
+		logoBImg
       }
     }
   }
@@ -189,14 +193,14 @@
     }
 
     .logo {
-        margin-top: 25px;
+        margin-top: 45px;
         background-color: transparent;
         height: 47px;
         transform: translateY(-25%);
     }
 
     .logo img {
-        width: 195px;
+        width: auto;
         height: 47px;
 
     }
