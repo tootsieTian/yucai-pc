@@ -3,7 +3,7 @@ const autoprefixer = require('autoprefixer')  // 这个依赖不用安装
 const pxtorem = require('postcss-pxtorem')
 
 module.exports = {
-  publicPath: './',
+  publicPath: '/',
   productionSourceMap: false,
   css: {
     loaderOptions: {
