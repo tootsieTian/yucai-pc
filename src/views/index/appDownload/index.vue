@@ -28,9 +28,8 @@
     setup() {
       const article = reactive({
         title: '御才文化教育',
-        context: '开发专业教育云应用与服务的系统、' +
-          '资源信息化建设平台，基于“资源+平台+服务”的理念，' +
-          '推进职业院校的专业资源库、课程的建设和教学运行。'
+        context: `开发专业教育云应用与服务的系统、资源信息化建设平台，
+        基于“资源+平台+服务”的理念，推进职业院校的专业资源库、课程的建设和教学运行。`
       })
 	  const logoWImg = ref(require('../../../assets/image/common/logoWhite.svg'))
 	  const logoBImg = ref(require('../../../assets/image/common/logoBlack.svg'))
