@@ -9,9 +9,6 @@
         <comment-box ref="comment"/>
         <course-explain ref="explain"/>
         <course-recommend ref="recommend"/>
-		<!-- <div v-web-title
-		       :data-title="textTitle">
-		  </div> -->
     </div>
 </template>
 

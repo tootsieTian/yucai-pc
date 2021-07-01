@@ -331,6 +331,9 @@
 		   width: 724px;
 		   height: 1305px;
 		   right: 0px;
+		   img{
+			   width: 724px;
+		   }
 		}
     }
 
