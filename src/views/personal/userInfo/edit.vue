@@ -2,12 +2,13 @@
 	<div class="contair">
 		<div class="tit f-s f-a">
 			<div>个人资料</div>
-			<div  class="hand" style="opacity: 0.3;" @click="goSave">保存</div>
+			<div  class="hand" style="color: rgba(19, 113, 243, 1);" @click="goSave">保存</div>
 		</div>
 		<div class="hx"></div>
 		<div class="detail">
 			<div class="title">基本信息</div>
 			<div class="userpic f">
+				
 				<div class="lable">头像</div>
 				<el-upload
 				  class="avatar-uploader"
@@ -17,6 +18,7 @@
 				  :before-upload="beforeAvatarUpload"
 				>
 				  <div class="pic">
+					  <img src="../../../assets/icon/sucai/17.png" alt="">
 				  	<div class="changepic hand">
 				  		<div class="top"></div>
 				  		<div class="bottom f-a-j">修改</div>
@@ -46,8 +48,9 @@
 			<div class="study">
 				<div class="" style="opacity: 1;">*选择学习领域</div>
 				<div class="f" style="flex-flow: wrap;">
-					<div class="lable1 lable hand" @click="selectItme($event,item)" v-for="(item,index)  in 10">家庭教育</div>
-
+					<div class="lable1 lable hand" @click="selectItme($event,item)" v-for="(item,index)  in 10">家庭教育
+					
+					</div>
 				</div>
 			</div>
 		</div>
@@ -196,7 +199,10 @@
 					border-radius: 50%;
 					margin-left: 28px;
 					position: relative;
-
+                    img{
+						width: 50px;
+						height: 50px;
+					}
 					.changepic {
 						position: absolute;
 						bottom: 0;
@@ -209,14 +215,15 @@
 						border-radius: 50%;
 
 						.top {
-							height: 60%;
+							height: 70%;
 						}
 
 						.bottom {
-							height: 40%;
-							border-bottom-left-radius: 50px;
-							border-bottom-right-radius: 50px;
-							background: #C3C3C3;
+							height: 30%;
+							border-bottom-left-radius: 90px;
+							border-bottom-right-radius: 90px;
+							background: rgba(51, 51, 51, 0.5);
+							font-size: 12px;
 						}
 					}
 				}
@@ -256,15 +263,16 @@
 					font-size: 14px;
 					font-weight: 400;
 					line-height: 20px;
-					color: #707070;
+					color: rgba(19, 113, 243, 1);
 					margin-right: 22px;
 					margin-top: 23px;
-					border: 1px solid #DBDBDB;
+					border: 1px solid rgba(19, 113, 243, 1);
 				}
 			}
 		}
 		.lable-active{
-			background-color: #53A8FF;
+			background-image: url(../../../assets/image/index/checkStudy.png);
+			background-size: 100%;
 		}
 	}
 </style>

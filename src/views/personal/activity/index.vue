@@ -96,9 +96,9 @@
 
 		::v-deep .el-menu--horizontal>.el-menu-item.is-active {
 			font-size: 16px;
-			color: #333333;
+			color: rgba(19, 113, 243, 1);
 			opacity: 1;
-			border-bottom: 4px solid #505050;
+			border-bottom: 4px solid rgba(19, 113, 243, 1);
 			// border-spacing: ;
 		}
 

@@ -2,14 +2,16 @@
    <div class="contair" >
 	   <div class="tit f-s f-a" >
 		   <div>个人资料</div>
-		   <div style="opacity: 0.3;"  class="hand" @click="goEdit" >编辑</div>
+		   <div style="color: rgba(52, 111, 235, 1);"  class="hand" @click="goEdit" >编辑</div>
 	   </div>
 	   <div class="hx" ></div>
 	   <div class="detail" >
 		   <div class="title" >基本信息</div>
 		   <div class="userpic f" >
 			   <div class="lable" >头像</div>
-			   <div class="pic" ></div>
+			   <div class="pic" >
+				   <img  src="../../../assets/icon/sucai/17.png" alt="">
+			   </div>
 		   </div>
 		   <div class="username f" >
 			   <div class="lable" >昵称</div>
@@ -98,6 +100,10 @@
 					opacity: 1;
 					border-radius: 50%;
 					margin-left: 28px;
+					img{
+						width: 50px;
+						height: 50px;
+					}
 				}
 				
 			}
@@ -125,15 +131,16 @@
 			.study{
 				margin-top: 23px;
 				.lable1{
-
+                    border:1px solid rgba(52, 111, 235, 1)  ;
+					color:rgba(52, 111, 235, 1) ;
 					padding: 11px 26px 11px 22px;
 					font-size: 14px;
 					font-weight: 400;
 					line-height: 20px;
-					color: #707070;
+					
 					margin-right: 22px;
 					margin-top: 23px;
-					border: 1px solid #DBDBDB;
+				
 				}
 			}
 		}

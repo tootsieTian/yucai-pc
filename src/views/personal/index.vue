@@ -1,28 +1,25 @@
 <template>
-	<div class="" >
+	<div class="">
 		<div class="header  f-a-j">
 			<div class="user-info container-main  f-s">
-				<el-upload
-				  class="avatar-uploader "
-				  action="https://jsonplaceholder.typicode.com/posts/"
-				  :show-file-list="false"
-				  :on-success="handleAvatarSuccess"
-				  :before-upload="beforeAvatarUpload"
-				>
-				<div class="info-left hand f">
-					
-					<div class="user-pic"  >
-						<div class="vip  f-a-j" @click.stop="openDialog" >普通会员</div>
+				<el-upload class="avatar-uploader " action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
+				 :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+					<div class="info-left hand f">
+
+						<div class="user-pic f-a-j">
+							<img src="../../assets/icon/sucai/17.png"  alt="">
+							<img class="vip  f-a-j" src="../../assets/image/personal/Svip.png"  @click.stop="openDialog">
+						     
+						</div>
+						<div class="user-detail f-c">
+							<div class="detail-name f-1">薛定谔的猫</div>
+							<div class="detail-id f-1">ID:922598</div>
+						</div>
+
 					</div>
-					<div class="user-detail f-c">
-						<div class="detail-name f-1">薛定谔的猫</div>
-						<div class="detail-id f-1">ID:922598</div>
-					</div>
-					
-				</div>
 				</el-upload>
 				<div class="info-right f">
-					<div  @click="goDeatil(item.path)" class="right-item hand f-c f-a" v-for="(item,index) in subList" :key="index">
+					<div @click="goDeatil(item.path)" class="right-item hand f-c f-a" v-for="(item,index) in subList" :key="index">
 
 						<div class="right-name">{{item.name}}</div>
 						<div class="right-num">{{item.num}}</div>
@@ -37,7 +34,8 @@
 					<el-col :span="12">
 						<el-menu router :default-active="active" class="el-menu-vertical-demo">
 							<el-menu-item :route="item.path" v-for="(item,index) in menuList" :key="index" :index="index+1+''">
-								<i class="el-icon-menu"></i>
+								<img class="el-icon-menu" style="width: 24px;margin-right: 15px;" :src="item.icon" alt="">
+								<!-- <i ></i> -->
 								<template #title>{{item.title}}</template>
 							</el-menu-item>
 						</el-menu>
@@ -48,28 +46,36 @@
 				</div>
 			</div>
 		</div>
-      <openVipDialog  @closeDialog="closeDialog" v-if="dialogShow" ></openVipDialog>
+		<openVipDialog @closeDialog="closeDialog" v-if="dialogShow"></openVipDialog>
 	</div>
 </template>
 
 <script>
-	import openVipDialog from "../../components/personal/openVipDialog.vue" 
+	import openVipDialog from "../../components/personal/openVipDialog.vue"
 	import {
 		ref,
 		reactive,
 		getCurrentInstance,
 		watch,
-		 onMounted
+		onMounted
 	} from 'vue';
 	import router from "../../router/router.js"
 	export default {
-        components:{openVipDialog},
+		components: {
+			openVipDialog
+		},
 		name: "index",
 		setup() {
-			const { ctx } = getCurrentInstance()
-			const dialogShow =ref(false)
-		    const active = ref("1");
+			const {
+				ctx
+			} = getCurrentInstance()
+			const dialogShow = ref(false)
+			const active = ref("1");
 			const imageUrl = ref("");
+			const iconList = reactive([, require(
+				"../../assets/image/personal/subicon4.png"), require("../../assets/image/personal/subicon1.png"), require(
+				"../../assets/image/personal/subicon3.png"), require("../../assets/image/personal/subicon3.png"), require(
+				"../../assets/image/personal/subicon2.png")])
 			// watch(()=>ctx.$router.currentRoute.value.fullPath,(newValue,oldValue)=>{
 
 			//  console.log(newValue,'新的路由')
@@ -77,35 +83,43 @@
 			// })
 			const menuList = reactive([{
 					title: "个人资料",
-					path: '/personal/userInfo'
+					path: '/personal/userInfo',
+					icon:require("../../assets/image/personal/subicon4.png")
 				},
 				{
 					title: "我的消息",
-					path: '/personal/message'
+					path: '/personal/message',
+					icon:require("../../assets/image/personal/subicon1.png")
 				},
 				{
 					title: "测评中心",
-					path: '/personal/evaluation'
+					path: '/personal/evaluation',
+					icon:require("../../assets/image/personal/subicon3.png")
 				},
 				{
 					title: "我的积分",
-					path: '/personal/integral'
+					path: '/personal/integral',
+					icon:require("../../assets/image/personal/subicon3.png")
 				},
 				{
 					title: "浏览记录",
-					path: '/personal/browseHistory'
+					path: '/personal/browseHistory',
+					icon:require("../../assets/image/personal/subicon4.png")
 				},
 				{
 					title: "领赠记录",
-					path: '/personal/giftHistory'
+					path: '/personal/giftHistory',
+					icon:require("../../assets/image/personal/subicon1.png")
 				},
 				{
 					title: "我的评价",
-					path: '/personal/myComment'
+					path: '/personal/myComment',
+					icon:require("../../assets/image/personal/subicon3.png")
 				},
 				{
 					title: "申请服务商",
-					path: '/personal/apply'
+					path: '/personal/apply',
+					icon:require("../../assets/image/personal/subicon2.png")
 				}
 			]);
 			const subList = reactive([{
@@ -119,62 +133,62 @@
 			}, {
 				name: "我的活动",
 				num: 2,
-				path:'/personal/activity'
+				path: '/personal/activity'
 			}, {
 				name: "优惠券",
 				num: 6,
-				path:'/personal/coupon'
+				path: '/personal/coupon'
 			}, {
 				name: "我的收益",
 				num: "￥115",
-				path:'/personal/profit'
+				path: '/personal/profit'
 			}, ]);
-			const goDeatil = (path)=>{
+			const goDeatil = (path) => {
 				const dom = document.getElementsByClassName('is-active')[0]
-				if(dom){
+				if (dom) {
 					dom.classList.remove('is-active')
-					
+
 				}
 				router.push(path)
-				
+
 			};
-			const closeDialog=()=>{
-				dialogShow.value=false
+			const closeDialog = () => {
+				dialogShow.value = false
 			}
-		    const openDialog =()=>{
-				dialogShow.value=true
+			const openDialog = () => {
+				dialogShow.value = true
 			};
 			const methods = {
 				handleAvatarSuccess(res, file) {
-				        this.imageUrl = URL.createObjectURL(file.raw);
-				      },
-				      beforeAvatarUpload(file) {
-				        const isJPG = file.type === 'image/jpeg';
-				        const isLt2M = file.size / 1024 / 1024 < 2;
-				
-				        if (!isJPG) {
-				          this.$message.error('上传头像图片只能是 JPG 格式!');
-				        }
-				        if (!isLt2M) {
-				          this.$message.error('上传头像图片大小不能超过 2MB!');
-				        }
-				        return isJPG && isLt2M;
-				      },
+					this.imageUrl = URL.createObjectURL(file.raw);
+				},
+				beforeAvatarUpload(file) {
+					const isJPG = file.type === 'image/jpeg';
+					const isLt2M = file.size / 1024 / 1024 < 2;
+
+					if (!isJPG) {
+						this.$message.error('上传头像图片只能是 JPG 格式!');
+					}
+					if (!isLt2M) {
+						this.$message.error('上传头像图片大小不能超过 2MB!');
+					}
+					return isJPG && isLt2M;
+				},
 			}
-			
-			    onMounted(() => {
-			     menuList.forEach((item,index)=>{
-			     					 if(item.path==ctx.$router.currentRoute.value.fullPath){
-			     						 active.value=index+1
-										 console.log(active.value)
-			     					 }
-			     })
-				 　      history.pushState(null, null, document.URL);
-				         window.addEventListener('popstate', function () {
-				             // router.push("/login")
-							 router.go(-1)
-				         });
-			    })
+
+			onMounted(() => {
+				menuList.forEach((item, index) => {
+					if (item.path == ctx.$router.currentRoute.value.fullPath) {
+						active.value = index + 1
+						console.log(active.value)
+					}
+				})
+				history.pushState(null, null, document.URL);
+				window.addEventListener('popstate', function() {
+					// router.push("/login")
+					router.go(-1)
+				});
+			})
 
 			return {
 				subList,
@@ -184,6 +198,7 @@
 				closeDialog,
 				openDialog,
 				dialogShow,
+				iconList,
 				...methods
 			}
 		},
@@ -196,7 +211,8 @@
 	.header {
 		width: 100%;
 		height: 213px;
-		background: #F5F5F5;
+		background-image: url(../../assets/image/personal/topBg.png);
+		background-size: 100%;
 		box-sizing: border-box;
 		padding-top: 90px;
 
@@ -205,23 +221,28 @@
 
 			.info-left {
 				margin-left: 22px;
-
+                color: #FFFFFF;
 				.user-pic {
 					width: 131px;
 					height: 131px;
 					background: #EFEFEF;
 					border-radius: 50%;
 					position: relative;
-					.vip{
+                    img:nth-child(1){
+						width: 120px;
+						height: 120px;
+						
+					}
+					.vip {
 						position: absolute;
-						padding: 3px;
-						height: 17px;
-						bottom: -18px;
+						width: 62px;
+					   
+						bottom: -10px;
 						left: 32px;
-						background: #E2E2E2;
+						
 						z-index: 99;
-						font-size: 11px;
-						color: rgba(51,51,51,0.4);
+						
+						
 					}
 				}
 
@@ -243,26 +264,29 @@
 						font-family: PingFang SC;
 						font-weight: 400;
 						line-height: 18px;
-						color: #333333;
-						opacity: 0.2;
+						color: #FFFFFF;
+						opacity: 0.7;
 					}
 				}
 			}
 
 			.info-right {
+				
 				.right-item {
 					width: 106px;
 					height: 100%;
+					
 				}
+
 				// 导航部分交互效果
-				.right-item:hover{
-					background-color: rgba(64,158,255,0.15);
+				.right-item:hover {
+					background-color: rgba(64, 158, 255, 0.15);
 					transform: translateX(10%) translateY(-10%);
-					
-				
-					
+                    border-radius: 25px;
+
+
 				}
-				
+
 
 				.right-name {
 					margin-top: 20px;
@@ -270,7 +294,7 @@
 					font-family: PingFang SC;
 					font-weight: 400;
 					line-height: 20px;
-					color: #333333;
+					color: #FFFFFF;
 					opacity: 0.4;
 				}
 
@@ -278,9 +302,10 @@
 					margin-top: 14px;
 					font-size: 22px;
 					font-family: PingFang SC;
-					font-weight: 400;
+					font-weight: bold;
 					line-height: 30px;
-					color: #333333;
+					color: #FFFFFF;
+				
 					opacity: 1;
 
 				}
@@ -338,7 +363,7 @@
 	.is-active {
 		.el-icon-menu {
 
-			border-left: 4px solid #7B7B7B;
+			border-left: 4px solid #1371F3;
 		}
 	}
 </style>
