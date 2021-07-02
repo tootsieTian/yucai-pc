@@ -1,9 +1,11 @@
 <template>
 	<div class="item-con f" >
 		<div class="item hand f"  v-for="(item,index) in  couponList"  :key="index" >
-			<div class="item4 f-c  f-a" >
-				<div style="margin-top: 23px;" >
-					<price></price>
+			<div :style=" { opacity : item.status =='立 即 使 用' ?  '1' :'0.4'  }" class="item4 f-c  f-a" >
+				<div class="yuan-top" ></div>
+				<div class="yuan-bot" ></div>
+				<div style="margin-top: 33px;" >
+					<price :color="'#ffffff'" :money="'10'" :fontSize="'35px'" ></price>
 				</div>
 				<div  class="left-tit" >满10元立减</div>
 			</div>
@@ -14,7 +16,7 @@
 				<div>赠送给朋友</div>
 			</div>
 			<div class="item3 f-a-j" >
-				<div :style=" {color: item.status =='立 即 使 用' ? '#333333' : 'rgba(51, 51, 51, 0.3)'  }  " >{{item.status}}</div>
+				<div :style=" {color: item.status =='立 即 使 用' ? 'rgba(19, 113, 243, 1)' : 'rgba(51, 51, 51, 0.3)'  }  " >{{item.status}}</div>
 			</div>
 		</div>
 	</div>
@@ -70,10 +72,31 @@
 			.item4{
 				width: 109px;
 				height: 123px;
-				background: #E8E8E8;
+				background: linear-gradient(#B5D4FF, #799BE3);
+				position: relative;
 				.left-tit{
 					font-size: 15px;
 					margin-top: 5px;
+					color: #FFFFFF;
+					opacity: 1;
+				}
+				.yuan-top{
+					position: absolute;
+					top: -10px;
+					right: -10px;
+					width: 20px;
+					height: 20px;
+					border-radius: 50%;
+					background-color: #FFFFFF;
+				}
+				.yuan-bot{
+					position: absolute;
+					bottom: -12px;
+					right: -10px;
+					width: 20px;
+					height: 20px;
+					border-radius: 50%;
+					background-color: #FFFFFF;
 				}
 			}
 			.item2{

@@ -1,7 +1,9 @@
 <template>
 	<div class="item-con f" >
 		<div class="item hand"   v-for=" (item,index) in 5" >
-			<div class="item-header" ></div>
+			<div class="item-header" >
+				<img src="../../../assets/icon/sucai/course2.png" alt="">
+			</div>
 			<div class="item-footer" >
 				<div class="title f-s" >
 					<div  >100倍工作效率</div>
@@ -9,7 +11,7 @@
 				</div>
 				<div class="f-s" >
 					<div>观看30%</div>
-					<div>继续观看</div>
+					<div>继续观看 ></div>
 				</div>
 			</div>
 		</div>
@@ -56,6 +58,10 @@
 				height: 227px;
 				width: 100%;
 				background: #EDEDED;
+				img{
+					height: 227px;
+					width: 100%;
+				}
 			}
 			.item-footer{
 				height: 101px;

@@ -1,15 +1,17 @@
 <template>
 	<div class="item-con  container-main" >
-        <div  v-for="(item,index) in 3"  :key="index" class="item f-s" >
+        <div  v-for="(item,index) in 3"  :key="index" class="item f-s f-a" >
 			<div class="f" >
-				<div class="pic" ></div>
+				<div class="pic" >
+					<img src="../../../assets/icon/sucai/doge.jpeg" alt="">
+				</div>
 				<div class="detail" >
 					<div class="title" >容格八维自我认知功能测试</div>
 					<div class="subtitle" >共9题｜ 闯关类</div>
 				</div>
 			</div>
 			<div>
-				<el-button @click="confirm" >确认购买</el-button>
+				<el-button  class="go-btn" @click="confirm" >确认购买</el-button>
 			</div>
 		</div>		
 	</div>
@@ -48,6 +50,11 @@
 				width: 48px;
 				height: 48px;
 				background: #EDEDED;
+				img{
+					width: 48px;
+					height: 48px;
+					border-radius: 4px;
+				}
 			}
 			.detail{
 				padding: 0  0  3px 14px;
@@ -70,6 +77,14 @@
 				}
 			}
 			
+		}
+		.go-btn{
+			width: 228px;
+			height: 56px;
+			background: #1371F3;
+			opacity: 1;
+			border-radius: 4px;
+			color: #FFFFFF;
 		}
 	}
 </style>

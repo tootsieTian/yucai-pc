@@ -1,11 +1,14 @@
 <template>
 	<div class="con f">
 		<div v-for="(item,index) in 6" class="item hand" :key="index">
-			<div class="header"></div>
+			<div class="header">
+				<img src="../../../assets/icon/sucai/course3.png" alt="">
+			</div>
 			<div class="footer">
 				<div class="title">100倍工作效率</div>
 				<div class="subtitle">7节课 ｜390人已学习</div>
-				<div>
+				<div class="f-s" style="padding-right: 20px;" >
+					<div></div>
 					<Price></Price>
 				</div>
 			</div>
@@ -52,6 +55,10 @@
 				width: 100%;
 				height: 187px;
 				background: #EDEDED;
+				img{
+					width: 100%;
+					height: 187px;
+				}
 			}
 
 			.footer {

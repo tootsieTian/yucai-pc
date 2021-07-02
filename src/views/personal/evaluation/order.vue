@@ -1,15 +1,23 @@
 <template>
-	<div class="f-j" >
+	<div  style="background-color: rgba(245, 246, 246, 1);" class="f-j" >
 		<div class="contair container-main" >
 			<div class="title" >确认订单信息</div>
 			<div class="main" >
-				<div class="user f-a" >
-					<div class="pic" ></div>
-					<div class="name" >薛定谔的猫</div>
+				<div class="user f-a f-s" >
+					<div class="f-a" >
+						<div class="pic" >
+							<img src="../../../assets/icon/sucai/17.png" alt="">
+						</div>
+						<div class="name" >薛定谔的猫</div>
+					</div>
+					
+					<div class="delete" >删除订单 </div>
 				</div>
 				<div class="course f-s" >
 					<div class="left f" >
-						<div class="pic" ></div>
+						<div class="pic" >
+							<img src="../../../assets/icon/sucai/course1.png" alt="">
+						</div>
 						<div class="detail" >
 							<div class="title1" >你真的懂得心理学吗？</div>
 							<div class="subtitle" >心理学 ｜ 已测298人</div>
@@ -51,7 +59,7 @@
 					</div>
 					<div class="f-s " >
 						 <div></div>
-						 <el-button  @click="goEva" style="width: 228px; height: 59px;" >立即支付</el-button>
+						 <el-button  @click="goEva" class="go-btn" >立即支付</el-button>
 					</div>
 				</div>
 			</div>
@@ -93,7 +101,7 @@
 			margin-top: 58px;
 		}
 		.main{
-			background: #F5F5F5;
+			background: #FFFFFF;
 			padding: 31px 25px 30px 86px;
 			margin-bottom: 137px;
 			.user{
@@ -111,18 +119,27 @@
 					height: 35px;
 					background: #FFFFFF;
 					border-radius: 50%;
+					img{
+						width: 35px;
+						height: 35px;
+					}
 				}
 			}
 		}
 		.course{
 			padding: 26px 19px 25px 25px;
-			background: #FFFFFF;
+			background: rgba(245, 246, 246, 1);
 			box-sizing: border-box;
 			.left{
 				.pic{
 					width: 298px;
 					height: 155px;
 					background: #F0F0F0;
+					img{
+						width: 298px;
+						height: 155px;
+						border-radius: 4px;
+					}
 				}
 				.detail{
 					padding: 15px 0px 23px  43px;
@@ -168,9 +185,13 @@
 				.ali:hover{
 					background-color: rgba(58,15,89,0.3);
 					color: rgb(58,15,89);
+					border: 2px solid #346FEB;
+					background: #F0F5FF;
 				}
+				
 				.ali{
 					box-sizing: border-box;
+					border: 2px solid #E5EDFF;
 					margin-right: 26px;
 					width: 273px;
 					height: 93px;
@@ -180,13 +201,16 @@
 					font-weight: 400;
 					line-height: 20px;
 					color: #707070;
+					border-radius: 4px;
 					.yuan{
 						width: 17px;
 						height: 17px;
-						background-color: #000000;
+						background: #F5F6F6;
 						border-radius: 50%;
 						margin-right: 23px;
+						
 					}
+					
 				}
 			}
 		}
@@ -204,6 +228,14 @@
 			line-height: 20px;
 			color: #333333;
 			opacity: 0.4;
+		}
+		.go-btn{
+			width: 228px;
+			height: 56px;
+			background: #1371F3;
+			opacity: 1;
+			border-radius: 4px;
+			color: #FFFFFF;
 		}
 		
 	}

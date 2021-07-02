@@ -4,18 +4,21 @@
 			<div class="left f-c" >
 				<div class="time" >订单时间：2021.04.02 10:49</div>
 				<div class="f">
-					<div class="pic" ></div>
+					<div class="pic" >
+						<img src="../../../assets/icon/sucai/course1.png" alt="">
+					</div>
 					<div>
 						<div class="title2" >新媒体社区运营涨粉裂变</div>
-						<div class="lable f-a-j" >2人团</div>
+						<div style="color: rgba(153, 153, 153, 1);" class=" f-a-j" >7节课 ｜ 390人已学习</div>
 					</div>
 				</div>
 				<div class="f-a" >合计：<Price  ></Price></div>
 			</div>
 			<div class="right f-s f-c" >
-				<div class="f" >
+				<div class="f-s" >
 					<div></div>
-					<div>待付款</div>
+					<div style="color: rgba(254, 152, 8, 1);" >待付款</div>
+					
 				</div>
 				<div class="time f-s" >
 					<div></div>
@@ -76,6 +79,11 @@
 					height: 82px;
 					background: #F2F2F2;
 					margin: 11px 12px 16px 0;
+					img{
+						width: 149px;
+						height: 82px;
+						border-radius: 8px;
+					}
 				}
 				.lable{
 					width: 50px;
@@ -107,7 +115,7 @@
 		.go-btn{
 			width: 78px;
 			height: 30px;
-			background: #C7C7C7;
+			background: linear-gradient(180deg, #74AEFF 0%, #346FEB 100%);
 			opacity: 1;
 			border-radius: 15px;
 			font-size: 13px;

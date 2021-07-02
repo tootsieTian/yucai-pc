@@ -6,7 +6,7 @@
 				<div><Price :fontSize="'16px'" ></Price></div>
 			</div>
 			<div class="f-c f-s right" >
-				<div>王先生购买</div>
+				<div class="f-a-j" > <img  style="width: 20px;margin-right: 10px;" src="../../../assets/icon/sucai/17.png" alt="">  王先生购买</div>
 				<div class="light" >收益0.68</div>
 			</div>
 		</div>
@@ -55,6 +55,7 @@
 				color: #999999;
 				.light{
 					color: #3E3E3E;
+					text-align: right;
 				}
 			}
 		}

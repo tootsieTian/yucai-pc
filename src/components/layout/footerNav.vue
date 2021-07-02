@@ -32,7 +32,7 @@
                         御才文化公众号
                     </div>
                     <div class="public-number-img">
-						<img  style="width: 186px;" src="../../assets/image/common/compnyMa.jpg" alt="">
+						<img  style="width: 138px;" src="../../assets/image/common/compnyMa.jpg" alt="">
 					</div>
                 </div>
             </div>
@@ -171,9 +171,9 @@
         margin-left: 44px;
 
         .public-number-img {
-            width: 186px;
-            height: 186px;
-            background: #FFFFFF;
+            // width: 186px;
+            // height: 186px;
+            // background: #FFFFFF;
         }
     }
     .notice{

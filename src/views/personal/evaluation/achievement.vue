@@ -5,10 +5,14 @@
 			<div></div>
 		</div>
 		<div class="hx"></div>
-		<div class="item-con f" >
-			<div v-for="(item,index) in 3" :key="index"  >
-				<div class="item" ></div>
-				<div class="tit1 f-a-j" >测评满分成就</div>
+		<div class="item-con f " >
+			<div class="f-a-j f-c" style="margin-right: 20px;"  v-for="(item,index) in 3" :key="index"  >
+				<div class="item" >
+					<img src="../../../assets/image/personal/chengjiu.png" alt="">
+				</div>
+				<div class="tit1 f-a-j f-c" ><div>测评满分成就</div>
+				<div style="color: #999999;font-size: 12px;" >2021.05.06获得</div>
+				</div>
 			</div>
 		</div>
 	</div>	
@@ -54,13 +58,18 @@
 			.item{
 				width: 226px;
 				height: 301px;
-				background: #F2F2F2;
-				margin-right: 40px;
+				
+				
+				img{
+					width: 226px;
+					height: 301px;
+				}
 			}
 			.tit1{
-				height: 80px;
-				width: 226px;
-				font-size: 17px;
+				width: 165px;
+				height: 56px;
+				background: #F4F4F4;
+				font-size: 14px;
 				font-weight: 400;
 				line-height: 24px;
 				color: #333333;

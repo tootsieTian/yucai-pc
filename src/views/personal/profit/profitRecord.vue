@@ -9,13 +9,14 @@
 		</div>
 		<div class="hx"></div> 
 		<div class="rec-con">
-            <dataSelect @select="select" style="margin-bottom: 20px;" :selectList="selectList" ></dataSelect>
+           <tagList style="margin-left: -26px;" :menuList="NavList" @handleSelect="handleSelect" ></tagList>
 				<earningItem  ></earningItem>
 		</div>
 	</div>
 </template>
 
 <script>
+	import tagList from "../../../components/common/tagList.vue"
 	import dataSelect from "../../../components/common/dataSelect.vue"
 	import earningItem from "../../../components/personal/earning/earningItem.vue"
 	import {
@@ -25,9 +26,11 @@
 	export default {
 		components: {
 			earningItem,
-			dataSelect
+			dataSelect,
+			tagList
 		},
 		setup() {
+			const NavList = reactive(["近7天","近1月","近3月"])
 			const selectList = reactive([{
 				title: "近7天"
 			}, {
@@ -38,9 +41,11 @@
 			const select = ()=>{
 				
 			}
+			
 			return{
 				selectList,
-				select
+				select,
+				NavList
 			}
 		}
 		
@@ -72,7 +77,7 @@
 		}
 
 		.rec-con {
-			padding: 50px 48px 71px 57px;
+			padding: 26px 48px 71px 57px;
 		}
 	}
 </style>

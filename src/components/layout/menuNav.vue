@@ -5,8 +5,8 @@
     </div>
     <div :class="{nav:true,transparent: transparent}">
         <div class="container-menu">
-            <div class="logo" @click="toPath('/')">
-                <img  :src=" transparent == true ? logoWImg : logoBImg   " alt="">
+            <div class="f-a-j"  @click="toPath('/')">
+                <img style="height: 47px;" :src=" transparent == true ? logoWImg : logoBImg   " alt="">
             </div>
             <div class="menu-list">
                 <div v-for="item in menuList"

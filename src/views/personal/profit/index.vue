@@ -13,32 +13,32 @@
 						<div  class="f-c f-s">
 							<div  >
 								<div class="lab-tit" >总收益</div>
-								<div><Price></Price></div>
+								<div><Price :color="'#ffffff'" :fontSize="'26px'" ></Price></div>
 							</div>
 							<div  >
 								<div class="lab-tit" >总收益</div>
-								<div><Price></Price></div>
+								<div><Price :color="'#ffffff'" :fontSize="'26px'" ></Price></div>
 							</div>
 						</div>
 						<div class="f-c f-s" >
 							<div></div>
 							<div  >
 								<div class="lab-tit" >总收益</div>
-								<div><Price></Price></div>
+								<div><Price :color="'#ffffff'" :fontSize="'26px'" ></Price></div>
 							</div>
 						</div>
 						<div class="f-c f-s" >
 							<div @click="goRecord" >收益记录</div>
 							<div  >
 								<div class="lab-tit" >总收益</div>
-								<div><Price></Price></div>
+								<div><Price :color="'#ffffff'" :fontSize="'26px'" ></Price></div>
 							</div>
 						</div>
 					</div>
-					<div class="tab f" >
+				<!-- 	<div class="tab f" >
 						<div style="border-right: 1px solid #000000;" class="f-a-j f-1 hand" >提现</div>
 						<div class="f-a-j f-1 hand" >我的银行卡</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="footer" >
 					<div>收益曲线</div>
@@ -157,8 +157,8 @@
 			font-size: 18px;
 			font-weight: 500;
 			line-height: 25px;
-			color: #333333;
-			border-bottom: 4px solid #505050;
+			color: rgba(19, 113, 243, 1);
+			border-bottom: 4px solid rgba(19, 113, 243, 1);
 			// border-spacing: ;
 		}
 		.pri-con{
@@ -166,8 +166,10 @@
 			box-sizing: border-box;
 			width: 100%;
 			.header{
-				height: 270px;
-				background: #FAFAFA;
+				// height: 270px;
+				// background: #FAFAFA;
+				background-image: url(../../../assets/image/personal/prifitbg.png);
+				background-size: 100%;
 				width: 100%;
 				margin-bottom: 43px;
 				.lab-tit{
@@ -178,14 +180,14 @@
 					width: 100%;
 					padding: 28px 47px 36px 56px;
 					box-sizing: border-box;
-					color: rgba(51, 51, 51, 0.6);
+					color: rgba(255, 255, 255, 0.6);
 					font-size: 14px;
 					font-weight: 400;
 					line-height: 20px;
 					
 				}
 				.tab{
-					background: #EAEAEA;
+					
 					height: 59px;
 					width: 100%;
 					padding: 22px 0;

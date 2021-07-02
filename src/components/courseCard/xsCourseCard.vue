@@ -1,13 +1,13 @@
 <template>
 	<div class="item hand f">
 		<div class="left">
-
+             <img src="../../assets/icon/sucai/course2.png" alt="">
 		</div>
 		<div class="right f-c f-s">
 			<div>你真的懂得心理学吗？</div>
 			<div class="subtitle f-s">
 				<div>{{ iswrong ? '1题错题' : "心理学 ｜ 已测298人"}}</div>
-				<div @click="goWrong" v-if="iswrong" name="two-right">
+				<div style="color: rgba(19, 113, 243, 1);" @click="goWrong" v-if="iswrong" name="two-right">
                       去订正 >
 				</div>
 				<slot name="one-right" ></slot>
@@ -19,7 +19,7 @@
 					<div class="subtitle" v-if="evaluation==0||evaluation==1" >{{evaluation==0 ? '去测试' : '我已测试' }}</div>
 				</div>
 				<slot name="two-right" ></slot>
-				<div @click="goTest" v-if="evaluation==0" >
+				<div style="color: rgba(19, 113, 243, 1);" @click="goTest" v-if="evaluation==0" >
 					马上去测 >
 				</div>
 			</div>
@@ -69,6 +69,11 @@
 			width: 40%;
 			height: 85px;
 			background: #F2F2F2;
+			img{
+				width: 100%;
+				height: 85px;
+				border-radius: 4px;
+			}
 		}
 
 		.right {
