@@ -2,6 +2,7 @@
     <div>
         <div class="nav-list">
             <swiper
+                    :autoplay="{enabled: true, delay: 1000}"
                     :slides-per-view="1"
                     @swiper="onSwiper"
                     @slideChange="onSlideChange"
@@ -24,9 +25,9 @@
                     </div>
                 </div>
             </div>
-			<div  class="index-mask" >
-				<img src="../../assets/image/index/indexMask.png" alt="">
-			</div>
+            <div class="index-mask">
+                <img src="../../assets/image/index/indexMask.png" alt="">
+            </div>
         </div>
 
         <main>
@@ -114,9 +115,9 @@
 
             <!--活动专区-->
             <div class="active-area">
-				<div  class="index-mask2" >
-					<img  style="width: 783px;" src="../../assets/image/index/indexMask.png" alt="">
-				</div>
+                <div class="index-mask2">
+                    <img style="width: 783px;" src="../../assets/image/index/indexMask.png" alt="">
+                </div>
                 <div class="container-main">
                     <course-list-title title="活动专区"
                                        @more="more"
@@ -257,24 +258,27 @@
 </script>
 
 <style lang="scss" scoped>
-    .active-area{
+    .active-area {
         background: #EFF0F0;
         padding-top: 55px;
         padding-bottom: 62px;
-		position: relative;
-		.index-mask2{
-		   // background-image: url;
-		   position: absolute;
-		   width: 783px;
-		   // height: 1305px;
-		   left: 0px;
-		   top: -306px;
-		}
+        position: relative;
+
+        .index-mask2 {
+            // background-image: url;
+            position: absolute;
+            width: 783px;
+            // height: 1305px;
+            left: 0px;
+            top: -306px;
+        }
+
         .activity-title {
             margin-bottom: 75px;
-		
+
         }
     }
+
     .hot-course {
         position: relative;
         box-sizing: border-box;
@@ -289,10 +293,12 @@
             top: -300px;
         }
     }
-    .favorite{
+
+    .favorite {
         padding-top: 55px;
         padding-bottom: 110px;
         background: #F5F6F6;
+
         .favorite-title {
             margin-bottom: 14px;
         }
@@ -310,6 +316,7 @@
         position: relative;
         padding-top: 55px;
         padding-bottom: 75px;
+
         .excellent-title {
             margin-bottom: 53px;
         }
@@ -325,16 +332,18 @@
             height: 904px;
             width: 100%;
         }
-		.index-mask{
-		   // background-image: url;
-		   position: absolute;
-		   width: 724px;
-		   height: 1305px;
-		   right: 0px;
-		   img{
-			   width: 724px;
-		   }
-		}
+
+        .index-mask {
+            // background-image: url;
+            position: absolute;
+            width: 724px;
+            height: 1305px;
+            right: 0px;
+
+            img {
+                width: 724px;
+            }
+        }
     }
 
     .plate-list {
@@ -509,6 +518,7 @@
 
     .activity-list {
         margin-bottom: 6px;
+
         .activity-item {
             margin-bottom: 44px;
         }
