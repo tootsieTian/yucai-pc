@@ -4,7 +4,12 @@
 			<div>
 				<el-breadcrumb separator-class="el-icon-arrow-right">
 					<el-breadcrumb-item :to="{ path: 'wrong' }">我的错题</el-breadcrumb-item>
-					<el-breadcrumb-item>错题解析</el-breadcrumb-item>
+					<el-breadcrumb-item>
+						<div class="f-a" style="font-size: 12px; color: rgba(153, 153, 153, 1);height: 20px;" >
+						<img style="height: 12px;width: 10px;margin-left: 20px;margin-right: 10px;" src="../../../assets/image/personal/dhicon.png" alt="">
+						测评中心>我的错题>我的解析
+						</div>
+					</el-breadcrumb-item>
 				</el-breadcrumb>
 			</div>
 			<div></div>

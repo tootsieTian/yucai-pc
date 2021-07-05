@@ -3,7 +3,12 @@
 		<div class="tit f-s f-a">
 			 <el-breadcrumb  style="font-size: 16px; color: #333333;" separator-class="el-icon-arrow-right">
 			  <el-breadcrumb-item :to="{ path: '/personal/profit' }">我的收益</el-breadcrumb-item>
-			  <el-breadcrumb-item >收益记录</el-breadcrumb-item>
+			  <el-breadcrumb-item >
+				  <div class="f-a" style="font-size: 12px; color: rgba(153, 153, 153, 1);height: 20px;" >
+				  <img style="height: 12px;width: 10px;margin-left: 20px;margin-right: 10px;" src="../../../assets/image/personal/dhicon.png" alt="">
+				  我的收益>收益记录
+				  </div>
+			  </el-breadcrumb-item>
 			</el-breadcrumb>
 			<div></div>
 		</div>

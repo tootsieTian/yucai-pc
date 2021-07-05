@@ -1,8 +1,13 @@
 <template>
 	<div class="contair">
-		<div class="tit f-s f-a">
+		<div class="tit  f-a">
 			<div>我的成就</div>
-			<div></div>
+			<div>
+				<div class="f-a" style="font-size: 12px; color: rgba(153, 153, 153, 1);height: 20px;" >
+				<img style="height: 12px;width: 10px;margin-left: 20px;margin-right: 10px;" src="../../../assets/image/personal/dhicon.png" alt="">
+				测评中心>我的成就
+				</div>
+			</div>
 		</div>
 		<div class="hx"></div>
 		<div class="item-con f " >
