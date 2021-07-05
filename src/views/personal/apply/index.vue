@@ -6,8 +6,8 @@
 		</div>
 		<div class="hx"></div>
 		<div class="con f" >
-			<el-button  @click="goDetail(0)"  class="apply" >申请个人讲师</el-button>
-			<el-button  @click="goDetail(1)"  class="apply" >申请入驻机构</el-button>
+			<el-button  @click="goDetail(0)"  class="apply perbg " >申请个人讲师</el-button>
+			<el-button  @click="goDetail(1)"  class="apply combg" >申请入驻机构</el-button>
 		</div>
 	</div>	
 </template>
@@ -56,19 +56,27 @@
 			background: #F5F5F5;
 		}
 		.apply{
-			width: 210px;
-			height: 181px;
-			background: #F2F2F2;
+			width: 312px;
+			height: 136px;
+			background-size: 100%;
 			opacity: 1;
-			font-size: 16px;
+			font-size: 24px;
 			font-weight: 400;
 			line-height: 22px;
-			color: #333333;
+			color: rgba(255, 255, 255, 1);
 			margin-right: 31px;
+			border: 0;
+			text-align: left;
 		}
 		.con{
 		    padding: 73px 0 171px 48px;
 			box-sizing: border-box;
+		}
+		.perbg{
+			background-image: url(../../../assets/image/personal/applyPerson.png);
+		}
+		.combg{
+			background-image: url(../../../assets/image/personal/applyCompany.png);
 		}
 		}
 </style>

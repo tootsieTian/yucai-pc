@@ -18,22 +18,28 @@
 
 			</div>
 			<div class="study-tit">上传身份证</div>
-
+            <div class="f" >
 			<el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
 			 :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-				<div class="pic f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;">
-					身份证正面
+				<div class="pic picb f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;">
+					<div class="ab-con f-a-j" >
+						拍摄背面
+					</div>
 				</div>
 			</el-upload>
 			<el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
 			 :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-			<div class="pic f-a-j hand">
-				身份证反面
+			<div class="pic f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;margin-left: 30px;" >
+				<div class="ab-con f-a-j" >
+					拍摄正面
+				</div>
 			</div>
 			</el-upload>
+			</div>
+			<div class="hx" style="margin-top: 80px;"  ></div>
 			<div class="f-j">
 				<el-button class="btn-1">取消</el-button>
-				<el-button class="btn-1">立即申请</el-button>
+				<el-button class="btn-1 bule">保存并提交</el-button>
 			</div>
 		</div>
 
@@ -163,36 +169,62 @@
 		}
 
 		.lable1 {
-
+            
 			padding: 11px 26px 11px 22px;
 			font-size: 14px;
 			font-weight: 400;
 			line-height: 20px;
-			color: #707070;
+			color: rgba(19, 113, 243, 1);
 			margin-top: 23px;
 			margin-right: 20px;
-			border: 1px solid #DBDBDB;
+			border: 1px solid rgba(19, 113, 243, 1);
 		}
 
 		.pic {
 			width: 355px;
 			height: 165px;
-			background: #F0F0F0;
+			background-image: url(../../../assets/image/personal/IDback.png);
 			font-size: 15px;
 			font-weight: 400;
 			line-height: 21px;
 			color: #333333;
+			background-size: 100%;
+			position: relative;
+		}
+		.ab-con{
+			position: absolute;
+			width: 355px;
+			height: 47px;
+			background-color: rgba(102, 102, 102, 1);
+			bottom: -47px;
+			color: #FFFFFF;
+			border-radius: 0px 0px 8px 8px;
+		}
+		.picb{
+			background-image: url(../../../assets/image/personal/ID.png)!important;
 		}
 
 		.btn-1 {
-			width: 155px;
+			width: 156px;
 			height: 42px;
-
-			margin: 59px 24px 0 24px;
+			background: #F7F7F7;
+			border: 1px solid #DBDBDB;
+			opacity: 1;
+			border-radius: 4px;
+			color: rgba(153, 153, 153, 1);
+			margin-top: 70px;
+		}
+		.bule{
+			background: #1371F3!important;
+			color: #FFFFFF!important;
+			border: 0!important;
+			margin-left: 40px;
+			
 		}
 
 		.lable-active {
-			background-color: #53A8FF;
+			background-image: url(../../../assets/image/index/checkStudy.png);
+			background-size: 100%;
 		}
 
 	}

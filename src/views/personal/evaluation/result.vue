@@ -12,8 +12,8 @@
 							<div style="font-size: 30px;line-height: 42px;color: rgba(254, 152, 8, 1);" >90分</div>
 						</div>
 					</div>
-					<div style="margin-top: 28px;" >答对8题｜ 共9题</div>
-					<div style="margin-top: 12px;margin-bottom: 39px;" >耗时02:29</div>
+					<div style="margin-top: 68px;color: #FFFFFF;font-size: 17px;" >答对8题｜ 共9题</div>
+					<div style="margin-top: 12px;margin-bottom: 39px;color: #FFFFFF;" >耗时02:29</div>
 					
 				</div>
 				<div class="f-a-j" >
@@ -21,7 +21,7 @@
 						<el-button class="btn1" >错题解析</el-button>
 					</div>
 					<div>
-						<el-button class="btn1" >再测一次</el-button>
+						<el-button class="btn1 btn2" >再测一次</el-button>
 					</div>
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 			opacity: 1;
        
 			
-			height: 581px;
+			// height: 581px;
 			margin-top:0px;
 			width: 100%;
 			box-sizing: border-box;
@@ -147,11 +147,17 @@
 			}
 		}
 		.btn1{
-			width: 213px;
-			height: 49px;
-			background: #FFFFFF;
+			width: 208px;
+			height: 46px;
+			background: linear-gradient(137deg, #FFA620 0%, #F78404 100%);
+			opacity: 1;
 			border-radius: 27px;
-			margin: 0 31px;
+			margin: 47px 31px;
+			color: #FFFFFF;
+		}
+		.btn2{
+			background: #F6F8FA;
+			color: #000000;
 		}
 	}
 </style>

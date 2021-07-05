@@ -4,10 +4,11 @@
 			<div class="f-s" >
 			<div @click="open(item)" class="f-a" >
 				<div class="yuan" ></div>
-				<div class="title" ><span v-show="isComment" style="color: #999999;margin-right: 5px;" >老师回复了你的评论:</span>  {{ isComment ? item.reply :item.title  }}</div>
+				<div class="title" ><span v-show="isComment" style="color: #999999;margin-right: 5px;" >老师回复了你的评论:</span> {{ isComment ? '' :item.title  }} </div>
 			</div>
 			<div class="date" >{{item.date}}</div>
 			</div>
+			<div class="com" v-show="isComment" >{{ isComment ? item.reply :item.title  }}</div>
 			<div class="reply" v-show="isComment" >
 				{{item.title}}
 			</div>
@@ -48,11 +49,13 @@
 		font-family: PingFang SC;
 		.message-item{
 			margin-bottom: 27px;
+			border-bottom: 1px solid #f3f3f3;
+			padding-bottom: 33px;
 			.yuan{
-				margin-right: 20px;
+				margin-right: 40px;
 				width: 6px;
 				height: 6px;
-				background: #E3E3E3;
+				background: rgba(254, 152, 8, 1);
 				border-radius: 50%;
 				opacity: 1;
 			}
@@ -71,15 +74,22 @@
 			}
 		}
 		.reply{
-			margin-left: 20px;
-			padding: 4px 4px 3px 13px;
-			background-color: #EAEAEA;
+			margin-left: 40px;
+			padding: 13px;
+			background-color: rgba(246, 248, 250, 1);
 			font-weight: 400;
 			line-height: 20px;
-			color: #333333;
+			color: #999999;
 			font-size: 14px;
 			margin-top: 6px;
 			display: inline-block;
+		}
+		.com{
+			color: rgba(51, 51, 51, 1);
+			font-size: 14px;
+			margin-left: 40px;
+			margin-top: 11px;
+			margin-bottom: 7px;
 		}
 	}
 </style>
