@@ -14,7 +14,7 @@
 		<div class="first-tit" >你真的懂心理学的1题错题</div>
 		<div class="second-tit" >查看原测试题</div>
 		<div class="title" >2、各种原因引起的心境低落为主的精神状态为（）。</div>
-		<div class="select-con" >
+		<div class="select-con f" >
 			<div v-for="(item,index)  in selectList" class="selet-item f" >
 				<div class="yuan f-a-j" >{{item}}</div>
 				<div>焦虑</div>
@@ -22,9 +22,9 @@
 		</div>
 		<div class="footer" >
 			<div style="margin-bottom: 16px;" >你的答案为 A</div>
-			<div style="padding-left: 9px;" @click="openDetail" >{{isopen ? '收起' :"查看" }}正确答案与解析</div>
+			<div style="color: #FE9808;"  class="hand" @click="openDetail" >{{isopen ? '收起' :"查看" }}正确答案与解析</div>
 			<div v-show="isopen" class="open-con" >
-				<div style="margin-bottom: 12px;" >正确答案B</div>
+				<div style="margin-bottom: 12px;font-weight: 600;" >正确答案B</div>
 				<div>解析：继发于社会心理应激或脑和躯体疾病的心理 异常称为心理障碍</div>
 			</div>
 		</div>
@@ -91,7 +91,7 @@
 			font-size: 15px;
 			font-weight: 400;
 			line-height: 21px;
-			color: #333333;
+			color: #999999;
 			opacity: 1;
 		}
 		.title{
@@ -103,7 +103,9 @@
 			opacity: 1;
 		}
 		.select-con{
-			
+			width: 600px;
+		    flex-wrap: wrap;
+			margin-bottom: 40px;
 			.selet-item{
 				margin-bottom: 18px;
 				font-size: 15px;
@@ -111,6 +113,7 @@
 				line-height: 21px;
 				color: #333333;
 				opacity: 0.8;
+				width: 300px;
 				.yuan{
 					width: 22px;
 					height: 22px;

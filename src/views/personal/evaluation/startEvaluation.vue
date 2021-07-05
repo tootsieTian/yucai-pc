@@ -1,6 +1,8 @@
 <template>
-	<div class="f-a-j">
+	<div  style="background-color: rgba(245, 246, 246, 1);" class="f-a-j f-c">
+		<div class="title container-main" >测评中</div>
 		<div class="con  container-main">
+			
 			<el-progress  class="progress" :percentage="75" :show-text="false" ></el-progress>
 			<div class="box-t f-s">
 				<div class="box-l font-din">
@@ -72,9 +74,15 @@
 
 	.con {
 		// width: 1200px;
-		background: #F5F5F5;
+		background: #FFFFFF;
 		margin-bottom: 203px;
-		margin-top: 52px;
+	}
+	.title{
+		font-size: 28px;
+		font-weight: 500;
+		line-height: 40px;
+		color: #333333;
+		margin: 30px 0px;
 	}
 
 	.progress {
@@ -194,10 +202,12 @@
 
 		.upon {
 			margin-left: 126px;
+			color: rgba(19, 113, 243, 0.4);
 		}
 
 		.down {
 			margin-left: 126px;
+			color: rgba(19, 113, 243, 1);
 		}
 
 		.up-job {
