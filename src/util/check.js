@@ -1,55 +1,68 @@
- import { Toast } from 'vant';
- 
  // 验证电话号码
-  export function validatePhone(rule, value,callback) {
+  export function validatePhone(value) {
     const reg =/^[1][3-9][0-9]{9}$/;
     if(value==''||value==undefined||value==null){
-      callback();
+       return false;
     }else {
       if ((!reg.test(value)) && value != '') {
-        callback(Toast.fail('请输入正确的电话号码'));
+        return false;
       } else {
-        callback();
+        return true;
       }
     }
   }
-  
+
+
+  // 验证真实姓名
+   export function validateName(value) {
+     const reg =/^([\u4e00-\u9fa5]{1,20}|[a-zA-Z\.\s]{1,20})$/;
+     if(value==''||value==undefined||value==null){
+        return false;
+     }else {
+       if ((!reg.test(value)) && value != '') {
+         return false;
+       } else {
+         return true;
+       }
+     }
+   }
+
   // 验证身份证号码
-  export function validateIdNo(rule, value,callback) {
+  export function validateIdNo(value) {
     const reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
     if(value==''||value==undefined||value==null){
-      callback();
+      return false;
     }else {
       if ((!reg.test(value)) && value != '') {
-        callback(Toast.fail('请输入正确的身份证号码'));
+        return false;
       } else {
-        callback();
+        return true;
       }
     }
   }
-  
+
   // 验证邮箱
-  export function validateEMail(rule, value,callback) {
+  export function validateEMail( value) {
    const reg =/^([a-zA-Z0-9]+[-_\.]?)+@[a-zA-Z0-9]+\.[a-z]+$/;
    if(value==''||value==undefined||value==null){
-   callback();
+   return false;
    }else{
    if (!reg.test(value)){
-   callback(Toast.fail('请输入正确的邮箱'));
+   return false;
    } else {
-   callback();
+   return true;
    }
    }
   }
-  
+
   // 验证密码规则
-  export const validatePsdReg = (rule, value, callback) => {
+  export const validatePsdReg = ( value) => {
    if (!value) {
-   return callback(Toast.fail('请输入密码'))
+   return false;
    }
    if (!/^(?![\d]+$)(?![a-zA-Z]+$)(?![^\da-zA-Z]+$)([^\u4e00-\u9fa5\s]){6,20}$/.test(value)) {
-   callback(Toast.fail('请输入6-20位英文字母、数字或者符号（除空格），且字母、数字和标点符号至少包含两种'))
+   return false;
    } else {
-   callback()
+   return true;
    }
   }
