@@ -1,12 +1,8 @@
-import Vue from 'vue';
 import axios from 'axios'
 import router from "../../router/router";
 import { serialize } from '../util';
 import website from '../../config/website';
-import { Toast } from 'vant';
 import qs from 'qs'
-
-Vue.use(Toast);
 
 //默认超时时间
 axios.defaults.timeout = 100000
@@ -57,12 +53,11 @@ axios.interceptors.response.use(res => {
   },
   (error) => {
     const status = error.response.status;
-    console.log(error)
+    console.error(error)
     const message = error.response.data.msg || '未知错误';
-    Toast(message)
     //如果是401则跳转到登录页面
     if (status === 401) {
-      //router.push('/login')
+      router.push('/login')
     }
     return Promise.reject(new Error(error));
   });

@@ -12,7 +12,7 @@
                 <swiper-slide v-for="item in  swipeList">
                     <img class="nav-img"
                          @click="toCourseDetail"
-                         :src="item.path"/>
+                         :src="item.img"/>
                 </swiper-slide>
             </swiper>
             <div class="plate-list container-main">
@@ -177,6 +177,7 @@
   import lCourseCard from "../../components/courseCard/mCourseCard";
   import CheckStudy from "../../components/index/checkStudy";
   import Price from "../../components/common/price.vue"
+  import { getIndexHot, getIndexTabList } from "../../api/indexList";
 
   SwiperCore.use([Pagination, A11y]);
 
@@ -197,14 +198,8 @@
       const router = useRouter()
       const dialogShow = ref(false)      // 选择学习领域盒子
       const loginShow = ref(false)
-      const swipeList = reactive([
-        {
-          path: require('../../assets/icon/sucai/index2.png')
-        },
-        {
-          path: require('../../assets/icon/sucai/平行宇宙.jpg')
-        }
-      ])
+
+      let swipeList = reactive([])
       const plateList = reactive([
         {
           title: '全部课程',
@@ -222,6 +217,17 @@
           mask: require("../../assets/image/index/studyM.png")
         }
       ])
+
+      // 调用首页数据api
+      getIndexHot({}).then(res=>{
+        console.log(swipeList)
+        console.log(res)
+        swipeList.push(...res.indexCarouselList)
+      })
+      // getIndexTabList({}).then(res=>{
+      //
+      // })
+
       const method = {
         more() {
           console.log('查看更多')
