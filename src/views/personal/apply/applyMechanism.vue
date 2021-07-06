@@ -25,7 +25,7 @@
 			<div class="study-tit">上传身份证</div>
 			<div class="f">
 				<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan"
-				 :data="subObj" :show-file-list="false" :on-success="handleAvatarSuccess1" :before-upload="beforeAvatarUpload">
+				 name="file" :show-file-list="false" :on-success="handleAvatarSuccess1" :before-upload="beforeAvatarUpload">
 					<div class="pic picb f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;">
 						<div class="ab-con f-a-j">
 							拍摄背面

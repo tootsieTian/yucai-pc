@@ -2,40 +2,35 @@
 	<div class="contair">
 		<div class="tit f-s f-a">
 			<div>个人资料</div>
-			<div  class="hand" style="color: rgba(19, 113, 243, 1);" @click="goSave">保存</div>
+			<div class="hand" style="color: rgba(19, 113, 243, 1);" @click="goSave">保存</div>
 		</div>
 		<div class="hx"></div>
 		<div class="detail">
 			<div class="title">基本信息</div>
 			<div class="userpic f">
-				
+
 				<div class="lable">头像</div>
-				<el-upload
-				  class="avatar-uploader"
-				  action="https://jsonplaceholder.typicode.com/posts/"
-				  :show-file-list="false"
-				  :on-success="handleAvatarSuccess"
-				  :before-upload="beforeAvatarUpload"
-				>
-				  <div class="pic">
-					  <img src="../../../assets/icon/sucai/17.png" alt="">
-				  	<div class="changepic hand">
-				  		<div class="top"></div>
-				  		<div class="bottom f-a-j">修改</div>
-				  	</div>
-				  </div>
+				<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan"
+				 :show-file-list="false" name="file" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+					<div class="pic">
+						<img src="../../../assets/icon/sucai/17.png" alt="">
+						<div class="changepic hand">
+							<div class="top"></div>
+							<div class="bottom f-a-j">修改</div>
+						</div>
+					</div>
 				</el-upload>
-				
+
 			</div>
 			<div class="username f">
 				<div class="lable">昵称</div>
 				<div style="margin-left: 34px;">薛定谔的猫</div>
-				<div style="margin-left: 27px;"  class="hand" @click="open" >修改</div>
+				<div style="margin-left: 27px;" class="hand" @click="open">修改</div>
 			</div>
 			<div class="sex f">
 				<div class="lable">性别</div>
 				<el-select style="margin-left: 34px;" v-model="value" placeholder="请选择">
-					<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+					<el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.label">
 					</el-option>
 				</el-select>
 			</div>
@@ -49,7 +44,7 @@
 				<div class="" style="opacity: 1;">*选择学习领域</div>
 				<div class="f" style="flex-flow: wrap;">
 					<div class="lable1 lable hand" @click="selectItme($event,item)" v-for="(item,index)  in 10">家庭教育
-					
+
 					</div>
 				</div>
 			</div>
@@ -59,78 +54,99 @@
 
 <script>
 	import {
+		setUserInfo
+	} from "../../../api/wechat.js"
+	import {
 		ref,
 		reactive
 	} from 'vue';
-	import { ElMessage } from 'element-plus'
+	import {
+		ElMessage
+	} from 'element-plus'
 	import router from "../../../router/router.js";
 	export default {
 		name: "edit",
 		setup() {
-			const checkList= reactive([])
+			const checkList = reactive([])
 			const input = ref('');
 			const imageUrl = ref('');
+			const inputName = ref('');
 			const value = ref('');
-		    const options = reactive( [{
+			const options = reactive([{
 				value: '选项1',
 				label: '男'
 			}, {
 				value: '选项2',
 				label: '女'
 			}]);
-			const selectItme  = (event,item)=>{
+			const selectItme = (event, item) => {
 				let className = event.currentTarget.className
-				
+
 				if (checkList.includes(item)) {
-				  checkList.splice(checkList.findIndex(val => val === item), 1)
-				  event.currentTarget.className = className.replace(' lable-active', '')
-				
+					checkList.splice(checkList.findIndex(val => val === item), 1)
+					event.currentTarget.className = className.replace(' lable-active', '')
+
 				} else {
-				  if (checkList.length > 2) {
-				    return  ElMessage('最多只能选3个')
-				  }
-				  checkList.push(item)
-				  event.currentTarget.className = className + ' lable-active'
-				
+					if (checkList.length > 2) {
+						return ElMessage('最多只能选3个')
+					}
+					checkList.push(item)
+					event.currentTarget.className = className + ' lable-active'	
 				}
 			};
 			const methods = {
 				handleAvatarSuccess(res, file) {
-				        this.imageUrl = URL.createObjectURL(file.raw);
-				      },
-				      beforeAvatarUpload(file) {
-				        const isJPG = file.type === 'image/jpeg';
-				        const isLt2M = file.size / 1024 / 1024 < 2;
-				
-				        if (!isJPG) {
-				          this.$message.error('上传头像图片只能是 JPG 格式!');
-				        }
-				        if (!isLt2M) {
-				          this.$message.error('上传头像图片大小不能超过 2MB!');
-				        }
-				        return isJPG && isLt2M;
-				      },
-					   open() {
-					          this.$prompt('请输入昵称', '提示', {
-					            confirmButtonText: '确定',
-					            cancelButtonText: '取消',
-					            inputPattern: /^[\u4E00-\u9FA5A-Za-z0-9_]+$/,
-					            inputErrorMessage: '昵称格式不正确'
-					          }).then(({ value }) => {
-					            this.$message({
-					              type: 'success',
-					              message: '你的昵称是: ' + value
-					            });
-					          }).catch(() => {
-					            this.$message({
-					              type: 'info',
-					              message: '取消输入'
-					            });
-					          });
-					        }
+				   imageUrl = URL.createObjectURL(file.raw);
+				},
+				beforeAvatarUpload(file) {
+					const isJPG = file.type === 'image/jpeg';
+					const isLt2M = file.size / 1024 / 1024 < 2;
+
+					if (!isJPG) {
+						this.$message.error('上传头像图片只能是 JPG 格式!');
+					}
+					if (!isLt2M) {
+						this.$message.error('上传头像图片大小不能超过 2MB!');
+					}
+					return isJPG && isLt2M;
+				},
+				open() {
+					this.$prompt('请输入昵称', '提示', {
+						confirmButtonText: '确定',
+						cancelButtonText: '取消',
+						inputPattern: /^[\u4E00-\u9FA5A-Za-z0-9_]+$/,
+						inputErrorMessage: '昵称格式不正确'
+					}).then(({
+						value
+					}) => {
+					    inputName=value
+						this.$message({
+							type: 'success',
+							message: '你的昵称是: ' + value
+						});
+					}).catch(() => {
+						this.$message({
+							type: 'info',
+							message: '取消输入'
+						});
+					});
+				}
 			}
-			const goSave = ()=>{
-				router.push("userInfo")
+			const goSave = () => {
+				console.log(value.value)
+				let obj = {
+					"address": "",
+					"avatar": imageUrl,
+					"gender": value == '男'  ?  1 : 2  ,
+					"id":localStorage.getItem('user_id'),
+					"phone": input,
+					"userName": inputName
+				}
+				setUserInfo(JSON.stringify(obj)).then(res => {
+					this.$message("保存成功")
+					router.push("userInfo")
+				})
+
 			};
 			return {
 				input,
@@ -199,10 +215,12 @@
 					border-radius: 50%;
 					margin-left: 28px;
 					position: relative;
-                    img{
+
+					img {
 						width: 50px;
 						height: 50px;
 					}
+
 					.changepic {
 						position: absolute;
 						bottom: 0;
@@ -270,7 +288,8 @@
 				}
 			}
 		}
-		.lable-active{
+
+		.lable-active {
 			background-image: url(../../../assets/image/index/checkStudy.png);
 			background-size: 100%;
 		}
