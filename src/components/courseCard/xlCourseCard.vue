@@ -1,20 +1,20 @@
 <template>
     <div class="xl-course-card" :style="style">
         <div class="top-box">
-            <img class="title-page" :src="require('../../assets/icon/sucai/course'+item+'.png')">
+            <img class="title-page" :src="item.img">
             <div class="content">
                 <div class="title">
-                    {{title}}
+                    {{item.name}}
                 </div>
                 <div class="subtitle">
-                    7节课 ｜ 时长2:30:09
+                    {{item.courseNum}}节课 ｜ 时长2:30:09
                 </div>
                 <div class="bottom-box">
-                    <div>390人已学习</div>
+                    <div>{{item.enjoyNum}}人已学习</div>
                     <div class="price-box">
                        <img :src="require('../../assets/image/common/svip.png')">
                         <div style="margin-left: 10px;" >
-                            <Price  :color="'rgba(234, 53, 83, 1)'" ></Price>
+                            <Price  :money="item.price" :color="'rgba(234, 53, 83, 1)'" ></Price>
                         </div>
                     </div>
                 </div>

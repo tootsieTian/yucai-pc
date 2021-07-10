@@ -1,12 +1,12 @@
 <template>
     <div class="m-course-card">
         <img class="title-page"
-             :src="img">
+             :src="item.img">
         <div class="tag" v-if="type!==''">拼团</div>
         <div class="content">
-            <div class="title f-s f-a"><div>10000倍工作效率</div><div class="f-a-j" @click="openDialog" style="font-size: 20px;margin-top: -10px;" v-if="iscouldop" >...</div></div>
-            <div class="subtitle">7节课 ｜390人已学习</div>
-            <div class="bottom-box">2人团￥68.00</div>
+            <div class="title f-s f-a"><div>{{item.name}}</div><div class="f-a-j" @click="openDialog" style="font-size: 20px;margin-top: -10px;" v-if="iscouldop" >...</div></div>
+            <div class="subtitle">{{item.courseNum}}节课 ｜{{item.enjoyNum}}人已学习</div>
+            <div class="bottom-box">2人团￥{{item.price}}</div>
 			<div v-if="isOpenDialog" class="dialog f-c" >
 				<div class="f-1 f-a-j" style="border-bottom: 1px solid #E0E0E0;" >置顶课程</div>
 				<div class="f-1 f-a-j">删除课程</div>
@@ -36,10 +36,14 @@
         type: String,
         default: ''
       },
+	  item:{
+		  type:Object,
+		  default:()=>({})
+	  }
 
     },
     setup(props,contxt) {
-      const {title, img,type,iscouldop} = props
+      const {title, img,type,iscouldop,item} = props
 	  const isOpenDialog=ref(false)
 	  const openDialog=()=>{
 		 isOpenDialog.value=!isOpenDialog.value
@@ -50,7 +54,8 @@
         type,
 		iscouldop,
 		isOpenDialog,
-		openDialog
+		openDialog,
+		item
       }
     }
   }

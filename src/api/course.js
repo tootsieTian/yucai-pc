@@ -41,3 +41,9 @@ export function evaluateCourse(params) {
   return postBody('/blade-course/api/m/course/evaluate', params)
 }
 
+// 猜你喜欢列表
+export function myLovelist(params) {
+  return get('/blade-course/api/m/course/love-list', params)
+}
+
+

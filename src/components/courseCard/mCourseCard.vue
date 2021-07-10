@@ -1,13 +1,13 @@
 <template>
     <div class="l-course-card">
         <img class="title-page"
-             :src="img">
+             :src="item.img">
         <div class="content">
             <div class="title">
-                {{title}}
+                {{item.name}}
             </div>
             <div class="subtitle">
-                7节课 ｜ 时长2:30:09 ｜390人已学习
+                {{item.courseNum}}节课 ｜ 时长2:30:09 ｜{{item.enjoyNum}}人已学习
             </div>
             <div class="bottom-box">
                 <div>
@@ -15,7 +15,7 @@
                 </div>
                 <div>
                     SVIP免费
-                    ￥68.00
+                    ￥{{item.price}}
                 </div>
             </div>
         </div>
@@ -33,13 +33,18 @@
       img: {
         type: String,
         default: require('../../assets/icon/sucai/平行宇宙.jpg')
-      }
+      },
+	  item:{
+		  type:Object,
+		  default:()=>({})
+	  }
     },
     setup(props) {
-      const {title, img} = props
+      const {title, img,item} = props
       return {
         title,
-        img
+        img,
+		item
       }
     }
   }

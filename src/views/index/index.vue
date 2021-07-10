@@ -39,7 +39,7 @@
                     <course-list-title @more="more"
                                        class="hot-title"/>
                     <el-row :gutter="20" class="hot-list">
-                        <el-col :span="12" v-for="item in 4" :key="item">
+                        <el-col :span="12" v-for="item in categoryHotList" :key="item">
                             <xl-course-card class="hot-item"
                                             :item="item"
                                             :style="{background: '#F5F6F6'}"
@@ -83,10 +83,10 @@
                         </el-col>
                         <el-col :span="12">
                             <el-row :gutter="20">
-                                <el-col :span="12" v-for="item in 4">
+                                <el-col :span="12" v-for="item in boutiqueList">
                                     <div class="excellent-course-m">
                                         <img class="title-page"
-                                             :src="require('../../assets/icon/sucai/course'+item+'.png')">
+                                             :src="item.img">
                                         <div class="content-box">
                                             <div style="width: 100%;" class="title">
                                                 <div>100倍工作效率</div>
@@ -124,8 +124,9 @@
                                        subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"
                                        class="activity-title"/>
                     <el-row :gutter="24" class="activity-list">
-                        <el-col :span="12" v-for="item in 4" :key="item+'m'">
+                        <el-col :span="12" v-for="(item,index) in activeList" :key="index+'m'">
                             <xl-course-card class="activity-item"
+							:item="item"
                                             @click.native="toCourseDetail"/>
                         </el-col>
                     </el-row>
@@ -148,8 +149,9 @@
                         <div class="exchange">更改喜好<i class="el-icon-arrow-right"/></div>
                     </div>
                     <el-row :gutter="24" class="favorite-list">
-                        <el-col :span="6" v-for="item in 12" :key="item+'m'">
+                        <el-col :span="6" v-for="item in loveList" :key="item+'m'">
                             <m-course-card class="favorite-item"
+							               :item="item"
                                            @click.native="toCourseDetail"/>
                         </el-col>
                     </el-row>
@@ -163,7 +165,7 @@
 
 <script>
   import { useRouter } from 'vue-router'
-  import { ref, reactive } from 'vue'
+  import { ref, reactive,onMounted } from 'vue'
   import { Swiper, SwiperSlide } from 'swiper/vue';
   import SwiperCore, { Pagination, A11y } from 'swiper';
   import 'swiper/swiper.scss';
@@ -178,6 +180,7 @@
   import CheckStudy from "../../components/index/checkStudy";
   import Price from "../../components/common/price.vue"
   import { getIndexHot, getIndexTabList } from "../../api/indexList";
+  import {myLovelist} from "../../api/course.js"
 
   SwiperCore.use([Pagination, A11y]);
 
@@ -198,7 +201,10 @@
       const router = useRouter()
       const dialogShow = ref(false)      // 选择学习领域盒子
       const loginShow = ref(false)
-
+      const activeList = ref([])              // 活动列表
+      const boutiqueList = ref([])           // 精品列表
+      const categoryHotList = ref([])       // 热门列表
+	  const loveList = ref([])             // 猜你喜欢列表
       let swipeList = reactive([])
       const plateList = reactive([
         {
@@ -217,18 +223,39 @@
           mask: require("../../assets/image/index/studyM.png")
         }
       ])
-
-      // 调用首页数据api
-      getIndexHot({}).then(res=>{
-        console.log(swipeList)
-        console.log(res)
-        swipeList.push(...res.indexCarouselList)
-      })
-      // getIndexTabList({}).then(res=>{
-      //
-      // })
+     
+      onMounted(()=>{
+		   method.getIndexData()
+		   method.getMylovelist()
+	  })
+		 
+	  
 
       const method = {
+		  //  获取猜你喜欢列表
+		  getMylovelist(){
+		  		  myLovelist({userId: localStorage.getItem('user_id')}).then(res=>{
+		  			  loveList.value=res
+		  
+		  		  })
+		  },
+		  // 调用首页数据api
+		  getIndexData(){
+			
+			  getIndexHot({}).then(res=>{
+			   
+			  		method.getValue(res, 0)
+			    swipeList.push(...res.indexCarouselList)
+			  })
+		  },
+		 
+		  // 数据填充
+		  getValue(res, type) {
+		    activeList.value = res.activeList
+		    boutiqueList.value = res.boutiqueList
+		    categoryHotList.value = type === 0 ? res.indexHotList : res.categoryHotList
+		    
+		  },
         more() {
           console.log('查看更多')
           router.push('/hotCourse')
@@ -257,7 +284,11 @@
         dialogShow,
         plateList,
         loginShow,
-        swipeList
+        swipeList,
+		activeList,
+		boutiqueList,
+		categoryHotList,
+		loveList
       }
     }
   }
