@@ -35,15 +35,15 @@
         </el-tabs>
         <div class="course-video-list" v-if="courseVideoListShow">
             <div class="course-video-item"
-                 v-for="item in 6"
+                 v-for="item in resourceList"
                  :key="item+'p'"
                  @click="toPath('/courseDetail/videoPlay')">
                 <div class="left f-a-j">
-                    <div class="title">第一章</div>
+                    <div class="title">第{{item.sort}}章</div>
                     <div class="circle">
 						<img src="../../assets/image/course/video.png" style="height: 26px;" alt="">
 					</div>
-                    <div class="content">如何向运营要利润</div>
+                    <div class="content">{{item.name}}</div>
 					<div class="look f-a-j">
 					    试看一分钟
 					</div>
@@ -74,8 +74,15 @@
   export default {
     name: "courseList",
     components: { LCourseCard },
+	props:{
+		resourceList:{
+			type:Array,
+			default:()=>{([])}
+		}
+	},
     emits: ['tabClick'],
     setup(props, context) {
+	  const {resourceList} = props
       let tabActive = ref(inject('tabActive'))
       const tabList = [
         {
@@ -108,7 +115,8 @@
         tabClick,
         toPath,
         courseVideoListShow,
-        tabList
+        tabList,
+		// resourceList
       }
     }
   }

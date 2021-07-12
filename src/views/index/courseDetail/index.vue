@@ -1,9 +1,9 @@
 <template>
 	<div class="course-detail">
-		<title-box :title="courseInfo.courseName"  />
+		<title-box :title="courseInfo.courseName" :url="lecturer.headImgUrl" :name="lecturer.name" :subtitle="courseInfo.introduction"  />
 		<course-info />
 		<groupworkBox></groupworkBox>
-		<course-list :key="courseListKey" @tabClick="tabClick" ref="course" />
+		<course-list  :resourceList="resourceList"  :key="courseListKey" @tabClick="tabClick" ref="course" />
 		<comment-box ref="comment" />
 		<course-explain ref="explain" />
 		<course-recommend :loveList="loveList" ref="recommend" />
@@ -95,10 +95,11 @@
 			// 课程详情请求数据
 			const courseId = ref('') // 课程id
 			const courseType = ref(0) // 课程类型
-			let courseInfo = reactive({}) // 课程信息
-			const lecturer = reactive({}) //教师信息
+			const courseInfo = ref({}) // 课程信息
+			const lecturer = ref({}) //教师信息
 			const detailBg =ref("")   // 课程介绍背景图
 			const showDetail =ref(false) //是否存在背景图
+			const resourceList=ref([]) //播放列表
 			const getCourseDetail = async ()=> {
 				if (courseId.value != '') {
 					const res = await courseDetail({
@@ -106,9 +107,10 @@
 						courseType: courseType.value
 					})
 					// 进行数据填充
-					courseInfo = res
+					courseInfo.value = res
 					setCourseDetail(res.courseDetail)
 					lecturer.value = res.lecturer
+					resourceList.value=res.resourceList
 				} else {
 					ElMessage.error('课程ID为空未知');
 					router.go(-1)
@@ -184,6 +186,7 @@
 				textTitle,
 				getCourseDetail,
 				lecturer,
+				resourceList
 				
 			}
 		}

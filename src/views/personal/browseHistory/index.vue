@@ -6,17 +6,20 @@
 		</div>
 		<div class="hx"></div>
 		<historyItem :historyList="historyList" ></historyItem>
+		<xlCourseCard  v-for="(item,index) in historyList" :item="item" ></xlCourseCard>
 	</div>	
 </template>
 
 <script>
+	import xlCourseCard from "../../../components/courseCard/xlCourseCard.vue";
 	import historyItem from "../../../components/personal/browHistory/historyItem.vue"
-	import {getBrowseRecordList} from "../../../api/course.js"
+	import {getBrowseRecordList,myLovelist} from "../../../api/course.js"
 	import {ref,onMounted} from "vue"
 	export default{
 		name: "index",
 		components:{
-			historyItem
+			historyItem,
+			xlCourseCard
 		},
 		setup(){
 		// 获取浏览记录列表
@@ -29,13 +32,26 @@
 			})
 			historyList.value=res.data
 			console.log(historyList.value)
-		} 
+		}
+		 const method = {
+		 		  //  获取猜你喜欢列表
+		 		  getMylovelist(){
+		 		  		  myLovelist({userId: localStorage.getItem('user_id')}).then(res=>{
+		 		  			  historyList.value=res
+		 		              console.log(res)
+		 		  		  })
+		 		  },
+
+		 }
+		 
 		onMounted(()=>{
-			getHistory()
+			method.getMylovelist()
+			
 		})	
 			return{
 				historyList,
-				getHistory
+				getHistory,
+				...method
 			}
 		}
 	}

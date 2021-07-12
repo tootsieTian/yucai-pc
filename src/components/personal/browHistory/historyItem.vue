@@ -1,6 +1,6 @@
 <template>
 	<div class="item-con f" >
-		<div class="item hand"   v-for=" (item,index) in 5" >
+		<div class="item hand"   v-for=" (item,index) in historyList" >
 			<div class="item-header" >
 				<img src="../../../assets/icon/sucai/course2.png" alt="">
 			</div>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+	import {ref} from "vue"
 	export default {
 	  name: "historyItem",
 	  props: {
@@ -29,9 +30,9 @@
 		 } 
 	  },
 	  setup(props) {
-	  		const {historyList} = props  
+	  		const {historyList} = props 
 			return{
-				historyList
+			
 			}
 	  }
 	  }

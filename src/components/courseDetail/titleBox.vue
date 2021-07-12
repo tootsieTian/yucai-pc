@@ -35,17 +35,21 @@
       subtitle: {
         type: String,
         default: '从事新媒体运营10年。'
-      }
+      },
+	  item:{
+	  		  type:Object,
+	  		  default:()=>({})
+	  }
 	  
     },
     setup(props) {
-      const {title, url, type, subtitle,name} = props
+      const {title, url, name, type,subtitle,} = props
       return {
-        title,
-        url,
-        type,
-        subtitle,
-		name
+  //       title,
+  //       url,
+  //       type,
+  //       subtitle,
+		// name
 		
       }
     }

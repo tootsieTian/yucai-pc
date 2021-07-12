@@ -48,6 +48,7 @@
 	  const openDialog=()=>{
 		 isOpenDialog.value=!isOpenDialog.value
 	  }
+	  console.log(props)
       return {
         title,
         img,

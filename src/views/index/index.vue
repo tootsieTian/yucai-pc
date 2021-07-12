@@ -84,7 +84,7 @@
                         <el-col :span="12">
                             <el-row :gutter="20">
                                 <el-col :span="12" v-for="item in boutiqueList">
-                                    <div class="excellent-course-m">
+                                    <div @click.native="toCourseDetail(item)" class="excellent-course-m">
                                         <img class="title-page"
                                              :src="item.img">
                                         <div class="content-box">

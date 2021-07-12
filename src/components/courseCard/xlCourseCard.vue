@@ -54,8 +54,8 @@
         default: false
       },
       item: {
-        type: Number,
-        default: 1
+        type: Object,
+        default: ()=>{({})}
       },
       style: {
         type: Object,
@@ -65,12 +65,13 @@
       }
     },
     setup(props) {
-      const { img,title,commentShow,style } = props
+      const { img,title,commentShow,style,item } = props
       return {
         img,
         title,
         commentShow,
-        style
+        style,
+		item
       }
     }
   }
