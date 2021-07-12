@@ -5,18 +5,39 @@
 			<div></div>
 		</div>
 		<div class="hx"></div>
-		<historyItem></historyItem>
+		<historyItem :historyList="historyList" ></historyItem>
 	</div>	
 </template>
 
 <script>
 	import historyItem from "../../../components/personal/browHistory/historyItem.vue"
+	import {getBrowseRecordList} from "../../../api/course.js"
+	import {ref,onMounted} from "vue"
 	export default{
 		name: "index",
 		components:{
 			historyItem
 		},
-		setup(){}
+		setup(){
+		// 获取浏览记录列表
+		const historyList =ref([])
+        const getHistory = async ()=>{
+		    const res = await getBrowseRecordList({
+				pageNo: 1,
+				pageSize: 10,
+				userId: localStorage.getItem('user_id')
+			})
+			historyList.value=res.data
+			console.log(historyList.value)
+		} 
+		onMounted(()=>{
+			getHistory()
+		})	
+			return{
+				historyList,
+				getHistory
+			}
+		}
 	}
 </script>
 

@@ -2,7 +2,7 @@
     <div class="container-main">
         <div class="title">课程推荐</div>
         <el-row :gutter="24">
-            <el-col :span="6" v-for="item in 8" :key="item+'x'">
+            <el-col :span="6" v-for="item in loveList" :key="item+'x'">
                 <m-course-card/>
             </el-col>
         </el-row>
@@ -13,9 +13,18 @@
   import MCourseCard from "../courseCard/sCourseCard";
   export default {
     name: "courseRecommend",
+	props:{
+		loveList:{
+			type:Array,
+			default:()=>{([])}
+		}
+	},
     components: {MCourseCard},
-    setup() {
-
+    setup(props) {
+      const {loveList}=props
+	  return{
+		  loveList
+	  }
     }
   }
 </script>

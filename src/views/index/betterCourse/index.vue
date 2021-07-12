@@ -6,7 +6,7 @@
             <div class="nav-item"></div>
         </div>
         <course-list-title
-                title="热门课程"
+                title="精品课程"
                 subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"/>
         <el-row :gutter="24">
             <el-col :span="6" v-for="item in hotcourseList" :key="item">

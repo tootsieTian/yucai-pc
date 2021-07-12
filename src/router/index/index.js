@@ -3,6 +3,7 @@ import classifyCourse from "./classifyCourse";
 import searchResult from "./searchResult";
 import courseDetail from "./courseDetail";
 import activeCourse from "./activeCourse";
+import betterCourse from "./betterCourse";
 
 export default [
   {
@@ -29,6 +30,7 @@ export default [
   ...classifyCourse,
   ...searchResult,
   ...courseDetail,
-  ...activeCourse
+  ...activeCourse,
+  ...betterCourse
 ]
 

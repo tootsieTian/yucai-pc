@@ -43,13 +43,13 @@
                             <xl-course-card class="hot-item"
                                             :item="item"
                                             :style="{background: '#F5F6F6'}"
-                                            @click.native="toCourseDetail"
+                                            @click.native="toCourseDetail(item)"
                                             :comment-show="true"/>
                         </el-col>
                     </el-row>
                     <look-all-course
                             title="查看全部290个热门课程"
-                            @lookAll="more"
+                            @lookAll="toPath('/hotCourse')"
                     />
                 </div>
             </div>
@@ -108,7 +108,7 @@
                     </el-row>
                     <look-all-course
                             title="查看全部290个精品课程"
-                            @lookAll="more"
+                            @lookAll="toPath('/betterCourse')"
                     />
                 </div>
             </div>
@@ -127,7 +127,7 @@
                         <el-col :span="12" v-for="(item,index) in activeList" :key="index+'m'">
                             <xl-course-card class="activity-item"
 							:item="item"
-                                            @click.native="toCourseDetail"/>
+                                            @click.native="toCourseDetail(item)"/>
                         </el-col>
                     </el-row>
                     <look-all-course
@@ -152,7 +152,7 @@
                         <el-col :span="6" v-for="item in loveList" :key="item+'m'">
                             <m-course-card class="favorite-item"
 							               :item="item"
-                                           @click.native="toCourseDetail"/>
+                                           @click.native="toCourseDetail(item)"/>
                         </el-col>
                     </el-row>
                 </div>
@@ -272,8 +272,14 @@
         onSlideChange() {
           console.log('slide change')
         },
-        toCourseDetail() {
-          router.push('/courseDetail')
+        toCourseDetail(item) {
+          router.push({
+			  path:'/courseDetail',
+			  query: {
+			    courseId: item.courseId,
+			    courseType: item.courseType
+			  }
+		 })
         },
         closeLogin() {
           loginShow.value = false

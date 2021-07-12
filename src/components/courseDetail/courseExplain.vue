@@ -1,5 +1,5 @@
 <template>
-    <div class="container-main">
+    <div ref="" class="container-main">
         课程介绍
     </div>
 </template>

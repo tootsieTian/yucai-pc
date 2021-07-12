@@ -4,10 +4,13 @@ import index from './index/index'
 import personal from "./personal";
 import study from "./study";
 import login from './login'
+import empty from "./empty"
+
 
 
 const router = createRouter({
 	history: createWebHistory(),
+	
 	routes: [...index, ...personal, ...login, ...study]
 })
 router.beforeEach((to, from, next) => {

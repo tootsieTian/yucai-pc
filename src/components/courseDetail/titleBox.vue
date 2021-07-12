@@ -36,14 +36,17 @@
         type: String,
         default: '从事新媒体运营10年。'
       }
+	  
     },
     setup(props) {
-      const {title, url, type, subtitle} = props
+      const {title, url, type, subtitle,name} = props
       return {
         title,
         url,
         type,
-        subtitle
+        subtitle,
+		name
+		
       }
     }
   }
