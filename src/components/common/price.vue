@@ -36,9 +36,9 @@
     },
 	setup(props){
 		const { money,fontSize,lineHeight,color,fontWeight,opacity} = props
-		return{
-			money,fontSize,lineHeight,color,fontWeight,opacity
-		}
+		// return{
+		// 	money,fontSize,lineHeight,color,fontWeight,opacity
+		// }
 	}
   }
 </script>

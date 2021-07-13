@@ -3,7 +3,9 @@
     <div class="course-list-top" v-show="tabActive!=='course'">
         <div class="container-menu">
             <div class="left">
-                <div class="logo"></div>
+                <div >
+					<img style="height: 47px;" src="../../assets/image/common/logoBlack.png" alt="">
+				</div>
                 <div class="tab-list">
                     <el-tabs v-model="tabActive"
                              @tab-click="tabClick">
@@ -14,8 +16,8 @@
                 </div>
             </div>
             <div class="right">
-                <div class="collet">
-                    收藏
+                <div @click="collect" class="collet">
+                   {{isCollect?'已收藏' :'收藏' }}
                 </div>
                 <div class="share">
                     分享
@@ -37,7 +39,7 @@
             <div class="course-video-item"
                  v-for="item in resourceList"
                  :key="item+'p'"
-                 @click="toPath('/courseDetail/videoPlay')">
+                 @click="toPath(item)">
                 <div class="left f-a-j">
                     <div class="title">第{{item.sort}}章</div>
                     <div class="circle">
@@ -67,7 +69,7 @@
 </template>
 
 <script>
-  import { ref,inject,watch } from 'vue'
+  import { ref,inject,watch,toRefs } from 'vue'
   import { useRouter } from 'vue-router'
   import LCourseCard from "../courseCard/lCourseCard";
 
@@ -78,11 +80,23 @@
 		resourceList:{
 			type:Array,
 			default:()=>{([])}
+		},
+		courseId:{
+			type:String,
+			default:""
+		},
+		courseType:{
+			type:String,
+			default:""
+		},
+		isCollect:{
+			type:Boolean,
+			default:false
 		}
 	},
-    emits: ['tabClick'],
+    emits: ['tabClick','collect',"play"],
     setup(props, context) {
-	  const {resourceList} = props
+	  const {resourceList,courseId,courseType,isCollect} = toRefs(props) 
       let tabActive = ref(inject('tabActive'))
       const tabList = [
         {
@@ -107,16 +121,25 @@
       const tabClick = (tab) => {
         context.emit('tabClick', tab)
       }
-      const toPath = (path) => {
-        router.push(path)
+      const toPath = (item) => {
+		context.emit('play',item)
+        
       }
+	  // 收藏逻辑
+	  const collect=()=>{
+		  context.emit("collect")
+	  }
       return {
         tabActive,
         tabClick,
         toPath,
         courseVideoListShow,
         tabList,
-		// resourceList
+		resourceList,
+		courseId,
+		courseType,
+		collect,
+		isCollect
       }
     }
   }
@@ -262,13 +285,15 @@
             .join-btn{
                 width: 203px;
                 height: 58px;
-                background: #FFFFFF;
+                background:rgba(19, 113, 243, 1) ;
+				color: #FFFFFF;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 19px;
                 font-weight: 400;
                 line-height: 26px;
+				border-radius: 8px;
             }
             .collet,.share{
                 margin-right: 26px;

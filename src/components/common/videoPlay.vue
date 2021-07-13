@@ -26,11 +26,18 @@
 </template>
 
 <script>
-  import { reactive, ref, onMounted } from 'vue'
+  import { reactive, ref, onMounted,toRefs } from 'vue'
 
   export default {
     name: "videoPlay",
-    setup() {
+	props:{
+		videoInfo:{
+			type:String,
+			default:""
+		}
+	},
+    setup(props) {
+	  const{videoInfo} = toRefs(props)
       const playerObj =  window.Aliplayer   // 播放器实例
       const source = ref('//player.alicdn.com/video/aliyunmedia.mp4')
 
@@ -185,7 +192,8 @@
         options,
         source,
         ...method,
-        ...videoBtnObj
+        ...videoBtnObj,
+		videoInfo
       }
     }
   }

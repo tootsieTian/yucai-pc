@@ -7,17 +7,18 @@
             </div>
             <div class="title-box">
                 <div class="title">
-                    21堂课告别社交恐惧
+                    {{courseInfo.courseName}}
                 </div>
                 <div class="tag-list">
-                    <div class="tag-item" v-for="item in 3" :key="item+'i'">#电商</div>
+                    <div class="tag-item" >{{courseInfo.courseTag}}</div>
                 </div>
                 <div class="subtitle">
                     <img :src="require('../../../../assets/image/course/videoPlay/playIcon.png')">
-                    当前播放：课时2-新媒体运营的重点
+                    当前播放: -{{activeVideo.name}}
                 </div>
             </div>
             <video-play class="video"
+			            :videoInfo="videoInfo.playURL"
                         v-if="!tryLookEnd"/>
             <div class="video-mask"
                  v-if="tryLookEnd">
@@ -29,17 +30,17 @@
         <div class="course-box">
             <div class="teacher-info">
                 <img class="teacher-header"
-                     :src="require('../../../../assets/icon/sucai/平行宇宙.jpg')"/>
+                     :src="lecturer.headImgUrl"/>
                 <div>
-                    <div class="name">米卡</div>
-                    <div class="explain">从事新媒体运营10年。</div>
+                    <div class="name">{{lecturer.name}}</div>
+                    <div class="explain">{{lecturer.introduction}}</div>
                 </div>
             </div>
             <div class="comment-btn" @click="commentBoxShow=true">评价课程</div>
-            <div class="course-list-title">视频目录(9)</div>
+            <div class="course-list-title">视频目录{{resourceList.length}}</div>
             <div class="course-list">
                 <div :class="{'course-item':true,'course-item--active':activeCourseItem===index}"
-                     v-for="(item,index) in 7"
+                     v-for="(item,index) in resourceList"
                      ref="courseItem"
                      @click="courseItemClick(index)">
                     <div class="tag">
@@ -47,7 +48,7 @@
                         <img v-else :src="require('../../../../assets/image/course/videoPlay/video.png')">
                     </div>
                     <div class="content">
-                        <div class="title">1、新媒体运营</div>
+                        <div class="title">{{index+1 +'、'+ item.name}}</div>
                         <div class="subtitle">10分钟</div>
                     </div>
                 </div>
@@ -61,27 +62,82 @@
   import { ref, watch } from 'vue'
   import Comment from "../../../../components/courseDetail/videoPlay/comment";
   import VideoPlay from "../../../../components/common/videoPlay";
+  import {useRouter,useRoute} from "vue-router"
+  import{ courseDetail, getPlayInfo, collectCourse, cancelCellect } from "../../../../api/course.js"
 
   export default {
     name: "index",
     components: { VideoPlay, Comment },
     setup() {
       const tryLookEnd = ref(false)
-      const courseItem = ref(null)
+	  const router = useRouter()
+	  const roure = useRoute()
       const commentBoxShow = ref(false)
-      const activeCourseItem = ref(0)
-      const courseItemClick = (index) => {
-        activeCourseItem.value = index
-      }
+      
+	  
+	  // 获取课程ID 课程类型
+	  const courseId =ref('')
+	  const courseType =ref("")
+	  const videoId =ref("")
+	  const courseInfo=ref({})
+	  const videoInfo=ref({})
+	  const resourceList =ref([])
+	  const lecturer =ref({})
+	  courseId.value = roure.query.courseId
+	  videoId.value = roure.query.videoId
+	  courseType.value = parseInt(roure.query.courseType)
+	 
+	  //根据id获取播放详情
+	  const getCourseInfo= async ()=>{
+		 const res = await courseDetail({
+			 courseId: courseId.value,
+			 courseType: courseType.value,
+			 userId: localStorage.getItem('user_id')
+		 })
+		 courseInfo.value=res
+		 resourceList.value=res.resourceList
+		 activeVideo.value=resourceList.value[0]
+		 lecturer.value=res.lecturer
+	  }
+	  getCourseInfo()
+	  
+	  // 根据id获取视频信息
+	  const getVideoInfo=async (videoId)=>{
+		  const res =await getPlayInfo({ videoId: videoId })
+		  videoInfo.value=res.PlayInfoList[0]
+		   console.log(videoInfo.value)
+	  }
+	  getVideoInfo(videoId.value)
+	 
+	  // 切换播放信息
+	  const activeVideo=ref({})
+	  const courseItemClick = (index) => {
+		if(videoId.value==resourceList.value[index].mediaId){
+			return 	
+		} 
+		videoId.value=resourceList[index].mediaId
+	    getVideoInfo(videoId.value)
+	  }
+	  
+	  
       watch(commentBoxShow, (oldVal, newVal) => {
         console.log(oldVal)
       })
       return {
-        courseItem,
-        activeCourseItem,
         commentBoxShow,
         courseItemClick,
-        tryLookEnd
+        tryLookEnd,
+		videoId,
+		courseType,
+		courseId,
+		courseInfo,
+		videoInfo,
+		getVideoInfo,
+		getCourseInfo,
+		resourceList,
+		activeVideo,
+		lecturer
+		
       }
     }
   }

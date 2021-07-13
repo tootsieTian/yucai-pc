@@ -1,5 +1,5 @@
 <template>
-    <div class="title-box">
+    <div class="title-box" :style="{backgroundImage:'url('+ courseImg +')'}" >
         <div class="title">
             {{title}}
         </div>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+	import {toRefs} from "vue"
   export default {
     name: "titleBox",
     props: {
@@ -36,20 +37,21 @@
         type: String,
         default: '从事新媒体运营10年。'
       },
-	  item:{
-	  		  type:Object,
-	  		  default:()=>({})
+	  courseImg:{
+	  		  type:String,
+	  		  default:""
 	  }
 	  
     },
     setup(props) {
-      const {title, url, name, type,subtitle,} = props
+      const {title, url, name, type,subtitle,courseImg} =toRefs( props)
       return {
-  //       title,
-  //       url,
-  //       type,
-  //       subtitle,
-		// name
+        title,
+        url,
+        type,
+        subtitle,
+		name,
+		courseImg
 		
       }
     }
@@ -59,8 +61,9 @@
 <style lang="scss" scoped>
     .title-box {
         height: 358px;
-        background: #E2E2E2;
         display: flex;
+		background-repeat: no-repeat;
+		background-size: 100vw;
         flex-direction: column;
         align-items: center;
         width: 100%;

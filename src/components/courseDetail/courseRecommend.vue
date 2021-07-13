@@ -3,7 +3,7 @@
         <div class="title">课程推荐</div>
         <el-row :gutter="24">
             <el-col :span="6" v-for="item in loveList" :key="item+'x'">
-                <m-course-card/>
+                <m-course-card :item="item" />
             </el-col>
         </el-row>
     </div>
@@ -23,7 +23,7 @@
     setup(props) {
       const {loveList}=props
 	  return{
-		  loveList
+		  
 	  }
     }
   }

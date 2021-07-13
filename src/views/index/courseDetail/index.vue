@@ -1,13 +1,15 @@
 <template>
 	<div class="course-detail">
-		<title-box :title="courseInfo.courseName" :url="lecturer.headImgUrl" :name="lecturer.name" :subtitle="courseInfo.introduction"  />
-		<course-info />
-		<groupworkBox></groupworkBox>
-		<course-list  :resourceList="resourceList"  :key="courseListKey" @tabClick="tabClick" ref="course" />
-		<comment-box ref="comment" />
-		<course-explain ref="explain" />
+		<title-box :courseImg="courseInfo.courseImg" :title="courseInfo.courseName" :url="lecturer.headImgUrl"
+			:name="lecturer.name" :subtitle="courseInfo.introduction" />
+		<course-info :isCollect="isCollect" @collect="collect" :courseInfo="courseInfo" />
+		<groupworkBox v-show="false"></groupworkBox>
+		<course-list @play="play" :isCollect="isCollect" @collect="collect" :courseId="courseId"
+			:courseType="courseType" :resourceList="resourceList" :key="courseListKey" @tabClick="tabClick"
+			ref="course" />
+		<comment-box :appEvaluateList="appEvaluateList" :appEvaluateNum="appEvaluateNum" ref="comment" />
+		<course-explain :courseDetail="courseInfo.courseDetail" ref="explain" />
 		<course-recommend :loveList="loveList" ref="recommend" />
-		<div v-for="(item)  in  loveList" >item</div>
 	</div>
 </template>
 
@@ -45,7 +47,7 @@
 		myLovelist
 	} from '../../../api/course'
 
-	export default {
+	export default defineComponent({
 		name: "index",
 		components: {
 			CourseInfo,
@@ -70,7 +72,9 @@
 				explain: ref(null),
 				recommend: ref(null)
 			}
-            
+
+			provide("customVal", courseInfo);
+
 			const listenScroll = () => {
 				let scrollTop = document.documentElement.scrollTop + navHeight // 滚动条离顶部距离
 				let commentOffsetTop = refs.comment.value.$el.offsetTop // 评论盒子离顶部距离
@@ -97,49 +101,89 @@
 			const courseType = ref(0) // 课程类型
 			const courseInfo = ref({}) // 课程信息
 			const lecturer = ref({}) //教师信息
-			const detailBg =ref("")   // 课程介绍背景图
-			const showDetail =ref(false) //是否存在背景图
-			const resourceList=ref([]) //播放列表
-			const getCourseDetail = async ()=> {
+			const detailBg = ref("") // 课程介绍背景图
+			const showDetail = ref(false) //是否存在背景图
+			const resourceList = ref([]) //播放列表
+			const appEvaluateList = ref([]) //评价列表
+			const appEvaluateNum = ref({}) //评价参数
+			const isCollect = ref(false)
+			const getCourseDetail = async () => {
 				if (courseId.value != '') {
 					const res = await courseDetail({
 						courseId: courseId.value,
-						courseType: courseType.value
+						courseType: courseType.value,
+						userId: localStorage.getItem('user_id')
 					})
 					// 进行数据填充
 					courseInfo.value = res
-					setCourseDetail(res.courseDetail)
+					isCollect.value = res.isCollect == 1 ? true : false
 					lecturer.value = res.lecturer
-					resourceList.value=res.resourceList
+					appEvaluateList.value = res.appEvaluateListDTO.appEvaluateList
+					appEvaluateNum.value = res.appEvaluateListDTO.appEvaluateNum
+					resourceList.value = res.resourceList
 				} else {
 					ElMessage.error('课程ID为空未知');
 					router.go(-1)
 				}
 			}
-			
-			// 写入课程详情html标签
-			const setCourseDetail  = (courseDetail)=> {
-			  if (courseDetail == '') {
-			    return showDetail.value = true
-			  }
-			  // setTimeout(() => {
-			  //   let dom = $refs.courseDetail
-			  //   dom.innerHTML = courseDetail
-			  //   dom.innerHTML = dom.innerText
-			  //   var domImg = dom.getElementsByTagName('img')[0]
-			  //   domImg.style.width = "100vw"
-			  // }, 200)
-			}
-			
+
+
+
+
 			// 猜你喜欢列表请求
 			const loveList = ref([]) //猜你喜欢列表
-			const getLoveList=async ()=>{
-				const res = await myLovelist({userId: localStorage.getItem('user_id')})
-				loveList.value=res
+			const getLoveList = async () => {
+				const res = await myLovelist({
+					userId: localStorage.getItem('user_id')
+				})
+				loveList.value = res
+
 			}
-			
-			
-			
+
+			// 收藏按钮逻辑
+			const collect = async () => {
+				if (isCollect.value) {
+					const res = await cancelCellect({
+						courseId: courseId.value,
+						courseType: courseType.value,
+						userId: localStorage.getItem('user_id')
+					})
+					if (!res) {
+						isCollect.value = false
+						ElMessage.success('取消收藏！');
+					}
+				} else {
+					const res = await collectCourse({
+						courseId: courseId.value,
+						courseType: courseType.value,
+						userId: localStorage.getItem('user_id')
+					})
+					if (res) {
+						isCollect.value = true
+						ElMessage.success('收藏成功！');
+					}
+
+
+				}
+
+
+			}
+            // 播放视频拦截
+			const play= (item)=>{
+				// if(courseInfo.coursePrice!="0.00"&&courseInfo.isBuy!=1){
+				// 	return ElMessage.error('请先购买视频！');
+				// }
+				router.push({
+							  path:'/courseDetail/videoPlay',
+							  query: {
+							    courseId: courseId.value,
+							    courseType: courseType.value,
+								videoId:item.mediaId
+							  }
+				})
+			}
+
+
 
 			onMounted(() => {
 				document.title = textTitle.value
@@ -147,14 +191,14 @@
 				courseType.value = parseInt(roure.query.courseType)
 				getCourseDetail()
 				getLoveList()
-				
+
 			})
-			
+
 			window.addEventListener('scroll', listenScroll)
 			onUnmounted(() => {
-				
+
 				window.removeEventListener('scroll', listenScroll)
-				
+
 			})
 
 			// 瞄点定位
@@ -186,11 +230,19 @@
 				textTitle,
 				getCourseDetail,
 				lecturer,
-				resourceList
-				
+				resourceList,
+				loveList,
+				appEvaluateList,
+				appEvaluateNum,
+				courseType,
+				courseId,
+				isCollect,
+				collect,
+				play
+
 			}
 		}
-	}
+	})
 </script>
 
 <style lang="scss" scoped>

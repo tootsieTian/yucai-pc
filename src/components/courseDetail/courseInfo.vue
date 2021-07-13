@@ -23,7 +23,7 @@
         <div class="content">
             <div class="top-box">
                 <div class="time-box">
-                    <div>7节课</div>
+                    <div>节课</div>
                     <div class="line"></div>
                     <div>时长2:30:05</div>
                 </div>
@@ -32,9 +32,9 @@
 						<img  style="width: 24px;" src="../../assets/image/course/kefu.png" alt="">
                         客服
                     </div>
-                    <div class="btn-item f-a-j" >
+                    <div @click="collect" class="btn-item f-a-j" >
 						<img  style="width: 24px;" src="../../assets/image/course/love.png" alt="">
-                        收藏
+                        {{isCollect  ? '已收藏' : '收藏'  }}
                     </div>
                     <div class="btn-item f-a-j">
 						<img style="width: 24px;" src="../../assets/image/course/share.png" alt="">
@@ -43,14 +43,14 @@
                 </div>
             </div>
             <div class="tag-list">
-                <div class="tag-item" v-for="item in 4" :key="item+'q'">
-                    #电商
+                <div class="tag-item" >
+                    {{courseInfo.courseTag =='' ? '暂无标签' : courseInfo.courseTag }}
                 </div>
             </div>
             <div class="bottom-box">
                 <div class="price-box " style="margin-top: 30px;" >
                     <div class="f-a-j" style="margin-right: 20px;" >2人团</div>
-                    <div class="f-a-j" ><Price  :fontSize="'35px'" :color="'rgba(234, 53, 83, 1)'" ></Price></div>
+                    <div class="f-a-j" ><Price :money="courseInfo.coursePrice" :fontSize="'35px'" :color="'rgba(234, 53, 83, 1)'" ></Price></div>
                 </div>
                 <div class="btn-box">
                     <div class="customer-box">
@@ -61,15 +61,16 @@
 							<moreUser >
 								
 							</moreUser>
-							<div class="f-a-j" >390人已参加</div>
+							<div class="f-a-j" >{{courseInfo.defaultBrowseNum}}人已参加</div>
 							
 						</div>
                     </div>
-					<el-button class="direct-btn"  type="primary"
+					<el-button v-show="courseInfo.isBuy==0" class="direct-btn"  type="primary"
 					           @click="toPath('/courseDetail/order')">直接购买￥199.00
 					</el-button>
                     <el-button class="go-btn"  type="primary"
-                               @click="toPath('/courseDetail/order')">立即抢购
+					 
+                               @click="toPath('/courseDetail/order')">{{ courseInfo.isBuy==0 ? '立即抢购' : '已购买去观看' }}
                     </el-button>
                 </div>
             </div>
@@ -80,25 +81,45 @@
 </template>
 
 <script>
-  import { ref } from 'vue'
+  import { ref,toRefs } from 'vue'
   import { useRouter } from 'vue-router'
   import Price from "../common/price.vue"
   import moreUser from "../common/moreuser.vue"
   export default {
     name: "courseInfo",
+	emits:["collect"],
 	components:{
 		Price,
 		moreUser
 	},
-    setup() {
+	props:{
+		courseInfo:{
+			type:Object,
+			default:()=>{({})}
+		},
+		isCollect:{
+			type:Boolean,
+			default:false
+		}
+	},
+    setup(props,contxt) {
+	  const{courseInfo,isCollect} = toRefs(props) 
       const router = useRouter()
-      const showSpikeProcess = ref(true)
+      const showSpikeProcess = ref(false)
       const toPath = (path) => {
         router.push(path)
       }
+	  // 收藏按钮
+	  const collect=()=>{
+		  contxt.emit('collect')
+	  }
+	  
       return {
         showSpikeProcess,
-        toPath
+        toPath,
+		collect,
+		courseInfo,
+		isCollect
       }
     }
   }

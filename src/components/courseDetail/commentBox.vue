@@ -6,7 +6,7 @@
         </div>
         <!--星星列表-->
         <div class="score-box">
-            <div class="score">4.9</div>
+           <div class="score">{{appEvaluateNum.evaluateLevel}}</div>
             <div class="unit">星</div>
             <div class="star-list">
                 <div class="star-item" v-for="item in 5" :key="item+'q'">
@@ -25,22 +25,22 @@
         </div>
         <!--评论列表-->
         <div class="comment-list">
-            <div class="comment-item" v-for="item in 4" :key="item+'n'">
+            <div class="comment-item" v-for="item in appEvaluateList" :key="item+'n'">
                 <img class="user-header"
-                     :src="require('../../assets/icon/sucai/平行宇宙.jpg')">
+                     :src="item.evaluatorHeadImg">
                 <div class="content">
                     <div class="comment-info">
-                        <div class="username">西经与北瓜
+                        <div class="username">{{item.evaluatorName}}
                             <el-rate disabled
                                      disabled-void-color="rgba(255, 173, 51, 1)"/>
                         </div>
-                        <div class="comment-time">2021.04.09</div>
+                        <div class="comment-time">{{item.evaluateTime}}</div>
                     </div>
                     <div class="subtitle">学习3课时评价</div>
-                    <div class="comment">老师讲得非常棒，通俗易懂，爱了爱了</div>
-                    <div class="reply" v-if="item===1">
+                    <div class="comment">{{item.evaluateContent}}</div>
+                    <div class="reply" v-if="item.replyContent!=''">
                         <div class="reply-title">讲师回复：</div>
-                        <div class="reply-content">谢谢，一起努力</div>
+                        <div class="reply-content">{{item.replyContent}}</div>
                     </div>
                 </div>
             </div>
@@ -52,12 +52,31 @@
 </template>
 
 <script>
-  export default {
+  import { inject,defineComponent,toRefs,ref } from "vue";
+  export default defineComponent( {
     name: "commentBox",
-    setup() {
-
+	props:{
+		appEvaluateList:{
+			type:Array,
+			default:()=>{([])}
+		},
+		appEvaluateNum:{
+			type:Object,
+			default:()=>{({})}
+		}
+	
+	},
+    setup(props) {
+       const {appEvaluateList,appEvaluateNum} = toRefs(props)
+	   // 建立星星宽度数组
+	   const rateWith=ref([])
+	  return{
+		  appEvaluateList,
+		  appEvaluateNum,
+		  
+	  }
     }
-  }
+  })
 </script>
 
 <style lang="scss" scoped>
