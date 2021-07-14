@@ -5,12 +5,12 @@
 			<div></div>
 		</div>
 		<div class="hx"></div>
-		<historyItem :historyList="historyList" ></historyItem>
-		<xlCourseCard  v-for="(item,index) in historyList" :item="item" ></xlCourseCard>
+		<historyItem  @goDetail="goDetail" :historyList="historyList" ></historyItem>
 	</div>	
 </template>
 
 <script>
+	import { useRouter } from 'vue-router'
 	import xlCourseCard from "../../../components/courseCard/xlCourseCard.vue";
 	import historyItem from "../../../components/personal/browHistory/historyItem.vue"
 	import {getBrowseRecordList,myLovelist} from "../../../api/course.js"
@@ -22,6 +22,8 @@
 			xlCourseCard
 		},
 		setup(){
+		const router =useRouter()	
+			
 		// 获取浏览记录列表
 		const historyList =ref([])
         const getHistory = async ()=>{
@@ -33,25 +35,26 @@
 			historyList.value=res.data
 			console.log(historyList.value)
 		}
-		 const method = {
-		 		  //  获取猜你喜欢列表
-		 		  getMylovelist(){
-		 		  		  myLovelist({userId: localStorage.getItem('user_id')}).then(res=>{
-		 		  			  historyList.value=res
-		 		              console.log(res)
-		 		  		  })
-		 		  },
-
-		 }
+		const goDetail =(item)=>{
+			router.push({
+						  path:'/courseDetail',
+						  query: {
+						    courseId: item.courseId==undefined ? item.id : item.courseId ,
+						    courseType: item.courseType==undefined ? item.type : item.courseType
+						  }
+			})
+		}
+		
 		 
 		onMounted(()=>{
-			method.getMylovelist()
+			getHistory()
+			
 			
 		})	
 			return{
 				historyList,
 				getHistory,
-				...method
+				goDetail
 			}
 		}
 	}

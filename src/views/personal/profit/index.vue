@@ -2,7 +2,7 @@
 	<template>
 		<div class="contair">
 			<div class="tit f-s f-a">
-				<div class="Nav-con" ><tagList :menuList="NavList" @handleSelect="handleSelect" ></tagList></div>
+				<div class="Nav-con" ><tagList :defaultIndex="active" :menuList="NavList" @handleSelect="handleSelect" ></tagList></div>
 				<div></div>
 			</div>
 			<div class="hx"></div>
@@ -54,6 +54,7 @@
 	import tagList from "../../../components/common/tagList.vue"
 	import collectItem from "../../../components/personal/collection/collectItem.vue"
 	import router from "../../../router/router.js"
+    import { useRoute } from 'vue-router'
 	import {
 		ref,
 		reactive,
@@ -64,6 +65,7 @@
 		components:{tagList,collectItem,Price},
 		setup(){
 			const NavList = reactive(["我的收益","推荐课程"])
+			const route = useRoute()
 			const active =ref("1")
 			const chartOptions = reactive({
 			  legend: {
@@ -87,6 +89,9 @@
 			    data: [5, 20, 36, 10, 10, 20]
 			  }]
 			})
+			
+			active.value=route.query.index==1 ?  2 : 1
+			
 		    onMounted(()=>{
 				var myChart = echarts.init(document.getElementById('chart'));
 				myChart.setOption(chartOptions)

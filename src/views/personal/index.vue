@@ -2,22 +2,21 @@
 	<div class="">
 		<div class="header  f-a-j">
 			<div class="user-info container-main  f-s">
-				<el-upload class="avatar-uploader " action="https://jsonplaceholder.typicode.com/posts/" :show-file-list="false"
-				 :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+				
 					<div class="info-left hand f">
 
 						<div class="user-pic f-a-j">
-							<img src="../../assets/icon/sucai/17.png"  alt="">
+							<img :src="userInfo.avatar"  alt="">
 							<img class="vip  f-a-j" src="../../assets/image/personal/Svip.png"  @click.stop="openDialog">
 						     
 						</div>
 						<div class="user-detail f-c">
-							<div class="detail-name f-1">薛定谔的猫</div>
-							<div class="detail-id f-1">ID:922598</div>
+							<div class="detail-name f-1">{{userInfo.userName}}</div>
+							<div class="detail-id f-1">ID:{{userInfo.id}}</div>
 						</div>
 
 					</div>
-				</el-upload>
+				
 				<div class="info-right f">
 					<div @click="goDeatil(item.path)" class="right-item hand f-c f-a" v-for="(item,index) in subList" :key="index">
 
@@ -52,6 +51,7 @@
 
 <script>
 	import openVipDialog from "../../components/personal/openVipDialog.vue"
+	import {getUserInfo} from "../../api/wechat.js"
 	import {
 		ref,
 		reactive,
@@ -96,21 +96,13 @@
 					path: '/personal/evaluation',
 					icon:require("../../assets/image/personal/subicon3.png")
 				},
-				{
-					title: "我的积分",
-					path: '/personal/integral',
-					icon:require("../../assets/image/personal/subicon3.png")
-				},
+				
 				{
 					title: "浏览记录",
 					path: '/personal/browseHistory',
 					icon:require("../../assets/image/personal/subicon4.png")
 				},
-				{
-					title: "领赠记录",
-					path: '/personal/giftHistory',
-					icon:require("../../assets/image/personal/subicon1.png")
-				},
+				
 				{
 					title: "我的评价",
 					path: '/personal/myComment',
@@ -158,6 +150,15 @@
 			const openDialog = () => {
 				dialogShow.value = true
 			};
+			
+			// 获取用户信息
+			const userInfo =ref({})
+			const getUser= async ()=>{
+			  const res	= await getUserInfo({userId: localStorage.getItem('user_id')})
+			  userInfo.value=res
+			};
+			
+			
 			const methods = {
 				handleAvatarSuccess(res, file) {
 					this.imageUrl = URL.createObjectURL(file.raw);
@@ -174,9 +175,11 @@
 					}
 					return isJPG && isLt2M;
 				},
+				
 			}
 
 			onMounted(() => {
+				getUser()
 				menuList.forEach((item, index) => {
 					if (item.path == ctx.$router.currentRoute.value.fullPath) {
 						active.value = index + 1
@@ -186,7 +189,7 @@
 				history.pushState(null, null, document.URL);
 				window.addEventListener('popstate', function() {
 					// router.push("/login")
-					router.go(-1)
+					router.push("/")
 				});
 			})
 
@@ -199,6 +202,7 @@
 				openDialog,
 				dialogShow,
 				iconList,
+				userInfo,
 				...methods
 			}
 		},
@@ -231,6 +235,7 @@
                     img:nth-child(1){
 						width: 120px;
 						height: 120px;
+						border-radius: 50%;
 						
 					}
 					.vip {

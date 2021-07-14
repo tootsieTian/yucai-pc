@@ -1,11 +1,11 @@
 <template>
 	<div class="contair">
-		<div class="tit f-s f-a">
+		<div class="tit  f-a">
 			<div>申请入驻机构</div>
 			<div>
 				<div class="f-a" style="font-size: 12px; color: rgba(153, 153, 153, 1);height: 20px;">
-					<img style="height: 12px;width: 10px;margin-left: 20px;margin-right: 10px;" src="../../../assets/image/personal/dhicon.png"
-					 alt="">
+					<img style="height: 12px;width: 10px;margin-left: 20px;margin-right: 10px;"
+						src="../../../assets/image/personal/dhicon.png" alt="">
 					申请服务商>申请入驻机构
 				</div>
 			</div>
@@ -20,20 +20,23 @@
 			</div>
 			<div class="study-tit">*选择学习领域</div>
 			<div class="f lab-con">
-				<div class="lable1 hand" @click="selectItme($event,item)" v-for=" (item,index) in 10" :key="index">家庭教育</div>
+				<div class="lable1 hand" @click="selectItme($event,item)" v-for=" (item,index) in 10" :key="index">家庭教育
+				</div>
 			</div>
 			<div class="study-tit">上传身份证</div>
 			<div class="f">
-				<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan"
-				 name="file" :show-file-list="false" :on-success="handleAvatarSuccess1" :before-upload="beforeAvatarUpload">
+				<el-upload class="avatar-uploader" :headers="headObj"
+					action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
+					:show-file-list="false" :on-success="handleAvatarSuccess1" :before-upload="beforeAvatarUpload">
 					<div class="pic picb f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;">
 						<div class="ab-con f-a-j">
 							拍摄背面
 						</div>
 					</div>
 				</el-upload>
-				<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
-				 :show-file-list="false" :on-success="handleAvatarSuccess2" :before-upload="beforeAvatarUpload">
+				<el-upload class="avatar-uploader" :headers="headObj"
+					action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
+					:show-file-list="false" :on-success="handleAvatarSuccess2" :before-upload="beforeAvatarUpload">
 					<div class="pic zcbg f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;margin-left: 30px;">
 						<div class="ab-con f-a-j">
 							拍摄正面
@@ -42,16 +45,18 @@
 				</el-upload>
 			</div>
 			<div class="study-tit" style="margin-top: 53px; margin-bottom: 35px;">上传营业执照</div>
-			<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
-			 :show-file-list="false" :on-success="handleAvatarSuccess3" :before-upload="beforeAvatarUpload">
+			<el-upload class="avatar-uploader" :headers="headObj"
+				action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
+				:show-file-list="false" :on-success="handleAvatarSuccess3" :before-upload="beforeAvatarUpload">
 				<div class="pic f-a-j hand">
 					营业执照
 				</div>
 			</el-upload>
 			<div class="study-tit" style="margin-top: 41px; margin-bottom: 13px;">上传相关证件（选填）*</div>
 			<div class="hui" style=" margin-bottom: 24px;">可上传教师资格证等等</div>
-			<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
-			 :show-file-list="false" :on-success="handleAvatarSuccess4" :before-upload="beforeAvatarUpload">
+			<el-upload class="avatar-uploader" :headers="headObj"
+				action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
+				:show-file-list="false" :on-success="handleAvatarSuccess4" :before-upload="beforeAvatarUpload">
 				<div class="pic hand f-a-j">
 					上传
 				</div>
@@ -71,6 +76,7 @@
 		ref,
 		reactive
 	} from "vue"
+	import router from "../../../router/router.js";
 	import {
 		ElMessage
 	} from 'element-plus'
@@ -89,7 +95,10 @@
 			const subObj = reactive({
 				file: ''
 			})
-			const user = reactive({
+			const headObj = ref({
+				"Blade-Auth": localStorage.getItem('access_token')
+			})
+			const user = ref({
 				company: "",
 				name: '',
 				phone: '',
@@ -110,7 +119,14 @@
 				title: "邮箱",
 				pl: "请输入邮箱",
 				value: ""
+			}, {
+				title: "电话",
+				pl: "请输入电话",
+				value: ""
 			}]);
+
+
+			// 学习邻域选择逻辑
 			const selectItme = (event, item) => {
 				let className = event.currentTarget.className
 
@@ -127,7 +143,11 @@
 
 				}
 			}
+
+
 			const methods = {
+
+				// 提交申请
 				submitInfo() {
 
 					if (!validateEMail(subList[2].value) || !validateName(subList[1].value)) {
@@ -136,44 +156,54 @@
 					if (subList[0].value == '') {
 						return ElMessage('机构名称不能为空！请重新输入')
 					}
+					if ( !validatePhone(subList[3].value)) {
+						return ElMessage('电话号码格式有误')
+					}
 					if (checkList.length < 1) {
 						return ElMessage('学习邻域至少要选择一个！请选择')
 					}
-					if (user.IDimg[0] == '' || user.IDimg[1] == '' || user.companyimg[0] ==
-						'' || user.companyimg[1] == '') {
+					if (user.value.IDimg[0] == '' || user.value.IDimg[1] == '' || user.value.companyimg[0] ==
+						'' || user.value.companyimg[1] == '') {
 						return ElMessage('各种证件图片请上传完整！')
 					}
 					let obj = {
 						"address": "",
-						"certificate": [user.companyimg[0] ? user.companyimg[0] : "", user.companyimg[1] ? user.companyimg[
-							1] : ""],
+						"certificate": [user.value.companyimg[0] ? user.value.companyimg[0] : "", user.value.companyimg[1] ? user.value.companyimg[1] : ""
+						],
 						"email": subList[2].value,
 						"headImgUrl": "",
-						"idCardBack": user.IDimg[0] ? user.IDimg[0] : "",
-						"idCardFront": user.IDimg[1] ? user.IDimg[1] : "",
+						"idCardBack": user.value.IDimg[0] ? user.value.IDimg[0] : "",
+						"idCardFront": user.value.IDimg[1] ? user.value.IDimg[1] : "",
 						"name": subList[0].value,
 						"personName": subList[1].value,
-						"personTel": '',
+						"personTel": subList[3].value,
 						"tags": ['']
 					}
+					console.log(obj)
 					companySettle(JSON.stringify(obj)).then(res => {
-
+                        ElMessage.success("提交成功")
+                        router.push("userInfo")
 					})
 				},
+
+				// 提交证件的回调
 				handleAvatarSuccess1(res, file) {
-					user.IDimg[0].value = URL.createObjectURL(file.raw)
+					// user.IDimg[0].value = res.link
+
+					user.value.IDimg[0] = res.data.link
 				},
-				handleAvatarSuccess1(res, file) {
-					user.IDimg[1].value = URL.createObjectURL(file.raw)
+				handleAvatarSuccess2(res, file) {
+					user.value.IDimg[1] = res.data.link
 				},
-				handleAvatarSuccess1(res, file) {
-					user.companyimg[0].value = URL.createObjectURL(file.raw)	
+				handleAvatarSuccess3(res, file) {
+					user.value.companyimg[0] = res.data.link
 				},
-				handleAvatarSuccess1(res, file) {
-					user.companyimg[1].value = URL.createObjectURL(file.raw)
+				handleAvatarSuccess4(res, file) {
+					user.value.companyimg[1] = res.data.link
+
 				},
 
-
+				// 上传图片的拦截
 				beforeAvatarUpload(file) {
 					const isJPG = file.type === 'image/jpeg';
 					const isLt2M = file.size / 1024 / 1024 < 2;
@@ -194,6 +224,7 @@
 				selectItme,
 				user,
 				subObj,
+				headObj,
 				...methods
 			}
 		}

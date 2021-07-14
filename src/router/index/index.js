@@ -4,7 +4,7 @@ import searchResult from "./searchResult";
 import courseDetail from "./courseDetail";
 import activeCourse from "./activeCourse";
 import betterCourse from "./betterCourse";
-
+import mealCourse from "./mealCourse"
 export default [
   {
     path: '/',
@@ -31,6 +31,7 @@ export default [
   ...searchResult,
   ...courseDetail,
   ...activeCourse,
-  ...betterCourse
+  ...betterCourse,
+  ...mealCourse
 ]
 

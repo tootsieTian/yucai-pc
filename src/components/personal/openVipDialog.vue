@@ -2,7 +2,7 @@
     <div class="check-study">
 		
         <div class="dialog container-main">
-          <div class="title f-s" ><div>VIP会员</div><div @click="ok" >关闭</div></div>
+          <div class="title f-s" ><div>VIP会员</div><div class="el-icon-close" @click="ok" >关闭</div></div>
 		  <div class="user-info f" >
 			  <div class="pic " ></div>
 			  <div class="f-c f-s" >
@@ -104,6 +104,9 @@
         width: 100vw;
         height: calc(100vh - 100px);
     }
+	.el-icon-close{
+		margin-right: -20px;
+	}
   
     .dialog {
         top: 50%;
@@ -117,6 +120,7 @@
 		box-sizing: border-box;
         overflow-x:hidden;
 		overflow-y: scroll;
+		border-radius: 4px 4px 0px 0px;
     }
 	.title{
 		font-size: 16px;
@@ -125,8 +129,12 @@
 		color: #333333;
 	}
 	.user-info{
-		margin-top: 38px;
-		margin-bottom: 27px;
+		padding-top: 38px;
+		padding-bottom: 27px;
+		margin-left: -47px;
+		margin-right: -47px;
+		color: rgba(255, 211, 139, 1);
+		background: linear-gradient(159deg, #252933 0%, #3C3A40 100%);
 		.pic{
 			width: 47px;
 			height: 47px;
@@ -140,17 +148,17 @@
 			font-size: 14px;
 			font-weight: 500;
 			line-height: 20px;
-			color: #333333;
+			
 		}
 		.detail{
 			font-size: 12px;
 			font-weight: 400;
 			line-height: 17px;
-			color: #333333;
+			
 		}
 	}
 	.main{
-		width: 1048px;
+		width: 100%;
 		background: #FFFFFF;
 	    height: 854px;
 		

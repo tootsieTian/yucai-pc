@@ -27,20 +27,22 @@
 
 <script>
   import { reactive, ref, onMounted,toRefs } from 'vue'
-
   export default {
     name: "videoPlay",
+	// props:{
+	// 	videoInfo:{
+	// 		type:String,
+	// 		default:""
+	// 	}
+	// },
 	props:{
-		videoInfo:{
-			type:String,
-			default:""
-		}
+		videoInfo: String
 	},
     setup(props) {
+		
 	  const{videoInfo} = toRefs(props)
       const playerObj =  window.Aliplayer   // 播放器实例
       const source = ref('//player.alicdn.com/video/aliyunmedia.mp4')
-
       /** 清晰度和速度按钮操作 */
       const videoBtnObj = {
         clarityList: reactive([
@@ -315,6 +317,9 @@
                 visibility: unset;
             }
         }
+		.outter{
+			z-index: 10!important;
+		}
 
     }
 </style>

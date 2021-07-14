@@ -10,10 +10,12 @@
 			<div class="userpic f">
 
 				<div class="lable">头像</div>
-				<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan"
-				 :show-file-list="false" name="file" :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
+				<el-upload class="avatar-uploader"
+					action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" :show-file-list="false"
+					name="file" :headers="headObj" :on-success="handleAvatarSuccess"
+					:before-upload="beforeAvatarUpload">
 					<div class="pic">
-						<img src="../../../assets/icon/sucai/17.png" alt="">
+						<img :src="userInfo.avatar" alt="">
 						<div class="changepic hand">
 							<div class="top"></div>
 							<div class="bottom f-a-j">修改</div>
@@ -24,7 +26,7 @@
 			</div>
 			<div class="username f">
 				<div class="lable">昵称</div>
-				<div style="margin-left: 34px;">薛定谔的猫</div>
+				<div style="margin-left: 34px;">{{userInfo.userName}}</div>
 				<div style="margin-left: 27px;" class="hand" @click="open">修改</div>
 			</div>
 			<div class="sex f">
@@ -54,7 +56,8 @@
 
 <script>
 	import {
-		setUserInfo
+		setUserInfo,
+		getUserInfo
 	} from "../../../api/wechat.js"
 	import {
 		ref,
@@ -72,6 +75,9 @@
 			const imageUrl = ref('');
 			const inputName = ref('');
 			const value = ref('');
+			const headObj = ref({
+				"Blade-Auth": localStorage.getItem('access_token')
+			})
 			const options = reactive([{
 				value: '选项1',
 				label: '男'
@@ -91,12 +97,13 @@
 						return ElMessage('最多只能选3个')
 					}
 					checkList.push(item)
-					event.currentTarget.className = className + ' lable-active'	
+					event.currentTarget.className = className + ' lable-active'
 				}
 			};
 			const methods = {
 				handleAvatarSuccess(res, file) {
-				   imageUrl = URL.createObjectURL(file.raw);
+					imageUrl.value = res.data.link
+					userInfo.value.avatar = imageUrl.value
 				},
 				beforeAvatarUpload(file) {
 					const isJPG = file.type === 'image/jpeg';
@@ -116,10 +123,9 @@
 						cancelButtonText: '取消',
 						inputPattern: /^[\u4E00-\u9FA5A-Za-z0-9_]+$/,
 						inputErrorMessage: '昵称格式不正确'
-					}).then(({
-						value
-					}) => {
-					    inputName=value
+					}).then(({value}) => {
+						inputName.value = value
+						userInfo.value.userName = value
 						this.$message({
 							type: 'success',
 							message: '你的昵称是: ' + value
@@ -133,21 +139,33 @@
 				}
 			}
 			const goSave = () => {
-				console.log(value.value)
+				
 				let obj = {
-					"address": "",
-					"avatar": imageUrl,
-					"gender": value == '男'  ?  1 : 2  ,
-					"id":localStorage.getItem('user_id'),
-					"phone": input,
-					"userName": inputName
+					"address": userInfo.value.address  ,
+					"avatar": imageUrl.value =='' ?  userInfo.value.avatar : imageUrl.value ,
+					"gender": value.value == '男' ? 2 : 1,
+					"id": localStorage.getItem('user_id'),
+					"phone": input.value,
+					"userName": inputName.value == '' ? userInfo.value.userName : inputName.value
 				}
+				console.log(obj)
 				setUserInfo(JSON.stringify(obj)).then(res => {
-					this.$message("保存成功")
+					ElMessage.success("保存成功")
 					router.push("userInfo")
 				})
 
 			};
+
+			const userInfo = ref({})
+			const getUser = async () => {
+				const res = await getUserInfo({
+					userId: localStorage.getItem('user_id')
+				})
+				userInfo.value = res
+				value.value= res.gender==2 ? '男' : '女'
+				input.value=res.phone
+			}
+			getUser()
 			return {
 				input,
 				value,
@@ -155,6 +173,9 @@
 				goSave,
 				selectItme,
 				checkList,
+				userInfo,
+				getUser,
+				headObj,
 				...methods
 			}
 		},
@@ -219,6 +240,7 @@
 					img {
 						width: 50px;
 						height: 50px;
+						border-radius: 50%;
 					}
 
 					.changepic {

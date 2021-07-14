@@ -1,16 +1,16 @@
 <template>
 	<div class="item-con f" >
-		<div class="item hand"   v-for=" (item,index) in historyList" >
+		<div class="item hand" @click="goDetail(item)"  v-for=" (item,index) in historyList" >
 			<div class="item-header" >
-				<img src="../../../assets/icon/sucai/course2.png" alt="">
+				<img :src="item.img" alt="">
 			</div>
 			<div class="item-footer" >
 				<div class="title f-s" >
-					<div  >100倍工作效率</div>
+					<div  >{{item.name}}</div>
 					<div></div>
 				</div>
 				<div class="f-s" >
-					<div>观看30%</div>
+					<div>观看{{item.progress}}%</div>
 					<div>继续观看 ></div>
 				</div>
 			</div>
@@ -19,9 +19,10 @@
 </template>
 
 <script>
-	import {ref} from "vue"
+	import {ref,toRefs} from "vue"
 	export default {
 	  name: "historyItem",
+	  emits:["goDetail"],
 	  props: {
 		 historyList:{
 			 type:Array,
@@ -29,10 +30,16 @@
 			 ]}
 		 } 
 	  },
-	  setup(props) {
-	  		const {historyList} = props 
+	  
+	  
+	  setup(props,contxt) {
+	  		const {historyList} = toRefs(props) 
+			const goDetail = (item)=>{
+				contxt.emit("goDetail",item)
+			}
 			return{
-			
+			historyList,
+			goDetail
 			}
 	  }
 	  }

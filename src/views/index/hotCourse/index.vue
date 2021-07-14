@@ -2,8 +2,10 @@
 	<div class="bg-hui" >
     <div class="container-main">
        <!-- <div class="title">首页-热门课程</div> -->
-        <div class="nav-list">
-            <div class="nav-item"></div>
+        <div class="nav-list" >
+            <div class="nav-item">
+				<img :src="bgImg" alt="">
+			</div>
         </div>
         <course-list-title
                 title="热门课程"
@@ -34,19 +36,22 @@
     components: {MCourseCard, CourseListTitle},
     setup() {
 	   const hotcourseList =ref([])
-	  
+	   const bgImg= ref('')
        onMounted(()=>{
 			getHotcourseList()
 	   })
+	   
+	   
 	   const getHotcourseList = ()=> {
 	     indexHotMore({ indexType: 2 }).then((res) => {
 	       hotcourseList.value = res.indexHotList
-	       console.log(res)
+		   bgImg.value=res.indexHotList[0].img
 	     })
 	   }
 	   return {
 		   hotcourseList,
-		   getHotcourseList
+		   getHotcourseList,
+		   bgImg
 	   }
 	   
     }
@@ -77,6 +82,10 @@
         height: 280px;
         width: 100%;
         background: #E2E2E2;
+		img{
+		height: 280px;
+		width: 100%;	
+		}
     }
 
     ::v-deep .course-list-title{

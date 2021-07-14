@@ -36,7 +36,7 @@
 			}
 			return{
 				menuList,
-				defaultIndex,
+				// defaultIndex,
 				...methods
 			}
 		}

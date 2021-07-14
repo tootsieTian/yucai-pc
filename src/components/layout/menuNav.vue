@@ -53,20 +53,25 @@
         </div>
     </div>
     <loginDialog v-if="loginShow" @closeDialog="closeLogin"></loginDialog>
+	<openVipDialog @closeDialog="closeDialog" v-if="vipdialogShow"></openVipDialog>
 </template>
 
 <script>
   import { ref, reactive, watch, onBeforeMount } from 'vue'
   import { useRouter, useRoute } from 'vue-router'
   import loginDialog from "../../components/common/loginDialog.vue"
+  import  openVipDialog from "../personal/openVipDialog.vue"
 
   export default {
     name: "menuNav",
+	emits:["openVip"],
     components: {
-      loginDialog
+      loginDialog,
+	   openVipDialog
     },
 
-    setup() {
+    setup(props,contxt) {
+	  const vipdialogShow = ref(false)
       const router = useRouter()
       const route = useRoute()
       const navTop = ref(false)
@@ -79,7 +84,7 @@
       }, {
         immediate: true
       })
-
+     
 
       const menuList = reactive([
         {
@@ -91,26 +96,30 @@
           path: '/classifyCourse'
         },
         {
-          title: '家庭教育',
-          path: '/familyEducation'
+          title: '套餐视频',
+          path: '/mealCourse'
         },
         {
           title: '课程推荐',
-          path: '/courseRecommend'
+          path: '/personal/profit?index=1'
         },
         {
           title: '会员专区',
-          path: '/memberArea'
-        },
-        {
-          title: '签到',
-          path: '/signIn'
+          path: ''
         }
+		// ,
+  //       {
+  //         title: '签到',
+  //         path: '/signIn'
+  //       }
       ])    // 菜单列表
       const searchKey = ref('产品规划') // 搜索框关键字
       const isLogin = ref(true)    // 是否登录
       const courseClassifyList = ref(null)  // 课程分类列表dom
       const toPath = (path) => {
+		if(path==''){
+			 vipdialogShow.value=true
+		}
         router.push(path)
         listenScroll()
       }
@@ -120,6 +129,10 @@
       const openLogin = () => {
         loginShow.value = true
       }
+	  
+	  const closeDialog = ()=>{
+		  vipdialogShow.value=false
+	  }
 
       // 控制导航栏底部透明
       const transparent = ref(false)
@@ -150,7 +163,9 @@
         closeLogin,
         loginShow,
 		logoWImg,
-		logoBImg
+		logoBImg,
+		vipdialogShow,
+		closeDialog
       }
     }
   }

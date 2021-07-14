@@ -10,20 +10,20 @@
 		   <div class="userpic f" >
 			   <div class="lable" >头像</div>
 			   <div class="pic" >
-				   <img  src="../../../assets/icon/sucai/17.png" alt="">
+				   <img  :src="userInfo.avatar" alt="">
 			   </div>
 		   </div>
 		   <div class="username f" >
 			   <div class="lable" >昵称</div>
-			   <div style="margin-left: 34px;" >薛定谔的猫</div>
+			   <div style="margin-left: 34px;" >{{userInfo.userName}}</div>
 		   </div>
 		   <div class="sex f" >
 			   <div class="lable" >性别</div>
-			   <div style="margin-left: 34px;"  >-----</div>
+			   <div style="margin-left: 34px;"  >{{userInfo.gender==1  ? '女' : "男" }}</div>
 		   </div>
 		   <div class="phone f" >
 			   <div class="lable" >手机号</div>
-			   <div style="margin-left: 22px;" >-----</div>
+			   <div style="margin-left: 22px;" >{{userInfo.phone}}</div>
 		   </div>
 		   <div class="study" >
 			   <div class="lable" style="opacity: 1;" >*选择学习领域</div>
@@ -40,14 +40,25 @@
 
 <script>
 	import router from "../../../router/router.js"
+	import {getUserInfo} from "../../../api/wechat.js"
+	import {ref } from "vue"
     export default {
     name: "index",
     setup() {
        const goEdit =  () =>{
 		   router.push("edit")
 	   }
+	   
+	   const userInfo = ref({})
+	   const getUser =async ()=>{
+		  const res =await  getUserInfo({userId: localStorage.getItem('user_id')})
+		  userInfo.value=res
+	   }
+	   getUser()
 	   return{
-		   goEdit
+		   goEdit,
+		   userInfo,
+		   getUser
 	   }
     }
 	
@@ -103,6 +114,7 @@
 					img{
 						width: 50px;
 						height: 50px;
+						border-radius: 50%;
 					}
 				}
 				

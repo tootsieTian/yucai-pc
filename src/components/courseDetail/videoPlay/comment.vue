@@ -11,7 +11,7 @@
                         <div class="title">新媒体社区运营涨粉裂变</div>
                         <div class="star">
                             <el-rate
-                                    disabled
+                                    v-model="rateValue"
                                     show-score
                                     disabled-void-color="rgba(0, 0, 0, 0.2)"
                                     text-color="transparent">
@@ -33,23 +33,44 @@
 </template>
 
 <script>
-  import { ref } from "vue";
-
+  import { ref,watch } from "vue";
+  import {
+  	ElMessage
+  } from 'element-plus'
   export default {
     name: "comment",
+	emits:["closeCommentBox","submit"],
     setup(props,context) {
       const commentCourse = ref('')
+	   const rateValue =ref(1)
       const method = {
         close(){
           context.emit('closeCommentBox')
         },
+		
+	   
         submitComment(){
-          console.log(commentCourse)
+		
+		  let obj ={
+		    evaluateContent: commentCourse.value,
+		    evaluateLevel: rateValue.value,
+		    evaluateType: "",
+		    evaluateTypeId: "",
+		    evaluatorId: localStorage.getItem('user_id')
+		  }
+          context.emit("submit",obj)
           method.close()
         }
       }
+	   watch(rateValue,(newValue, old) => {
+	        if(newValue<1){
+				newValue=1
+			}
+	      });
+	  
       return {
         commentCourse,
+		rateValue,
         ...method
       }
     }
@@ -61,7 +82,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 10;
+        z-index: 999;
         background:rgba(51, 51, 51, 0.3);
         width: 100vw;
         height: 100vh;

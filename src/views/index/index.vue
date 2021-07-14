@@ -16,7 +16,7 @@
                 </swiper-slide>
             </swiper>
             <div class="plate-list container-main">
-                <div class="plate-item" v-for="plate in plateList">
+                <div class="plate-item" @click="godetail(plate.path)" v-for="plate in plateList">
                     <div class="f-a-j f">
                         <img style="width: 36px; margin-right: 5px;" :src="plate.icon" alt="">{{plate.title}}
                     </div>
@@ -160,7 +160,7 @@
         </main>
     </div>
     <check-study @closeDialog="closeDialog" v-if="dialogShow"/>
-
+    
 </template>
 
 <script>
@@ -181,7 +181,7 @@
   import Price from "../../components/common/price.vue"
   import { getIndexHot, getIndexTabList } from "../../api/indexList";
   import {myLovelist} from "../../api/course.js"
-
+  import  openVipDialog from "../../components/personal/openVipDialog.vue"
   SwiperCore.use([Pagination, A11y]);
 
   export default {
@@ -195,11 +195,13 @@
       lCourseCard,
       Swiper,
       SwiperSlide,
-      Price
+      Price,
+	 
     },
     setup() {
       const router = useRouter()
       const dialogShow = ref(false)      // 选择学习领域盒子
+	 
       const loginShow = ref(false)
       const activeList = ref([])              // 活动列表
       const boutiqueList = ref([])           // 精品列表
@@ -210,17 +212,20 @@
         {
           title: '全部课程',
           icon: require("../../assets/image/index/all.png"),
-          mask: require("../../assets/image/index/allM.png")
+          mask: require("../../assets/image/index/allM.png"),
+		  path:"/classifyCourse"
         },
         {
           title: '套餐课程',
           icon: require("../../assets/image/index/meal.png"),
-          mask: require("../../assets/image/index/studyM.png")
+          mask: require("../../assets/image/index/studyM.png"),
+		  path:"/mealCourse"
         },
         {
           title: '学习中心',
           icon: require("../../assets/image/index/study.png"),
-          mask: require("../../assets/image/index/studyM.png")
+          mask: require("../../assets/image/index/studyM.png"),
+		  path:"/study"
         }
       ])
      
@@ -239,6 +244,11 @@
 		  
 		  		  })
 		  },
+		  //  菜单跳转
+		  godetail(path){
+			 router.push(path)
+		  },
+		  
 		  // 调用首页数据api
 		  getIndexData(){
 			
@@ -276,8 +286,8 @@
           router.push({
 			  path:'/courseDetail',
 			  query: {
-			    courseId: item.courseId,
-			    courseType: item.courseType
+			    courseId: item.courseId==undefined ? item.id : item.courseId ,
+			    courseType: item.courseType==undefined ? item.type : item.courseType
 			  }
 		 })
         },
@@ -294,7 +304,7 @@
 		activeList,
 		boutiqueList,
 		categoryHotList,
-		loveList
+		loveList,
       }
     }
   }

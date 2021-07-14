@@ -3,9 +3,10 @@
 		<div class="tit  f-a">
 			<div>申请个人讲师</div>
 			<div>
-				<div class="f-a" style="font-size: 12px; color: rgba(153, 153, 153, 1);height: 20px;" >
-				<img style="height: 12px;width: 10px;margin-left: 20px;margin-right: 10px;" src="../../../assets/image/personal/dhicon.png" alt="">
-				申请服务商>申请个人讲师
+				<div class="f-a" style="font-size: 12px; color: rgba(153, 153, 153, 1);height: 20px;">
+					<img style="height: 12px;width: 10px;margin-left: 20px;margin-right: 10px;"
+						src="../../../assets/image/personal/dhicon.png" alt="">
+					申请服务商>申请个人讲师
 				</div>
 			</div>
 		</div>
@@ -19,32 +20,35 @@
 			</div>
 			<div class="study-tit">*选择学习领域</div>
 			<div class="f lab-con">
-				<div class="lable1 hand" @click="selectItme($event,item)" v-for=" (item,index) in 10" :key="index">家庭教育</div>
+				<div class="lable1 hand" @click="selectItme($event,item)" v-for=" (item,index) in 10" :key="index">家庭教育
+				</div>
 
 			</div>
 			<div class="study-tit">上传身份证</div>
-            <div class="f" >
-			<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file" :show-file-list="false"
-			 :on-success="handleAvatarSuccess1" :before-upload="beforeAvatarUpload">
-				<div class="pic picb f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;">
-					<div class="ab-con f-a-j" >
-						拍摄背面
+			<div class="f">
+				<el-upload class="avatar-uploader" :headers="headObj"
+					action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
+					:show-file-list="false" :on-success="handleAvatarSuccess1" :before-upload="beforeAvatarUpload">
+					<div class="pic picb f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;">
+						<div class="ab-con f-a-j">
+							拍摄背面
+						</div>
 					</div>
-				</div>
-			</el-upload>
-			<el-upload class="avatar-uploader" action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file" :show-file-list="false"
-			 :on-success="handleAvatarSuccess2" :before-upload="beforeAvatarUpload">
-			<div class="pic f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;margin-left: 30px;" >
-				<div class="ab-con f-a-j" >
-					拍摄正面
-				</div>
+				</el-upload>
+				<el-upload class="avatar-uploader" :headers="headObj"
+					action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
+					:show-file-list="false" :on-success="handleAvatarSuccess2" :before-upload="beforeAvatarUpload">
+					<div class="pic f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;margin-left: 30px;">
+						<div class="ab-con f-a-j">
+							拍摄正面
+						</div>
+					</div>
+				</el-upload>
 			</div>
-			</el-upload>
-			</div>
-			<div class="hx" style="margin-top: 80px;"  ></div>
+			<div class="hx" style="margin-top: 80px;"></div>
 			<div class="f-j">
 				<el-button class="btn-1">取消</el-button>
-				<el-button  @click="submitInfo" class="btn-1 bule">保存并提交</el-button>
+				<el-button @click="submitInfo" class="btn-1 bule">保存并提交</el-button>
 			</div>
 		</div>
 
@@ -56,22 +60,33 @@
 		ref,
 		reactive
 	} from "vue"
-	import { companySettle } from "../../../api/settle.js"
-	import {validatePhone,validateEMail,validateName}  from "../../../util/check.js"
+	import {
+		companySettle
+	} from "../../../api/settle.js"
+	import {
+		validatePhone,
+		validateEMail,
+		validateName
+	} from "../../../util/check.js"
 	import {
 		ElMessage
 	} from 'element-plus'
 	export default {
 		setup() {
-			const subObj =reactive({file:''})
+			const subObj = reactive({
+				file: ''
+			})
 			const imageUrl = ref('')
-			const user =reactive({
+			const headObj = ref({
+				"Blade-Auth": localStorage.getItem('access_token')
+			})
+			const user = ref({
 				name: '',
 				phone: '',
 				email: '',
 				teachScope: '',
-				IDimg: ['','']
-			},)
+				IDimg: ['', '']
+			}, )
 			const checkList = reactive([])
 			const subList = reactive([{
 				title: "真实姓名",
@@ -103,19 +118,19 @@
 				}
 			}
 			const methods = {
-				submitInfo(){
-					
-					if( !validateEMail(subList[2].value)||!validateName(subList[0].value)  ){
-						return  ElMessage('邮箱格式或者姓名格式不对！请重新输入')
+				submitInfo() {
+
+					if (!validateEMail(subList[2].value) || !validateName(subList[0].value)) {
+						return ElMessage('邮箱格式或者姓名格式不对！请重新输入')
 					}
-					if(!validatePhone(subList[1].value)){
-						return  ElMessage('手机号码格式不正确！请重新输入')
+					if (!validatePhone(subList[1].value)) {
+						return ElMessage('手机号码格式不正确！请重新输入')
 					}
-					if(checkList.length<1){
-						return  ElMessage('学习邻域至少要选择一个！请选择')
+					if (checkList.length < 1) {
+						return ElMessage('学习邻域至少要选择一个！请选择')
 					}
-					if(user.IDimg[0] == '' || user.IDimg[1] == '' ){
-						return  ElMessage('各种证件图片请上传完整！')
+					if (user.IDimg[0] == '' || user.IDimg[1] == '') {
+						return ElMessage('各种证件图片请上传完整！')
 					}
 					let obj = {
 						"address": "",
@@ -123,38 +138,38 @@
 						"email": this.user.email,
 						"gender": 0,
 						"headImgUrl": "",
-						"idCardBack": this.user.IDimg[0] ? this.user.IDimg[0] : "" ,
+						"idCardBack": this.user.IDimg[0] ? this.user.IDimg[0] : "",
 						"idCardFront": this.user.IDimg[1] ? this.user.IDimg[1] : "",
 						"name": this.user.name,
 						"tags": [],
 						"tel": this.user.phone
 					}
-					teacherSettle(JSON.stringify(obj)).then(res=>{
-						
+					teacherSettle(JSON.stringify(obj)).then(res => {
+
 					})
 				},
-				      handleAvatarSuccess1(res, file) {
-				        	        user.IDimg[0].value=URL.createObjectURL(file.raw)	
-				        	       
-			     
-				      },
-					  handleAvatarSuccess2(res, file) {
-					    	       
-					    	        user.IDimg[1].value=URL.createObjectURL(file.raw)
-					  			     
-					  },
-				      beforeAvatarUpload(file) {
-				        const isJPG = file.type === 'image/jpeg';
-				        const isLt2M = file.size / 1024 / 1024 < 2;
-				
-				        if (!isJPG) {
-				          ElMessage('上传头像图片只能是 JPG 格式!');
-				        }
-				        if (!isLt2M) {
-				          ElMessage('上传头像图片大小不能超过 2MB!');
-				        }
-				       
-				      }
+				handleAvatarSuccess1(res, file) {
+					user.value.IDimg[0] = URL.createObjectURL(file.raw)
+
+
+				},
+				handleAvatarSuccess2(res, file) {
+
+					user.value.IDimg[1] = URL.createObjectURL(file.raw)
+
+				},
+				beforeAvatarUpload(file) {
+					const isJPG = file.type === 'image/jpeg';
+					const isLt2M = file.size / 1024 / 1024 < 2;
+
+					if (!isJPG) {
+						ElMessage('上传头像图片只能是 JPG 格式!');
+					}
+					if (!isLt2M) {
+						ElMessage('上传头像图片大小不能超过 2MB!');
+					}
+
+				}
 			}
 			return {
 				subList,
@@ -162,6 +177,7 @@
 				selectItme,
 				subObj,
 				user,
+				headObj,
 				...methods
 			}
 		}
@@ -223,7 +239,7 @@
 		}
 
 		.lable1 {
-            
+
 			padding: 11px 26px 11px 22px;
 			font-size: 14px;
 			font-weight: 400;
@@ -245,7 +261,8 @@
 			background-size: 100%;
 			position: relative;
 		}
-		.ab-con{
+
+		.ab-con {
 			position: absolute;
 			width: 355px;
 			height: 47px;
@@ -254,8 +271,9 @@
 			color: #FFFFFF;
 			border-radius: 0px 0px 8px 8px;
 		}
-		.picb{
-			background-image: url(../../../assets/image/personal/ID.png)!important;
+
+		.picb {
+			background-image: url(../../../assets/image/personal/ID.png) !important;
 		}
 
 		.btn-1 {
@@ -268,12 +286,13 @@
 			color: rgba(153, 153, 153, 1);
 			margin-top: 70px;
 		}
-		.bule{
-			background: #1371F3!important;
-			color: #FFFFFF!important;
-			border: 0!important;
+
+		.bule {
+			background: #1371F3 !important;
+			color: #FFFFFF !important;
+			border: 0 !important;
 			margin-left: 40px;
-			
+
 		}
 
 		.lable-active {

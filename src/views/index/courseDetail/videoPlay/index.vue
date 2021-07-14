@@ -2,7 +2,7 @@
     <div class="video-play">
         <div class="video-box">
             <div class="btn-list">
-                <div><img :src="require('../../../../assets/image/course/videoPlay/heart.png')">收藏</div>
+                <div @click="collect" ><img :src="require('../../../../assets/image/course/videoPlay/heart.png')">{{isCollect ? "已收藏"  : "收藏"  }}</div>
                 <div><img :src="require('../../../../assets/image/course/videoPlay/share.png')">分享</div>
             </div>
             <div class="title-box">
@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <comment v-if="commentBoxShow" @closeCommentBox="commentBoxShow=false"/>
+    <comment @submit="submit" v-if="commentBoxShow" @closeCommentBox="commentBoxShow=false"/>
 </template>
 
 <script>
@@ -63,7 +63,10 @@
   import Comment from "../../../../components/courseDetail/videoPlay/comment";
   import VideoPlay from "../../../../components/common/videoPlay";
   import {useRouter,useRoute} from "vue-router"
-  import{ courseDetail, getPlayInfo, collectCourse, cancelCellect } from "../../../../api/course.js"
+  import{ courseDetail, getPlayInfo, collectCourse, cancelCellect,evaluateCourse } from "../../../../api/course.js"
+  import {
+  	ElMessage
+  } from 'element-plus'
 
   export default {
     name: "index",
@@ -83,6 +86,7 @@
 	  const videoInfo=ref({})
 	  const resourceList =ref([])
 	  const lecturer =ref({})
+	  const isCollect=ref(false)
 	  courseId.value = roure.query.courseId
 	  videoId.value = roure.query.videoId
 	  courseType.value = parseInt(roure.query.courseType)
@@ -98,6 +102,7 @@
 		 resourceList.value=res.resourceList
 		 activeVideo.value=resourceList.value[0]
 		 lecturer.value=res.lecturer
+		 isCollect.value=res.isCollect==1 ? true : false 
 	  }
 	  getCourseInfo()
 	  
@@ -119,6 +124,48 @@
 	    getVideoInfo(videoId.value)
 	  }
 	  
+	  // 提交评价
+	  const submit =(obj)=>{
+
+		  obj.evaluateType=courseType.value
+		  obj.evaluateTypeId=courseId.value
+		  console.log(obj.evaluateContent)
+		  if(obj.evaluateContent==''){
+		  	return  ElMessage.error("评价内容不能为空")
+		  }
+		  const res =evaluateCourse(obj)
+		  ElMessage.success("评价成功！")
+	  }
+	  
+	  // 收藏按钮逻辑
+	  const collect = async () => {
+	  	if (isCollect.value) {
+	  		const res = await cancelCellect({
+	  			courseId: courseId.value,
+	  			courseType: courseType.value,
+	  			userId: localStorage.getItem('user_id')
+	  		})
+	  		if (!res) {
+	  			isCollect.value = false
+	  			ElMessage.success('取消收藏！');
+	  		}
+	  	} else {
+	  		const res = await collectCourse({
+	  			courseId: courseId.value,
+	  			courseType: courseType.value,
+	  			userId: localStorage.getItem('user_id')
+	  		})
+	  		if (res) {
+	  			isCollect.value = true
+	  			ElMessage.success('收藏成功！');
+	  		}
+	  
+	  
+	  	}
+	  
+	  
+	  }
+	  
 	  
       watch(commentBoxShow, (oldVal, newVal) => {
         console.log(oldVal)
@@ -136,8 +183,10 @@
 		getCourseInfo,
 		resourceList,
 		activeVideo,
-		lecturer
-		
+		lecturer,
+	    submit,
+		isCollect,
+		collect
       }
     }
   }
@@ -382,6 +431,8 @@
                 }
             }
         }
+		
+		
     }
 
 </style>
