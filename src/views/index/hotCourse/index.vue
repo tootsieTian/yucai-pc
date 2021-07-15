@@ -15,13 +15,13 @@
                 <m-course-card :item="item" />
             </el-col>
         </el-row>
-		<div style="margin-top: 57px;" class="f-a-j" >
+		<!-- <div style="margin-top: 57px;" class="f-a-j" >
 			<el-pagination
 			  background
 			  layout="prev, pager, next,jumper"
 			  :total="1000">
 			</el-pagination>
-		</div>
+		</div> -->
     </div>
 	</div>
 </template>

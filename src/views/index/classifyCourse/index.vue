@@ -4,8 +4,8 @@
             <div class="title">课程分类：</div>
             <div class="classify-list">
                 <div  @click="selectSubtop(index)"   class="classify-item" :class="index==isSelectop ? 'classify-item-active' : ''" 
-                     v-for="(item,index) in 4"
-                     :key="4+'p'">家庭教育
+                     v-for="(item,index) in classList"
+                     :key="4+'p'">{{item.name}}
                 </div>
             </div>
         </div>
@@ -15,24 +15,25 @@
             <div @click="selectSub(index)" :class=" isSelect == index ? 'filter-item-active filter-item' :'filter-item'" v-for="(item,index) in subList" >{{item}}</div>
         </div>
         <el-row :gutter="24">
-            <el-col v-for="item in 12"
+            <el-col style="margin-bottom: 20px;" v-for="item in 12"
                     :span="6"	
                     :key="item+'l'">
                 <m-course-card/>
             </el-col>
         </el-row>
-		<div class="f-a-j" >
+		<!-- <div class="f-a-j" >
 			<el-pagination
 			  background
 			  layout="prev, pager, next,jumper"
 			  :total="1000">
 			</el-pagination>
-		</div>	
+		</div>	 -->
     </main>
 </template>
 
 <script>
-  import MCourseCard from "../../../components/courseCard/sCourseCard";
+  import {classifyOne} from "../../../api/classify.js"
+  import MCourseCard from "../../../components/courseCard/mCourseCard";
   import {ref,relative} from "vue"
   export default {
     name: "index",
@@ -48,12 +49,23 @@
 	  		  isSelectop.value=index
 			  
 	  }
+	  
+	  // 获取一级分类列表
+	  const classList =ref()
+	  const getClassfiy = async()=>{
+	  		 const res = await classifyOne({isIndex:0})
+	  		 classList.value = res
+	  }
+	  getClassfiy()
+	  
 	  return {
 		  subList,
 		  isSelect,
 		  selectSub,
 		  isSelectop,
-		  selectSubtop
+		  selectSubtop,
+		  classList,
+		  getClassfiy
 	  }
     }
   }

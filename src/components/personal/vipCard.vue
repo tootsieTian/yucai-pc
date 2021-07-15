@@ -3,8 +3,9 @@
 		<div  :class="activeIndex==index ? 'bg-hui' : ''"  @click="selectVip(index)" class="item f-a f-c" v-for="(item,index) in 3 " :key="index"  >
 			<div class="tab1 f-a-j" >热卖推荐</div>
 			<div class="tit1" >连续包年</div>
-			<div class="f tit2" ><Price></Price>/年</div>
-			<div><Price :fontSize="'14px'" ></Price></div>
+			<div class="f tit2" ><Price style="margin-top: -5px; " :fontSize="'32px'" ></Price>/年</div>
+			<div style="margin-top: -10px;color: rgba(87, 47, 29, 1);" >原价:<Price :color="'rgba(87, 47, 29, 1)'" :fontSize="'14px'" ></Price></div>
+			<div class="xuxian" ></div>
 		</div>
 	</div>
 </template>
@@ -45,13 +46,13 @@
 		// height:150px ;
 		padding-top: 20px;
 		.bg-hui{
-			background: #D1D1D1!important;
+			background: linear-gradient(145deg, #FFF2E0 0%, #FFD495 100%)!important;
 		}
 		.item{
 			position: relative;
-			border: 2px solid #A0A0A0;
+			border: 1px solid #E9B060;
 			border-radius: 11px;
-			background: #F5F5F5;
+			background: #F6F8FA;
 			font-size: 13px;
 			font-weight: 400;
 			line-height: 18px;
@@ -66,11 +67,11 @@
 				left: -2px;
 				width: 112px;
 				height: 29px;
-				background: #FFFFFF;
-				border: 2px solid #A0A0A0;
-				color: rgba(51,51,51,0.5);
+				background: linear-gradient(326deg, #FD9338 0%, #FE754A 100%);
+				
+				color: #FFFFFF;
 				opacity: 1;
-				border-radius: 0px 0px 11px 11px;
+				border-radius: 11px 0px 11px 0px;
 			}
 			.tit1{
 				margin-top: 30px;
@@ -79,6 +80,12 @@
 			.tit2{
 				margin-bottom: 8px;
 			}
+		}
+		.xuxian{
+			border-top: 1px dashed #000000 ;
+			height: 2px;
+			width: 100%;
+			border-bottom: 1px  dashed #000000;
 		}
 	}
 </style>

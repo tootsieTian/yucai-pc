@@ -19,7 +19,8 @@
                         v-model="userInfo.code"
                         clearable>
                     <template #append>
-						<div class="f-a-j  getcode hand" style="margin-top: 10px;" >获取验证码</div>
+						<div v-if="timecode==30" @click="sendCode" class="f-a-j  getcode hand" style="margin-top: 10px;" >获取验证码</div>
+						<div v-if="timecode!==30" @click="sendCode" class="f-a-j  getcode hand" style="margin-top: 10px;" >{{timecode+'s'}}</div>
                     </template>
                 </el-input>
             </div>
@@ -27,11 +28,18 @@
             <el-button  class="login-btn"
                         @click="login"
                         circle>登录</el-button>
-            <div class="other">其他登录方式</div>
-            <div class="login-type hand">
+            <div class="other"  >其他登录方式</div>
+            <!-- <div class="login-type hand">
 				<img  style="width: 45px;" src="../../assets/image/index/login-wx.png" alt="">
-            </div>
-        
+            </div> -->
+           <wxlogin
+             appid="wx553c8ec687833235"
+             :scope="'snsapi_login'"
+             :theme="'black'"
+             :redirect_uri="encodeURIComponent('http://yc.yucaiedu.com')"
+              rel="external nofollow" 
+           >
+           </wxlogin>
        
 		</div>
     </div>
@@ -39,28 +47,107 @@
 
 <script>
   import { reactive,ref } from 'vue'
+  import { postToken, sendMobileCaptcha } from "../../api/login.js";
+  import wxlogin from 'vue-wxlogin'
+  import { validatePhone } from "../../util/check.js"
+  import   "../../util/wxLogin.js"
+  import {
+  	ElMessage
+  } from 'element-plus'
   import { useRouter } from 'vue-router'
   export default {
     name: "checkStudy",
+	emits:["closeDialog"],
+	components:{
+		wxlogin
+	},
     setup(props, context) {
       const router = useRouter()
-      const userInfo = reactive({
+	  // const wxLoginUrl= ref('https://open.weixin.qq.com/connect/qrconnect?appid=''&redirect_uri=''&response_type=code&scope=snsapi_login#wechat_redirect')
+	  const timecode = ref(30)
+      const userInfo = ref({
         phone: '',
         code: ''
       })
 	  const login = () => {
-	    router.push('/')
+		  if (userInfo.value.code.length!==4) {
+		     
+			return ElMessage.error('验证码为四位！')
+		  }
+		  if(validatePhone(userInfo.value.phone)){
+		  	method.loginByCode()
+		  }
+		  else{
+		  	ElMessage.error('手机号码错误请确认！')
+		  }
 	  }
       const method = {
         ok() {
           context.emit('closeDialog')
         },
 		// 选择具体的svip还是vip
+		sendCode(){
+			if( !validatePhone(userInfo.value.phone)){
+				return 	ElMessage.error('手机号码错误请确认！')
+			}
+			if(timecode.value==30){
+				sendMobileCaptcha({ "phone": userInfo.value.phone}).then(()=>{
+				   ElMessage.success("发送成功")
+				   const timer = setInterval(()=>{
+				   	timecode.value--
+				   	if(timecode.value==0){
+				   		timecode.value=30
+				   		clearInterval(timer)
+				   	}
+				   },1000)	
+				}
+				)
+				
+			}else{
+				ElMessage.error("请不要重复点击！")
+			}
+		},
+		loginByCode() {
+		  postToken({
+		    'phone': userInfo.value.phone,
+		    'code': userInfo.value.code,
+		    'agree': 1,
+		    'grant_type': 'phone'
+		  }).then(res => {
+			
+		    ElMessage.success('登录成功')
+		    localStorage.setItem('access_token', res.access_token)
+		    localStorage.setItem('user_id',res.user_id)
+		    setTimeout(()=>{
+		      context.emit('closeDialog')
+		    },500)
+		  }).catch((res)=>{
+			 
+			  ElMessage.error("验证码有误！")
+		  }
+		  )
+		  
+		  
+		  
+		},
+		wxLogin(){
+			
+			var obj = new WxLogin({
+			  id: "weixin",
+			  appid: "wx3bdb1192c22883f3",
+			  scope: "snsapi_login",
+			  // 扫码成功后 跳转的地址
+			  redirect_uri: "http://domain/weixinlogin"
+			})
+			 console.log(obj)
+
+		}
 	
       }
       return {
         ...method,
 		userInfo,
+		timecode,
 		login
       }
     }

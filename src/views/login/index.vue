@@ -9,7 +9,8 @@
 			<div class="code">
 				<el-input placeholder="请输入验证码" v-model="userInfo.code" clearable>
 					<template #append>
-						<el-button>发送验证码</el-button>
+						<el-button @click="sendCode" >发送验证码</el-button>
+						<span>{{timecode}}</span>
 					</template>
 				</el-input>
 			</div>
@@ -34,20 +35,38 @@
 		name: "index",
 		setup() {
 			const router = useRouter()
+			const timecode = ref(30)
 			const userInfo = reactive({
 				phone: '',
 				code: ''
 			})
 			const login = () => {
-				localStorage.setItem('access_token',
-					"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRfaWQiOiIwMDAwMDAiLCJ1c2VyX3N0YXR1cyI6MiwidXNlcl9uYW1lIjoieWNfdjk1NnhhcnZKM3lLIiwicmVhbF9uYW1lIjpudWxsLCJhdmF0YXIiOiJodHRwczovL3RoaXJkd3gucWxvZ28uY24vbW1vcGVuL3ZpXzMyL0NKWmliRFpkdlRCUXU3VWxrOGlhOGRBOGxuU2hHWjVYMDBhcURpYjVMeHhqOUtZekVRSHFlWlIyOWdCdUZUampaaWNFZUNtamlicUs3WTcwUE1pYzFFZktrRFhnLzEzMiIsImNsaWVudF9pZCI6InNhYmVyIiwicm9sZV9uYW1lIjoiIiwibGljZW5zZSI6InBvd2VyZWQgYnkgYmxhZGV4IiwicG9zdF9pZCI6IiIsInVzZXJfaWQiOiIxNDEzNzU5NDI5ODUzOTQ5OTUzIiwicm9sZV9pZCI6IiIsInNjb3BlIjpbImFsbCJdLCJuaWNrX25hbWUiOiJ0b290c2llIiwib2F1dGhfaWQiOm51bGwsImRldGFpbCI6eyJ0eXBlIjoibW9iaWxlIiwicGhvbmUiOiIxOTg1OTkxMDEwOCJ9LCJleHAiOjE2MjY1MjY4NjMsImRlcHRfaWQiOiIiLCJqdGkiOiI3M2IzZmQ2Yi02ZmJmLTQ3M2EtYmQzNC1lNThlY2FkM2FmNmUiLCJhY2NvdW50IjoieWNfdjk1NnhhcnZKM3lLIn0.g36X4Nv2xIksc3tRuqzkbwBVN_pCBXLZAeqv3MgrWXE"
-					)
-				localStorage.setItem('user_id', "1413759429853949953")
-				router.push('/')
+				// localStorage.setItem('access_token',
+				// 	"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0ZW5hbnRfaWQiOiIwMDAwMDAiLCJ1c2VyX3N0YXR1cyI6MiwidXNlcl9uYW1lIjoieWNfdjk1NnhhcnZKM3lLIiwicmVhbF9uYW1lIjpudWxsLCJhdmF0YXIiOiJodHRwczovL3RoaXJkd3gucWxvZ28uY24vbW1vcGVuL3ZpXzMyL0NKWmliRFpkdlRCUXU3VWxrOGlhOGRBOGxuU2hHWjVYMDBhcURpYjVMeHhqOUtZekVRSHFlWlIyOWdCdUZUampaaWNFZUNtamlicUs3WTcwUE1pYzFFZktrRFhnLzEzMiIsImNsaWVudF9pZCI6InNhYmVyIiwicm9sZV9uYW1lIjoiIiwibGljZW5zZSI6InBvd2VyZWQgYnkgYmxhZGV4IiwicG9zdF9pZCI6IiIsInVzZXJfaWQiOiIxNDEzNzU5NDI5ODUzOTQ5OTUzIiwicm9sZV9pZCI6IiIsInNjb3BlIjpbImFsbCJdLCJuaWNrX25hbWUiOiJ0b290c2llIiwib2F1dGhfaWQiOm51bGwsImRldGFpbCI6eyJ0eXBlIjoibW9iaWxlIiwicGhvbmUiOiIxOTg1OTkxMDEwOCJ9LCJleHAiOjE2MjY1MjY4NjMsImRlcHRfaWQiOiIiLCJqdGkiOiI3M2IzZmQ2Yi02ZmJmLTQ3M2EtYmQzNC1lNThlY2FkM2FmNmUiLCJhY2NvdW50IjoieWNfdjk1NnhhcnZKM3lLIn0.g36X4Nv2xIksc3tRuqzkbwBVN_pCBXLZAeqv3MgrWXE"
+				// 	)
+				// localStorage.setItem('user_id', "1413759429853949953")
+				// router.push('/')
+			}
+			const method ={
+				sendCode(){
+					if(timecode==30){
+						const timer = setTimeout(()=>{
+							timecode.value--
+							if(timecode.value==0){
+								timecode.value=30
+								timer.clear()
+							}
+						},1000)
+					}else{
+						
+					}
+				}
 			}
 			return {
 				userInfo,
-				login
+				login,
+				...method,
+				timecode
 			}
 		}
 	}

@@ -160,6 +160,7 @@
         </main>
     </div>
     <check-study @closeDialog="closeDialog" v-if="dialogShow"/>
+	<loginDialog @closeDialog="closeLogin" v-if="loginShow"  ></loginDialog>
     
 </template>
 
@@ -168,6 +169,7 @@
   import { ref, reactive,onMounted } from 'vue'
   import { Swiper, SwiperSlide } from 'swiper/vue';
   import SwiperCore, { Pagination, A11y } from 'swiper';
+  import loginDialog from "../../components/common/loginDialog.vue"
   import 'swiper/swiper.scss';
   import 'swiper/components/navigation/navigation.scss';
   import 'swiper/components/pagination/pagination.scss';
@@ -196,13 +198,13 @@
       Swiper,
       SwiperSlide,
       Price,
+	  loginDialog
 	 
     },
     setup() {
       const router = useRouter()
       const dialogShow = ref(false)      // 选择学习领域盒子
-	 
-      const loginShow = ref(false)
+      const loginShow = ref(true)
       const activeList = ref([])              // 活动列表
       const boutiqueList = ref([])           // 精品列表
       const categoryHotList = ref([])       // 热门列表
@@ -233,7 +235,14 @@
 		   method.getIndexData()
 		   method.getMylovelist()
 	  })
+	  
 		 
+	  // 进入页面判断是否登录
+	  if(localStorage.getItem('access_token')==''||localStorage.getItem('user_id')==''){
+		  loginShow.value=true
+	  }else{
+		  loginShow.value=false
+	  }
 	  
 
       const method = {
@@ -292,7 +301,9 @@
 		 })
         },
         closeLogin() {
+		
           loginShow.value = false
+		    console.log(loginShow.value)
         }
       }
       return {
@@ -305,6 +316,7 @@
 		boutiqueList,
 		categoryHotList,
 		loveList,
+		
       }
     }
   }

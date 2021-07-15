@@ -2,26 +2,31 @@
     <div class="check-study">
 		
         <div class="dialog container-main">
-          <div class="title f-s" ><div>VIP会员</div><div class="el-icon-close" @click="ok" >关闭</div></div>
+        
 		  <div class="user-info f" >
+			  <div class="title f-a" ><div>升级会员</div></div>
 			  <div class="pic " ></div>
 			  <div class="f-c f-s" >
 				  <div class="name" >薛定谔的猫</div>
 				  <div class="detail" >您还不是会员，升级会员享更多权益</div>
 			  </div>
+			  <div class="el-icon-close hand" @click="ok" >关闭</div>
+		  </div>
+		  <div class="tab hand f" >
+		  				  <div @click="selectTab(0)"  class="tab-left f-a-j " ><div class="bor-bot f-a-j" :class="activeTab == 0 ? 'bg-w' : '' " >VIP会员</div></div>
+		  				  <div @click="selectTab(1)"  class="tab-right f-a-j" ><div class="bor-bot f-a-j" :class="activeTab == 1 ? 'bg-w' : '' " >SVIP会员</div></div>
 		  </div>
 		  <div class="main" >
-			  <div class="tab f" >
-				  <div @click="selectTab(0)" :class="activeTab == 0 ? 'bg-w' : '' " class="tab-left f-a-j " >VIP会员</div>
-				  <div @click="selectTab(1)" :class="activeTab == 1 ? 'bg-w' : '' "  class="tab-right f-a-j" >SVIP会员</div>
-			  </div>
+			  
 			  <div class="contxt" >
-				  <div>开通会员预计可省<Price :fontSize="'17px'" ></Price>元</div>
+				  <!-- <div>开通会员预计可省<Price :fontSize="'17px'" ></Price>元</div> -->
 				  <div class="card-con" >
 					  <vipCard v-show="activeTab == 0" ></vipCard>
 					  <vipCard v-show="activeTab == 1" ></vipCard>
 				  </div>
-				  <div>声明声明声明声明声明声明声明声明声明声明声明声明声明声明声明声明声明声明声明</div>
+				 <div style="color: #333333;font-size: 15px;margin-bottom: 10px;" ><img style="height: 15px;" src="../../assets/image/personal/dieol.png" alt="">连续包年声明：</div>
+				  <div>享会员专属优惠 以后购买卡盛的部分商品享受九折优惠。另外,卡盛的每一门课程都将严格的规定,每节课在10分钟左右(保证学习的兴趣,避免时间过长
+而疲惫)。</div>
 				  <div class="f yuan-con" >
 					  <div class="yuan-tab" v-for="(item,index) in  8" :key="index" >
 						  <div class="yuan" ></div>
@@ -34,7 +39,7 @@
 						  <div class="ma" ></div>
 						  <div class="f-c f-s right" >
 							  <div>
-								  <Price></Price>
+								  <Price :color="'rgba(234, 53, 83, 1)'" :fontSize="'34px'" ></Price>
 								  已优惠69元
 							  </div>
 							  <div class="op3" >
@@ -93,7 +98,8 @@
 	    display: none;
 	}
 	.bg-w{
-		background: #FFFFFF;
+		border-bottom: 3px solid #FFD38B!important;
+		color: rgba(255, 211, 139, 1);
 	}
     .check-study {
         position: fixed;
@@ -105,7 +111,14 @@
         height: calc(100vh - 100px);
     }
 	.el-icon-close{
-		margin-right: -20px;
+		position: absolute;
+		right: 50px;
+		top: 50px;
+	}
+	.bor-bot{
+		width: 22px;
+		padding-bottom: 20px;
+		white-space: nowrap;
 	}
   
     .dialog {
@@ -115,20 +128,24 @@
         transform: translate(-50%, -50%);
         width: 1152px;
 		height: 719px;
-        background: #F0F0F0;
-        padding: 31px 37px 0 47px;
+        background: #FFFFFF;
+        padding: 0px 37px 0 47px;
 		box-sizing: border-box;
         overflow-x:hidden;
 		overflow-y: scroll;
 		border-radius: 4px 4px 0px 0px;
     }
 	.title{
-		font-size: 16px;
+		font-size: 24px;
 		font-weight: 500;
 		line-height: 22px;
-		color: #333333;
+		margin-right: 30px;
+		margin-left: 25px;
+		color: rgba(255, 211, 139, 1);
+		background: linear-gradient(159deg, #252933 0%, #3C3A40 100%);
 	}
 	.user-info{
+		position: relative;
 		padding-top: 38px;
 		padding-bottom: 27px;
 		margin-left: -47px;
@@ -154,26 +171,31 @@
 			font-size: 12px;
 			font-weight: 400;
 			line-height: 17px;
+			color: rgba(153, 153, 153, 1);
+			
+		}
+	}
+	.tab{
+		height: 66px;
+		background: linear-gradient(159deg, #252933 0%, #3C3A40 100%);
+		color: rgba(255, 211, 139, 0.5);
+		margin-left: -47px;
+		margin-right: -47px;
+		.tab-left{
+			width: 50%;
+			
+		}
+		.tab-right{
+			width: 50%;
 			
 		}
 	}
 	.main{
 		width: 100%;
 		background: #FFFFFF;
-	    height: 854px;
+	    // height: 854px;
 		
-		.tab{
-			height: 66px;
-			background: #E3E3E3;
-			.tab-left{
-				width: 50%;
-				
-			}
-			.tab-right{
-				width: 50%;
-				
-			}
-		}
+		
 		.contxt{
 			padding: 26px 0  40px 24px;
 			font-size: 13px;
@@ -186,7 +208,8 @@
 				.yuan{
 					width: 60px;
 					height: 60px;
-					background: #F2F2F2;
+					background-image: url(../../assets/image/personal/vipclass.png);
+					background-size: 100%;
 					border-radius: 50%;
 					margin-bottom: 3px;
 				}

@@ -21,10 +21,10 @@
                         <div class="triangle"></div>
                     </div>
                     <el-col :span="3.5"
-                            v-for="item in 17"
+                            v-for="item in classList"
                             :key="item+'g'">
-                        <div class="course-classify-item" @click="toPath('/classifyCourse')">
-                            篮球
+                        <div class="course-classify-item" @click="toPath('/classifyCourse?classId='+item.id)">
+                            {{item.name}}
                         </div>
                     </el-col>
                 </el-row>
@@ -61,6 +61,7 @@
   import { useRouter, useRoute } from 'vue-router'
   import loginDialog from "../../components/common/loginDialog.vue"
   import  openVipDialog from "../personal/openVipDialog.vue"
+  import {classifyOne} from "../../api/classify.js"
 
   export default {
     name: "menuNav",
@@ -133,6 +134,14 @@
 	  const closeDialog = ()=>{
 		  vipdialogShow.value=false
 	  }
+	  
+	  // 获取一级分类列表
+	  const classList =ref()
+	  const getClassfiy = async()=>{
+		 const res = await classifyOne({isIndex:0})
+		 classList.value = res
+	  }
+	  getClassfiy()
 
       // 控制导航栏底部透明
       const transparent = ref(false)
@@ -165,7 +174,9 @@
 		logoWImg,
 		logoBImg,
 		vipdialogShow,
-		closeDialog
+		closeDialog,
+		getClassfiy,
+		classList
       }
     }
   }
@@ -295,6 +306,10 @@
             color: #707070;
 
         }
+		.course-classify-item:hover{
+			background-color: rgba(19, 113, 243, 1);
+			color: #FFFFFF;
+		}
     }
 
     .search {

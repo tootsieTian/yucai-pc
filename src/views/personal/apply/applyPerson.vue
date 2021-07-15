@@ -31,16 +31,16 @@
 					:show-file-list="false" :on-success="handleAvatarSuccess1" :before-upload="beforeAvatarUpload">
 					<div class="pic picb f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;">
 						<div class="ab-con f-a-j">
-							拍摄背面
+							拍摄正面
 						</div>
 					</div>
 				</el-upload>
 				<el-upload class="avatar-uploader" :headers="headObj"
 					action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
 					:show-file-list="false" :on-success="handleAvatarSuccess2" :before-upload="beforeAvatarUpload">
-					<div class="pic f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;margin-left: 30px;">
+					<div class="pic picz f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;margin-left: 30px;">
 						<div class="ab-con f-a-j">
-							拍摄正面
+							拍摄背面
 						</div>
 					</div>
 				</el-upload>
@@ -60,6 +60,7 @@
 		ref,
 		reactive
 	} from "vue"
+	import router from "../../../router/router.js";
 	import {
 		companySettle
 	} from "../../../api/settle.js"
@@ -71,6 +72,7 @@
 	import {
 		ElMessage
 	} from 'element-plus'
+	import {teacherSettle} from "../../../api/settle.js"
 	export default {
 		setup() {
 			const subObj = reactive({
@@ -129,34 +131,36 @@
 					if (checkList.length < 1) {
 						return ElMessage('学习邻域至少要选择一个！请选择')
 					}
-					if (user.IDimg[0] == '' || user.IDimg[1] == '') {
+					if (user.value.IDimg[0] == '' || user.value.IDimg[1] == '') {
 						return ElMessage('各种证件图片请上传完整！')
 					}
 					let obj = {
 						"address": "",
 						"certificate": [],
-						"email": this.user.email,
+						"email": subList[2].value,
 						"gender": 0,
 						"headImgUrl": "",
-						"idCardBack": this.user.IDimg[0] ? this.user.IDimg[0] : "",
-						"idCardFront": this.user.IDimg[1] ? this.user.IDimg[1] : "",
-						"name": this.user.name,
+						"idCardBack": user.value.IDimg[0] ? user.value.IDimg[0] : "",
+						"idCardFront":user.value.IDimg[1] ? user.value.IDimg[1] : "",
+						"name": subList[0].value,
 						"tags": [],
-						"tel": this.user.phone
+						"tel": subList[1].value
 					}
 					teacherSettle(JSON.stringify(obj)).then(res => {
-
+                          ElMessage.success("提交成功")
+                          router.push("userInfo")
 					})
 				},
 				handleAvatarSuccess1(res, file) {
-					user.value.IDimg[0] = URL.createObjectURL(file.raw)
-
+					user.value.IDimg[0] = res.data.link
+                    let dom = document.getElementsByClassName("picb")[0]
+					dom.style.backgroundImage="url("+ res.data.link+")" 
 
 				},
 				handleAvatarSuccess2(res, file) {
-
-					user.value.IDimg[1] = URL.createObjectURL(file.raw)
-
+					user.value.IDimg[1] = res.data.link
+					let dom = document.getElementsByClassName("picz")[0]
+					dom.style.backgroundImage="url("+ res.data.link+")" 
 				},
 				beforeAvatarUpload(file) {
 					const isJPG = file.type === 'image/jpeg';
@@ -252,14 +256,16 @@
 
 		.pic {
 			width: 355px;
-			height: 165px;
-			background-image: url(../../../assets/image/personal/IDback.png);
+			height: 165px;	
 			font-size: 15px;
 			font-weight: 400;
 			line-height: 21px;
 			color: #333333;
 			background-size: 100%;
 			position: relative;
+		}
+		.picz{
+			background-image: url(../../../assets/image/personal/IDback.png);
 		}
 
 		.ab-con {
@@ -273,7 +279,7 @@
 		}
 
 		.picb {
-			background-image: url(../../../assets/image/personal/ID.png) !important;
+			background-image: url(../../../assets/image/personal/ID.png) ;
 		}
 
 		.btn-1 {

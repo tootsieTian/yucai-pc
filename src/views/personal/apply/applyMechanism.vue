@@ -30,7 +30,7 @@
 					:show-file-list="false" :on-success="handleAvatarSuccess1" :before-upload="beforeAvatarUpload">
 					<div class="pic picb f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;">
 						<div class="ab-con f-a-j">
-							拍摄背面
+							拍摄正面
 						</div>
 					</div>
 				</el-upload>
@@ -39,7 +39,7 @@
 					:show-file-list="false" :on-success="handleAvatarSuccess2" :before-upload="beforeAvatarUpload">
 					<div class="pic zcbg f-a-j hand" style="margin-top: 35px; margin-bottom: 17px;margin-left: 30px;">
 						<div class="ab-con f-a-j">
-							拍摄正面
+							拍摄背面
 						</div>
 					</div>
 				</el-upload>
@@ -48,7 +48,7 @@
 			<el-upload class="avatar-uploader" :headers="headObj"
 				action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
 				:show-file-list="false" :on-success="handleAvatarSuccess3" :before-upload="beforeAvatarUpload">
-				<div class="pic f-a-j hand">
+				<div class="pic bghui f-a-j hand">
 					营业执照
 				</div>
 			</el-upload>
@@ -57,7 +57,7 @@
 			<el-upload class="avatar-uploader" :headers="headObj"
 				action="https://api.yucaiedu.com/blade-resource/oss/endpoint/put-file-yvan" name="file"
 				:show-file-list="false" :on-success="handleAvatarSuccess4" :before-upload="beforeAvatarUpload">
-				<div class="pic hand f-a-j">
+				<div class="pic bghui hand f-a-j">
 					上传
 				</div>
 			</el-upload>
@@ -191,15 +191,23 @@
 					// user.IDimg[0].value = res.link
 
 					user.value.IDimg[0] = res.data.link
+					let dom = document.getElementsByClassName("picb")[0]
+					dom.style.backgroundImage="url("+ res.data.link+")" 
 				},
 				handleAvatarSuccess2(res, file) {
 					user.value.IDimg[1] = res.data.link
+					let dom = document.getElementsByClassName("zcbg")[0]
+					dom.style.backgroundImage="url("+ res.data.link+")" 
 				},
 				handleAvatarSuccess3(res, file) {
 					user.value.companyimg[0] = res.data.link
+					let dom = document.getElementsByClassName("bghui")[0]
+					dom.style.backgroundImage="url("+ res.data.link+")" 
 				},
 				handleAvatarSuccess4(res, file) {
 					user.value.companyimg[1] = res.data.link
+					let dom = document.getElementsByClassName("bghui")[1]
+					dom.style.backgroundImage="url("+ res.data.link+")" 
 
 				},
 
@@ -296,7 +304,7 @@
 		}
 
 		.picb {
-			background-image: url(../../../assets/image/personal/ID.png) !important;
+			background-image: url(../../../assets/image/personal/ID.png) ;
 		}
 
 		.lable1 {
@@ -314,7 +322,7 @@
 		.pic {
 			width: 355px;
 			height: 165px;
-			background: #F0F0F0;
+			
 			font-size: 15px;
 			font-weight: 400;
 			line-height: 21px;
@@ -326,7 +334,9 @@
 		.zcbg {
 			background-image: url(../../../assets/image/personal/IDback.png);
 		}
-
+        .bghui{
+			background: #F0F0F0;
+		}
 		.btn-1 {
 			width: 156px;
 			height: 42px;
