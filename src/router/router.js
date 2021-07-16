@@ -6,7 +6,9 @@ import study from "./study";
 import login from './login'
 import empty from "./empty"
 import store from "../store/index.js"
-
+import {
+		ElMessage
+	} from 'element-plus';
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -20,10 +22,7 @@ router.beforeEach((to, from, next) => {
 	    code = code.substring(5,code.indexOf('&'));
 	    store.state.code = code;
 	  }
-	  if(localStorage.getItem('access_token')==''||localStorage.getItem('user_id')==''){
-		  next('/')
-		  return false
-	  }
+	 
 	document.body.scrollTop = 0;
 	document.documentElement.scrollTop = 0;
 	/**
@@ -32,6 +31,19 @@ router.beforeEach((to, from, next) => {
 	if(to.meta.title){
 		document.title = to.meta.title;
 	}
-	next();
+	if(to.path!=='/'){
+		if(localStorage.getItem('access_token')==null||localStorage.getItem('user_id')==null){
+			ElMessage.error("请先登录！")
+				next({path:'/'})
+		}else{
+		next();	
+		}
+	}else{
+		next();
+	}
+	
+	
+	
+	
 });
 export default router

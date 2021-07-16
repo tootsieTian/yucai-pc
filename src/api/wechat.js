@@ -9,3 +9,7 @@ export function getUserInfo(params){
 export function setUserInfo(params) {
   return postBody('/blade-wechat/api/wechat/wxMobileUserApi/updateMobileUserInfo', params)
 }
+
+export function changeToken(params){
+	 return get('/blade-auth/api/auth/loginApiController/getOpenIdByCode', params)
+}

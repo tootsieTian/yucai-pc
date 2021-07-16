@@ -11,7 +11,7 @@
             >
                 <swiper-slide v-for="item in  swipeList">
                     <img class="nav-img"
-                         @click="toCourseDetail"
+                         @click="toCourseDetail(item)"
                          :src="item.img"/>
                 </swiper-slide>
             </swiper>
@@ -182,8 +182,10 @@
   import CheckStudy from "../../components/index/checkStudy";
   import Price from "../../components/common/price.vue"
   import { getIndexHot, getIndexTabList } from "../../api/indexList";
+  import {changeToken} from "../../api/wechat.js"
   import {myLovelist} from "../../api/course.js"
   import  openVipDialog from "../../components/personal/openVipDialog.vue"
+  import store from "../../store/index.js"
   SwiperCore.use([Pagination, A11y]);
 
   export default {
@@ -236,9 +238,19 @@
 		   method.getMylovelist()
 	  })
 	  
+	  if(store.state.code!==''){
+		  console.log(store.state.code)
+		  changeToken({
+			   "code": store.state.code,
+		  }).then(res=>{
+			  console.log(res)
+		  })
+		  store.state.code=''
+	  }
+	  
 		 
 	  // 进入页面判断是否登录
-	  if(localStorage.getItem('access_token')==''||localStorage.getItem('user_id')==''){
+	  if(localStorage.getItem('access_token')==null||localStorage.getItem('user_id')==null){
 		  loginShow.value=true
 	  }else{
 		  loginShow.value=false
@@ -248,10 +260,18 @@
       const method = {
 		  //  获取猜你喜欢列表
 		  getMylovelist(){
-		  		  myLovelist({userId: localStorage.getItem('user_id')}).then(res=>{
-		  			  loveList.value=res
-		  
-		  		  })
+			  if(localStorage.getItem('user_id')==null){
+				  myLovelist().then(res=>{
+				  		  			  loveList.value=res
+				  		  
+				  })
+			  }else{
+				  myLovelist({userId: localStorage.getItem('user_id') }).then(res=>{
+				  		  			  loveList.value=res
+				  		  
+				  })
+			  }
+		  		 
 		  },
 		  //  菜单跳转
 		  godetail(path){

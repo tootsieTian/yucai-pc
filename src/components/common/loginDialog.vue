@@ -33,10 +33,10 @@
 				<img  style="width: 45px;" src="../../assets/image/index/login-wx.png" alt="">
             </div> -->
            <wxlogin
-             appid="wx553c8ec687833235"
+             appid="wxd50825f9b47aa15d"
              :scope="'snsapi_login'"
              :theme="'black'"
-             :redirect_uri="encodeURIComponent('http://yc.yucaiedu.com')"
+             :redirect_uri="encodeURIComponent('http://192.168.31.94:8080')"
               rel="external nofollow" 
            >
            </wxlogin>
@@ -120,6 +120,9 @@
 		    localStorage.setItem('user_id',res.user_id)
 		    setTimeout(()=>{
 		      context.emit('closeDialog')
+			  // router.replace('/personal/userInfo')
+			  location.href="/"
+			  // location.href("/")
 		    },500)
 		  }).catch((res)=>{
 			 

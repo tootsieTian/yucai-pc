@@ -12,7 +12,7 @@
                 subtitle="好价课程 / 直击你的专业瓶颈 / 加速知识吸收"/>
         <el-row :gutter="24">
             <el-col :span="6" v-for="item in hotcourseList" :key="item">
-                <m-course-card :item="item" />
+                <m-course-card  :item="item" />
             </el-col>
         </el-row>
 		<!-- <div style="margin-top: 57px;" class="f-a-j" >
@@ -28,7 +28,7 @@
 
 <script>
   import CourseListTitle from "../../../components/common/courseListTitle";
-  import MCourseCard from "../../../components/courseCard/sCourseCard";
+  import MCourseCard from "../../../components/courseCard/allCourseCard.vue";
   import { indexHotMore  } from "../../../api/course.js"
   import {ref,reative,onMounted} from "vue"
   export default {

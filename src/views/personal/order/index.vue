@@ -20,6 +20,7 @@
 <script>
 	import orderItem from  "../../../components/personal/order/orderItem.vue"
 	import router from  "../../../router/router.js"
+	import {getOrderList } from "../../../api/order.js"
 	import {
 		ref,
 		reactive,

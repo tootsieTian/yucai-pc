@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import MCourseCard from "../../../components/courseCard/sCourseCard";
+  import MCourseCard from "../../../components/courseCard/allCourseCard.vue";
   import {reactive,ref} from 'vue'
 
   export default {

@@ -74,7 +74,9 @@
 			}
 
 			provide("customVal", courseInfo);
-
+          
+			
+			
 			const listenScroll = () => {
 				let scrollTop = document.documentElement.scrollTop + navHeight // 滚动条离顶部距离
 				let commentOffsetTop = refs.comment.value.$el.offsetTop // 评论盒子离顶部距离
@@ -126,6 +128,17 @@
 					router.go(-1)
 				}
 			}
+			// 增加浏览记录
+			const addRecord = ()=>{
+				if(localStorage.getItem('user_id')){
+					addBrowseRecord({
+					  courseId: courseId.value,
+					  courseType:courseType.value,
+					  userId: localStorage.getItem('user_id')
+					})
+				}
+			}
+			
 
 
 
@@ -191,6 +204,7 @@
 				courseType.value = parseInt(roure.query.courseType)
 				getCourseDetail()
 				getLoveList()
+				addRecord()
 
 			})
 
@@ -238,7 +252,8 @@
 				courseId,
 				isCollect,
 				collect,
-				play
+				play,
+				addRecord
 
 			}
 		}

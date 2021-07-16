@@ -1,12 +1,12 @@
 <template>
 	<div class="con f">
-		<div v-for="(item,index) in 6" class="item hand" :key="index">
+		<div v-for="(item,index) in collectList" class="item hand" :key="index">
 			<div class="header">
-				<img src="../../../assets/icon/sucai/course3.png" alt="">
+				<img :src="item.img" alt="">
 			</div>
 			<div class="footer">
-				<div class="title">100倍工作效率</div>
-				<div class="subtitle">7节课 ｜390人已学习</div>
+				<div class="title">{{item.name}}</div>
+				<div class="subtitle">{{item.courseNum}}节课 ｜390人已学习</div>
 				<div class="f-s" style="padding-right: 20px;" >
 					<div></div>
 					<Price></Price>
@@ -18,6 +18,7 @@
 
 <script>
 	import Price from "../../common/price.vue"
+	import { toRefs } from "vue"
 	export default {
 		components: {
 			Price
@@ -30,7 +31,7 @@
 			
 		},
 		setup(props){
-			const{collectList}=props
+			const{collectList}=toRefs(props)
 			return{
 				collectList
 			}

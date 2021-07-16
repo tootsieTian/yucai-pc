@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <main class="container-main">
+    <main class="container-main bugui">
         <div class="filter-list">
             <div @click="selectSub(index)" :class=" isSelect == index ? 'filter-item-active filter-item' :'filter-item'" v-for="(item,index) in subList" >{{item}}</div>
         </div>
@@ -33,7 +33,7 @@
 
 <script>
   import {classifyOne} from "../../../api/classify.js"
-  import MCourseCard from "../../../components/courseCard/mCourseCard";
+  import MCourseCard from "../../../components/courseCard/allCourseCard";
   import {ref,relative} from "vue"
   export default {
     name: "index",
@@ -82,9 +82,12 @@
 	 	background-color: rgba(19, 113, 243, 1)!important;
 	 	color: rgba(255, 255, 255, 1)!important;
 	 }
+	 .bugui{
+		
+	 }
     .classify-nav {
         height: 165px;
-       
+      
         width: 100%;
 
         .container-main {

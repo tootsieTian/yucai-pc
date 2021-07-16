@@ -40,17 +40,19 @@
         </div>
         <div class="course-box">
             <div class="title">付费课</div>
-            <el-row :gutter="20">
+			<s-course-card :isdelete="true" style="padding: 0px;" :historyList="obj" > </s-course-card>
+          <!--  <el-row :gutter="20">
                 <el-col :span="8" v-for="item in 5" class="course-item">
-                    <s-course-card :iscouldop="true" > <slot>....</slot></s-course-card>
+                    
                 </el-col>
-            </el-row>
+            </el-row> -->
             <div class="title" style="margin-top: 30px">付费课</div>
-            <el-row :gutter="20">
+			 <s-course-card  :isdelete="true" style="padding: 0px;" :historyList="obj"  />
+          <!--  <el-row :gutter="20">
                 <el-col :span="8" v-for="item in 5" class="course-item">
-                    <s-course-card/>
+                   
                 </el-col>
-            </el-row>
+            </el-row> -->
         </div>
     </main>
 	</div>
@@ -59,16 +61,34 @@
 <script>
   import { ref, reactive } from 'vue'
   import Calendar from "../../components/study/calendar";
-  import SCourseCard from "../../components/courseCard/sCourseCard";
+  import SCourseCard from "../../components/personal/browHistory/historyItem.vue";
 
   export default {
     name: "index",
     components: { SCourseCard, Calendar },
     setup() {
       const date = new Date()
+      const obj =ref([ {
+		  courseId: "1413691707089268737",
+		  courseNum: 1,
+		  id: "1415952147007987713",
+		  img: "https://oss.yucaiedu.com/upload/20210710/b94adf2141f3cad279e49461ed6ad7b8.jpeg",
+		  name: "家庭教育-让孩子成为学霸",
+		  progress: 0,
+		  type: 1,
+	  },{
+		  courseId: "1413691707089268737",
+		  courseNum: 1,
+		  id: "1415952147007987713",
+		  img: "https://oss.yucaiedu.com/upload/20210710/b94adf2141f3cad279e49461ed6ad7b8.jpeg",
+		  name: "家庭教育-让孩子成为学霸",
+		  progress: 0,
+		  type: 1,
+	  }])
 
-
-      return {}
+      return {
+		  obj
+	  }
     }
   }
 </script>

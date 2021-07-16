@@ -151,7 +151,8 @@
 				console.log(obj)
 				setUserInfo(JSON.stringify(obj)).then(res => {
 					ElMessage.success("保存成功")
-					router.push("userInfo")
+					location.href="/personal/userInfo"
+					// router.replace("/personal")
 				})
 
 			};

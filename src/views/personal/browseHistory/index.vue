@@ -33,7 +33,6 @@
 				userId: localStorage.getItem('user_id')
 			})
 			historyList.value=res.data
-			console.log(historyList.value)
 		}
 		const goDetail =(item)=>{
 			router.push({

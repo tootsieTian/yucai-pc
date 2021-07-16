@@ -6,18 +6,48 @@
 				<div></div>
 			</div>
 			<div class="hx"></div>
-			<collectItem></collectItem>
+			<collectItem :collectList="collectList" ></collectItem>
+			<div class="f-a-j" >
+				<el-pagination
+				  background
+				  layout="prev, pager, next,jumper"
+				  :total="70">
+				</el-pagination>
+			</div>
+			
 		</div>	
 </template>
 
 <script>
 	import collectItem from "../../../components/personal/collection/collectItem.vue"
+	import {getCollectlist} from "../../../api/course.js"
+	import {ref} from "vue"
 	export default{
 		name: "index",
 		components:{
 			collectItem
 		},
-		setup(){}
+		setup(){
+          // 获取收藏列表
+		  const pageNo = ref(1)
+		  const collectList = ref([])
+		  const getCollect =  async (pageNO)=>{
+			  const res = await getCollectlist({
+				  pageNo:pageNO,
+				  pageSize:6,
+				  userId:localStorage.getItem('user_id')
+			  })
+			 
+			  collectList.value=res.data
+		  }
+		  getCollect(pageNo.value)
+		  return {
+			  collectList,
+			  getCollect,
+			  pageNo
+		  }
+			
+		}
 	}
 </script>
 
