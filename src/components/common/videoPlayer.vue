@@ -1,4 +1,5 @@
 <template>
+	{{videoInfo}}
     <div id="player">
         <div class="speed-box">
             <div class="active-speed">{{speedActive.name}}X</div>
@@ -26,7 +27,7 @@
 </template>
 
 <script>
-  import { reactive, ref, onMounted,toRefs } from 'vue'
+  import { reactive, ref, onMounted,toRef,inject,toRefs } from 'vue'
   export default {
     name: "videoPlay",
 	// props:{
@@ -36,11 +37,13 @@
 	// 	}
 	// },
 	props:{
-		videoInfo: String
+		videoInfo: Object
 	},
     setup(props) {
-		
-	  const{videoInfo} = toRefs(props)
+	   const {videoInfo} = toRefs(props) 
+	   console.log(videoInfo.value.playUrl)
+	  // const videoInfo = ref(props.videoInfo)
+	  
       const playerObj =  window.Aliplayer   // 播放器实例
       const source = ref('//player.alicdn.com/video/aliyunmedia.mp4')
       /** 清晰度和速度按钮操作 */
@@ -154,7 +157,8 @@
         autoplay: false,
         source: source.value,
       }
-
+	
+	  // console.log(videoInfo._object)
       /** 改变播放器的布局 */
       onMounted(() => {
         const player = new Aliplayer(config)  //播放器实例
@@ -178,7 +182,7 @@
         oldControlbar.removeChild(volume)
         oldControlbar.removeChild(oldControlbarBg)
         oldControlbar.removeChild(setBtn)
-
+        
         // 创建一个flex盒子用于新的布局，将controlbar下的子元素全部放入其中
         let newControlbar = document.createElement('div')
         newControlbar.classList.add('new-controlbar')

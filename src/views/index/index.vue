@@ -250,7 +250,7 @@
 	  
 		 
 	  // 进入页面判断是否登录
-	  if(localStorage.getItem('access_token')==null||localStorage.getItem('user_id')==null){
+	  if(localStorage.getItem('access_token')==null||localStorage.getItem('user_id')==null||localStorage.getItem('access_token')==undefined||localStorage.getItem('user_id')==undefined){
 		  loginShow.value=true
 	  }else{
 		  loginShow.value=false

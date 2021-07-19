@@ -5,7 +5,8 @@
 			<div></div>
 		</div>
 		<div class="hx"></div>
-		<historyItem  @goDetail="goDetail" :historyList="historyList" ></historyItem>
+		<historyItem   v-show="historyList.length!==0" @goDetail="goDetail" :historyList="historyList" ></historyItem>
+		<empty :type="1"  v-show="historyList.length==0" ></empty>
 	</div>	
 </template>
 
@@ -14,16 +15,17 @@
 	import xlCourseCard from "../../../components/courseCard/xlCourseCard.vue";
 	import historyItem from "../../../components/personal/browHistory/historyItem.vue"
 	import {getBrowseRecordList,myLovelist} from "../../../api/course.js"
+	import empty from "../../../components/common/empty.vue"
 	import {ref,onMounted} from "vue"
 	export default{
 		name: "index",
 		components:{
 			historyItem,
-			xlCourseCard
+			xlCourseCard,
+			empty
 		},
 		setup(){
 		const router =useRouter()	
-			
 		// 获取浏览记录列表
 		const historyList =ref([])
         const getHistory = async ()=>{

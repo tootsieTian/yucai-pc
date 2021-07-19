@@ -6,7 +6,9 @@
 				<div></div>
 			</div>
 			<div class="hx"></div>
-			<collectItem v-show="active==2" ></collectItem>
+			<div class="f" style="flex-wrap: wrap; margin-left: 40px;margin-top: 40px; "  >
+				<collectItem class="item-ref" v-show="active==2"  v-for="(item,index) in 4" ></collectItem>
+			</div>
 			<div class="pri-con" v-show="active==1" >
 				<div class="header" >
 					<div class="main f-s" >
@@ -52,7 +54,7 @@
 	import * as echarts from 'echarts'
 	import Price from "../../../components/common/price.vue"
 	import tagList from "../../../components/common/tagList.vue"
-	import collectItem from "../../../components/personal/collection/collectItem.vue"
+	import collectItem from "../../../components/courseCard/allCourseCard.vue"
 	import router from "../../../router/router.js"
     import { useRoute } from 'vue-router'
 	import {
@@ -140,6 +142,12 @@
 				position: relative;
 				top: 30px;
 			}
+		}
+		.item-ref{
+			width: 332px;
+			// height: 320px;
+			margin-right: 24px;
+			margin-bottom: 20px;
 		}
 	
 		.hx {

@@ -37,9 +37,9 @@
         </el-tabs>
         <div class="course-video-list" v-if="courseVideoListShow">
             <div class="course-video-item"
-                 v-for="item in resourceList"
+                 v-for="(item,index) in resourceList"
                  :key="item+'p'"
-                 @click="toPath(item)">
+                 @click="toPath(index)">
                 <div class="left f-a-j">
                     <div class="title">第{{item.sort}}章</div>
                     <div class="circle">
@@ -121,8 +121,8 @@
       const tabClick = (tab) => {
         context.emit('tabClick', tab)
       }
-      const toPath = (item) => {
-		context.emit('play',item)
+      const toPath = (index) => {
+		context.emit('play',index)
         
       }
 	  // 收藏逻辑

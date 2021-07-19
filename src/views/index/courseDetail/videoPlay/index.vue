@@ -17,8 +17,8 @@
                     当前播放: -{{activeVideo.name}}
                 </div>
             </div>
-            <video-play class="video"
-			            :videoInfo="videoInfo.playURL"
+            <VideoPlayer class="video"
+			            :videoInfo="videoInfo"
                         v-if="!tryLookEnd"/>
             <div class="video-mask"
                  v-if="tryLookEnd">
@@ -59,9 +59,9 @@
 </template>
 
 <script>
-  import { ref, watch } from 'vue'
+  import { ref, watch,provide } from 'vue'
   import Comment from "../../../../components/courseDetail/videoPlay/comment";
-  import VideoPlay from "../../../../components/common/videoPlay";
+  import VideoPlayer from "../../../../components/common/videoPlayer.vue";
   import {useRouter,useRoute} from "vue-router"
   import{ courseDetail, getPlayInfo, collectCourse, cancelCellect,evaluateCourse } from "../../../../api/course.js"
   import {
@@ -70,7 +70,7 @@
 
   export default {
     name: "index",
-    components: { VideoPlay, Comment },
+    components: { VideoPlayer, Comment },
     setup() {
       const tryLookEnd = ref(false)
 	  const router = useRouter()
@@ -87,9 +87,13 @@
 	  const resourceList =ref([])
 	  const lecturer =ref({})
 	  const isCollect=ref(false)
+	  const activeCourseItem =ref(0)
 	  courseId.value = roure.query.courseId
 	  videoId.value = roure.query.videoId
 	  courseType.value = parseInt(roure.query.courseType)
+	  activeCourseItem.value=parseInt(roure.query.index)
+	 
+	 
 	 
 	  //根据id获取播放详情
 	  const getCourseInfo= async ()=>{
@@ -99,28 +103,31 @@
 			 userId: localStorage.getItem('user_id')
 		 })
 		 courseInfo.value=res
+		
 		 resourceList.value=res.resourceList
-		 activeVideo.value=resourceList.value[0]
+		 activeVideo.value=resourceList.value[activeCourseItem.value]
 		 lecturer.value=res.lecturer
 		 isCollect.value=res.isCollect==1 ? true : false 
 	  }
 	  getCourseInfo()
-	  
 	  // 根据id获取视频信息
 	  const getVideoInfo=async (videoId)=>{
 		  const res =await getPlayInfo({ videoId: videoId })
 		  videoInfo.value=res.PlayInfoList[0]
-		   console.log(videoInfo.value)
 	  }
 	  getVideoInfo(videoId.value)
 	 
 	  // 切换播放信息
 	  const activeVideo=ref({})
 	  const courseItemClick = (index) => {
+	    activeCourseItem.value=index
+		activeVideo.value=resourceList.value[index]
 		if(videoId.value==resourceList.value[index].mediaId){
 			return 	
-		} 
-		videoId.value=resourceList[index].mediaId
+		}
+		 
+		videoId.value=resourceList.value[index].mediaId
+		console.log(resourceList.value[index].mediaId)
 	    getVideoInfo(videoId.value)
 	  }
 	  
@@ -186,7 +193,8 @@
 		lecturer,
 	    submit,
 		isCollect,
-		collect
+		collect,
+		activeCourseItem
       }
     }
   }

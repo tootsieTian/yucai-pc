@@ -6,14 +6,15 @@
 				<div></div>
 			</div>
 			<div class="hx"></div>
-			<collectItem :collectList="collectList" ></collectItem>
-			<div class="f-a-j" >
+			<collectItem  v-show="collectList.length!=0" :collectList="collectList" ></collectItem>
+			<empty :type="1"  v-show="collectList.length==0" ></empty>
+			<!-- <div class="f-a-j" >
 				<el-pagination
 				  background
 				  layout="prev, pager, next,jumper"
 				  :total="70">
 				</el-pagination>
-			</div>
+			</div> -->
 			
 		</div>	
 </template>
@@ -21,11 +22,13 @@
 <script>
 	import collectItem from "../../../components/personal/collection/collectItem.vue"
 	import {getCollectlist} from "../../../api/course.js"
+	import empty from "../../../components/common/empty.vue"
 	import {ref} from "vue"
 	export default{
 		name: "index",
 		components:{
-			collectItem
+			collectItem,
+			empty
 		},
 		setup(){
           // 获取收藏列表

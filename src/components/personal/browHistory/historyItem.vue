@@ -9,8 +9,8 @@
 					<div>{{item.name}}</div>
 					<div><div v-if="isdelete" @click="openDialog(index)" >...</div></div>
 					<div v-if="selectArr.includes(index)" class="dialog f-c" >
-						<div class="f-1 f-a-j" style="border-bottom: 1px solid #E0E0E0;" >置顶课程</div>
-						<div class="f-1 f-a-j">删除课程</div>
+						<div class="f-1 f-a-j" @click="topCourse(item)" style="border-bottom: 1px solid #E0E0E0;" >置顶课程</div>
+						<div class="f-1 f-a-j" @click="delCourse(item)" >删除课程</div>
 					</div>
 				</div>
 				<div class="f-s">
@@ -29,7 +29,7 @@
 	} from "vue"
 	export default {
 		name: "historyItem",
-		emits: ["goDetail"],
+		emits: ["goDetail","delCourse","topCourse"],
 		props: {
 			historyList: {
 				type: Array,
@@ -59,12 +59,23 @@
 					}
 					
 			}
+			
+			const delCourse = (item)=>{
+				contxt.emit("delCourse", item)
+			}
+			
+			const topCourse = (item)=>{
+				contxt.emit("topCourse", item)
+			}
+			
 			return {
 				historyList,
 				goDetail,
 				isOpenDialog,
 				openDialog,
-				selectArr
+				selectArr,
+				topCourse,
+				delCourse
 			}
 		}
 	}

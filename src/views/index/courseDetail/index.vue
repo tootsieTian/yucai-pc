@@ -182,16 +182,18 @@
 
 			}
             // 播放视频拦截
-			const play= (item)=>{
+			const play= (index)=>{
 				// if(courseInfo.coursePrice!="0.00"&&courseInfo.isBuy!=1){
 				// 	return ElMessage.error('请先购买视频！');
 				// }
+			   
 				router.push({
 							  path:'/courseDetail/videoPlay',
 							  query: {
 							    courseId: courseId.value,
 							    courseType: courseType.value,
-								videoId:item.mediaId
+								videoId:resourceList.value[index].mediaId,
+								index:index
 							  }
 				})
 			}
