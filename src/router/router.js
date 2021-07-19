@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
 		document.title = to.meta.title;
 	}
 	if(to.path!=='/'){
-		if(localStorage.getItem('access_token')==null||localStorage.getItem('user_id')==null||localStorage.getItem('access_token')==undefined||localStorage.getItem('user_id')==undefined){
+		if(localStorage.getItem('access_token')==null||localStorage.getItem('user_id')==null||localStorage.getItem('access_token')=="undefined"||localStorage.getItem('user_id')=="undefined"){
 			ElMessage.error("请先登录！")
 				next({path:'/'})
 		}else{

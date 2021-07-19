@@ -17,8 +17,8 @@
                     当前播放: -{{activeVideo.name}}
                 </div>
             </div>
-            <VideoPlayer class="video"
-			            :videoInfo="videoInfo"
+            <VideoPlayer :key="videoKey" class="video"
+			            :videoInfo="videoInfo.playURL"
                         v-if="!tryLookEnd"/>
             <div class="video-mask"
                  v-if="tryLookEnd">
@@ -76,7 +76,7 @@
 	  const router = useRouter()
 	  const roure = useRoute()
       const commentBoxShow = ref(false)
-      
+      const videoKey =ref(100)
 	  
 	  // 获取课程ID 课程类型
 	  const courseId =ref('')
@@ -127,13 +127,13 @@
 		}
 		 
 		videoId.value=resourceList.value[index].mediaId
-		console.log(resourceList.value[index].mediaId)
+		videoKey.value++
 	    getVideoInfo(videoId.value)
 	  }
 	  
 	  // 提交评价
 	  const submit =(obj)=>{
-
+          
 		  obj.evaluateType=courseType.value
 		  obj.evaluateTypeId=courseId.value
 		  console.log(obj.evaluateContent)
@@ -194,7 +194,8 @@
 	    submit,
 		isCollect,
 		collect,
-		activeCourseItem
+		activeCourseItem,
+		videoKey
       }
     }
   }

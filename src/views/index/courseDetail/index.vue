@@ -134,7 +134,7 @@
 					addBrowseRecord({
 					  courseId: courseId.value,
 					  courseType:courseType.value,
-					  userId: localStorage.getItem('user_id')
+					  userId: localStorage.getItem('user_id')==undefined 
 					})
 				}
 			}
@@ -206,7 +206,8 @@
 				courseType.value = parseInt(roure.query.courseType)
 				getCourseDetail()
 				getLoveList()
-				addRecord()
+			    addRecord()
+			
 
 			})
 

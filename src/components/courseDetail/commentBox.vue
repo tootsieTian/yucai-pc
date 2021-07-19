@@ -38,7 +38,7 @@
                     </div>
                     <div class="subtitle">学习3课时评价</div>
                     <div class="comment">{{item.evaluateContent}}</div>
-                    <div class="reply" v-if="item.replyContent!=''">
+                    <div class="reply" v-if="item.replyContent!=null">
                         <div class="reply-title">讲师回复：</div>
                         <div class="reply-content">{{item.replyContent}}</div>
                     </div>
@@ -230,7 +230,7 @@
                 }
 
                 .reply {
-                    height: 27px;
+                    // height: 27px;
                     background: #EAEAEA;
                     width: 100%;
                     padding: 10px;

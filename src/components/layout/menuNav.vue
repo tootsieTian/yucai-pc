@@ -180,7 +180,7 @@
 				isLogin.value = true
 
 			}
-			if (localStorage.getItem('user_id') != null) {
+			if (localStorage.getItem('user_id') != "undefined") {
 				getUesr()
 			}
 

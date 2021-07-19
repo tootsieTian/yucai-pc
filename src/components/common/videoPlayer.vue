@@ -1,6 +1,6 @@
 <template>
-	{{videoInfo}}
     <div id="player">
+		{{videoInfo}}
         <div class="speed-box">
             <div class="active-speed">{{speedActive.name}}X</div>
             <div class="speed-list">
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-  import { reactive, ref, onMounted,toRef,inject,toRefs } from 'vue'
+  import { reactive, ref, onMounted,toRef,inject,toRefs,onUpdated } from 'vue'
   export default {
     name: "videoPlay",
 	// props:{
@@ -37,13 +37,12 @@
 	// 	}
 	// },
 	props:{
-		videoInfo: Object
+		videoInfo: String,
 	},
     setup(props) {
-	   const {videoInfo} = toRefs(props) 
-	   console.log(videoInfo.value.playUrl)
+	   const videoInfo = toRef(props.videoInfo) 
+	   // console.log(videoInfo)
 	  // const videoInfo = ref(props.videoInfo)
-	  
       const playerObj =  window.Aliplayer   // 播放器实例
       const source = ref('//player.alicdn.com/video/aliyunmedia.mp4')
       /** 清晰度和速度按钮操作 */
@@ -155,10 +154,13 @@
       let config = {
         id: 'player',  //播放器的ID
         autoplay: false,
-        source: source.value,
+        source: videoInfo._object,
       }
+	  
+	  // onUpdated(()=>{
+		 //  console.log(config)
+	  // })
 	
-	  // console.log(videoInfo._object)
       /** 改变播放器的布局 */
       onMounted(() => {
         const player = new Aliplayer(config)  //播放器实例
@@ -199,7 +201,7 @@
         source,
         ...method,
         ...videoBtnObj,
-		videoInfo
+		// videoInfo
       }
     }
   }
