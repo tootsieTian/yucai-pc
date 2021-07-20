@@ -12,7 +12,7 @@
 					<el-menu-item index="2">待付款</el-menu-item>
 					<el-menu-item index="3">交易完成</el-menu-item>
 				</el-menu>
-				<orderItem @goDeatil="goDeatil" ></orderItem>
+				<orderItem :orderList="orderList" @goDeatil="goDeatil" ></orderItem>
 			</div>
 		</div>	
 </template>
@@ -30,9 +30,16 @@
 		name: "index",
 		components:{orderItem},
 		setup(){
+			const orderList = ref([])
 			const activeIndex = ref(1)
-			const handleSelect = ()=>{
-				
+			const handleSelect = (e)=>{
+				if(e=="1"){
+					getOrder(" ")
+				}if(e=="2"){
+					getOrder("1")
+				}if(e=="3"){
+					getOrder("2")
+				}
 			}
 			const goDeatil = ()=>{
 				router.push({
@@ -43,10 +50,23 @@
 				
 				})
 			}
+			const getOrder =(orderStatus)=>{
+				getOrderList({
+				  pageNo: 1,
+				  orderStatus: orderStatus,
+				  pageSize: 10,
+				  userId: localStorage.getItem('user_id')
+				}).then(res=>{
+					orderList.value=res.data
+				})
+			}
+			getOrder(" ")
 			return{
 				activeIndex,
 				handleSelect,
-				goDeatil
+				goDeatil,
+				orderList,
+				getOrder
 			}
 		}
 	}

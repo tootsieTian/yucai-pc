@@ -7,18 +7,18 @@
         </div>
         <div class="order-box">
             <div class="user-info">
-                <img :src="require('../../../../assets/icon/sucai/平行宇宙.jpg')"
+                <img :src="userInfo.avatar"
                      class="user-header"
                 >
-                <div class="username">薛定谔的狗</div>
+                <div class="username">{{userInfo.userName}}</div>
             </div>
             <div class="course-box">
-                <img :src="require('../../../../assets/icon/sucai/平行宇宙.jpg')"
+                <img :src="courseInfo.courseImg"
                      class="title-page">
                 <div class="content">
-                    <div class="title">100倍工作效率</div>
-                    <div class="subtitle">7节课 ｜390人已学习</div>
-                    <div class="price">68.00</div>
+                    <div class="title">{{courseInfo.courseName}}</div>
+                    <div class="subtitle">3节课 ｜{{courseInfo.defaultEnjoyNum}}人已学习</div>
+                    <div class="price">{{courseInfo.coursePrice}}</div>
                 </div>
             </div>
             <div class="coupon-box">
@@ -58,24 +58,36 @@
                 <div class="line"></div>
                 <div class="price-box">
                     <div class="price-title">需付金额</div>
-                    <Price :lineHeight="'12px'" :fontSize="'28px'" :color="'rgba(234, 53, 83, 1)'" ></Price>
+                    <Price :money="courseInfo.coursePrice" :lineHeight="'12px'" :fontSize="'28px'" :color="'rgba(234, 53, 83, 1)'" ></Price>
                 </div>
-                <div class="buy-btn">立即支付</div>
+                <div @click="goPlay" class="buy-btn">立即支付</div>
             </div>
         </div>
     </div>
+		<qrcode></qrcode>
 	</div>
 </template>
 
 <script>
-  import { reactive } from 'vue'
+  import { reactive,ref } from 'vue'
   import Price from "../../../../components/common/price.vue"
+  import {setOrder} from "../../../../api/order.js"
+  import {getUserInfo} from "../../../../api/wechat.js"
+  import { courseDetail} from "../../../../api/course.js"
+  import qrcode from "../../../../components/common/qrCode.vue"
+  import {
+  	useRouter,
+  	useRoute
+  } from 'vue-router'
   export default {
     name: "index",
 	components:{
-		Price
+		Price,
+		qrcode
 	},
     setup() {
+	  const router = useRouter()
+	  const route = useRoute()
       const selectPayType = reactive({})
       const payTypeList = reactive([
         {
@@ -87,16 +99,74 @@
 		  icon:require("../../../../assets/image/course/wxplay.png")
         }
       ])
+	  
+	  // 路由获取参数
+	  const courseId = ref('')
+	  const courseType = ref(0)
+	  const courseInfo = ref({})
+	  
+	  courseId.value = route.query.courseId
+	  courseType.value = parseInt(route.query.courseType)
+	  
+	  
+	  // 获取用户信息
+	  const userInfo =ref({})
+	  const getUser= async ()=>{
+	    const res	= await getUserInfo({userId: localStorage.getItem('user_id')})
+	    userInfo.value=res
+		console.log(res)
+	  };
+	  getUser()
+	  
       const method = {
         plateItemClick(item) {
           selectPayType.value = item
-        }
+        },
+	 	async getCourseInfo(){
+			const res = await courseDetail({
+				courseId: courseId.value,
+				courseType: courseType.value,
+				userId: localStorage.getItem('user_id')
+			})
+			courseInfo.value=res
+			
+			
+		},
+		async goPlay(){
+			 let obj ={
+				 goodsId:courseId.value,
+				 goodsType:courseType.value,
+				 orderSource:2,
+				 paymentPrice:courseInfo.value.coursePrice,
+				 userId:localStorage.getItem('user_id')
+			 }
+			 setOrder(obj).then(res=>{
+				router.replace({
+					
+								  path:'/courseDetail',
+								  query: {
+								    courseId:courseId.value  ,
+								    courseType:courseType.value
+								  }
+					
+				})
+			 })
+		}
       }
+	  
+	  method.getCourseInfo()
+	  
       method.plateItemClick(payTypeList[0])
+	  
       return {
         selectPayType,
         payTypeList,
-        ...method
+        ...method,
+		courseType,
+		courseId,
+		courseInfo,
+		userInfo,
+		getUser
       }
     }
   }
@@ -117,6 +187,7 @@
             line-height: 33px;
             color: #333333;
             margin-right: 10px;
+			margin-top: 20px;
         }
 
         .subtitle {
@@ -126,6 +197,7 @@
             line-height: 20px;
             color: #707070;
             opacity: 0.6;
+			margin-top: 30px;
         }
     }
 	.coupon-box,.source-box{

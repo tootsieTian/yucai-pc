@@ -270,10 +270,10 @@
 			  }else{
 				  myLovelist({userId: localStorage.getItem('user_id') }).then(res=>{
 				  		  			  loveList.value=res
-				  		  
+				  		              console.log(res)
 				  })
 			  }
-		  		 
+		  	
 		  },
 		  //  菜单跳转
 		  godetail(path){

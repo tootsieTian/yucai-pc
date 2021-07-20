@@ -2,7 +2,7 @@
 	<div class="course-detail">
 		<title-box :courseImg="courseInfo.courseImg" :title="courseInfo.courseName" :url="lecturer.headImgUrl"
 			:name="lecturer.name" :subtitle="courseInfo.introduction" />
-		<course-info :isCollect="isCollect" @collect="collect" :courseInfo="courseInfo" />
+		<course-info @play="play" :isCollect="isCollect" @collect="collect" :courseInfo="courseInfo" />
 		<groupworkBox v-show="false"></groupworkBox>
 		<course-list @play="play" :isCollect="isCollect" @collect="collect" :courseId="courseId"
 			:courseType="courseType" :resourceList="resourceList" :key="courseListKey" @tabClick="tabClick"
@@ -134,7 +134,7 @@
 					addBrowseRecord({
 					  courseId: courseId.value,
 					  courseType:courseType.value,
-					  userId: localStorage.getItem('user_id')==undefined 
+					  userId: localStorage.getItem('user_id')
 					})
 				}
 			}
