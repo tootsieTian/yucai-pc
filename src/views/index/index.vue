@@ -182,7 +182,7 @@
   import CheckStudy from "../../components/index/checkStudy";
   import Price from "../../components/common/price.vue"
   import { getIndexHot, getIndexTabList } from "../../api/indexList";
-  import {changeToken} from "../../api/wechat.js"
+  import {changeToken2} from "../../api/wechat.js"
   import {myLovelist} from "../../api/course.js"
   import  openVipDialog from "../../components/personal/openVipDialog.vue"
   import store from "../../store/index.js"
@@ -240,8 +240,10 @@
 	  
 	  if(store.state.code!==''){
 		  console.log(store.state.code)
-		  changeToken({
+		  changeToken2({
 			   "code": store.state.code,
+			   "grant_type":"pc"
+			   
 		  }).then(res=>{
 			  console.log(res)
 		  })
@@ -252,7 +254,6 @@
 	  // 进入页面判断是否登录
 	  if(localStorage.getItem('access_token')==null||localStorage.getItem('user_id')==null||localStorage.getItem('access_token')=="undefined"||localStorage.getItem('user_id')=="undefined"){
 		  loginShow.value=true
-		  console.log(111)
 	  }else{
 		  loginShow.value=false
 		  
@@ -262,7 +263,7 @@
       const method = {
 		  //  获取猜你喜欢列表
 		  getMylovelist(){
-			  if(localStorage.getItem('user_id')=="undefined"){
+			  if(localStorage.getItem('user_id')=="undefined" || localStorage.getItem('user_id')==null ){
 				  myLovelist().then(res=>{
 				  		  			  loveList.value=res
 				  		  

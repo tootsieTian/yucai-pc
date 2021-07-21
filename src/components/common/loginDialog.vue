@@ -36,7 +36,7 @@
              appid="wxd50825f9b47aa15d"
              :scope="'snsapi_login'"
              :theme="'black'"
-             :redirect_uri="encodeURIComponent('http://192.168.31.94:8080')"
+             :redirect_uri="encodeURIComponent('http://localhost:8080')"
               rel="external nofollow" 
            >
            </wxlogin>

@@ -13,3 +13,7 @@ export function setUserInfo(params) {
 export function changeToken(params){
 	 return get('/blade-auth/api/auth/loginApiController/getOpenIdByCode', params)
 }
+
+export function changeToken2(params){
+	 return post('blade-auth/oauth/token', params)
+}
